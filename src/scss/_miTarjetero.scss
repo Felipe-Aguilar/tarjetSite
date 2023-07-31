@@ -1,0 +1,592 @@
+$BordeColor: #c0c0c0aa;
+
+.miTarjetero{
+    overflow: hidden!important;
+    margin-top: 4.2rem;
+
+    @media screen and (max-width: 575px){
+        margin-top: 4.1rem;
+    }
+
+    .encabezadoFoto{
+        img{
+            width: 100%;
+        }
+        h5{
+            text-align: center;
+            font-weight: bold;
+            span{
+                font-weight: 400;
+            }
+        }
+        h4{
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            color: #03894a;
+        }
+    }
+
+    .tarjeta2{
+        padding: 20px 0;
+
+        img{
+            width: 100%;
+            cursor: pointer;
+        }
+        p{
+            text-transform: uppercase;
+            font-weight: 400;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .controles{
+        .contenedor{
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+
+            button{
+                width: 17%;
+                border: none;
+                outline: none;
+                background: transparent;
+                font-size: 0.9rem;
+                line-height: 15px;
+                text-align: center;
+
+                @media screen and (max-width: 575px){
+                    width: 20%;
+                    font-size: 0.9rem;
+                    line-height: 17px;
+                }
+
+                img{
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    .consultas{
+        padding: 20px 0;
+
+        .cuerpo{
+            background: #e5e8e8;
+            border-radius: 20px;
+            padding: 15px 5px;
+
+            h5{
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+            div{
+                display: flex;
+                justify-content: space-around;
+                img{
+                    width: 15%;
+                    border-radius: 100%;
+                }
+            }
+        }
+    }
+
+    .TuTarjetero{
+        h5{
+            text-align: center;
+            font-weight: bold;
+        }
+        p{
+            text-align: center;
+            color: #57585b;
+            span{
+                text-decoration: underline;
+            }
+        }
+        .cuerpo{
+            background: #e5e8e8;
+            border-radius: 20px;
+            padding: 15px 5px;
+            margin-top: 20px;
+
+            h5{
+                font-size: 1.15rem;
+                margin-bottom: 15px;
+            }
+            div{
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                align-items: center;
+
+                button{
+                    border-radius: 10px;
+                    padding: 3px 20px;
+                    border:transparent;
+                    transition: 1s all ease;
+                    background: transparent;
+                    outline: none!important;
+                }
+                .active{
+                    background: #9dc85a;
+                }
+            }
+        }
+
+        .buscar{
+            div{
+                gap: 0;
+                align-items: start;
+
+                label{
+                    background: #fff;
+                    width: 10%;
+                    padding: 5px;
+                    display: flex;
+                    justify-content: center;
+                    border-radius: 10px 0 0 10px;
+                }
+                input{
+                    width: 70%;
+                    outline: none;
+                    border: transparent;
+                    padding: 5px;
+                    border-radius: 0px 10px 10px 0px;
+
+                    @media screen and (max-width: 575px){
+                        width: 75%;
+                    }
+                }
+            }
+        }
+
+        .resultados{
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+
+            > * + * {
+                margin-top: 20px;
+            }
+
+            .resultado{
+                border-bottom: 2px solid #d4e7f3;
+
+                .body{
+                    width: 85%;
+                    background: #d7eedc;
+                    display: block;
+                    margin: auto;
+                    padding: 15px 10px;
+                    border-radius: 20px 20px 0 0;
+                    cursor: pointer;
+
+                    @media screen and (max-width: 575px){
+                        width: 90%;
+                    }
+
+                    .title{
+                        display: flex;
+                        gap: 25px;
+                        align-items: center;
+                        
+                        .img{
+                            width: 20%;
+                            min-width: 20%;
+                            img{
+                                width: 100%;
+                                border-radius: 100%;
+                            }
+                        }
+                        h5{
+                            margin-bottom: 0;
+                            text-align: left;
+
+                            span{
+                                font-weight: 400;
+                                text-transform: uppercase;
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+
+                .body2{
+                    width: 85%;
+                    background: #d7eedc;
+                    display: block;
+                    margin: auto;
+                    border-radius: 0 0 20px 20px;
+
+                    @media screen and (max-width: 575px){
+                        width: 90%;
+                    }
+
+                    img{
+                        width: 100%;
+                        cursor: pointer;
+                    }
+
+                    .info{
+                        padding: 15px 10px;
+
+                        p{
+                            margin: 0;
+                            text-align: center;
+                            text-transform: uppercase;
+                            font-size: 0.8rem;
+                        }
+                        .qr{
+                            width: 50%;
+                            display: block;
+                            margin: auto;
+                            padding: 20px 0;
+
+                            @media screen and (max-width: 575px){
+                                width: 60%;
+                            }
+                        }
+                        .escanea{
+                            text-transform: none;
+                            font-size: 1rem;
+                        }
+                        .buttons{
+                            display: flex;
+                            margin-top: 20px;
+
+                            button{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 5px;
+                                line-height: 15px;
+                                padding: 5px 0;
+                                border: none;
+                                background: transparent;
+                                outline: none;
+
+                                img{
+                                    width: 20%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .giro{
+                display: flex;
+                justify-content: center;
+                
+                .giro-body{
+                    background: #d4e7f3;
+                    padding: 15px;
+                    width: 70%;
+                    text-align: center;
+                    border-radius: 15px 15px 0 0;
+                    cursor: pointer;
+                }
+
+                > * + * {
+                    margin-top: 20px;
+                }
+            }
+        }
+
+        .paginacion{
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+    }
+
+    .tarjeta{
+        width: 397px;
+        height: 227px;
+        padding: 10px;
+        cursor: pointer;
+        background-size: cover;
+        display: block;
+        margin: auto;
+        border-radius: 11px;
+        box-shadow:
+        2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+        6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+        12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+        22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+        41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+        100px 100px 80px rgba(0, 0, 0, 0.07)
+        ;
+        
+        @media screen and (max-width: 575px){
+            width: 100%;
+            height: 195px;
+            box-shadow:
+            2.8px 2.8px 2.8px rgba(0, 0, 0, 0.02),
+            6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+            12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+            ;
+        }
+
+        .circulo{
+            width: 55px;
+            height: 50px;
+            position: relative;
+            right: 0px;
+            top: 150px;
+
+            @media screen and (max-width: 575px){
+                top: 120px;
+                right: 80px;
+            }
+        }
+
+        .mano{
+            position: relative;
+            width: 50px;
+            height: 50px;
+            right: 75px;
+            top: 170px;
+
+            @media screen and (max-width: 575px){
+                top: 140px;
+                right: 160px;
+            }
+        }
+    }
+
+    .opciones2{
+        .cuerpo{
+            // background: #fff;
+            padding: 10px;
+
+            img{
+                width: 50%;
+                cursor: pointer;
+                display: block;
+                margin: auto;
+                @media screen and (max-width: 575px){
+                    width: 75%;
+                }
+            }
+            .compartir{
+                display: flex;
+                position: absolute;
+                z-index: 1;
+                background:	#c0c0c088;
+                padding: 5px 15px;
+                border: 2px solid rgba(210, 210, 210, 0.626);
+                gap: 15px;
+                border-radius: 20px;
+                right: 30px;
+                
+
+                i{
+                    text-align: center;
+                    font-size: 1.2rem;
+                    display: block;
+                }
+                .facebook{
+                    color: #1877F2;
+                }
+                .whats{
+                    color: #3cc14e;
+                }
+                .instagram{
+                    color: #E1306C;
+                }
+                .instagram{
+                    color: #E1306C;
+                }
+                .telegram{
+                    color: #3390EC;
+                }
+                .twitter{
+                    color: #1D9BF0;
+                }
+            }
+        }
+    }
+
+    .MiTarjeteroPersonal{
+        .cuerpo{
+            background: #fff;
+            padding: 20px 15px;
+            box-shadow:
+            0.3px 0.3px 2.2px rgba(0, 0, 0, 0.02),
+            0.7px 0.7px 5.3px rgba(0, 0, 0, 0.028),
+            1.3px 1.3px 10px rgba(0, 0, 0, 0.035),
+            2.2px 2.2px 17.9px rgba(0, 0, 0, 0.042),
+            4.2px 4.2px 33.4px rgba(0, 0, 0, 0.05),
+            10px 10px 80px rgba(0, 0, 0, 0.07)
+            ;
+
+            h5{
+                text-align: center;
+                font-size: 18px;
+            }
+            form{
+                label{
+                    margin-right: 10px;
+                }
+    
+                select, input{
+                    border: 1px solid $BordeColor;
+                    outline: none;
+                    padding: 5px;
+                    border-radius: 6px;
+                }
+                input[type=text]{
+                    border: none;
+                    border-radius: 0px;
+                    border-bottom: 1px solid $BordeColor;
+                    width: 30%;
+                    margin-right: 10px;
+
+                    @media screen and (max-width: 575px){
+                        width: 50%;
+                    }
+                }
+                button{
+                    outline: none;
+                    border: none;
+                    padding: 0 20px;
+                    font-weight: bold;
+                    background: none;
+                    color: #3dbaf0;
+                }
+            }
+        }
+    }
+
+    .MiTarjeteroPersonal2{
+        .imagen-titulo{
+            img{
+                width: 60%;
+                display: block;
+                margin: auto;
+                margin-bottom: 20px;
+                @media screen and (max-width: 575px){
+                    width: 80%;
+                }
+            }
+        }
+        .cuerpo{
+            // background: #fff;
+            padding: 20px 15px;
+            box-shadow:
+            0.3px 0.3px 2.2px rgba(0, 0, 0, 0.02),
+            0.7px 0.7px 5.3px rgba(0, 0, 0, 0.028),
+            1.3px 1.3px 10px rgba(0, 0, 0, 0.035),
+            2.2px 2.2px 17.9px rgba(0, 0, 0, 0.042),
+            4.2px 4.2px 33.4px rgba(0, 0, 0, 0.05),
+            10px 10px 80px rgba(0, 0, 0, 0.07)
+            ;
+            
+            @media screen and (max-width: 575px){
+                padding: 25px;
+                box-shadow:
+                0.3px 0.3px 2.2px rgba(0, 0, 0, 0.02),
+                0.7px 0.7px 5.3px rgba(0, 0, 0, 0.028),
+                1.3px 1.3px 10px rgba(0, 0, 0, 0.035),
+                2.2px 2.2px 17.9px rgba(0, 0, 0, 0.042),
+                ;
+            }
+
+            h5{
+                font-size: 18px;
+                color: #3f894f;
+                font-weight: bold;
+
+                @media screen and (max-width: 575px){
+                    font-size: 14px;
+                }
+            }
+            h6{
+                color: #2f3160;
+                font-weight: bold;
+
+                @media screen and (max-width: 575px){
+                    font-size: 13px;
+                }
+            }
+            form{
+                label{
+                    margin-right: 10px;
+                    color: #2ba959;
+                    font-weight: bold;
+                }
+                select, input{
+                    border: 1px solid $BordeColor;
+                    outline: none;
+                    padding: 5px;
+                    border-radius: 6px;
+                }
+                input[type=text]{
+                    border: none;
+                    border-radius: 0px;
+                    border-bottom: 1px solid $BordeColor;
+                    width: 100%;
+                    margin-right: 10px;
+
+                    @media screen and (max-width: 575px){
+                        width: 100%;
+                    }
+                }
+                button{
+                    outline: none;
+                    border: none;
+                    padding: 0 20px;
+                    font-weight: bold;
+                    background: none;
+                    color: #3dbaf0;
+                }
+            }
+        }
+    }
+
+    .Datos{
+        h6, i{
+            margin-bottom: none;
+        }
+        i{
+            margin-right: 10px;
+        }
+        p{
+            font-size: 14px;
+            font-style: italic;
+        }
+        .resultado{
+            font-size: 16px;
+            font-style: normal;
+            border: none;
+            outline: none;
+            background: none;
+            display: block;
+            margin-bottom: 30px;
+            text-align: left;
+            color: #060846;
+            span{
+                font-size: 14px;
+                font-weight: bold;
+                display: block;
+                color: #000;
+            }
+        }
+        .noEncontrado{
+            color: #dc1313;
+        }
+        .regresar{
+            font-size: 14px;
+            outline: none;
+            border: none;
+            float: right;
+        }
+    }
+
+}

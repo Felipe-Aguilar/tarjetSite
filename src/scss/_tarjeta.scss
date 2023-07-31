@@ -1,0 +1,34 @@
+.tarjeta{
+    margin-top: 6rem;
+    color: #fff;
+    text-align: center;
+
+    h4,h5{
+        margin: 0;
+        position: absolute;
+        z-index: 2;
+    }
+    h4{
+        left: 222px;
+        top: 149px;
+
+        @media screen and (max-width: 575px){
+            font-size: 17px;
+            left: 193px;
+            top: 121px;
+        }
+    }
+    h5{
+        left: 241px;
+        top: 184px;
+
+        @media screen and (max-width: 575px){
+            font-size: 15px;
+            left: 202px;
+            top: 144px;
+        }
+    }
+    img{
+        border-radius: 11px;
+    }
+}

@@ -1,0 +1,44 @@
+$borde: #f4f4f4;
+
+.aviso-privacidad{
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+
+    h1{
+        font-size: 23px;
+    }
+
+    .acordeon{
+        background: #fff;
+        border-radius: 11px;
+        padding: 25px;
+        // border: 5px solid #d2d2d267;
+        margin-top: 20px;
+
+        .titulo{
+            button{
+                width: 100%;
+                padding: 10px 0;
+                border: none;
+                border-top: 1px solid $borde;
+                // border-bottom: 1px solid $borde;
+                outline: none;
+                background-color: transparent;
+                font-weight: bold;
+            }
+
+            .info{
+                padding: 10px 0;
+                color: #545454;
+                font-size: 14px;
+                overflow: hidden;
+
+                ul{
+                    li{
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.NuevosUsuarios{
+    padding: 20px 0;
+
+    h2{
+        font-size: 1.3rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .tarjetas{
+        width: 80%;
+        display: block;
+        margin: auto;
+        padding: 20px 0;
+
+        .slide-tarjeta{
+            padding: 0 15px;
+            img{
+                width: 100%;
+            }
+        }
+
+        i{
+            color: red!important;
+        }
+    }
+}
