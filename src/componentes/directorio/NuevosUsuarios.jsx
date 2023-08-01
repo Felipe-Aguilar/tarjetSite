@@ -17,10 +17,21 @@ const NuevosUsuarios = () => {
             </div>
         ),
         nextArrow: (
-            <div className='custom-arrow custom-prev-arrow'>
-                <i className="bi bi-chevron-right"></i>
+            <div className='custom-arrow custom-prev-arrow' style={{right: '-0px!important'}}>
+                <i className="bi bi-chevron-right" style={{color: 'red!important'}}></i>
             </div>
-        )
+        ),
+        responsive: [
+            {
+                breakpoint: 575,
+                settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+                }
+            }
+        ]
     }
 
     return ( 
@@ -50,6 +61,7 @@ const NuevosUsuarios = () => {
                     
                 </Slider>
             </div>
+            <p>Da click sobre la imagen para ver su tarjeta digital</p>
         </div>
     );
 }

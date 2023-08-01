@@ -1,0 +1,112 @@
+.BusquedaGeneral{
+    padding: 80px 10%;
+
+    @media (width <= 572px) {
+        background: #e9edf2;
+        margin-top: 20px;
+        padding: 15px 2%;
+    }
+
+    h2{
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: space-between;
+
+        @media (width <= 572px) {
+            display: none;
+        }
+
+        button{
+            text-align: center;
+            border: none;
+            outline: none;
+            background: transparent;
+
+            @media (width <= 572px) {
+                font-size: 0.8rem;
+                width: 100px;
+            }
+
+            div{
+                width: 100px;
+                height: 100px;
+                display: block;
+                margin: auto;
+                border: 1px solid #000;
+                border-radius: 100%;
+
+                @media (width <= 572px) {
+                    width: 50px;
+                    height: 50px;
+                    background: #fff;
+                }
+            }
+
+            img{
+                width: 100%;
+                display: block;
+                margin: auto;
+            }
+            .resuActive{
+                background: #d8dfe1;
+            }
+        }
+    }
+    .buttons-mobile{
+        @media (width > 572px) {
+            display: none;
+        }
+
+        @media (width <= 572px) {
+            display: block;
+            
+            .fila1, .fila2{
+                display: flex;
+                justify-content: space-between;
+                align-items: start;
+                margin-top: 15px;
+            }
+
+        }
+    }
+    .resultados{
+        padding-top: 20px;
+
+        @media (width <= 572px) {
+            display: none;
+        }
+
+        button{
+            color: #5f5f5d;
+            border: none;
+            background: transparent;
+            width: 25%;
+            display: block;
+            margin: auto;
+
+            i{
+                margin-right: 10px;
+            }
+        }
+
+        .btn-resultados{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: 15px;
+            gap: 25px;
+
+            button{
+                width: auto;
+                margin: 0;
+                background: #e9edf2;
+                padding: 0 20px;
+                border-radius: 30px;
+            }
+        }
+    }
+}

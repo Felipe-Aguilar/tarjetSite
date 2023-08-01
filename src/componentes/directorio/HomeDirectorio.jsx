@@ -1,3 +1,6 @@
+import BusquedaActividad from "./BusquedaActividad";
+import BusquedaGeneral from "./BusquedaGeneral";
+import BusquedaMapa from "./BusquedaMapa";
 import NuevosUsuarios from "./NuevosUsuarios";
 import VideoBanner from "./VideoBanner";
 
@@ -6,6 +9,9 @@ const HomeDirectorio = () => {
         <>
             <VideoBanner />
             <NuevosUsuarios />
+            <BusquedaActividad />
+            <BusquedaGeneral />
+            <BusquedaMapa />
         </>
     );
 }

@@ -1,0 +1,28 @@
+.BusquedaMapa{
+    padding: 20px 10%;
+    background: #d3def3;
+
+    h2{
+        font-size: 1.2rem;
+        text-align: center;
+        font-weight: bold;
+    }
+    p{
+        text-align: center;
+    }
+
+    .barraBusqueda{
+        background: #fff;
+        width: 40%;
+        margin: auto;
+        display: flex;
+        padding: 20px;
+        
+        div{
+            width: 25%;
+        }
+        button{
+            width: 100%;
+        }
+    }
+}

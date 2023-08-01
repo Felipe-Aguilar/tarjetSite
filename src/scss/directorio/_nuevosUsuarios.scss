@@ -21,7 +21,34 @@
         }
 
         i{
-            color: red!important;
+            color: #003f81;
+            font-size: 1.5rem;
+        }
+
+        .slick-arrow.slick-prev{
+            left: -100px;
         }
     }
+
+    p{
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 20px;
+
+        @media (width <= 575px) {
+            padding: 0 10px;
+            font-size: 0.9rem;
+        }
+    }
+
+}
+.slick-next:before {
+    display: none;
+}
+.slick-prev:before {
+    display: none;
+}
+.slick-prev, .slick-next{
+    width: 30px;
+    z-index: 1;
 }
