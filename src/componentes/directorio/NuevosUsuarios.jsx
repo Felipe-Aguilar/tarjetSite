@@ -13,12 +13,12 @@ const NuevosUsuarios = () => {
         slidesToScroll: 3,
         prevArrow: (
             <div className='custom-arrow custom-prev-arrow'>
-                <i className="bi bi-chevron-left" style={{color: 'red!important'}}></i>
+                <i className="bi bi-chevron-left" ></i>
             </div>
         ),
         nextArrow: (
-            <div className='custom-arrow custom-prev-arrow' style={{right: '-0px!important'}}>
-                <i className="bi bi-chevron-right" style={{color: 'red!important'}}></i>
+            <div className='custom-arrow custom-prev-arrow'>
+                <i className="bi bi-chevron-right" ></i>
             </div>
         ),
         responsive: [

@@ -1,3 +1,75 @@
 .Interesar{
+    padding: 80px 10%;
+
+    @media (width <= 575px) {
+        padding: 40px 5%;
+    }
+
+    h2{
+        font-size: 1.2rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .Sliders{
+        display: flex;
+        flex-direction: column;
     
+        > * + * {
+            margin-top: 15px;
+        }
+
+        .contenedor{
+            width: 100%;
+            border-bottom: 1px solid #ababaa;
+            padding: 15px;
+
+            h5{
+                font-size: 1.15rem;
+            }
+
+            .resu{
+                width: 33%;
+                padding: 0 10px;
+
+                @media (width <= 575px) {
+                    padding: 5px;
+                }
+            }
+            i{
+                color: #003f81;
+                font-size: 1.5rem;
+            }
+            .cuerpo-resu{
+                display: flex;
+                background: #f4f8f9;
+                padding: 20px;
+                border-radius: 10px;
+
+                @media (width <= 575px) {
+                    padding: 15px;
+                }
+
+                img{
+                    width: 15%;
+                    border-radius: 100%;
+                    margin-right: 10px;
+
+                    @media (width <= 575px) {
+                        width: 20%;
+                    }
+                }
+                h4{
+                    font-size: 1.1rem;
+                    margin-top: 10px;
+                    font-weight: bold;
+
+                    span{
+                        display: block;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
 }
