@@ -2,6 +2,10 @@
     padding: 20px 10%;
     background: #d3def3;
 
+    @media (width <= 575px) {
+        padding: 20px 2%;
+    }
+
     h2{
         font-size: 1.2rem;
         text-align: center;
@@ -17,12 +21,170 @@
         margin: auto;
         display: flex;
         padding: 20px;
+        border-radius: 20px;
+
+        @media (width <= 575px) {
+            width: 97%;
+            padding: 7px;
+            border-radius: 15px;
+        }
         
         div{
             width: 25%;
         }
         button{
             width: 100%;
+            height: 60%;
+            background: transparent;
+            border: none;
+            outline: none!important;
+            border-right: 1px solid #000;
+
+            @media (width <= 575px) {
+                font-size: 0.7rem;
+                text-transform: uppercase;
+            }
+
+            img{
+                width: 30px;
+                display: block;
+                margin: auto;
+            }
+        }
+        p{
+            height: 40%;
+            color: #8b8b8a;
+            margin-bottom: 0;
+        }
+        .btn-buscar{
+            border: none;
+            height: 100%;
+        }
+    }
+
+    .resultados{
+        width: 100%;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        padding: 20px 0 0 0;
+
+        @media (width <= 575px) {
+            display: none;
+        }
+
+        .resultado{
+            background: #fff;
+            width: 33%;
+            padding: 15px 10px;
+            border-radius: 20px;
+
+            .encabezado{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+                
+                p{
+                    margin-bottom: 0;
+                }
+
+                button{
+                    width: auto;
+                    border: transparent;
+                    outline: none!important;
+                    background: transparent;
+                }
+            }
+            .cerca{
+                width: calc(50% - 7.5px);
+            }
+
+            button{
+                width: 100%;
+                outline: none!important;
+                border: transparent;
+                padding: 5px;
+                border-radius: 8px;
+                background: $btnResultado;
+                text-align: left;
+
+                div{
+                    width: 25px;
+                    height: 25px;
+                    // background: #fff;
+                    border-radius: 100%;
+                    display: inline-block;
+                    margin-right: 10px;
+                    
+                    i{
+                        display: block;
+                        margin: auto;
+                        text-align: center;
+                        color: #3ca700;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+            .no-check{
+                div{
+                    background: transparent;
+
+                    i{
+                        color: transparent;
+                    }
+                }
+            }
+            .col-resultados{
+                display: flex;
+                gap: 15px;
+                margin-top: 10px;
+                
+                .col-r{
+                    width: 50%;
+                    flex-direction: column;
+    
+                    > * + * {
+                        margin-top: 10px;
+                    }
+                }
+            }
+            .btn-resultados{
+                flex-direction: column;
+    
+                > * + * {
+                    margin-top: 10px;
+                }
+            }
+            .subresultados{
+                width: 70%;
+                margin: auto;
+                margin-top: 10px;
+
+                flex-direction: column;
+    
+                > * + * {
+                    margin-top: 10px;
+                }
+
+                button{
+                    background: #e9edf2;
+                }
+
+                .resultado-sub{
+                    button{
+                        background: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.Mapa{
+    @media (width <= 575px) {
+        iframe{
+            height: 500px;
         }
     }
 }
