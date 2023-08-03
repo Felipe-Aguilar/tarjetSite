@@ -69,6 +69,7 @@ const BusquedaActividad = () => {
                             </div>
                             Categoría
                         </button>
+                        <p>Empty</p>
                     </div>
                     <div className="control">
                         <button onClick={btnActividad}>
@@ -77,6 +78,7 @@ const BusquedaActividad = () => {
                             </div>
                             Actividad
                         </button>
+                        <p>Empty</p>
                     </div>
                     <div className="control">
                         <button onClick={btnUbicacion}>
@@ -85,14 +87,16 @@ const BusquedaActividad = () => {
                             </div>
                             Ubicación
                         </button>
+                        <p>Empty</p>
                     </div>
-                    <div className="control" style={{border: 'none'}} onClick={btnNombre}>
+                    <div className="control control-nombre" onClick={btnNombre}>
                         <button>
                             <div>
                                 <img src={iconoNombre} className='nombre'/>
                             </div>
                             Nombre
                         </button>
+                        <p>Empty</p>
                     </div>
                     <div className="control control-buscar">
                         <button>
