@@ -54,7 +54,7 @@ $btnResultado: #e1eff2;
     
                 @media (width <= 575px) {
                     height: 90px;
-                    padding: 5px 7px;
+                    padding: 5px 0px;
                 }
     
                 button{
@@ -118,6 +118,10 @@ $btnResultado: #e1eff2;
                 p{
                     margin-bottom: 0;
                     height: 30%;
+
+                    @media (width <= 575px) {
+                        font-size: 0.8rem;
+                    }
                 }
             }
             .control-inicio{
