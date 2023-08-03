@@ -1,6 +1,40 @@
+import { useState } from 'react';
 import iconoLupa from '../../assets/icono-lupa.svg';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const BusquedaMapa = () => {
+
+    const [estado, setEstado] = useState(false);
+    const [ciudad, setCiudad] = useState(false);
+    const [actividad, setActividad] = useState(false);
+
+    const btnEstado = () => {
+        setEstado(!estado);
+
+        setCiudad(false);
+        setActividad(false);
+    }
+
+    const btnCiudad = () => {
+        setCiudad(!ciudad);
+
+        setEstado(false);
+        setActividad(false);
+    }
+
+    const btnActividad = () => {
+        setActividad(!actividad);
+
+        setEstado(false);
+        setCiudad(false);
+    }
+
+    const propsAnimacion = {
+        initial: {scale: 0},
+        animate: {scale: 1},
+        exit: {opacity: 0}
+    }
+
     return ( 
         <>
             <div className="container-fluid BusquedaMapa">
@@ -9,7 +43,7 @@ const BusquedaMapa = () => {
 
                 <div className="barraBusqueda">
                     <div>
-                        <button>
+                        <button onClick={btnEstado}>
                             Estado*
                         </button>
                         <p>Empty</p>
@@ -18,13 +52,17 @@ const BusquedaMapa = () => {
                         <button className='d-none d-md-block'>
                             Ciudad / Alcaldía
                         </button>
-                        <button className='d-block d-md-none' style={{fontSize: '0.6rem'}}>
+                        <button 
+                            className='d-block d-md-none' 
+                            style={{fontSize: '0.6rem'}}
+                            onClick={btnCiudad}
+                        >
                             Ciudad / Deleg.
                         </button>
                         <p>Empty</p>
                     </div>
                     <div>
-                        <button>
+                        <button onClick={btnActividad}>
                             Actividad
                         </button>
                         <p>Empty</p>
@@ -212,6 +250,162 @@ const BusquedaMapa = () => {
                         </div>
                     </div>
                 </div>
+
+                <AnimatePresence>
+                    { estado &&
+                        <motion.div className='resultadosMobile' {...propsAnimacion}>
+                            <div className='encabezado'>
+                                <p>Selecciona una opción</p>
+                                <button onClick={()=>setEstado(false)}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar
+                                </button>
+                            </div>
+                            <div className='resultado'>
+                                <button className='no-check cerca'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Cerca de mí
+                                </button>
+                            </div>
+                            <div className='resultado estado'>
+                                <div className='fila'>
+                                    <button className=''>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+                                    <button className='no-check'>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+                                </div>
+                                <div className='fila'>
+                                    <button className='no-check'>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+                                    <button className='no-check'>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    }
+                </AnimatePresence>
+
+                <AnimatePresence>
+                    { ciudad &&
+                        <motion.div className='resultadosMobile' {...propsAnimacion}>
+                            <div className='encabezado'>
+                                <p>Selecciona una opción</p>
+                                <button onClick={()=>setCiudad(false)}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar
+                                </button>
+                            </div>
+                            <div className='resultado estado'>
+                                <div className='fila'>
+                                    <button className=''>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+                                    <button className='no-check'>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+                                </div>
+                                <div className='fila'>
+                                    <button className='no-check'>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+                                    <button className='no-check'>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    }
+                </AnimatePresence>
+
+                <AnimatePresence>
+                    { actividad &&
+                        <motion.div className='resultadosMobile' {...propsAnimacion}>
+                            <div className='encabezado'>
+                                <p>Selecciona una opción</p>
+                                <button onClick={()=>setActividad(false)}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar
+                                </button>
+                            </div>
+                            <div className='resultado actividad'>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Aguascalientes
+                                </button>
+                                <button className=''>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Aguascalientes
+                                </button>
+
+                                {/* Subresultado */}
+                                <div className='subresultado'>
+                                    <button className=''>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Aguascalientes
+                                    </button>
+
+                                    <div className='sub-subresultado'>
+                                        <button className=''>
+                                            <div>
+                                                <i className="bi bi-check2"></i>
+                                            </div>
+                                            Aguascalientes
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Aguascalientes
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Aguascalientes
+                                </button>
+                            </div>
+                        </motion.div>
+                    }
+                </AnimatePresence>
             </div>
 
             <div className='container-fluid p-0 Mapa'>

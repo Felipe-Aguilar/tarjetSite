@@ -3,7 +3,7 @@
     background: #d3def3;
 
     @media (width <= 575px) {
-        padding: 20px 2%;
+        padding: 20px 0;
     }
 
     h2{
@@ -24,7 +24,7 @@
         border-radius: 20px;
 
         @media (width <= 575px) {
-            width: 97%;
+            width: 95%;
             padding: 7px;
             border-radius: 15px;
         }
@@ -172,6 +172,126 @@
                 }
 
                 .resultado-sub{
+                    button{
+                        background: transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    .resultadosMobile{
+        width: 100%;
+        background: #fff;
+        margin-top: 20px;
+        margin-bottom: -20px;
+        padding: 20px 2%;
+
+        @media (width >= 575px) {
+            display: none;
+        }
+
+        .encabezado{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p{
+                margin-bottom: 0;
+            }
+            button{
+                border: transparent;
+                padding: 5px;
+                background: transparent;
+                outline: none!important;
+
+                i{
+                    margin-right: 10px;
+                }
+            }
+        }
+        .resultado{
+            margin-top: 10px;
+
+            button{
+                width: 100%;
+                outline: none!important;
+                border: transparent;
+                padding: 5px;
+                border-radius: 8px;
+                background: $btnResultado;
+                text-align: left;
+
+                div{
+                    width: 25px;
+                    height: 25px;
+                    // background: #fff;
+                    border-radius: 100%;
+                    display: inline-block;
+                    margin-right: 10px;
+                    
+                    i{
+                        display: block;
+                        margin: auto;
+                        text-align: center;
+                        color: #3ca700;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+            .no-check{
+                background: #e9edf2;
+
+                div{
+                    background: transparent;
+
+                    i{
+                        color: transparent;
+                    }
+                }
+            }
+            .cerca{
+                width: calc(50% - 5px);
+            }
+        }
+        .estado{
+            display: flex;
+            gap: 15px;
+
+            .fila{
+                width: 50%;
+                flex-direction: column;
+    
+                > * + * {
+                    margin-top: 10px;
+                }
+            }
+        }
+        .resultado.actividad{
+            flex-direction: column;
+            > * + * {
+                margin-top: 10px;
+            }
+
+            button{
+                width: 100%;
+                background: $btnResultado;
+            }
+
+            .subresultado{
+                width: 80%;
+                margin: auto;
+                margin-top: 10px;
+
+                > * + * {
+                    margin-top: 10px;
+                }
+
+                button{
+                    background: #e9edf2;
+                }
+
+                .sub-subresultado{
                     button{
                         background: transparent;
                     }
