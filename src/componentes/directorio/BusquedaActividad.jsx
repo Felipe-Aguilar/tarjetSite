@@ -1,10 +1,57 @@
+import { motion, AnimatePresence } from 'framer-motion';
+
 import iconoCategoria from '../../assets/icono-categoria.svg';
 import iconoActividad from '../../assets/icono-actividad.svg';
 import iconoUbicacion from '../../assets/icono-ubicacion.svg';
 import iconoNombre from '../../assets/icono-nombre.svg';
 import iconoBuscar from '../../assets/icono-lupa-blanca.svg';
+import { useState } from 'react';
 
 const BusquedaActividad = () => {
+
+    const [categoria, setCategoria] = useState(false);
+    const [actividad, setActividad] = useState(false);
+    const [ubicacion, setUbicacion] = useState(false);
+    const [nombre, setNombre] = useState(false);
+
+    const propsAnimacion = {
+        initial: {scale: 0},
+        animate: {scale: 1},
+        exit: {opacity: 0}
+    }
+
+    const btnCategoria = () => {
+        setCategoria(!categoria);
+
+        setActividad(false);
+        setUbicacion(false);
+        setNombre(false);
+    }
+
+    const btnActividad = () => {
+        setActividad(!actividad);
+
+        setCategoria(false);
+        setUbicacion(false);
+        setNombre(false);
+    }
+
+    const btnUbicacion = () => {
+        setUbicacion(!ubicacion);
+
+        setCategoria(false);
+        setActividad(false);
+        setNombre(false);
+    }
+
+    const btnNombre = () => {
+        setNombre(!nombre);
+
+        setCategoria(false);
+        setActividad(false);
+        setUbicacion(false);
+    }
+
     return ( 
         <div className="container-fluid BusquedaActividad">
 
@@ -16,7 +63,7 @@ const BusquedaActividad = () => {
             <div className="controles">
                 <div className="controles-body">
                     <div className="control control-inicio">
-                        <button>
+                        <button onClick={btnCategoria}>
                             <div>
                                 <img src={iconoCategoria} className='categoria'/>
                             </div>
@@ -24,7 +71,7 @@ const BusquedaActividad = () => {
                         </button>
                     </div>
                     <div className="control">
-                        <button>
+                        <button onClick={btnActividad}>
                             <div>
                                 <img src={iconoActividad} className='actividad'/>
                             </div>
@@ -32,14 +79,14 @@ const BusquedaActividad = () => {
                         </button>
                     </div>
                     <div className="control">
-                        <button>
+                        <button onClick={btnUbicacion}>
                             <div>
                                 <img src={iconoUbicacion} className='ubicacion'/>
                             </div>
                             Ubicación
                         </button>
                     </div>
-                    <div className="control" style={{border: 'none'}}>
+                    <div className="control" style={{border: 'none'}} onClick={btnNombre}>
                         <button>
                             <div>
                                 <img src={iconoNombre} className='nombre'/>
@@ -232,6 +279,158 @@ const BusquedaActividad = () => {
                     </button>
                 </div>
             </div>
+
+            <AnimatePresence>
+                { categoria &&
+                    <motion.div className='resultadosMobile' {...propsAnimacion}>
+                        <p>Selecciona una opción</p>
+
+                        <div className='resultados'>
+                            <button className=''>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Comida
+                            </button>
+                            <button className='no-check'>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Comida
+                            </button>
+                            <button className='no-check'>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Comida
+                            </button>
+
+                            <button className='btn-cerrar' onClick={()=>setCategoria(false)}>
+                                <i className="bi bi-x-lg"></i>
+                                Cerrar
+                            </button>
+                        </div>
+                    </motion.div>
+                }
+            </AnimatePresence>
+
+            <AnimatePresence>
+                { actividad &&
+                    <motion.div className='resultadosMobile' {...propsAnimacion}>
+                        <div className='encabezado'>
+                            <p>Selecciona una opción</p>
+
+                            <button className='btn-cerrar' onClick={()=>setActividad(false)}>
+                                <i className="bi bi-x-lg"></i>
+                                Cerrar
+                            </button>
+                        </div>
+
+                        <div className='resultados'>
+                            <button className=''>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Comida
+                            </button>
+
+                            <div className='sub-resultados'>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                                <button className=''>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                            </div>
+
+                            <button className='no-check'>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Comida
+                            </button>
+                            <button className='no-check'>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Comida
+                            </button>
+                        </div>
+                    </motion.div>
+                }
+            </AnimatePresence>
+
+            <AnimatePresence>
+                { ubicacion &&
+                    <motion.div className='resultadosMobile' {...propsAnimacion}>
+                        <div className='encabezado'>
+                            <p>Selecciona una opción</p>
+
+                            <button className='btn-cerrar' onClick={()=>setUbicacion(false)}>
+                                <i className="bi bi-x-lg"></i>
+                                Cerrar
+                            </button>
+                        </div>
+
+                        <div className='resultados ubicacion'>
+                            <button className='primer'>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Cerca de mí
+                            </button>
+                            <button className='no-check'>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Aguascalientes
+                            </button>
+
+                            <button className='no-check'>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Aguascalientes
+                            </button>
+                            <button className='no-check'>
+                                <div>
+                                    <i className="bi bi-check2"></i>
+                                </div>
+                                Aguascalientes
+                            </button>
+                        </div>
+                    </motion.div>
+                }
+            </AnimatePresence>
+
+            <AnimatePresence>
+                { nombre &&
+                    <motion.div className='resultadosMobile' {...propsAnimacion}>
+                        <p>¿Conoces el nombre o parte del nombre del usuario Tarjet? ¡Aquí puedes buscarlo fácilmente!</p>
+
+                        <input type="text" placeholder='Escribe su nombre aquí'/>
+
+                        <div className='resultados'>
+                            <button className='btn-cerrar' onClick={()=>setNombre(false)}>
+                                <i className="bi bi-x-lg"></i>
+                                Cerrar
+                            </button>
+                        </div>
+                    </motion.div>
+                }
+            </AnimatePresence>
         </div>
     );
 }

@@ -261,4 +261,134 @@ $btnResultado: #e1eff2;
             }
         }
     }
+
+    .resultadosMobile{
+        padding: 20px 2%;
+
+        @media (width >= 575px) {
+            display: none;
+        }
+
+        p{
+            font-size: 1rem;
+        }
+
+        .encabezado{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+
+            p{
+                margin-bottom: 0;
+            }
+            button{
+                border: none;
+                background: transparent;
+                outline: none!important;
+
+                i{
+                    margin-right: 5px;
+                }
+            }
+        }
+        
+        .resultados{
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+    
+            > * + * {
+                margin-top: 0px;
+            }
+
+            button{
+                width: 100%;
+                outline: none!important;
+                border: transparent;
+                padding: 5px;
+                border-radius: 8px;
+                background: $btnResultado;
+                text-align: left;
+
+                div{
+                    width: 25px;
+                    height: 25px;
+                    background: #fff;
+                    border-radius: 100%;
+                    display: inline-block;
+                    margin-right: 10px;
+                    
+                    i{
+                        display: block;
+                        margin: auto;
+                        text-align: center;
+                        color: #3ca700;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+            .no-check{
+                div{
+                    background: transparent;
+
+                    i{
+                        color: transparent;
+                    }
+                }
+            }
+            .btn-cerrar{
+                background: transparent;
+                text-align: center;
+                i{
+                    margin-right: 10px;
+                }
+            }
+            .sub-resultados{
+                width: 100%;
+                button{
+                    background: #f8f9fa;
+
+                    div{
+                        background: transparent;
+
+                        i{
+                            color: #3ca700;
+                        }
+                    }
+                }
+                .no-check{
+                    background: transparent;
+                    i{
+                        color: transparent;
+                    }
+                }
+            }
+        }
+        .resultados.ubicacion{
+            .primer{
+                background: $btnResultado;
+            }
+            button{
+                background: #f8f9fa;
+            }
+            .check{
+                div{
+                    background: transparent;
+                    i{
+                        color: #3ca700;
+                    }
+                }
+            }
+        }
+        input{
+            width: 100%;
+            margin-bottom: 10px;
+            background: #e9edf2;
+            border: transparent;
+            padding: 5px 7px;
+            border-radius: 8px;
+            outline: none!important;
+        }
+    }
 }
