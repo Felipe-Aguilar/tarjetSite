@@ -6,6 +6,8 @@ import iconoServicios from '../../assets/icono-servicios.svg';
 import iconoTiendas from '../../assets/icono-tiendas.svg';
 import iconoTransporte from '../../assets/icono-transporte.svg';
 import iconoTurismo from '../../assets/icono-turismo.svg';
+import PerfilTemporal from '../../assets/perfiltemporal.jpg';
+import TarjetaGenerica from '../../assets/tarjetageneric.png';
 
 const BusquedaGeneral = () => {
     return ( 
@@ -136,6 +138,132 @@ const BusquedaGeneral = () => {
                     <button>Talleres de reparación terrestre</button>
                     <button>Seguridad</button>
                     <button>Esotérico</button>
+                </div>
+            </div>
+
+            <div className='ResultadosCard'>
+                <div className='encabezado'>
+                    <button>
+                        <i className="bi bi-x-lg"></i>
+                        Cerrar ventana de resultados
+                    </button>
+                </div>
+                <div className='cards'>
+                    <div className='contenedor'>
+                        <div className='title'>
+                            <div className='img'>
+                                <img src={PerfilTemporal}/>
+                            </div>
+                            <div>
+                                <h5>
+                                    Alberto Mérida
+                                    <br/>
+                                    <span>Desarrollo e integración</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div className='tarjetaImg'>
+                            <img src={TarjetaGenerica} className='img-fluid'/>
+                        </div>
+                        <div className='footer'>
+                            <p>
+                                Da click sobre la imagen para ver tarjeta digital
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className='contenedor'>
+                        <div className='title'>
+                            <div className='img'>
+                                <img src={PerfilTemporal}/>
+                            </div>
+                            <div>
+                                <h5>
+                                    Alberto Mérida
+                                    <br/>
+                                    <span>Desarrollo e integración</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div className='tarjetaImg'>
+                            <img src={TarjetaGenerica} className='img-fluid'/>
+                        </div>
+                        <div className='footer'>
+                            <p>
+                                Da click sobre la imagen para ver tarjeta digital
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className='contenedor'>
+                        <div className='title'>
+                            <div className='img'>
+                                <img src={PerfilTemporal}/>
+                            </div>
+                            <div>
+                                <h5>
+                                    Alberto Mérida
+                                    <br/>
+                                    <span>Desarrollo e integración</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div className='tarjetaImg'>
+                            <img src={TarjetaGenerica} className='img-fluid'/>
+                        </div>
+                        <div className='footer'>
+                            <p>
+                                Da click sobre la imagen para ver tarjeta digital
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className='contenedor'>
+                        <div className='title'>
+                            <div className='img'>
+                                <img src={PerfilTemporal}/>
+                            </div>
+                            <div>
+                                <h5>
+                                    Alberto Mérida
+                                    <br/>
+                                    <span>Desarrollo e integración</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div className='tarjetaImg'>
+                            <img src={TarjetaGenerica} className='img-fluid'/>
+                        </div>
+                        <div className='footer'>
+                            <p>
+                                Da click sobre la imagen para ver tarjeta digital
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className='contenedor'>
+                        <div className='title'>
+                            <div className='img'>
+                                <img src={PerfilTemporal}/>
+                            </div>
+                            <div>
+                                <h5>
+                                    Alberto Mérida
+                                    <br/>
+                                    <span>Desarrollo e integración</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div className='tarjetaImg'>
+                            <img src={TarjetaGenerica} className='img-fluid'/>
+                        </div>
+                        <div className='footer'>
+                            <p>
+                                Da click sobre la imagen para ver tarjeta digital
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
