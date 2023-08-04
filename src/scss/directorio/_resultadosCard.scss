@@ -3,7 +3,7 @@
     background: #fff;
 
     @media (width <= 575px) {
-        padding: 20px 2%;
+        padding: 20px 3%;
     }
 
     .encabezado{
@@ -73,6 +73,10 @@
                     text-transform: uppercase;
                     font-size: 0.8rem;
                     text-align: center;
+
+                    @media (width <= 575px) {
+                        font-size: 0.7rem;
+                    }
                 }
             }
         }
