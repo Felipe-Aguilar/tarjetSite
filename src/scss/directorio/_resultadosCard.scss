@@ -1,5 +1,10 @@
 .ResultadosCard{
     padding: 40px 0 0 0;
+    background: #fff;
+
+    @media (width <= 575px) {
+        padding: 20px 2%;
+    }
 
     .encabezado{
         display: flex;
@@ -27,6 +32,10 @@
             border-radius: 20px;
             background: #d4e7f2;
             margin-top: 20px;
+
+            @media (width <= 575px) {
+                width: 100%;
+            }
 
             .title{
                 display: flex;
