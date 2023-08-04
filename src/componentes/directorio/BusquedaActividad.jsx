@@ -5,6 +5,10 @@ import iconoActividad from '../../assets/icono-actividad.svg';
 import iconoUbicacion from '../../assets/icono-ubicacion.svg';
 import iconoNombre from '../../assets/icono-nombre.svg';
 import iconoBuscar from '../../assets/icono-lupa-blanca.svg';
+
+import PerfilTemporal from '../../assets/perfiltemporal.jpg';
+import TarjetaGenerica from '../../assets/tarjetageneric.png';
+
 import { useState } from 'react';
 
 const BusquedaActividad = () => {
@@ -13,6 +17,7 @@ const BusquedaActividad = () => {
     const [actividad, setActividad] = useState(false);
     const [ubicacion, setUbicacion] = useState(false);
     const [nombre, setNombre] = useState(false);
+    const [buscar, setBuscar] = useState(false);
 
     const propsAnimacion = {
         initial: {scale: 0},
@@ -99,7 +104,7 @@ const BusquedaActividad = () => {
                         <p>Empty</p>
                     </div>
                     <div className="control control-buscar">
-                        <button>
+                        <button onClick={()=>setBuscar(!buscar)}>
                             <div>
                                 <img src={iconoBuscar} className='nombre'/>
                             </div>
@@ -431,6 +436,135 @@ const BusquedaActividad = () => {
                                 <i className="bi bi-x-lg"></i>
                                 Cerrar
                             </button>
+                        </div>
+                    </motion.div>
+                }
+            </AnimatePresence>
+
+            <AnimatePresence {...propsAnimacion}>
+                { buscar &&
+                    <motion.div className='ResultadosCard'>
+                        <div className='encabezado'>
+                            <button onClick={()=>setBuscar(false)}>
+                                <i className="bi bi-x-lg"></i>
+                                Cerrar ventana de resultados
+                            </button>
+                        </div>
+                        <div className='cards'>
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+        
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+        
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+        
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+        
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 }
