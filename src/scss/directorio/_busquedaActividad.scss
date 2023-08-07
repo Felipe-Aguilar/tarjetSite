@@ -39,10 +39,6 @@ $btnResultado: #e1eff2;
 
         @media (width <= 575px) {
             border-bottom: none;
-
-            z-index: 1;
-            position: sticky;
-            top: 10px;
         }
 
         .controles-body{
@@ -250,6 +246,11 @@ $btnResultado: #e1eff2;
             .encabezado{
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
+
+                h6{
+                    margin-bottom: 0;
+                }
 
                 button{
                     width: auto;
