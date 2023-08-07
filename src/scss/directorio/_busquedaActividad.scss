@@ -33,8 +33,16 @@ $btnResultado: #e1eff2;
         display: flex;
         justify-content: center;
 
+        z-index: 1;
+        position: sticky;
+        top: 68px;
+
         @media (width <= 575px) {
             border-bottom: none;
+
+            z-index: 1;
+            position: sticky;
+            top: 0px;
         }
 
         .controles-body{
@@ -47,8 +55,8 @@ $btnResultado: #e1eff2;
 
             .control{
                 background: #a0c216;
-                width: 20%;
-                padding: 10px 20px;
+                width: 25%;
+                padding: 10px 0px;
                 height: 120px;
                 border-width: 0 0 0 10%;
     
@@ -132,20 +140,9 @@ $btnResultado: #e1eff2;
                 }
             }
             .control-nombre{
-                button{
-                    border-right: none;
-                }
-            }
-            .control-buscar{
-                background: #00778e;
                 border-radius: 0 25px 0 0;
                 button{
-                    color: #fff;
                     border-right: none;
-                    height: 100%;
-                }
-                @media (width <= 575px) {
-                    border-radius: 0 15px 0 0;
                 }
             }
         }

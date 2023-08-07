@@ -4,7 +4,6 @@ import iconoCategoria from '../../assets/icono-categoria.svg';
 import iconoActividad from '../../assets/icono-actividad.svg';
 import iconoUbicacion from '../../assets/icono-ubicacion.svg';
 import iconoNombre from '../../assets/icono-nombre.svg';
-import iconoBuscar from '../../assets/icono-lupa-blanca.svg';
 
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
 import TarjetaGenerica from '../../assets/tarjetageneric.png';
@@ -68,6 +67,15 @@ const BusquedaActividad = () => {
             <div className="controles">
                 <div className="controles-body">
                     <div className="control control-inicio">
+                        <button onClick={btnUbicacion}>
+                            <div>
+                                <img src={iconoUbicacion} className='ubicacion'/>
+                            </div>
+                            Ubicación
+                        </button>
+                        <p>Empty</p>
+                    </div>
+                    <div className="control">
                         <button onClick={btnCategoria}>
                             <div>
                                 <img src={iconoCategoria} className='categoria'/>
@@ -85,15 +93,6 @@ const BusquedaActividad = () => {
                         </button>
                         <p>Empty</p>
                     </div>
-                    <div className="control">
-                        <button onClick={btnUbicacion}>
-                            <div>
-                                <img src={iconoUbicacion} className='ubicacion'/>
-                            </div>
-                            Ubicación
-                        </button>
-                        <p>Empty</p>
-                    </div>
                     <div className="control control-nombre" onClick={btnNombre}>
                         <button>
                             <div>
@@ -102,14 +101,6 @@ const BusquedaActividad = () => {
                             Nombre
                         </button>
                         <p>Empty</p>
-                    </div>
-                    <div className="control control-buscar">
-                        <button onClick={()=>setBuscar(!buscar)}>
-                            <div>
-                                <img src={iconoBuscar} className='nombre'/>
-                            </div>
-                            Buscar
-                        </button>
                     </div>
                 </div>
             </div>

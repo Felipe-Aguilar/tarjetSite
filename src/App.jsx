@@ -22,7 +22,8 @@ const App = () => {
       </div>
 
 
-      <div style={{overflow: 'hidden'}}>
+      {/* <div style={{overflow: 'hidden'}}> */}
+      <>
         <Routes>
           <Route path='/' element={<BannerPrincipal />}/>
           <Route path='/login' element={<Login />}/>
@@ -34,7 +35,7 @@ const App = () => {
         </Routes>
 
         <Footer />
-      </div>
+      </>
     </>
   );
 }
