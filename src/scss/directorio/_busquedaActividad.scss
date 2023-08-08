@@ -29,9 +29,20 @@ $btnResultado: #e1eff2;
 
     .busquedaNombre{
         margin-bottom: 10px;
+
+        @media (width <= 575px) {
+            // z-index: 1;
+            // position: sticky;
+            // top: 68px;
+        }
+
         p{
             font-size: 0.9rem;
             line-height: 17px;
+
+            @media (width <= 575px) {
+                font-size: 0.8rem;
+            }
         }
         .buscar-contenedor{
             margin: auto;
@@ -66,7 +77,7 @@ $btnResultado: #e1eff2;
         .img-form{
             border-radius: 8px 0 0 8px;
             padding: 1px 5px;
-
+            
             @media (width <= 575px) {
                 padding: 3px 5px;
                 display: flex;
@@ -118,7 +129,7 @@ $btnResultado: #e1eff2;
 
             .control{
                 background: #a0c216;
-                width: 25%;
+                width: 33.33%;
                 padding: 10px 0px;
                 height: 120px;
                 border-width: 0 0 0 10%;
@@ -202,12 +213,18 @@ $btnResultado: #e1eff2;
                     border-radius: 15px 0 0 0;
                 }
             }
-            .control-nombre{
+            .control-ubicacion{
                 border-radius: 0 25px 0 0;
                 button{
                     border-right: none;
                 }
             }
+        }
+    }
+    .controles-desactivate{
+        button{
+            cursor: not-allowed!important;
+            pointer-events: none;
         }
     }
 
@@ -225,7 +242,7 @@ $btnResultado: #e1eff2;
             background: #fff;
             padding: 15px 10px;
             border-radius: 20px;
-            width: 25%;
+            width: 33.33%;
             display: flex;
             flex-direction: column;
 

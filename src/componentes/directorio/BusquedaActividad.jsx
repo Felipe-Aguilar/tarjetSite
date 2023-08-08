@@ -18,6 +18,8 @@ const BusquedaActividad = () => {
     const [nombre, setNombre] = useState(false);
     const [buscar, setBuscar] = useState(false);
 
+    const [capturaNombre, setCapturaNombre] = useState('');
+
     const propsAnimacion = {
         initial: {scale: 0},
         animate: {scale: 1},
@@ -58,14 +60,9 @@ const BusquedaActividad = () => {
 
     }
 
-    const btnNombre = () => {
-        setNombre(!nombre);
-
-        if (ancho <= 575) {
-            setCategoria(false);
-            setActividad(false);
-            setUbicacion(false);
-        }
+    // Busqueda por Nombre (predictiva)
+    const busquedaNombre = (e) => {
+        setCapturaNombre(e.target.value);
     }
 
     return ( 
@@ -86,17 +83,22 @@ const BusquedaActividad = () => {
                         <img src={iconoNombre} />
                     </div>
 
-                    <input type="text" placeholder='Escribe su nombre aquí'/>
+                    <input 
+                        type="text" 
+                        placeholder='Escribe su nombre aquí'
+                        value={capturaNombre}
+                        onChange={busquedaNombre}
+                    />
 
                     <div className='borrar'>
-                        <button>
+                        <button onClick={()=>setCapturaNombre('')}>
                             <i className="bi bi-x-lg"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div className="controles">
+            <div className={`controles ${capturaNombre ? 'controles-desactivate' : ''}`}>
                 <div className="controles-body">
                     <div className="control control-inicio">
                         <button onClick={btnCategoria}>
@@ -116,7 +118,7 @@ const BusquedaActividad = () => {
                         </button>
                         <p>Empty</p>
                     </div>
-                    <div className="control">
+                    <div className="control control-ubicacion">
                         <button onClick={btnUbicacion}>
                             <div>
                                 <img src={iconoUbicacion} className='ubicacion'/>
@@ -125,208 +127,183 @@ const BusquedaActividad = () => {
                         </button>
                         <p>Empty</p>
                     </div>
-                    <div className="control control-nombre" onClick={btnNombre}>
-                        <button>
-                            <div>
-                                <img src={iconoNombre} className='nombre'/>
-                            </div>
-                            Nombre
-                        </button>
-                        <p>Empty</p>
-                    </div>
                 </div>
             </div>
 
-            <div className='resultados'>
+            { !capturaNombre &&
+                <div className='resultados'>
 
-                {/* Resultado Ubicación */}
-                <AnimatePresence>
-                    { ubicacion &&
-                        <motion.div className='resultado ubicacion' {...propsAnimacion}>
-                            <div className='encabezado'>
+                    {/* Resultado Categoría */}
+                    <AnimatePresence>
+                        { categoria &&
+                            <motion.div className='resultado' {...propsAnimacion}>
                                 <h6>Selecciona una opción</h6>
-
-                                <button className='btn-cerrar' onClick={()=>setUbicacion(false)}>
-                                    <i className="bi bi-x-lg"></i>
-                                    Cerrar
-                                </button>
-                            </div>
-
-                            <button className='primer'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Cerca de mí
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Aguascalientes
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Baja California
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Baja California Sur
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Campeche
-                            </button>
-                        </motion.div>  
-                    }
-                </AnimatePresence>
-
-                {/* Resultado Categoría */}
-                <AnimatePresence>
-                    { categoria &&
-                        <motion.div className='resultado' {...propsAnimacion}>
-                            <h6>Selecciona una opción</h6>
-                            <button>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-
-                            <button className='btn-cerrar' onClick={()=>setCategoria(false)}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar
-                            </button>
-                        </motion.div>
-                    }
-                </AnimatePresence>
-
-                {/* Resultado Actividad */}
-                <AnimatePresence>
-                    { actividad &&
-                        <motion.div className='resultado' {...propsAnimacion}>
-                            <h6>Selecciona una opción</h6>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comestibles
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Establecimientos
-                            </button>
-
-                            {/* SubResultados */}
-                            <div className='sub-resultados'>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Asadero / parrillera / carnes
-                                </button>
                                 <button>
                                     <div>
                                         <i className="bi bi-check2"></i>
                                     </div>
-                                    Asador de pollos
+                                    Comida
                                 </button>
                                 <button className='no-check'>
                                     <div>
                                         <i className="bi bi-check2"></i>
                                     </div>
-                                    Cafetería
+                                    Comida
                                 </button>
-                            </div>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
 
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
+                                <button className='btn-cerrar' onClick={()=>setCategoria(false)}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar
+                                </button>
+                            </motion.div>
+                        }
+                    </AnimatePresence>
+
+                    {/* Resultado Actividad */}
+                    <AnimatePresence>
+                        { actividad &&
+                            <motion.div className='resultado' {...propsAnimacion}>
+                                <h6>Selecciona una opción</h6>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comestibles
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Establecimientos
+                                </button>
+
+                                {/* SubResultados */}
+                                <div className='sub-resultados'>
+                                    <button className='no-check'>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Asadero / parrillera / carnes
+                                    </button>
+                                    <button>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Asador de pollos
+                                    </button>
+                                    <button className='no-check'>
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        Cafetería
+                                    </button>
                                 </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
+
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Comida
+                                </button>
+
+                                <button className='btn-cerrar' onClick={()=>setActividad(false)}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar
+                                </button>
+                            </motion.div>
+                        }
+                    </AnimatePresence>
+
+                    {/* Resultado Ubicación */}
+                    <AnimatePresence>
+                        { ubicacion &&
+                            <motion.div className='resultado ubicacion' {...propsAnimacion}>
+                                <div className='encabezado'>
+                                    <h6>Selecciona una opción</h6>
+
+                                    <button className='btn-cerrar' onClick={()=>setUbicacion(false)}>
+                                        <i className="bi bi-x-lg"></i>
+                                        Cerrar
+                                    </button>
                                 </div>
-                                Comida
-                            </button>
 
-                            <button className='btn-cerrar' onClick={()=>setActividad(false)}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar
-                            </button>
-                        </motion.div>
-                    }
-                </AnimatePresence>
-
-                {/* Búsqueda por Nombre */}
-                <AnimatePresence>
-                    { nombre &&
-                        <motion.div className='resultado' {...propsAnimacion}>
-                            <h6>
-                                ¿Conoces el nombre o parte del nombre del Usuario Tarjet? <br/>
-                                ¡Aquí puedes buscarlo fácilmente!
-                            </h6>
-                            <input type="text" placeholder='Escribe su nombre aquí'/>
-
-                            <button className='btn-cerrar' onClick={()=>setNombre(false)}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar
-                            </button>
-                        </motion.div>
-                    }
-                </AnimatePresence>
-            </div>
+                                <button className='primer'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Cerca de mí
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Aguascalientes
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Baja California
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Baja California Sur
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Campeche
+                                </button>
+                            </motion.div>  
+                        }
+                    </AnimatePresence>
+                </div>
+            }
 
             <AnimatePresence>
                 { categoria &&
@@ -480,11 +457,139 @@ const BusquedaActividad = () => {
                 }
             </AnimatePresence>
 
-            <AnimatePresence {...propsAnimacion}>
+            {/* Resultados Cards*/}
+            <AnimatePresence>
                 { buscar &&
-                    <motion.div className='ResultadosCard'>
+                    <motion.div className='ResultadosCard' {...propsAnimacion}>
                         <div className='encabezado'>
                             <button onClick={()=>setBuscar(false)}>
+                                <i className="bi bi-x-lg"></i>
+                                Cerrar ventana de resultados
+                            </button>
+                        </div>
+                        <div className='cards'>
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+        
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+        
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+        
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+        
+                            <div className='contenedor'>
+                                <div className='title'>
+                                    <div className='img'>
+                                        <img src={PerfilTemporal}/>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            Alberto Mérida
+                                            <br/>
+                                            <span>Desarrollo e integración</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div className='tarjetaImg'>
+                                    <img src={TarjetaGenerica} className='img-fluid'/>
+                                </div>
+                                <div className='footer'>
+                                    <p>
+                                        Da click sobre la imagen para ver tarjeta digital
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                }
+
+                { capturaNombre &&
+                    <motion.div className='ResultadosCard' {...propsAnimacion}>
+                        <div className='encabezado'>
+                            <button onClick={()=>setCapturaNombre('')}>
                                 <i className="bi bi-x-lg"></i>
                                 Cerrar ventana de resultados
                             </button>
