@@ -50,7 +50,7 @@ $btnResultado: #e1eff2;
 
                 @media (width <= 575px) {
                     background: #e9edf2;
-                    width: 80%;
+                    width: 76%;
                 }
             }
         }
@@ -59,13 +59,17 @@ $btnResultado: #e1eff2;
             background: #fff;
 
             @media (width <= 575px) {
-                width: 10%;
+                width: 12%;
                 background: #e9edf2;
             }
         }
         .img-form{
             border-radius: 8px 0 0 8px;
             padding: 1px 5px;
+
+            @media (width <= 575px) {
+                padding: 3px 5px;
+            }
         }
         .borrar{
             border-radius: 0 8px 8px 0;
