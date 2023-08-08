@@ -215,6 +215,10 @@ $btnResultado: #e1eff2;
             }
             .control-ubicacion{
                 border-radius: 0 25px 0 0;
+
+                @media (width <= 575px) {
+                    border-radius: 0 15px 0 0;
+                }
                 button{
                     border-right: none;
                 }
