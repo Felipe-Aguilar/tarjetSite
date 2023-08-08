@@ -27,6 +27,63 @@ $btnResultado: #e1eff2;
         }
     }
 
+    .busquedaNombre{
+        margin-bottom: 10px;
+        p{
+            font-size: 0.9rem;
+            line-height: 17px;
+        }
+        .buscar-contenedor{
+            margin: auto;
+            width: 70%;
+            display: flex;
+
+            @media (width <= 575px) {
+                width: 100%;
+            }
+
+            input{
+                width: 90%;
+                background: #fff;
+                border: transparent;
+                outline: none;
+
+                @media (width <= 575px) {
+                    background: #e9edf2;
+                    width: 80%;
+                }
+            }
+        }
+        .img-form, .borrar{
+            width: 5%;
+            background: #fff;
+
+            @media (width <= 575px) {
+                width: 10%;
+                background: #e9edf2;
+            }
+        }
+        .img-form{
+            border-radius: 8px 0 0 8px;
+            padding: 1px 5px;
+        }
+        .borrar{
+            border-radius: 0 8px 8px 0;
+            button{
+                width: 100%;
+                border: transparent;
+                outline: none!important;
+                height: 100%;
+                background: #fff;
+                border-radius: 0 8px 8px 0;
+
+                @media (width <= 575px) {
+                    background: #e9edf2;
+                }
+            }
+        }
+    }
+
     .controles{
         width: 100%;
         border-bottom: 1px solid #000;

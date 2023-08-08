@@ -74,20 +74,31 @@ const BusquedaActividad = () => {
             <hr/>
 
             <h2>Búsqueda por actividad</h2>
-            <p>Selecciona una o más opciones antes de dar click en buscar</p>
+            {/* <p>Selecciona una o más opciones antes de dar click en buscar</p> */}
+
+            <div className='busquedaNombre'>
+                <p>
+                    ¿Conoces el nombre o parte del nombre del Usuario Tarjet? <br/>
+                    ¡Aquí puedes buscarlo fácilmente!
+                </p>
+                <div className='buscar-contenedor'>
+                    <div className='img-form'>
+                        <img src={iconoNombre} />
+                    </div>
+
+                    <input type="text" placeholder='Escribe su nombre aquí'/>
+
+                    <div className='borrar'>
+                        <button>
+                            <i className="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <div className="controles">
                 <div className="controles-body">
                     <div className="control control-inicio">
-                        <button onClick={btnUbicacion}>
-                            <div>
-                                <img src={iconoUbicacion} className='ubicacion'/>
-                            </div>
-                            Ubicación
-                        </button>
-                        <p>Empty</p>
-                    </div>
-                    <div className="control">
                         <button onClick={btnCategoria}>
                             <div>
                                 <img src={iconoCategoria} className='categoria'/>
@@ -102,6 +113,15 @@ const BusquedaActividad = () => {
                                 <img src={iconoActividad} className='actividad'/>
                             </div>
                             Actividad
+                        </button>
+                        <p>Empty</p>
+                    </div>
+                    <div className="control">
+                        <button onClick={btnUbicacion}>
+                            <div>
+                                <img src={iconoUbicacion} className='ubicacion'/>
+                            </div>
+                            Ubicación
                         </button>
                         <p>Empty</p>
                     </div>
