@@ -33,12 +33,11 @@ $btnResultado: #e1eff2;
         display: flex;
         justify-content: center;
 
-        z-index: 1;
-        position: sticky;
-        top: 68px;
-
         @media (width <= 575px) {
             border-bottom: none;
+            z-index: 1;
+            position: sticky;
+            top: 68px;
         }
 
         .controles-body{
