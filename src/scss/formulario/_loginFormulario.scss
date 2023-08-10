@@ -1,0 +1,147 @@
+$backgroundColor: #f4ede8;
+$colorVerde: #006d2e;
+$textoGris: #484846;
+
+.loginFormulario{
+    background: $backgroundColor;
+    margin-top: 4.2rem;
+    padding: 20px 10%;
+
+    @media (width <= 575px) {
+        padding: 20px 2%;
+    }
+
+    .ilustracion-banner{
+        display: flex;
+        justify-content: center;
+
+        img{
+            width: 20%;
+
+            @media (width <= 575px) {
+                width: 85%;
+            }
+        }
+    }
+
+    .texto{
+        text-align: center;
+        
+        h1{
+            font-size: 1.2rem;
+            color: $colorVerde;
+        }
+        h2{
+            font-size: 1.0rem;
+        }
+        h1, h2{
+            margin-bottom: 20px;
+        }
+        p{
+            color: $colorVerde;
+            span{
+                color: #000;
+            }
+        }
+    }
+
+    .iniciarSesion{
+        width: 35%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+
+        @media (width <= 575px) {
+            width: 100%;
+            gap: 5px;
+        }
+
+        button{
+            padding: 5px;
+            text-align: center;
+            border: none;
+            outline: none!important;
+            font-size: 0.8rem;
+            background: transparent;
+            
+            img{
+                border: 1px solid #000;
+                border-radius: 100%;
+                width: 70%;
+                margin: auto;
+                margin-bottom: 5px;
+                padding: 5px;
+                background: #fff;
+
+                @media (width <= 575px) {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+    .separador{
+        width: 35%;
+        display: block;
+        margin: auto;
+        margin-top: 40px;
+
+        @media (width <= 575px) {
+            width: 95%;
+        }
+    }
+
+    .formulario{
+        width: 32%;
+        display: block;
+        margin: auto;
+        // background: green;
+
+        @media (width <= 575px) {
+            width: 80%;
+        }
+
+        form{
+            input{
+                background: #fff;
+                border: transparent;
+                border-radius: 8px;
+                padding: 1px 10px;
+                outline: none!important;
+            }
+        }
+
+        .row1{
+            display: flex;
+            gap: 10px;
+            .selec{
+                background: #fff;
+                padding: 1px 0;
+                border-radius: 8px;
+
+                label{
+                    display: block;
+                    font-size: 0.8rem;
+                    text-align: center;
+                    margin-bottom: 0;
+                    color: $textoGris;
+                }
+                select{
+                    width: 60px;
+                    background: transparent;
+                    border: none;
+                    outline: none!important;
+                    cursor: pointer;
+                }
+            }
+            .number{
+                width: 100%;
+                input{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

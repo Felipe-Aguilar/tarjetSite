@@ -12,8 +12,8 @@ const HomeDirectorio = () => {
             <VideoBanner />
             <NuevosUsuarios />
             <BusquedaActividad />
-            {/* <BusquedaGeneral />
-            <BusquedaMapa /> */}
+                {/* <BusquedaGeneral />
+                <BusquedaMapa /> */}
             <Interesar />
         </>
     );

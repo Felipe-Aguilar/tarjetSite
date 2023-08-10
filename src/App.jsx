@@ -11,6 +11,7 @@ import VistaSesion from './componentes/VistaSesion';
 import AvisoPrivacidad from './componentes/AvisoPrivacidad';
 import Perfilmxm from './componentes/tarjet-prod/Perfilmxm';
 import HomeDirectorio from './componentes/directorio/HomeDirectorio';
+import HomeFormulario from './componentes/formulario/HomeFormulario';
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           <Route path='/st/bXhtdGFyamV0' element={<Perfilmxm />}/>
           <Route path='/aviso-privacidad' element={<AvisoPrivacidad />}/>
           <Route path='/directorio-tarjet' element={<HomeDirectorio />} />
+          <Route path='/formulario' element={<HomeFormulario />} />
         </Routes>
 
         <Footer />
