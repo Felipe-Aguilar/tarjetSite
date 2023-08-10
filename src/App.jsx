@@ -12,6 +12,7 @@ import AvisoPrivacidad from './componentes/AvisoPrivacidad';
 import Perfilmxm from './componentes/tarjet-prod/Perfilmxm';
 import HomeDirectorio from './componentes/directorio/HomeDirectorio';
 import HomeFormulario from './componentes/formulario/HomeFormulario';
+import Perfil from './componentes/formulario/Perfil';
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
           <Route path='/aviso-privacidad' element={<AvisoPrivacidad />}/>
           <Route path='/directorio-tarjet' element={<HomeDirectorio />} />
           <Route path='/formulario' element={<HomeFormulario />} />
+          <Route path='/perfil' element={<Perfil />} />
         </Routes>
 
         <Footer />

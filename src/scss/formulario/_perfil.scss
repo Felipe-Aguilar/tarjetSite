@@ -1,0 +1,126 @@
+$backgroundColor: #f4ede8;
+$colorVerde: #006d2e;
+$textoGris: #484846;
+
+.Perfil{
+    margin-top: 4.2rem;
+    background: $backgroundColor;
+    padding: 40px 0;
+
+    @media (width <= 575px) {
+        padding: 40px 2%;
+    }
+
+    .EncabezadoPerfil{
+
+        .encabezado-perfil{
+            width: 33.3%;
+            display: flex;
+            align-items: center;
+            margin: auto;
+
+            @media (width <= 575px) {
+                width: 100%;
+            }
+
+            .imagen-perfil{
+                width: 30%;
+
+                @media (width <= 575px) {
+                    width: 40%;
+                }
+
+                img{
+                    width: 70%;
+                    display: block;
+                    margin: auto;
+                    border-radius: 100%;
+                }
+            }
+
+            .info{
+                width: 70%;
+
+                @media (width <= 575px) {
+                    width: 60%;
+                }
+                h1{
+                    font-size: 1.4rem;
+                    font-weight: bold;
+
+                    @media (width <= 575px) {
+                        font-size: 1.2rem;
+                    }
+                }
+                h2{
+                    font-size: 1.3rem;
+                    font-weight: bold;
+
+                    @media (width <= 575px) {
+                        font-size: 1.1rem;
+                    }
+                    span{
+                        font-weight: 400;
+                        font-size: 1.2rem;
+
+                        @media (width <= 575px) {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .btnCambio{
+            width: 33.3%;
+            margin: auto;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+
+            @media (width <= 575px) {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            button{
+                background: transparent;
+                border: transparent;
+                text-transform: uppercase;
+                font-size: 0.9rem;
+                outline: none!important;
+                padding: 2px;
+
+                @media (width <= 575px) {
+                    font-size: 0.7rem;
+                }
+            }
+
+            .btn-foto{
+                width: 30%;
+
+                @media (width <= 575px) {
+                    width: 40%;
+                }
+
+                button{
+                    width: 80%;
+                    display: block;
+                    margin: auto;
+
+                    @media (width <= 575px) {
+                        width: 100%;
+                    }
+                }
+            }
+            .btn-editar{
+                width: 70%;
+
+                @media (width <= 575px) {
+                    width: 60%;
+                }
+            }
+
+        }
+    }
+}
