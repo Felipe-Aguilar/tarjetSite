@@ -89,14 +89,14 @@ $textoGris: #484846;
                 text-transform: uppercase;
                 font-size: 0.9rem;
                 outline: none!important;
-                padding: 2px;
 
                 @media (width <= 575px) {
                     font-size: 0.7rem;
+                    padding: 5px;
                 }
             }
 
-            .btn-foto{
+            .btnfoto{
                 width: 30%;
 
                 @media (width <= 575px) {
@@ -113,11 +113,15 @@ $textoGris: #484846;
                     }
                 }
             }
-            .btn-editar{
+            .btneditar{
                 width: 70%;
-
+                
                 @media (width <= 575px) {
                     width: 60%;
+                }
+
+                button{
+                    display: block;
                 }
             }
 

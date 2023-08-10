@@ -19,13 +19,13 @@ const Perfil = () => {
                 </div>
 
                 <div className='btnCambio'>
-                    <div className='btn-foto'>
+                    <div className='btnfoto'>
                         <button>
                             Cambiar foto
                         </button>
                     </div>
 
-                    <div className='btn-editar'>
+                    <div className='btneditar'>
                         <button>
                             Editar nombre de usuario
                         </button>
