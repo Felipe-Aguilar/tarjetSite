@@ -126,5 +126,146 @@ $textoGris: #484846;
             }
 
         }
+
+        .miembro{
+            width: 33.3%;
+            margin: auto;
+            margin-top: 20px;
+            padding: 0 0 0 28px;
+
+            @media (width <= 575px) {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            p{
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .separador{
+        width: 33.3%;
+        margin: auto;
+
+        @media (width <= 575px) {
+            width: 95%;
+        }
+    }
+
+    .detallesCuenta{
+        width: 33.3%;
+        margin: auto;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+
+        h6{
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .apartados{
+            display: flex;
+            justify-content: space-between;
+
+            .apartado{
+                width: 33%;
+
+                img{
+                    width: 55px;
+                    height: 55px;
+                    display: block;
+                    margin: auto;
+
+                    @media (width <= 575px) {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+                p{
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    margin-bottom: 0;
+                }
+                h6{
+                    @media (width <= 575px) {
+                        font-size: 0.9rem;
+                    }
+
+                    span{
+                        font-size: 0.8rem;
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+                .ocultar{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .buttonsPerfil{
+        width: 33.3%;
+        margin: auto;
+
+        @media (width <= 575px) {
+            width: 90%;
+        }
+
+        .cuerpo{
+            width: 70%;
+            margin: auto;
+            flex-direction: column;
+    
+            > * + * {
+                margin-top: 15px;
+            }
+
+            @media (width <= 575px) {
+                width: 100%;
+            }
+
+            button{
+                width: 100%;
+                border: transparent;
+                border-radius: 8px;
+                padding: 3px;
+                outline: none!important;
+                font-weight: bold;
+            }
+            p{
+                text-align: center;
+                margin-bottom: 0;
+                font-size: 0.9rem;
+            }
+            .btn-editar{
+                background: #d2dfe5;
+            }
+            .btn-site{
+                background: #c1e0c9;
+            }
+            .btn-fisica{
+                background: #c7d3dc;
+            }
+            .btn-premium{
+                background: #fdd99c;
+
+                span{
+                    text-decoration: underline;
+                }
+                .span-detalles{
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                    font-weight: 400;
+                }
+            }
+            .btn-visitar{
+                background: #d9d1ea;
+            }
+        }
     }
 }
