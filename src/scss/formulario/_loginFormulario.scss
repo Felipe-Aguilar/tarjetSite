@@ -143,5 +143,137 @@ $textoGris: #484846;
                 }
             }
         }
+
+        .row2{
+            margin-top: 16px;
+            width: 100%;
+            display: flex;
+
+            input{
+                width: 90%;
+                border-radius: 8px 0 0 8px;
+
+                @media (width <= 575px) {
+                    width: 85%;
+                }
+            }
+            .eye{
+                width: 10%;
+
+                @media (width <= 575px) {
+                    width: 15%;
+                }
+
+                button{
+                    width: 100%;
+                    border: none;
+                    background: #fff;
+                    border-radius: 0 8px 8px 0;
+                    outline: none!important;
+                }
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .mensajeError{
+        width: 32%;
+        margin: auto;
+        margin-top: 16px;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+
+        p{
+            text-align: center;
+            color: #d90011;
+            margin-bottom: 0;
+
+            @media (width <= 575px) {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    .sep2{
+        margin-top: 0;
+
+        hr{
+            border-color: #000;
+        }
+    }
+
+    .privacidad{
+        width: 35%;
+        margin: auto;
+        margin-bottom: 20px;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+
+        .check{
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+            input{
+                width: 18px;
+            }
+            label{
+                font-size: 0.9rem;
+                line-height: 18px;
+                cursor: pointer;
+
+                a{
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .buttons{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+
+            div{
+                width: 35%;
+
+                @media (width <= 575px) {
+                    width: 48%;
+                }
+
+                button{
+                    display: block;
+                    margin: auto;
+                    padding: 2px 20px;
+                    outline: none!important;
+                    border: transparent;
+                    border-radius: 8px;
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+            .registrar{
+                border-right: 1px solid #747576;
+                button{
+                    background: #fdc40a;
+                }
+            }
+            .iniciar{
+                button{
+                    background: #91ba14;
+                }
+            }
+
+            .registrar.desactivate, .iniciar.desactivate {
+                button{
+                    background: rgb(225, 225, 225);
+                    pointer-events: none;
+                }
+            }
+        }
     }
 }
