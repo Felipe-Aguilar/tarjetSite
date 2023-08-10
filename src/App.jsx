@@ -35,7 +35,7 @@ const App = () => {
           <Route path='/aviso-privacidad' element={<AvisoPrivacidad />}/>
           <Route path='/directorio-tarjet' element={<HomeDirectorio />} />
           <Route path='/formulario' element={<HomeFormulario />} />
-          <Route path='/perfil' element={<Perfil />} />
+          <Route path='/perfil-formulario' element={<Perfil />} />
         </Routes>
 
         <Footer />
