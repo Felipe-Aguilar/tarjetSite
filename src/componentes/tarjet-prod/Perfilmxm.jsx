@@ -578,7 +578,7 @@ END:VCARD`;
                                 Te agradó esta tarjeta digital <br/>
                                 <span>Tú también puedes tener la tuya</span>
                             </h5>
-                            <a href="" className='btn-verde'>
+                            <a href="https://wa.me/5586763895" target='_blank' className='btn-verde'>
                                 Solicita gratuitamente <br/> tu tarjeta digital Tarjet
                             </a>
                             <h5>
@@ -586,7 +586,7 @@ END:VCARD`;
                                 <span>Genera un impacto positivo con tu tarjeta Física Tarjet</span>
                             </h5>
                             <img src={promoImg} className='img-promo'/>
-                            <a href="" className='btn-naranja'>
+                            <a href="https://wa.me/5586763895" target='_blank'  className='btn-naranja'>
                                 Compra tu <br/>
                                 tarjeta física Tarjet con NFC <br className='d-block'/>
                                 <span>Es personalizada</span>
@@ -595,7 +595,7 @@ END:VCARD`;
                                 <span>Hagamos Networking</span> <br/>
                                 En nuestro directorio puedes ser encontrado fácilmente por personas que buscan lo que haces
                             </h5>
-                            <a href="" className='btn-morado'>
+                            <a href="https://wa.me/5586763895" target='_blank'  className='btn-morado'>
                                 Regístrate gratuitamente <br/>
                                 <span>y accede a tu tarjetero digital tarjet</span>
                             </a>

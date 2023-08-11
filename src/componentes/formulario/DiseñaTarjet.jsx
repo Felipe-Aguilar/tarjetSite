@@ -51,7 +51,22 @@ const DiseñaTarjet = () => {
                 <h2>Colecciones</h2>
                 
                 <div className='opciones'>
+                    <button className='activeOption primer'>
+                        <i className="bi bi-caret-down-fill"></i>
+                        Gratuitas
+                    </button>
+                    <button>
+                        <i className="bi bi-caret-down-fill"></i>
+                        Premium
+                    </button>
+                    <button>
+                        <i className="bi bi-caret-down-fill"></i>
+                        Personalizada
+                    </button>
+                </div>
 
+                <div>
+                    
                 </div>
             </div>
 
