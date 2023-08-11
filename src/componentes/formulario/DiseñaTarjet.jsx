@@ -1,6 +1,32 @@
+import { useState } from 'react';
+import Slider from 'react-slick';
+
 import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
+import tarjetaGenerica from '../../assets/tarjetageneric.png';
 
 const DiseñaTarjet = () => {
+
+    const [optionColecciones, setOptionColecciones] = useState('Gratuitas');
+
+    const settings = {
+        arrows: true,
+        infinite: true,
+        autoplaySpeed: 6000,
+        autoplay: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        prevArrow: (
+            <div className='custom-arrow custom-prev-arrow'>
+                <i className="bi bi-chevron-left" ></i>
+            </div>
+        ),
+        nextArrow: (
+            <div className='custom-arrow custom-prev-arrow'>
+                <i className="bi bi-chevron-right" ></i>
+            </div>
+        ),
+    }
+
     return ( 
         <div className="container-fluid diseñaTarjet">
 
@@ -65,9 +91,41 @@ const DiseñaTarjet = () => {
                     </button>
                 </div>
 
-                <div>
-                    
-                </div>
+                { optionColecciones === 'Gratuitas' &&
+                    <div className='gratuitas'>
+                        <Slider {...settings}>
+                            <div className='tarjetaGratuitas'>
+                                <img src={tarjetaGenerica}/>
+                            </div>
+                            <div className='tarjetaGratuitas'>
+                                <img src={tarjetaGenerica}/>
+                            </div>
+                            <div className='tarjetaGratuitas'>
+                                <img src={tarjetaGenerica}/>
+                            </div>
+                        </Slider>
+
+                        <div className='mas-imagenes'>
+                            <div className='view3'>
+                                <img src={tarjetaGenerica} />
+                                <img src={tarjetaGenerica} />
+                                <img src={tarjetaGenerica} />
+                            </div>
+                            <div className='viewpremium'>
+                                <img src={tarjetaGenerica} />
+                            </div>
+                        </div>
+
+                        <div className='info'>
+                            <div className='modelos'>
+
+                            </div>
+                            <div className='premium-select'>
+
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
 
         </div>

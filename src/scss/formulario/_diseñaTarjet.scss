@@ -163,5 +163,76 @@ $btnAzul: #d2dfe5;
                 border-left: transparent;
             }
         }
+
+        .gratuitas{
+            margin-top: 20px;
+
+            i{
+                color: #003f81;
+                font-size: 1.5rem;
+            }
+
+            .slick-next{
+                right: 0px;
+            }
+            .slick-prev {
+                left: 0px;
+            }
+
+            .tarjetaGratuitas{
+                img{
+                    width: 70%;
+                    margin: auto;
+                    border-radius: 10px;
+
+                    @media (width <= 575px) {
+                        width: 80%;
+                    }
+                }
+            }
+
+            .mas-imagenes{
+                display: flex;
+                width: 70%;
+                margin: auto;
+                margin-top: 10px;
+
+                @media (width <= 575px) {
+                    width: 80%;
+                }
+
+                .view3{
+                    width: 75%;
+                    display: flex;
+                    justify-content: space-around;
+                    border-right: 1px solid #000;
+                    img{
+                        height: 40px;
+
+                        @media (width <= 575px) {
+                            height: 40px;
+                        }
+                    }
+                }
+                .viewpremium{
+                    width: 25%;
+                    display: flex;
+                    justify-content: center;
+
+                    img{
+                        height: 40px;
+
+                        @media (width <= 575px) {
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+
+            .info{
+                margin-top: 10px;
+                display: flex;
+            }
+        }
     }
 }
