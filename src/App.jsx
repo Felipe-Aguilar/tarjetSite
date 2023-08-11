@@ -13,6 +13,7 @@ import Perfilmxm from './componentes/tarjet-prod/Perfilmxm';
 import HomeDirectorio from './componentes/directorio/HomeDirectorio';
 import HomeFormulario from './componentes/formulario/HomeFormulario';
 import Perfil from './componentes/formulario/Perfil';
+import DiseñaTarjet from './componentes/formulario/DiseñaTarjet';
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
           <Route path='/directorio-tarjet' element={<HomeDirectorio />} />
           <Route path='/formulario' element={<HomeFormulario />} />
           <Route path='/perfil-formulario' element={<Perfil />} />
+          <Route path='/diseña-tu-tarjet' element={<DiseñaTarjet/>} />
         </Routes>
 
         <Footer />
