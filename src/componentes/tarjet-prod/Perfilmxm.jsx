@@ -46,6 +46,7 @@ import MarleneVideo from '../../assets/mxm/mxmmarlene.gif';
 import MonseVideo from '../../assets/mxm/mxmmonse.gif';
 import PaulaVideo from '../../assets/mxm/mxmpaula.gif';
 import RobertoVideo from '../../assets/mxm/mxmroberto.gif';
+import KarlaVideo from '../../assets/mxm/mxmkarla.gif';
 
 const Perfilmxm = () => {
     const navigate = useNavigate();
@@ -171,6 +172,7 @@ END:VCARD`;
         { id:1, nombre: 'cinthia', video: CinthiaVideo, frase:'Competitiva y eficaz', link: 'N2ZhZmQwZTFl'},
         { id:2, nombre: 'citlalli', video: CitlalliVideo, frase:'Inteligente y optimista', link: 'ZGQxYmYzNGZi'},
         { id:3, nombre: 'ely', video: ElyVideo, frase:'Comprometida y perseverante', link: 'YjkzYWM0YTQ1'},
+        { id:4, nombre: 'karla', video: KarlaVideo, frase:'Propositiva y trabajadora', link: 'YjIxMzg0MDE3'},
         { id:5, nombre: 'monse', video: MonseVideo, frase:'Creativa y entusiasta', link: 'MWY3Y2UwOTNl'},
         { id:6, nombre: 'paula', video: PaulaVideo, frase:'Apasionada y persistente', link: 'NjZkM2ViZWYw'},
         { id:7, nombre: 'roberto', video: RobertoVideo, frase:'Empático y diligente', link: 'YjI5ZDFmNjY1'},
