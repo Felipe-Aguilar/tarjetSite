@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+import { BusquedaCategoria, ConsultaActividad, ConsultaNivel3 } from '../contextos/BusquedaDirectorio';
 
 import iconoCategoria from '../../assets/icono-categoria.svg';
 import iconoActividad from '../../assets/icono-actividad.svg';
@@ -8,7 +11,6 @@ import iconoNombre from '../../assets/icono-nombre.svg';
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
 import TarjetaGenerica from '../../assets/tarjetageneric.png';
 
-import { useState } from 'react';
 
 const BusquedaActividad = () => {
 
@@ -17,6 +19,16 @@ const BusquedaActividad = () => {
     const [ubicacion, setUbicacion] = useState(false);
     const [nombre, setNombre] = useState(false);
     const [buscar, setBuscar] = useState(false);
+
+    const [resultadosCategoria, setResultadosCategoria] = useState([]);
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
+    const [idCategoriaSeleccionada, setIdCategoriaSeleccionada] = useState('');
+
+    const [resultadosActividad, setResultadosActividad] = useState([]);
+    const [actividadSeleccionada, setActividadSeleccionada] = useState('');
+
+    const [subresultados, setSubresultados] = useState([]);
+    const [subresultadoSeleccionado, setSubresultadoSeleccionado] = useState('');
 
     const [capturaNombre, setCapturaNombre] = useState('');
 
@@ -29,7 +41,7 @@ const BusquedaActividad = () => {
     // Ancho de pantalla
     const ancho = window.innerWidth;
 
-    const btnCategoria = () => {
+    const btnCategoria = async () => {
         setCategoria(!categoria);
 
         if (ancho <= 575) {
@@ -37,6 +49,10 @@ const BusquedaActividad = () => {
             setUbicacion(false);
             setNombre(false);    
         }
+
+        // Busqueda
+        const busqueda = await BusquedaCategoria();
+        setResultadosCategoria(busqueda.SDTCategorias);
     }
 
     const btnActividad = () => {
@@ -64,6 +80,32 @@ const BusquedaActividad = () => {
     const busquedaNombre = (e) => {
         setCapturaNombre(e.target.value);
     }
+
+    
+    // Seleccion de categoria
+    const selecCategoria = async (resultado, idCategoria) => {
+        setCategoriaSeleccionada(resultado);
+        setIdCategoriaSeleccionada(idCategoria);
+
+        // Consulta json para actividad
+        const busqueda = await ConsultaActividad(idCategoria);
+        setResultadosActividad(busqueda.SDTCategorias[0].Level2);
+    }
+
+    // Seleccion de actividad
+    const selecActividad = async (resultado, idActividad) => {
+        setActividadSeleccionada(resultado);
+
+        // Consulta json para subressultado Actividad
+        const busqueda = await ConsultaNivel3(idCategoriaSeleccionada, idActividad);
+        setSubresultados(busqueda.SDTCategorias[0].Level2[0].Level3);
+    }
+
+    // Seleccion de subresultado (resultado final)
+    const selecSubResultado = (resultado) => {
+        setSubresultadoSeleccionado(resultado);
+    };
+
 
     return ( 
         <div className="container-fluid BusquedaActividad">
@@ -107,7 +149,9 @@ const BusquedaActividad = () => {
                             </div>
                             Categoría
                         </button>
-                        <p>Empty</p>
+                        <p>
+                            {categoriaSeleccionada ? categoriaSeleccionada : 'Vacío'}
+                        </p>
                     </div>
                     <div className="control">
                         <button onClick={btnActividad}>
@@ -116,7 +160,9 @@ const BusquedaActividad = () => {
                             </div>
                             Actividad
                         </button>
-                        <p>Empty</p>
+                        <p>
+                            { actividadSeleccionada ? actividadSeleccionada : 'Vacío' }
+                        </p>
                     </div>
                     <div className="control control-ubicacion">
                         <button onClick={btnUbicacion}>
@@ -138,54 +184,19 @@ const BusquedaActividad = () => {
                         { categoria &&
                             <motion.div className='resultado' {...propsAnimacion}>
                                 <h6>Selecciona una opción</h6>
-                                <button>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
+                                { resultadosCategoria.map((resultado)=>(
+                                    <button 
+                                        className={categoriaSeleccionada === resultado.Desc ? '' : 'no-check'}
+                                        key={resultado.Id}
+                                        onClick={()=>selecCategoria(resultado.Desc,resultado.Id)}
+                                    >
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        {resultado.Desc}
+                                    </button>
+                                ))
+                                }
 
                                 <button className='btn-cerrar' onClick={()=>setCategoria(false)}>
                                     <i className="bi bi-x-lg"></i>
@@ -197,56 +208,42 @@ const BusquedaActividad = () => {
 
                     {/* Resultado Actividad */}
                     <AnimatePresence>
-                        { actividad &&
+                        { categoriaSeleccionada &&
                             <motion.div className='resultado' {...propsAnimacion}>
                                 <h6>Selecciona una opción</h6>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comestibles
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Establecimientos
-                                </button>
+                                { resultadosActividad.map((resultado)=>(
+                                        <>
+                                        <button 
+                                            className={actividadSeleccionada === resultado.Desc ? '' : 'no-check'}
+                                            key={resultado.Id}
+                                            onClick={()=>selecActividad(resultado.Desc, resultado.Id)}
+                                        >
+                                            <div>
+                                                <i className="bi bi-check2"></i>
+                                            </div>
+                                            {resultado.Desc}
+                                        </button>
 
-                                {/* SubResultados */}
-                                <div className='sub-resultados'>
-                                    <button className='no-check'>
-                                        <div>
-                                            <i className="bi bi-check2"></i>
-                                        </div>
-                                        Asadero / parrillera / carnes
-                                    </button>
-                                    <button>
-                                        <div>
-                                            <i className="bi bi-check2"></i>
-                                        </div>
-                                        Asador de pollos
-                                    </button>
-                                    <button className='no-check'>
-                                        <div>
-                                            <i className="bi bi-check2"></i>
-                                        </div>
-                                        Cafetería
-                                    </button>
-                                </div>
-
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
+                                        { actividadSeleccionada === resultado.Desc &&
+                                            <div className='sub-resultados'>
+                                                { subresultados.map((resultadosub)=>(
+                                                    <button 
+                                                        className={subresultadoSeleccionado === resultadosub.Desc ? '' : 'no-check'}
+                                                        key={resultadosub.Id}
+                                                        onClick={()=>selecSubResultado(resultadosub.Desc)}
+                                                    >
+                                                        <div>
+                                                            <i className="bi bi-check2"></i>
+                                                        </div>
+                                                        {resultadosub.Desc}
+                                                    </button>
+                                                ))
+                                                }
+                                            </div>
+                                        }
+                                        </>
+                                ))
+                                }
 
                                 <button className='btn-cerrar' onClick={()=>setActividad(false)}>
                                     <i className="bi bi-x-lg"></i>
@@ -305,6 +302,7 @@ const BusquedaActividad = () => {
                 </div>
             }
 
+            {/* Resultado Categoría Mobile*/}
             <AnimatePresence>
                 { categoria &&
                     <motion.div className='resultadosMobile' {...propsAnimacion}>
