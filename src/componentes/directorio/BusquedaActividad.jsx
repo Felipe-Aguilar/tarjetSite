@@ -87,6 +87,10 @@ const BusquedaActividad = () => {
         setCategoriaSeleccionada(resultado);
         setIdCategoriaSeleccionada(idCategoria);
 
+        if (ancho <= 575) {
+            setCategoria(false);
+        }
+
         // Consulta json para actividad
         const busqueda = await ConsultaActividad(idCategoria);
         setResultadosActividad(busqueda.SDTCategorias[0].Level2);
@@ -154,14 +158,17 @@ const BusquedaActividad = () => {
                         </p>
                     </div>
                     <div className="control">
-                        <button onClick={btnActividad}>
+                        <button 
+                            onClick={btnActividad} 
+                            className={categoriaSeleccionada ? '' : 'btn-desactivate'}
+                        >
                             <div>
                                 <img src={iconoActividad} className='actividad'/>
                             </div>
                             Actividad
                         </button>
                         <p>
-                            { actividadSeleccionada ? actividadSeleccionada : 'Vacío' }
+                            { subresultadoSeleccionado ? subresultadoSeleccionado : 'Vacío' }
                         </p>
                     </div>
                     <div className="control control-ubicacion">
@@ -309,24 +316,19 @@ const BusquedaActividad = () => {
                         <p>Selecciona una opción</p>
 
                         <div className='resultados'>
-                            <button className=''>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
+                            { resultadosCategoria.map((resultado)=>(
+                                <button 
+                                    className={categoriaSeleccionada === resultado.Desc ? '' : 'no-check'}
+                                    key={resultado.Id}
+                                    onClick={()=>selecCategoria(resultado.Desc,resultado.Id)}
+                                >
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    {resultado.Desc}
+                                </button>
+                            ))
+                            }
 
                             <button className='btn-cerrar' onClick={()=>setCategoria(false)}>
                                 <i className="bi bi-x-lg"></i>
@@ -337,8 +339,9 @@ const BusquedaActividad = () => {
                 }
             </AnimatePresence>
 
+            {/* Resultados Actividad Mobile */}
             <AnimatePresence>
-                { actividad &&
+                { categoriaSeleccionada &&
                     <motion.div className='resultadosMobile' {...propsAnimacion}>
                         <div className='encabezado'>
                             <p>Selecciona una opción</p>
@@ -350,46 +353,39 @@ const BusquedaActividad = () => {
                         </div>
 
                         <div className='resultados'>
-                            <button className=''>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
+                            { resultadosActividad.map((resultado)=>(
+                                <>
+                                    <button
+                                        className={actividadSeleccionada === resultado.Desc ? '' : 'no-check'}
+                                        key={resultado.Id}
+                                        onClick={()=>selecActividad(resultado.Desc, resultado.Id)}
+                                    >
+                                        <div>
+                                            <i className="bi bi-check2"></i>
+                                        </div>
+                                        {resultado.Desc}
+                                    </button>
 
-                            <div className='sub-resultados'>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className=''>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                                <button className='no-check'>
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    Comida
-                                </button>
-                            </div>
-
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Comida
-                            </button>
+                                    { actividadSeleccionada === resultado.Desc &&
+                                        <div className='sub-resultados'>
+                                            { subresultados.map((resultadosub)=>(
+                                                <button 
+                                                    className={subresultadoSeleccionado === resultadosub.Desc ? '' : 'no-check'}
+                                                    key={resultadosub.Id}
+                                                    onClick={()=>selecSubResultado(resultadosub.Desc)}
+                                                >
+                                                    <div>
+                                                        <i className="bi bi-check2"></i>
+                                                    </div>
+                                                    {resultadosub.Desc}
+                                                </button>
+                                            ))
+                                            }
+                                        </div>
+                                    }
+                                </>
+                            ))
+                            }
                         </div>
                     </motion.div>
                 }
