@@ -1,6 +1,7 @@
 $backgroundColor: #f4ede8;
 $colorVerde: #006d2e;
 $btnAzul: #d2dfe5;
+$btnAmarillo: #fab947;
 
 .diseñaTarjet{
     margin-top: 4.2rem;
@@ -208,6 +209,7 @@ $btnAzul: #d2dfe5;
                     border-right: 1px solid #000;
                     img{
                         height: 40px;
+                        border-radius: 5px;
 
                         @media (width <= 575px) {
                             height: 40px;
@@ -221,6 +223,7 @@ $btnAzul: #d2dfe5;
 
                     img{
                         height: 40px;
+                        border-radius: 5px;
 
                         @media (width <= 575px) {
                             height: 40px;
@@ -232,7 +235,398 @@ $btnAzul: #d2dfe5;
             .info{
                 margin-top: 10px;
                 display: flex;
-                
+                width: 70%;
+                margin: auto;
+                margin-top: 10px;
+                align-items: center;
+
+                @media (width <= 575px) {
+                    width: 80%;
+                }
+
+                p{
+                    margin-bottom: 0;
+                    font-size: 0.9rem;
+
+                    @media (width <= 575px) {
+                        font-size: 0.7rem;
+                    }
+                }
+
+                .modelos{
+                    width: 75%;
+                    text-align: center;
+
+                    p{
+                        color: #555554;
+                    }
+                }
+                .premium-select{
+                    width: 25%;
+                    text-align: center;
+
+                    div{
+                        background: #e03716;
+                        width: 22px;
+                        height: 22px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 100%;
+                        margin: auto;
+
+                        p{
+                            color: #fff;
+                        }
+                    }
+                    p{
+                        line-height: 15px;
+                        color: #004884;
+                    }
+                }
+            }
+
+            .formulario{
+                width: 100%;
+                margin-top: 20px;
+
+                .logotipo{
+                    display: flex;
+                    align-items: center;
+
+                    .img-perfil{
+                        width: 20%;
+
+                        img{
+                            width: 70px;
+                            display: block;
+                            margin: auto;
+                            border-radius: 100%;
+                            border: 1px solid #000;
+
+                            @media (width <= 575px) {
+                                width: 60px;
+                            }
+                        }
+                    }
+                    .cargar-imagen{
+                        width: 80%;
+                        height: 35px;
+                        border-radius: 8px;
+                        background: $btnAzul;
+                        font-weight: bold;
+                        border: transparent;
+                        outline: none!important;
+
+                        span{
+                            font-size: 0.78rem;
+                            font-weight: 400;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+
+                .prefijo{
+                    width: 20%;
+                    text-align: center;
+                    color: #555554;
+                    margin-top: 10px;
+
+                    p{
+                        font-size: 0.8rem;
+                        margin-bottom: 0;
+                    }
+                }
+
+                .form{
+                    form{
+                        select, input{
+                            padding: 5px 7px;
+                            background: #fff;
+                            border: transparent;
+                            color: #555554;
+                            border-radius: 8px;
+                            outline: none!important;
+                        }
+                        input{
+                            width: calc(100% - 28px);
+                            margin-left: 28px;
+                            display: block;
+                            margin-bottom: 15px;
+
+                            @media (width <= 575px) {
+                                // width: 100%;
+                                margin-left: 5px;
+                                width: calc(100% - 5px);
+                            }
+                        }
+                        .select{
+                            display: flex;
+                            
+                            div{
+                                width: 20%;
+
+                                select{
+                                    width: 70px;
+                                    display: block;
+                                    margin: auto;
+                                }
+                            }
+                            input{
+                                width: 80%;
+                                margin-left: 0;
+                            }
+                        }
+                        .buttons{
+                            margin-top: 20px;
+                            display: flex;
+                            justify-content: center;
+
+                            .primer, .segundo{
+                                padding: 0 20px;
+
+                                button{
+                                    display: block;
+                                    margin: auto;
+                                    border-radius: 8px;
+                                    background: transparent;
+                                    border: transparent;
+                                    padding: 5px 20px;
+                                    outline: none!important;
+                                }
+                            }
+
+                            .primer{
+                                border-right: 1px solid #000;
+
+                                button{
+                                    background: #a7a7d4;
+                                }
+                            }
+                            .segundo{
+                                button{
+                                    background: #91ba14;
+                                }
+                            }
+                        }
+
+                        .regresar{
+                            margin-top: 20px;
+
+                            button{
+                                background: transparent;
+                                border: transparent;
+                                outline: none!important;
+                                color: #4f8b92;
+                                text-transform: uppercase;
+                                font-size: 0.8rem;
+                                display: block;
+                                margin: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .premium{
+            margin-top: 20px;
+            p{
+                text-align: center;
+            }
+            button{
+                border-radius: 8px;
+                border: transparent;
+                outline: none!important;
+            }
+
+            .encabezado{
+                button{
+                    background: $btnAmarillo;
+                    padding: 3px 40px;
+                    display: block;
+                    margin: auto;
+                }
+            }
+
+            .tarjetasPremium{
+                margin-top: 20px;
+
+                img{
+                    width: 380px;
+                    display: block;
+                    margin: auto;
+                    border-radius: 20px;
+
+                    @media (width <= 575px) {
+                        width: 80%;
+                    }
+                }
+            }
+            .sliderpremium{
+                margin-top: 20px;
+
+                i{
+                    color: #003f81;
+                    font-size: 1.5rem;
+                }
+    
+                .slick-next{
+                    right: 0px;
+                }
+                .slick-prev {
+                    left: 0px;
+                }
+
+                .paquete{
+                    width: 50%!important;
+                    display: block!important;
+                    margin: auto!important;
+                    background: $btnAzul;
+                    border-radius: 10px;
+                    padding: 10px;
+
+                    @media (width <= 575px) {
+                        width: 70%!important;
+                    }
+
+                    p{
+                        margin-bottom: 0px;
+                        span{
+                            font-size: 0.8rem;
+                            text-align: center;
+                        }
+                    }
+                    hr{
+                        margin: 5px 0;
+                    }
+                    .compra{
+                        display: flex;
+                        align-items: center;
+
+                        .precio{
+                            width: 50%;
+                            border-right: 1px solid #000;
+
+                            p{
+                                font-weight: bold;
+                                margin-bottom: 0;
+                            }
+                        }
+                        .btncompra{
+                            width: 50%;
+
+                            button{
+                                display: block;
+                                margin: auto;
+                                padding: 2px 20px;
+                                background: #91ba14;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .desc{
+                margin-top: 20px;
+            }
+
+            .buttons-rows{
+                display: flex;
+                flex-direction: column;
+                > * + * {
+                    margin-top: 15px;
+                }
+                .rowbuttons{
+                    display: flex;
+                    gap: 20px;
+                    justify-content: center;
+    
+                    button{
+                        width: 25%;
+                        background: #90c2d6;
+                        display: flex;
+                        gap: 10px;
+                        padding: 5px 10px;
+    
+                        @media (width <= 575px) {
+                            width: 45%;
+                        }
+    
+                        div{
+                            background: #fff;
+                            width: 25px;
+                            border-radius: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            p{
+                                margin-bottom: 0;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+            .regresar{
+                margin-top: 20px;
+
+                button{
+                    background: transparent;
+                    border: transparent;
+                    outline: none!important;
+                    color: #4f8b92;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                    display: block;
+                    margin: auto;
+                }
+            }
+        }
+
+        .personalizada{
+            margin-top: 20px;
+            text-align: center;
+
+            img{
+                width: 50%;
+                display: block;
+                margin: auto;
+                margin-bottom: 20px;
+
+                @media (width <= 575px) {
+                    width: 70%;
+                }
+            }
+
+            p{
+                text-align: center;
+
+                span{
+                    font-weight: bold;
+                }
+            }
+            a{
+                background: $btnAmarillo;
+                padding: 5px 20px;
+                border-radius: 8px;
+                text-decoration: none;
+                color: #000;
+            }
+            .regresar{
+                margin-top: 20px;
+
+                button{
+                    background: transparent;
+                    border: transparent;
+                    outline: none!important;
+                    color: #4f8b92;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                    display: block;
+                    margin: auto;
+                }
             }
         }
     }
