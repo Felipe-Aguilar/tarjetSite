@@ -1,0 +1,742 @@
+$backgroundColor: #f4ede8;
+$colorVerde: #006d2e;
+$btnAzul: #d2dfe5;
+$btnAmarillo: #fab947;
+$btnVerde: #91ba14;
+$btnRegresar: #4f8b92;
+
+.DiseñaTarjetSite{
+    margin-top: 4.2rem;
+    background: $backgroundColor;
+    padding: 20px 0;
+
+    @media (width <= 575px) {
+        padding: 20px 2%;
+    }
+
+    .btn-regresarr{
+        margin-top: 20px;
+        button{
+            display: block;
+            margin: auto;
+            background: transparent;
+            border: transparent;
+            outline: none!important;
+            text-transform: uppercase;
+            color: $btnRegresar;
+            font-size: 0.8rem;
+        }
+    }
+
+    .img-banner{
+        display: flex;
+        justify-content: center;
+
+        img{
+            width: 15%;
+
+            @media (width <= 575px) {
+                width: 50%;
+            }
+        }
+    }
+    
+    .text{
+        width: 33.3%;
+        margin: auto;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+        h1{
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+    }
+
+    .controls{
+        width: 33.3%;
+        margin: auto;
+        margin-top: 40px;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+
+        h2{
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .cuerpo{
+            width: 70%;
+            background: $btnAzul;
+            display: flex;
+            border-radius: 8px;
+            margin: auto;
+            margin-top: 20px;
+
+            @media (width <= 575px) {
+                width: 100%;
+            }
+            button{
+                width: 33.3%;
+                border: none;
+                background: transparent;
+                padding: 3px;
+                outline: none!important;
+                display: flex;
+                justify-content: center;
+                gap: 7px;
+                font-size: 1rem;
+                border-right: 1px solid #000;
+
+                div{
+                    background: #fff;
+                    width: 25px;
+                    border-radius: 100%;
+                    height: 25px;
+                }
+            }
+            .btn-3{
+                border-right: none;
+            }
+            .active{
+                color: #5558af;
+                div{
+                    background: #5558af;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .separador{
+        width: 33.3%;
+        margin: auto;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+    }
+
+    .colecciones{
+        width: 33.3%;
+        margin: auto;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+
+        h2{
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .opciones{
+            display: flex;
+
+            button{
+                width: 33.3%;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                background: transparent;
+                outline: none!important;
+                border: transparent;
+                border-left: 1px solid #000;
+            }
+            .activeOption{
+                color: #d45524;
+            }
+
+            .primer{
+                border-left: transparent;
+            }
+        }
+
+        .gratuitas{
+            margin-top: 20px;
+
+            i{
+                color: #003f81;
+                font-size: 1.5rem;
+            }
+            .slick-next{
+                right: 0px;
+            }
+            .slick-prev {
+                left: 0px;
+            }
+
+            .tarjetaGratuita{
+                .cuerpo{
+                    width: 60%;
+                    height: 360px;
+                    background: $btnAzul;
+                    border-radius: 0 0 60px 60px;
+                    margin: auto;
+
+                    @media (width <= 575px) {
+                        width: 75%;
+                        height: 300px;
+                        border-radius: 0 0 30px 30px;
+                    }
+                }
+            }
+
+            .mas-imagenes{
+                display: flex;
+                width: 70%;
+                margin: auto;
+                margin-top: 10px;
+
+                @media (width <= 575px) {
+                    width: 80%;
+                }
+
+                .view3{
+                    width: 75%;
+                    display: flex;
+                    justify-content: space-around;
+                    border-right: 1px solid #000;
+                    img{
+                        height: 40px;
+                        border-radius: 5px;
+
+                        @media (width <= 575px) {
+                            height: 40px;
+                        }
+                    }
+                }
+                .viewpremium{
+                    width: 25%;
+                    display: flex;
+                    justify-content: center;
+
+                    img{
+                        height: 40px;
+                        border-radius: 5px;
+
+                        @media (width <= 575px) {
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+
+            .info{
+                margin-top: 10px;
+                display: flex;
+                width: 70%;
+                margin: auto;
+                margin-top: 10px;
+                align-items: center;
+
+                @media (width <= 575px) {
+                    width: 80%;
+                }
+
+                p{
+                    margin-bottom: 0;
+                    font-size: 0.9rem;
+
+                    @media (width <= 575px) {
+                        font-size: 0.7rem;
+                    }
+                }
+
+                .modelos{
+                    width: 75%;
+                    text-align: center;
+
+                    p{
+                        color: #555554;
+                    }
+                }
+                .premium-select{
+                    width: 25%;
+                    text-align: center;
+
+                    div{
+                        background: #e03716;
+                        width: 22px;
+                        height: 22px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 100%;
+                        margin: auto;
+
+                        p{
+                            color: #fff;
+                        }
+                    }
+                    p{
+                        line-height: 15px;
+                        color: #004884;
+                    }
+                }
+
+            }
+            .buttons-confirm {
+                margin-top: 25px;
+
+                button{
+                    width: 60%;
+                    display: block;
+                    margin: auto;
+                    margin-bottom: 15px;
+                    outline: none!important;
+                    border-radius: 8px;
+                    border: transparent;
+                    background: $btnAzul;
+                    padding: 5px;
+
+                    @media (width <= 575px) {
+                        width: 90%;
+                    }
+                }
+                .guardar{
+                    background: $btnVerde;
+                }
+            }
+            .btn-continuar{
+                display: flex;
+                justify-content: end;
+
+                button{
+                    background: transparent;
+                    border: transparent;
+                    outline: none!important;
+                    font-size: 0.8rem;
+                    text-transform: uppercase;
+                    color: $btnRegresar;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .Tusdatos{
+        width: 33.3%;
+        margin: auto;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+
+        form{
+            input, select{
+                border: transparent;
+                border-radius: 8px;
+                outline: none!important;
+                padding: 5px 10px;
+            }
+        }
+
+        .img-perfil{
+            display: flex;
+            align-items: center;
+
+            @media (width <= 575px) {
+                gap: 20px;
+            }
+
+            .img{
+                width: 20%;
+
+                img{
+                    width: 70%;
+                    border-radius: 100%;
+
+                    @media (width <= 575px) {
+                        width: 100%;
+                    }
+                }
+            }
+            .inputs{
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+
+                > * + * {
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        .subirimagen{
+            width: 20%;
+            margin-top: 10px;
+
+            @media (width <= 575px) {
+                width: 20%;
+            }
+
+            button{
+                background: transparent;
+                border: transparent;
+                outline: none!important;
+                font-size: 0.8rem;
+                text-decoration: underline;
+                width: 70%;
+
+                @media (width <= 575px) {
+                    width: 100%;
+                    padding: 1px 0;
+                }
+            }
+        }
+        .indicaciones{
+            margin-top: 20px;
+            text-align: center;
+
+            p{
+                font-size: 0.9rem;
+            }
+        }
+
+        .datosContacto{
+            display: flex;
+            flex-direction: column;
+
+            h3{
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+
+            .input-datos{
+                width: 70%;
+                display: flex;
+                margin: auto;
+                margin-top: 15px;
+
+                @media (width <= 575px) {
+                    width: 100%;
+                }
+
+                .cont{
+                    background: #6b989e;
+                    width: 60px;
+                    height: 35px;
+                    border-radius: 8px 0 0 8px;
+
+                    img{
+                        height: 100%;
+                        display: block;
+                        margin: auto;
+                    }
+                }
+                .ubi{
+                    display: flex;
+                    align-items: center;
+
+                    img{
+                        height: 80%;
+                    }
+                }
+                input, select{
+                    border-radius: 0 8px 8px 0;
+                    height: 35px;
+                    width: 100%;
+                }
+            }
+
+            .checkbox{
+                width: auto;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: auto;
+                margin-top: 15px;
+
+                label{
+                    margin-bottom: 0;
+                }
+            }
+
+            .mostrarUsuario{
+                align-items: center;
+                
+                .in{
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    gap: 10px;
+
+                    label{
+                        margin-bottom: 0;
+                        width: auto;
+                        margin-left: 5px;
+                    }
+                    input{
+                        width: auto;
+                    }
+                }
+            }
+
+            .terminos{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                margin-top: 20px;
+
+                label{
+                    margin-bottom: 0;
+
+                    span{
+                        cursor: pointer;
+                        color: #003f81;
+                    }
+                }
+            }
+
+            .guardar{
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+
+                button{
+                    background: $btnVerde;
+                    outline: none!important;
+                    border: transparent;
+                    padding: 5px 20px;
+                    border-radius: 8px;
+                }
+            }
+
+            .buttons-pasos{
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+
+                button{
+                    background: transparent;
+                    border: transparent;
+                    outline: none!important;
+                    font-size: 0.8rem;
+                    color: $btnRegresar;
+                    text-decoration: underline;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+
+    .TusServicios{
+        width: 33.3%;
+        margin: auto;
+
+        @media (width <= 575px) {
+            width: 100%;
+        }
+
+        p{
+            text-align: center;
+            font-size: 1rem;
+        }
+        h3{
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        form{
+            input, textarea{
+                padding: 5px 10px;
+                border: transparent;
+                border-radius: 8px;
+                outline: none!important;
+
+                width: 80%;
+                display: block;
+                margin: auto;
+                margin-bottom: 15px;
+
+                @media (width <= 575px) {
+                    width: 100%;
+                }
+            }
+            textarea{
+                height: 200px;
+                min-height: 150px;
+                max-height: 200px;
+            }
+
+            .btn-bloque{
+                width: 80%;
+                display: flex;
+                justify-content: space-between;
+                padding: 0px;
+                padding-left: 10px;
+                height: 40px;
+                background: $btnAzul;
+                border-radius: 8px;
+                align-items: center;
+                border: transparent;
+                margin: auto;
+                margin-bottom: 10px;
+                font-weight: bold;
+                outline: none!important;
+                z-index: 1;
+
+                @media (width <= 575px) {
+                    width: 100%;
+                }
+
+                div{
+                    width: 10%;
+                    background: #f28f11;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 0 8px 8px 0;
+
+                    i{
+                        color: #fff;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .premium{
+                div{
+                    background: #968e76;
+                }
+            }
+            .cuerpo-bloque{
+                padding: 20px;
+
+                .mostrar-imagen{
+                    width: 80%;
+                    height: 500px;
+                    background: $btnAzul;
+                    margin: auto;
+                    border-radius: 15px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    @media (width <= 575px) {
+                        width: 100%;
+                    }
+
+                    img{
+                        width: 50%;
+                    }
+                }
+
+                .btn-subir{
+                    width: 80%;
+                    margin: auto;
+                    margin-top: 20px;
+
+                    @media (width <= 575px) {
+                        width: 100%;
+                    }
+
+                    button{
+                        width: 100%;
+                        padding: 5px 10px;
+                        border-radius: 8px;
+                        border: transparent;
+                        outline: none!important;
+                        background: #c4e4e9;
+                        text-decoration: underline;
+                    }
+                }
+                textarea{
+                    margin-top: 20px;
+                    min-height: 100px;
+                    max-height: 100px;
+                }
+                .borrar{
+                    width: 80%;
+                    margin: auto;
+                    display: flex;
+                    justify-content: center;
+
+                    @media (width <= 575px) {
+                        width: 100%;
+                    }
+
+                    button{
+                        background: transparent;
+                        border: transparent;
+                        outline: none!important;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .btn-premium{
+                background: $btnAmarillo;
+                padding: 5px 20px;
+                border-radius: 8px;
+                width: 200px;
+                display: block;
+                margin: auto;
+                text-align: center;
+                color: #000;
+                text-decoration: none;
+                margin-bottom: 20px;
+            }
+
+            .Btnterminos{
+                margin-top: 20px;
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+
+                input{
+                    margin: 0;
+                    width: auto;
+                }
+                label{
+                    margin: 0;
+
+                    span{
+                        cursor: pointer;
+                        color: #003f81;
+                    }
+                }
+            }
+
+            .btn-guardar{
+                background: $btnVerde;
+                padding: 5px 10px;
+                border-radius: 8px;
+                border: transparent;
+                outline: none!important;
+                display: block;
+                margin: auto;
+                margin-top: 20px;
+                
+            }
+
+            .pasos{
+                display: flex;
+                
+                button{
+                    color: $btnRegresar;
+                    background: none;
+                    border: none;
+                    outline: none!important;
+                    font-size: 0.8rem;
+                    text-decoration: underline;
+                    text-transform: uppercase;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}

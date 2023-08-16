@@ -14,6 +14,7 @@ import HomeDirectorio from './componentes/directorio/HomeDirectorio';
 import HomeFormulario from './componentes/formulario/HomeFormulario';
 import Perfil from './componentes/formulario/Perfil';
 import DiseñaTarjet from './componentes/formulario/DiseñaTarjet';
+import DiseñaTarjetSite from './componentes/formulario/DiseñaTarjetSite';
 
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
           <Route path='/formulario' element={<HomeFormulario />} />
           <Route path='/perfil-formulario' element={<Perfil />} />
           <Route path='/diseña-tu-tarjet' element={<DiseñaTarjet/>} />
+          <Route path='/diseña-tu-tarjetsite' element={<DiseñaTarjetSite />} />
         </Routes>
 
         <Footer />
