@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Sesion } from './contextos/Sesion';
 
@@ -8,6 +8,8 @@ const MenuDesktop = () => {
 
     const sesionLocal = localStorage.getItem('UsuarioSesion');
     const { sesionFalse } = useContext(Sesion);
+
+    const navigate = useNavigate();
 
     return ( 
         <MenuDesktopContenedor>
@@ -24,7 +26,7 @@ const MenuDesktop = () => {
                 <button onClick={sesionFalse}>Cerrar Sesion</button>
             }
 
-            <a href="">Directorio Tarjet</a>
+            <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet</a>
 
             <div className='social'>
                 <a href="" target='_blank'>

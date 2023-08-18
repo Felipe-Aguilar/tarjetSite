@@ -38,8 +38,8 @@ const App = () => {
           <Route path='/directorio-tarjet' element={<HomeDirectorio />} />
           <Route path='/formulario' element={<HomeFormulario />} />
           <Route path='/perfil-formulario' element={<Perfil />} />
-          <Route path='/diseña-tu-tarjet' element={<DiseñaTarjet/>} />
-          <Route path='/diseña-tu-tarjetsite' element={<DiseñaTarjetSite />} />
+          <Route path='/disena-tu-tarjet' element={<DiseñaTarjet/>} />
+          <Route path='/disena-tu-tarjetsite' element={<DiseñaTarjetSite />} />
         </Routes>
 
         <Footer />

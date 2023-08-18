@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Corona from '../assets/corona.svg';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Sesion } from './contextos/Sesion';
 
 
@@ -10,6 +10,8 @@ const Menu = ({cambioMenu}) => {
     const { sesionFalse } = useContext(Sesion);
 
     const sesionLocal = localStorage.getItem('UsuarioSesion');
+
+    const navigate = useNavigate();
 
     return ( 
         <>
@@ -33,7 +35,7 @@ const Menu = ({cambioMenu}) => {
                     :
                         <button onClick={()=>{sesionFalse(); cambioMenu(true);}} style={{marginBottom: '20px'}}>Cerrar sesión</button>
                     }
-                    <a href="">Directorio Tarjet </a>
+                    <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet </a>
                     
                     <a href="https://wa.me/5586763895" target='_blank'>Contacto</a>
 
