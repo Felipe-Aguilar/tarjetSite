@@ -84,14 +84,6 @@ const Login = () => {
         }
     }
 
-    // const responseGoogle = (response) => {
-    //     console.log(response);
-    // };
-
-    // const responseFacebook = (response) => {
-    //     console.log(response);
-    // }
-
     return ( 
         <div className='container-fluid vh-100 login'>
             <div className='row justify-content-center align-items-center h-100'>
@@ -135,7 +127,7 @@ const Login = () => {
                                 <></>
                             }
                             <p>
-                                ¿Aún no tienes una cuenta? <a href='https://wa.me/5586763895' target={'_blank'}> Contáctanos</a>
+                                ¿Aún no tienes una cuenta? <a onClick={()=>navigate('/registro')}> Regístrate</a>
                             </p>
                         </div>
 

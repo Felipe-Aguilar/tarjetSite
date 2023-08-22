@@ -36,8 +36,9 @@ const App = () => {
           <Route path='/st/bXhtdGFyamV0' element={<Perfilmxm />}/>
           <Route path='/aviso-privacidad' element={<AvisoPrivacidad />}/>
           <Route path='/directorio-tarjet' element={<HomeDirectorio />} />
-          <Route path='/formulario' element={<HomeFormulario />} />
-          <Route path='/perfil-formulario' element={<Perfil />} />
+
+          <Route path='/registro' element={<HomeFormulario />} />
+          <Route path='/mi-perfil' element={<Perfil />} />
           <Route path='/disena-tu-tarjet' element={<DiseñaTarjet/>} />
           <Route path='/disena-tu-tarjetsite' element={<DiseñaTarjetSite />} />
         </Routes>

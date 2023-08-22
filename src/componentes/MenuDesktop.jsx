@@ -26,6 +26,10 @@ const MenuDesktop = () => {
                 <button onClick={sesionFalse}>Cerrar Sesion</button>
             }
 
+            { sesionLocal && 
+                <NavLink to={'/mi-perfil'}>Mi perfil</NavLink>
+            }
+
             <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet</a>
 
             <div className='social'>
@@ -49,7 +53,8 @@ const MenuDesktopContenedor = styled.div`
         text-decoration: none;
         font-family: 'Lato', sans-serif;
         font-weight: 400;
-        color: #48657c;
+        color: #48657c!important;
+        cursor: pointer;
         letter-spacing: 0;
     }
     button{

@@ -16,26 +16,23 @@ const Menu = ({cambioMenu}) => {
     return ( 
         <>
             <MenuContenedor className=''>
-                {/* <div className='d-flex justify-content-center'>
-                    <div className='buscar' for="Buscar">
-                        <i className="bi bi-search"></i>
-                        <input type="search" placeholder="Buscar Tarjet's" id='Buscar'/>
-                    </div>
-                </div> */}
 
                 <div className='links'>
                     
-                    {/* <a href='https://tarjet.mx'>Inicio</a> */}
                     <a href="https://shop.tarjet.mx/" target='_blank'>Tienda</a>
                     <a href="https://tarjet.mx/#/empresas" className='disabled'>Empresas</a>
-                    {/* <a href="https://tarjet.mx/#/que-es-tarjet">¿Qué es Tarjet?</a> */}
                     <a href="https://tarjet.mx/#/hazte-premium">Premium </a>
                     { !sesionLocal ?
                         <NavLink to="/login" onClick={()=>cambioMenu(true)}>Iniciar Sesion</NavLink>
                     :
                         <button onClick={()=>{sesionFalse(); cambioMenu(true);}} style={{marginBottom: '20px'}}>Cerrar sesión</button>
                     }
-                    <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet </a>
+
+                    { sesionLocal &&
+                        <NavLink to={'/mi-perfil'} onClick={()=>cambioMenu(true)}>Mi perfil</NavLink>
+                    }
+
+                    <NavLink to={'directorio-tarjet'} onClick={()=>cambioMenu(true)}>Directorio Tarjet </NavLink>
                     
                     <a href="https://wa.me/5586763895" target='_blank'>Contacto</a>
 
