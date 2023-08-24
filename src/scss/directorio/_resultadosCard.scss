@@ -57,6 +57,7 @@
                     font-size: 1.25rem;
                     font-weight: bold;
                     line-height: 1.2;
+                    text-transform: capitalize;
 
                     span{
                         font-weight: 400;
@@ -64,6 +65,11 @@
                     }
                 }
 
+            }
+            .tarjetaImg{
+                img{
+                    cursor: pointer;
+                }
             }
             .footer{
                 padding: 10px 15px;

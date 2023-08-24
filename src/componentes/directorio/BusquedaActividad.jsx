@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { BusquedaCategoria, ConsultaActividad, ConsultaNivel3 } from '../contextos/BusquedaDirectorio';
+import { BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNombre, BusquedaNivel3 } from '../contextos/BusquedaDirectorio';
+
+import { useNavigate } from 'react-router-dom';
 
 import iconoCategoria from '../../assets/icono-categoria.svg';
 import iconoActividad from '../../assets/icono-actividad.svg';
@@ -14,11 +16,13 @@ import TarjetaGenerica from '../../assets/tarjetageneric.png';
 
 const BusquedaActividad = () => {
 
+    const navigate = useNavigate();
+
     const [categoria, setCategoria] = useState(false);
     const [actividad, setActividad] = useState(false);
     const [ubicacion, setUbicacion] = useState(false);
     const [nombre, setNombre] = useState(false);
-    const [buscar, setBuscar] = useState(false);
+    const [busqueda, setBusqueda] = useState(false);
 
     const [resultadosCategoria, setResultadosCategoria] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
@@ -31,6 +35,9 @@ const BusquedaActividad = () => {
     const [subresultadoSeleccionado, setSubresultadoSeleccionado] = useState('');
 
     const [capturaNombre, setCapturaNombre] = useState('');
+    const [resultadosNombre, setResultadosNombre] = useState([]);
+
+    const [resultadosNivel3, setResultadosNivel3] = useState([]);
 
     const propsAnimacion = {
         initial: {scale: 0},
@@ -42,7 +49,12 @@ const BusquedaActividad = () => {
     const ancho = window.innerWidth;
 
     const btnCategoria = async () => {
-        setCategoria(!categoria);
+        // setCategoria(!categoria);
+        setCategoria(true);
+        setBusqueda(false);
+
+        setCategoriaSeleccionada('');
+        setSubresultadoSeleccionado('');
 
         if (ancho <= 575) {
             setActividad(false);
@@ -77,10 +89,23 @@ const BusquedaActividad = () => {
     }
 
     // Busqueda por Nombre (predictiva)
-    const busquedaNombre = (e) => {
+    const busquedaNombre = async (e) => {
         setCapturaNombre(e.target.value);
-    }
+        setBusqueda(true);
 
+        if (e.target.value.length >= 3) {
+            const respuesta = await BusquedaNombre(e.target.value);
+            setResultadosNombre(respuesta.ListTarjets);
+        }
+
+        if (e.target.value.length === 0) {
+            setBusqueda(false);
+        }
+    }
+    const cerrarNombre = () => {
+        setBusqueda(false);
+        setCapturaNombre('');
+    }
     
     // Seleccion de categoria
     const selecCategoria = async (resultado, idCategoria) => {
@@ -106,8 +131,13 @@ const BusquedaActividad = () => {
     }
 
     // Seleccion de subresultado (resultado final)
-    const selecSubResultado = (resultado) => {
+    const selecSubResultado = async (resultado,id) => {
         setSubresultadoSeleccionado(resultado);
+        setBusqueda(true);
+
+        
+        const busqueda = await BusquedaNivel3(id);
+        setResultadosNivel3(busqueda.ListTarjets);
     };
 
 
@@ -126,7 +156,8 @@ const BusquedaActividad = () => {
                 </p>
                 <div className='buscar-contenedor'>
                     <div className='img-form'>
-                        <img src={iconoNombre} />
+                        {/* <img src={iconoNombre} /> */}
+                        <i className="bi bi-search"></i>
                     </div>
 
                     <input 
@@ -137,7 +168,9 @@ const BusquedaActividad = () => {
                     />
 
                     <div className='borrar'>
-                        <button onClick={()=>setCapturaNombre('')}>
+                        <button onClick={cerrarNombre}
+                            className={`${capturaNombre === '' ? 'borrar-desactivate' : ''}`}
+                        >
                             <i className="bi bi-x-lg"></i>
                         </button>
                     </div>
@@ -183,7 +216,7 @@ const BusquedaActividad = () => {
                 </div>
             </div>
 
-            { !capturaNombre &&
+            { !busqueda &&
                 <div className='resultados'>
 
                     {/* Resultado Categoría */}
@@ -237,7 +270,7 @@ const BusquedaActividad = () => {
                                                     <button 
                                                         className={subresultadoSeleccionado === resultadosub.Desc ? '' : 'no-check'}
                                                         key={resultadosub.Id}
-                                                        onClick={()=>selecSubResultado(resultadosub.Desc)}
+                                                        onClick={()=>selecSubResultado(resultadosub.Desc, resultadosub.Id)}
                                                     >
                                                         <div>
                                                             <i className="bi bi-check2"></i>
@@ -309,404 +342,318 @@ const BusquedaActividad = () => {
                 </div>
             }
 
-            {/* Resultado Categoría Mobile*/}
-            <AnimatePresence>
-                { categoria &&
-                    <motion.div className='resultadosMobile' {...propsAnimacion}>
-                        <p>Selecciona una opción</p>
-
-                        <div className='resultados'>
-                            { resultadosCategoria.map((resultado)=>(
-                                <button 
-                                    className={categoriaSeleccionada === resultado.Desc ? '' : 'no-check'}
-                                    key={resultado.Id}
-                                    onClick={()=>selecCategoria(resultado.Desc,resultado.Id)}
-                                >
-                                    <div>
-                                        <i className="bi bi-check2"></i>
-                                    </div>
-                                    {resultado.Desc}
-                                </button>
-                            ))
-                            }
-
-                            <button className='btn-cerrar' onClick={()=>setCategoria(false)}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar
-                            </button>
-                        </div>
-                    </motion.div>
-                }
-            </AnimatePresence>
-
-            {/* Resultados Actividad Mobile */}
-            <AnimatePresence>
-                { categoriaSeleccionada &&
-                    <motion.div className='resultadosMobile' {...propsAnimacion}>
-                        <div className='encabezado'>
+            { !busqueda &&
+            <>
+                {/* Resultado Categoría Mobile*/}
+                <AnimatePresence>
+                    { categoria &&
+                        <motion.div className='resultadosMobile' {...propsAnimacion}>
                             <p>Selecciona una opción</p>
 
-                            <button className='btn-cerrar' onClick={()=>setActividad(false)}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar
-                            </button>
-                        </div>
-
-                        <div className='resultados'>
-                            { resultadosActividad.map((resultado)=>(
-                                <>
-                                    <button
-                                        className={actividadSeleccionada === resultado.Desc ? '' : 'no-check'}
+                            <div className='resultados'>
+                                { resultadosCategoria.map((resultado)=>(
+                                    <button 
+                                        className={categoriaSeleccionada === resultado.Desc ? '' : 'no-check'}
                                         key={resultado.Id}
-                                        onClick={()=>selecActividad(resultado.Desc, resultado.Id)}
+                                        onClick={()=>selecCategoria(resultado.Desc,resultado.Id)}
                                     >
                                         <div>
                                             <i className="bi bi-check2"></i>
                                         </div>
                                         {resultado.Desc}
                                     </button>
+                                ))
+                                }
 
-                                    { actividadSeleccionada === resultado.Desc &&
-                                        <div className='sub-resultados'>
-                                            { subresultados.map((resultadosub)=>(
-                                                <button 
-                                                    className={subresultadoSeleccionado === resultadosub.Desc ? '' : 'no-check'}
-                                                    key={resultadosub.Id}
-                                                    onClick={()=>selecSubResultado(resultadosub.Desc)}
-                                                >
-                                                    <div>
-                                                        <i className="bi bi-check2"></i>
-                                                    </div>
-                                                    {resultadosub.Desc}
-                                                </button>
-                                            ))
-                                            }
+                                <button className='btn-cerrar' onClick={()=>setCategoria(false)}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar
+                                </button>
+                            </div>
+                        </motion.div>
+                    }
+                </AnimatePresence>
+
+                {/* Resultados Actividad Mobile */}
+                <AnimatePresence>
+                    { categoriaSeleccionada &&
+                        <motion.div className='resultadosMobile' {...propsAnimacion}>
+                            <div className='encabezado'>
+                                <p>Selecciona una opción</p>
+
+                                <button className='btn-cerrar' onClick={()=>setActividad(false)}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar
+                                </button>
+                            </div>
+
+                            <div className='resultados'>
+                                { resultadosActividad.map((resultado)=>(
+                                    <>
+                                        <button
+                                            className={actividadSeleccionada === resultado.Desc ? '' : 'no-check'}
+                                            key={resultado.Id}
+                                            onClick={()=>selecActividad(resultado.Desc, resultado.Id)}
+                                        >
+                                            <div>
+                                                <i className="bi bi-check2"></i>
+                                            </div>
+                                            {resultado.Desc}
+                                        </button>
+
+                                        { actividadSeleccionada === resultado.Desc &&
+                                            <div className='sub-resultados'>
+                                                { subresultados.map((resultadosub)=>(
+                                                    <button 
+                                                        className={subresultadoSeleccionado === resultadosub.Desc ? '' : 'no-check'}
+                                                        key={resultadosub.Id}
+                                                        onClick={()=>selecSubResultado(resultadosub.Desc, resultadosub.Id)}
+                                                    >
+                                                        <div>
+                                                            <i className="bi bi-check2"></i>
+                                                        </div>
+                                                        {resultadosub.Desc}
+                                                    </button>
+                                                ))
+                                                }
+                                            </div>
+                                        }
+                                    </>
+                                ))
+                                }
+                            </div>
+                        </motion.div>
+                    }
+                </AnimatePresence>
+
+                {/* Resultados por Ubicación */}
+                <AnimatePresence>
+                    { ubicacion &&
+                        <motion.div className='resultadosMobile' {...propsAnimacion}>
+                            <div className='encabezado'>
+                                <p>Selecciona una opción</p>
+
+                                <button className='btn-cerrar' onClick={()=>setUbicacion(false)}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar
+                                </button>
+                            </div>
+
+                            <div className='resultados ubicacion'>
+                                <button className='primer'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Cerca de mí
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Aguascalientes
+                                </button>
+
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Aguascalientes
+                                </button>
+                                <button className='no-check'>
+                                    <div>
+                                        <i className="bi bi-check2"></i>
+                                    </div>
+                                    Aguascalientes
+                                </button>
+                            </div>
+                        </motion.div>
+                    }
+                </AnimatePresence>
+            </>
+            }
+
+
+            {/* Resultados Cards*/}
+
+            { busqueda &&
+                <AnimatePresence>
+
+                    { capturaNombre &&
+                        <motion.div className='ResultadosCard' {...propsAnimacion}>
+                            <div className='encabezado'>
+                                <button onClick={cerrarNombre}>
+                                    <i className="bi bi-x-lg"></i>
+                                    Cerrar ventana de resultados
+                                </button>
+                            </div>
+                            <div className='cards'>
+                                { resultadosNombre.map((resultado)=>(
+                                    <div className='contenedor' key={resultado.IdUsuario}>
+                                        <div className='title'>
+                                            <div className='img'>
+                                                <img src={PerfilTemporal}/>
+                                            </div>
+                                            <div>
+                                                <h5>
+                                                    {resultado.NombreCompleto}
+                                                    <br/>
+                                                    <span>{resultado.Actividad}</span>
+                                                </h5>
+                                            </div>
                                         </div>
-                                    }
-                                </>
+                                        <div className='tarjetaImg'>
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/${resultado.FondoF}`} className='img-fluid'
+                                                onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
+                                            />
+                                        </div>
+                                        <div className='footer'>
+                                            <p>
+                                                Da click sobre la imagen para ver tarjeta digital
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))
+                                }
+            
+                                {/* <div className='contenedor'>
+                                    <div className='title'>
+                                        <div className='img'>
+                                            <img src={PerfilTemporal}/>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                Alberto Mérida
+                                                <br/>
+                                                <span>Desarrollo e integración</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div className='tarjetaImg'>
+                                        <img src={TarjetaGenerica} className='img-fluid'/>
+                                    </div>
+                                    <div className='footer'>
+                                        <p>
+                                            Da click sobre la imagen para ver tarjeta digital
+                                        </p>
+                                    </div>
+                                </div>
+            
+                                <div className='contenedor'>
+                                    <div className='title'>
+                                        <div className='img'>
+                                            <img src={PerfilTemporal}/>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                Alberto Mérida
+                                                <br/>
+                                                <span>Desarrollo e integración</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div className='tarjetaImg'>
+                                        <img src={TarjetaGenerica} className='img-fluid'/>
+                                    </div>
+                                    <div className='footer'>
+                                        <p>
+                                            Da click sobre la imagen para ver tarjeta digital
+                                        </p>
+                                    </div>
+                                </div>
+            
+                                <div className='contenedor'>
+                                    <div className='title'>
+                                        <div className='img'>
+                                            <img src={PerfilTemporal}/>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                Alberto Mérida
+                                                <br/>
+                                                <span>Desarrollo e integración</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div className='tarjetaImg'>
+                                        <img src={TarjetaGenerica} className='img-fluid'/>
+                                    </div>
+                                    <div className='footer'>
+                                        <p>
+                                            Da click sobre la imagen para ver tarjeta digital
+                                        </p>
+                                    </div>
+                                </div>
+            
+                                <div className='contenedor'>
+                                    <div className='title'>
+                                        <div className='img'>
+                                            <img src={PerfilTemporal}/>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                Alberto Mérida
+                                                <br/>
+                                                <span>Desarrollo e integración</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div className='tarjetaImg'>
+                                        <img src={TarjetaGenerica} className='img-fluid'/>
+                                    </div>
+                                    <div className='footer'>
+                                        <p>
+                                            Da click sobre la imagen para ver tarjeta digital
+                                        </p>
+                                    </div>
+                                </div> */}
+                            </div>
+                        </motion.div>
+                    }
+
+                    {   subresultadoSeleccionado &&
+                        <motion.div className='ResultadosCard' {...propsAnimacion}>
+                        <div className='encabezado'>
+                            <button onClick={()=>setSubresultadoSeleccionado('')}>
+                                <i className="bi bi-x-lg"></i>
+                                Cerrar ventana de resultados
+                            </button>
+                        </div>
+                        <div className='cards'>
+                            { resultadosNivel3.map((resultado)=>(
+                                <div className='contenedor' key={resultado.IdUsuario}>
+                                    <div className='title'>
+                                        <div className='img'>
+                                            <img src={PerfilTemporal}/>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                {resultado.NombreCompleto}
+                                                <br/>
+                                                <span>{resultado.Actividad}</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div className='tarjetaImg'>
+                                        <img 
+                                            src={`https://tarjet.site/imagenes/${resultado.FondoF}`} className='img-fluid'
+                                            onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
+                                        />
+                                    </div>
+                                    <div className='footer'>
+                                        <p>
+                                            Da click sobre la imagen para ver tarjeta digital
+                                        </p>
+                                    </div>
+                                </div>
                             ))
                             }
                         </div>
-                    </motion.div>
-                }
-            </AnimatePresence>
-
-            <AnimatePresence>
-                { ubicacion &&
-                    <motion.div className='resultadosMobile' {...propsAnimacion}>
-                        <div className='encabezado'>
-                            <p>Selecciona una opción</p>
-
-                            <button className='btn-cerrar' onClick={()=>setUbicacion(false)}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar
-                            </button>
-                        </div>
-
-                        <div className='resultados ubicacion'>
-                            <button className='primer'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Cerca de mí
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Aguascalientes
-                            </button>
-
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Aguascalientes
-                            </button>
-                            <button className='no-check'>
-                                <div>
-                                    <i className="bi bi-check2"></i>
-                                </div>
-                                Aguascalientes
-                            </button>
-                        </div>
-                    </motion.div>
-                }
-            </AnimatePresence>
-
-            <AnimatePresence>
-                { nombre &&
-                    <motion.div className='resultadosMobile' {...propsAnimacion}>
-                        <p>¿Conoces el nombre o parte del nombre del usuario Tarjet? ¡Aquí puedes buscarlo fácilmente!</p>
-
-                        <input type="text" placeholder='Escribe su nombre aquí'/>
-
-                        <div className='resultados'>
-                            <button className='btn-cerrar' onClick={()=>setNombre(false)}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar
-                            </button>
-                        </div>
-                    </motion.div>
-                }
-            </AnimatePresence>
-
-            {/* Resultados Cards*/}
-            <AnimatePresence>
-                { buscar &&
-                    <motion.div className='ResultadosCard' {...propsAnimacion}>
-                        <div className='encabezado'>
-                            <button onClick={()=>setBuscar(false)}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar ventana de resultados
-                            </button>
-                        </div>
-                        <div className='cards'>
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                }
-
-                { capturaNombre &&
-                    <motion.div className='ResultadosCard' {...propsAnimacion}>
-                        <div className='encabezado'>
-                            <button onClick={()=>setCapturaNombre('')}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar ventana de resultados
-                            </button>
-                        </div>
-                        <div className='cards'>
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-        
-                            <div className='contenedor'>
-                                <div className='title'>
-                                    <div className='img'>
-                                        <img src={PerfilTemporal}/>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Alberto Mérida
-                                            <br/>
-                                            <span>Desarrollo e integración</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div className='tarjetaImg'>
-                                    <img src={TarjetaGenerica} className='img-fluid'/>
-                                </div>
-                                <div className='footer'>
-                                    <p>
-                                        Da click sobre la imagen para ver tarjeta digital
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                }
-            </AnimatePresence>
+                        </motion.div>
+                    }
+                </AnimatePresence>
+            }
+            
         </div>
     );
 }
