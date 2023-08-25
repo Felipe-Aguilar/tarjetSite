@@ -39,6 +39,8 @@ const BusquedaActividad = () => {
 
     const [resultadosNivel3, setResultadosNivel3] = useState([]);
 
+    const [replegar, setReplegar] = useState(null);
+
     const propsAnimacion = {
         initial: {scale: 0},
         animate: {scale: 1},
@@ -128,6 +130,9 @@ const BusquedaActividad = () => {
         // Consulta json para subressultado Actividad
         const busqueda = await ConsultaNivel3(idCategoriaSeleccionada, idActividad);
         setSubresultados(busqueda.SDTCategorias[0].Level2[0].Level3);
+
+        // Replegar
+        setReplegar(idActividad === replegar ? null : idActividad);
     }
 
     // Seleccion de subresultado (resultado final)
@@ -139,7 +144,6 @@ const BusquedaActividad = () => {
         const busqueda = await BusquedaNivel3(id);
         setResultadosNivel3(busqueda.ListTarjets);
     };
-
 
     return ( 
         <div className="container-fluid BusquedaActividad">
@@ -254,7 +258,7 @@ const BusquedaActividad = () => {
                                 { resultadosActividad.map((resultado)=>(
                                         <>
                                         <button 
-                                            className={actividadSeleccionada === resultado.Desc ? '' : 'no-check'}
+                                            className={replegar === resultado.Id ? '' : 'no-check'}
                                             key={resultado.Id}
                                             onClick={()=>selecActividad(resultado.Desc, resultado.Id)}
                                         >
@@ -264,7 +268,7 @@ const BusquedaActividad = () => {
                                             {resultado.Desc}
                                         </button>
 
-                                        { actividadSeleccionada === resultado.Desc &&
+                                        { replegar === resultado.Id &&
                                             <div className='sub-resultados'>
                                                 { subresultados.map((resultadosub)=>(
                                                     <button 
@@ -391,7 +395,7 @@ const BusquedaActividad = () => {
                                 { resultadosActividad.map((resultado)=>(
                                     <>
                                         <button
-                                            className={actividadSeleccionada === resultado.Desc ? '' : 'no-check'}
+                                            className={replegar === resultado.Id ? '' : 'no-check'}
                                             key={resultado.Id}
                                             onClick={()=>selecActividad(resultado.Desc, resultado.Id)}
                                         >
@@ -401,7 +405,7 @@ const BusquedaActividad = () => {
                                             {resultado.Desc}
                                         </button>
 
-                                        { actividadSeleccionada === resultado.Desc &&
+                                        { replegar === resultado.Id &&
                                             <div className='sub-resultados'>
                                                 { subresultados.map((resultadosub)=>(
                                                     <button 
