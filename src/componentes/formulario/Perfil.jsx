@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
 import iconoOjo from '../../assets/icono-ojo.svg';
 import iconoCompartir from '../../assets/icono-compartir.svg';
@@ -7,6 +9,9 @@ import iconoComentario from '../../assets/icono-mensaje.svg';
 import iconoComentarioOculto from '../../assets/icono-mensaje-oculto.svg';
 
 const Perfil = () => {
+
+    const navigate = useNavigate();
+
     return ( 
         <div className="container-fluid Perfil">
 
@@ -109,10 +114,10 @@ const Perfil = () => {
 
             <div className='buttonsPerfil'>
                 <div className='cuerpo'>
-                    <button className='btn-editar'>
+                    <button className='btn-editar' onClick={()=>navigate('/disena-tu-tarjet')}>
                         Edita tu tarjet
                     </button>
-                    <button className='btn-site'>
+                    <button className='btn-site' onClick={()=>navigate('/disena-tu-tarjetsite')}>
                         Editar tu tarjet site (tarjeta digital)
                     </button>
                     <button className='btn-fisica'>

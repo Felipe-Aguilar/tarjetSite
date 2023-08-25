@@ -16,9 +16,63 @@ const Login = () => {
     const navigate = useNavigate();
 
     const [viewContraseña, setViewContraseña] = useState(false);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState('');
+    const [errorSend, setErrorSend] = useState('');
     const [checkButton, setCheckButton] = useState(false);
 
+    const [telefono, setTelefono] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [mode, setMode] = useState('telefono');
+
+    const [email, setEmail] = useState('');
+
+    
+    // Verificar número (10 caracteres y sólo números)
+    const changeNumero = (e) => {
+        const numero = e.target.value.replace(/\D/g, '');
+        setTelefono(numero);
+
+        if (numero.length < 10) {
+            setError('Por favor agregue un número de teléfono válido');
+        }else{
+            setError('');
+        }
+    }
+
+    // Verificar Email
+    const changeEmail = (e) =>{
+        setEmail(e.target.value);
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(e.target.value)) {
+            setError('Introduce una dirección de correo válida');
+        }else{
+            setError('');
+        }
+    }
+
+    // Verificar password
+    const changePassword = (e) => {
+        setPassword(e.target.value);
+
+        const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!regex.test(e.target.value)) {
+            setError('La contraseña debe tener al menos 8 caracteres, incluyendo letras y números.');
+        }else{
+            setError('');
+        }
+    }
+
+    // IniciarSesión
+    const IniciarSesion = () =>{
+        
+        if (error || telefono === '' || password === '') {
+            setErrorSend('Falta uno o más campos por llenar');
+        }else{
+            setErrorSend('');
+        }
+    }
 
     return ( 
         <div className="container-fluid loginFormulario">
@@ -39,11 +93,11 @@ const Login = () => {
             </div>
 
             <div className='iniciarSesion'>
-                <button>
+                <button onClick={()=>setMode('telefono')}>
                     <img src={iconoTelefono} />
                     Teléfono
                 </button>
-                <button>
+                <button onClick={()=>setMode('correo')}>
                     <img src={iconoCorreo} />
                     Correo
                 </button>
@@ -66,44 +120,93 @@ const Login = () => {
             </div>
 
             <div className='formulario'>
-                <form>
-                    <div className='row1'>
-                        <div className='selec'>
-                            <label htmlFor='number'>País</label>
+                
+                { mode === 'telefono' &&
+                    <form>
+                        <div className='row1'>
+                            <div className='selec'>
+                                <label htmlFor='number'>País</label>
 
-                            <select id="number">
-                                <option value="" key="">+52</option>
-                            </select>
+                                <select id="number">
+                                    <option value="" key="">+52</option>
+                                </select>
+                            </div>
+
+                            <div className='number'>
+                                <input 
+                                    type="text" 
+                                    inputMode="numeric" maxLength={10} 
+                                    placeholder='Número de teléfono móvil'
+                                    value={telefono}
+                                    onChange={changeNumero}
+                                />
+                            </div>
                         </div>
 
-                        <div className='number'>
-                            <input type="text" maxLength={10} placeholder='Número de teléfono móvil'/>
-                        </div>
-                    </div>
+                        <div className='row2'>
+                            <input 
+                                type={`${!viewContraseña ? 'password' : 'text'}`} 
+                                placeholder='Escribe tu contraseña'
+                                value={password}
+                                onChange={changePassword}
+                            />
 
-                    <div className='row2'>
-                        <input 
-                            type={`${!viewContraseña ? 'password' : 'text'}`} 
-                            placeholder='Escribe tu contraseña'
-                        />
-
-                        <div className='eye'>
-                            <button onClick={()=>setViewContraseña(!viewContraseña)}>
-                                { !viewContraseña ?
-                                    <img src={iconoOjo} />
-                                    :
-                                    <img src={iconoOjoOculto} />
-                                }
-                            </button>
+                            <div className='eye'>
+                                <button onClick={()=>setViewContraseña(!viewContraseña)}>
+                                    { !viewContraseña ?
+                                        <img src={iconoOjo} />
+                                        :
+                                        <img src={iconoOjoOculto} />
+                                    }
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                        
+                    </form>
+                }
+            
+
+            
+                { mode === 'correo' &&
+                    <form>
+                        <div className='row1 row12'>
+                            <div className='number'>
+                                <input 
+                                    type="email" 
+                                    placeholder='Correo electrónico'
+                                    value={email}
+                                    onChange={changeEmail}
+                                />
+                            </div>
+                        </div>
+
+                        <div className='row2'>
+                            <input 
+                                type={`${!viewContraseña ? 'password' : 'text'}`} 
+                                placeholder='Escribe tu contraseña'
+                                value={password}
+                                onChange={changePassword}
+                            />
+
+                            <div className='eye'>
+                                <button onClick={()=>setViewContraseña(!viewContraseña)}>
+                                    { !viewContraseña ?
+                                        <img src={iconoOjo} />
+                                        :
+                                        <img src={iconoOjoOculto} />
+                                    }
+                                </button>
+                            </div>
+                        </div>
                     
-                </form>
+                    </form>
+                }
+                
             </div>
 
-            { !error &&
+            { error &&
                 <div className='mensajeError'>
-                    <p>Mínimo 8 caracteres, letras y números</p>
+                    <p>{error}</p>
                 </div>
             }
 
@@ -126,12 +229,18 @@ const Login = () => {
                     </label>
                 </div>
 
+                { errorSend &&
+                    <div className='mensajeError'>
+                        <p>{errorSend}</p>
+                    </div>
+                }
+
                 <div className='buttons'>
                     <div className={`registrar ${!checkButton && 'desactivate'}`}>
                         <button>Registrar</button>
                     </div>
                     <div className={`iniciar ${!checkButton && 'desactivate'}`}>
-                        <button>Iniciar sesión</button>
+                        <button onClick={IniciarSesion}>Iniciar sesión</button>
                     </div>
                 </div>
             </div>

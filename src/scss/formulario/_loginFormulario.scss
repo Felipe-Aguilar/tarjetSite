@@ -115,6 +115,7 @@ $textoGris: #484846;
         .row1{
             display: flex;
             gap: 10px;
+
             .selec{
                 background: #fff;
                 padding: 1px 0;
@@ -174,6 +175,12 @@ $textoGris: #484846;
                 img{
                     width: 100%;
                 }
+            }
+        }
+
+        .row12{
+            input{
+                padding: 10px;
             }
         }
     }
@@ -237,6 +244,10 @@ $textoGris: #484846;
                     }
                 }
             }
+        }
+        
+        .mensajeError{
+            width: 100%;
         }
 
         .buttons{
