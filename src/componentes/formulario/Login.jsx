@@ -23,7 +23,7 @@ const Login = () => {
     const [telefono, setTelefono] = useState('');
     const [password, setPassword] = useState('');
 
-    const [mode, setMode] = useState('telefono');
+    const [mode, setMode] = useState('correo');
 
     const [email, setEmail] = useState('');
 
@@ -93,10 +93,10 @@ const Login = () => {
             </div>
 
             <div className='iniciarSesion'>
-                <button onClick={()=>setMode('telefono')}>
+                {/* <button onClick={()=>setMode('telefono')}>
                     <img src={iconoTelefono} />
                     Teléfono
-                </button>
+                </button> */}
                 <button onClick={()=>setMode('correo')}>
                     <img src={iconoCorreo} />
                     Correo
@@ -105,10 +105,10 @@ const Login = () => {
                     <img src={iconoGoogle} />
                     Google
                 </button>
-                <button>
+                {/* <button>
                     <img src={iconoFacebook} />
                     Facebook
-                </button>
+                </button> */}
                 <button>
                     <img src={iconoApple} />
                     Apple
