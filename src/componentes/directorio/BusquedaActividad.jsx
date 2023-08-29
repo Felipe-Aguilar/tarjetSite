@@ -8,10 +8,17 @@ import { useNavigate } from 'react-router-dom';
 import iconoCategoria from '../../assets/icono-categoria.svg';
 import iconoActividad from '../../assets/icono-actividad.svg';
 import iconoUbicacion from '../../assets/icono-ubicacion.svg';
-import iconoNombre from '../../assets/icono-nombre.svg';
 
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
-import TarjetaGenerica from '../../assets/tarjetageneric.png';
+
+import iconoComida from '../../assets/icono-comida.svg';
+import iconoEducacion from '../../assets/icono-educacion.svg';
+import iconoModa from '../../assets/icono-moda.svg';
+import iconoSalud from '../../assets/icono-salud.svg';
+import iconoServicios from '../../assets/icono-servicios.svg';
+import iconoTiendas from '../../assets/icono-tiendas.svg';
+import iconoTransporte from '../../assets/icono-transporte.svg';
+import iconoTurismo from '../../assets/icono-turismo.svg';
 
 
 const BusquedaActividad = () => {
@@ -145,6 +152,18 @@ const BusquedaActividad = () => {
         setResultadosNivel3(busqueda.ListTarjets);
     };
 
+    // Imagenes iconos primer nivel
+    const imagenesActividad = [
+        {id:1, imagen: iconoServicios},
+        {id:2, imagen: iconoSalud},
+        {id:3, imagen: iconoTurismo},
+        {id:4, imagen: iconoEducacion},
+        {id:5, imagen: iconoTransporte},
+        {id:6, imagen: iconoComida},
+        {id:7, imagen: iconoModa},
+        {id:8, imagen: iconoTiendas},
+    ]
+
     return ( 
         <div className="container-fluid BusquedaActividad">
 
@@ -228,14 +247,15 @@ const BusquedaActividad = () => {
                         { categoria &&
                             <motion.div className='resultado' {...propsAnimacion}>
                                 <h6>Selecciona una opción</h6>
-                                { resultadosCategoria.map((resultado)=>(
+                                { resultadosCategoria.map((resultado, index)=>(
                                     <button 
                                         className={categoriaSeleccionada === resultado.Desc ? '' : 'no-check'}
                                         key={resultado.Id}
                                         onClick={()=>selecCategoria(resultado.Desc,resultado.Id)}
                                     >
                                         <div>
-                                            <i className="bi bi-check2"></i>
+                                            {/* <i className="bi bi-check2"></i> */}
+                                            <img src={imagenesActividad[index].imagen} className='img-fluid'/>
                                         </div>
                                         {resultado.Desc}
                                     </button>
@@ -355,14 +375,15 @@ const BusquedaActividad = () => {
                             <p>Selecciona una opción</p>
 
                             <div className='resultados'>
-                                { resultadosCategoria.map((resultado)=>(
+                                { resultadosCategoria.map((resultado, index)=>(
                                     <button 
                                         className={categoriaSeleccionada === resultado.Desc ? '' : 'no-check'}
                                         key={resultado.Id}
                                         onClick={()=>selecCategoria(resultado.Desc,resultado.Id)}
                                     >
                                         <div>
-                                            <i className="bi bi-check2"></i>
+                                            {/* <i className="bi bi-check2"></i> */}
+                                            <img src={imagenesActividad[index].imagen} className='img-fluid'/>
                                         </div>
                                         {resultado.Desc}
                                     </button>

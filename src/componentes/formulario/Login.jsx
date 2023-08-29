@@ -110,15 +110,24 @@ const Login = () => {
     const [mensajeAcceso, setMensajeAcceso] = useState('');
 
     const numeroChange = (index, value) => {
+
+        const codigo = value.replace(/\D/g, '');
+        const regex = /^\d+$/;
+
         const newCodigo = [...codigos];
-        newCodigo[index] = value;
+        newCodigo[index] = codigo;
         setCodigos(newCodigo);
         setCodigo(newCodigo.join(''));
 
-        // Mueve el enfoque al siguiente
-        if (value !== '' && index < inputRefs.length - 1) {
-            inputRefs[index + 1].current.focus();
+        // Verifica que sea números
+        if (regex.test(codigo)) {
+    
+            // Mueve el enfoque al siguiente
+            if (value !== '' && index < inputRefs.length - 1) {
+                inputRefs[index + 1].current.focus();
+            }
         }
+
     }
 
     // Verificar código de email
@@ -166,11 +175,9 @@ const Login = () => {
                         <img src={iconoCorreo} />
                         Correo
                     </button>
-                    {/* <button>
-                        <img src={iconoGoogle} />
-                        Google
-                    </button> */}
+
                     <BtnGoogle />
+
                     {/* <button>
                         <img src={iconoFacebook} />
                         Facebook
