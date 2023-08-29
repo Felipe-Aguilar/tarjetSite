@@ -1,6 +1,7 @@
 $backgroundColor: #f4ede8;
 $colorVerde: #006d2e;
 $textoGris: #484846;
+$colorBtnVerde: #91ba14;
 
 .loginFormulario{
     background: $backgroundColor;
@@ -46,7 +47,7 @@ $textoGris: #484846;
     }
 
     .iniciarSesion{
-        width: 35%;
+        width: 25%;
         margin: auto;
         display: flex;
         justify-content: center;
@@ -154,6 +155,7 @@ $textoGris: #484846;
             input{
                 width: 90%;
                 border-radius: 8px 0 0 8px;
+                padding: 10px;
 
                 @media (width <= 575px) {
                     width: 85%;
@@ -168,6 +170,7 @@ $textoGris: #484846;
 
                 button{
                     width: 100%;
+                    height: 100%;
                     border: none;
                     background: #fff;
                     border-radius: 0 8px 8px 0;
@@ -289,6 +292,127 @@ $textoGris: #484846;
                 button{
                     background: rgb(225, 225, 225);
                     pointer-events: none;
+                }
+            }
+        }
+    }
+
+    .popValidar{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .cuerpo-pop{
+            position: relative;
+            padding: 20px;
+            width: 400px;
+            background: #d8e3ec;
+            border-radius: 20px;
+
+            .encabezado{
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+                h5{
+                    text-align: center;
+                    font-weight: bold;
+                    color: $colorVerde;
+                }
+            }
+            .encabezado-img{
+                display: flex;
+                justify-content: center;
+
+                img{
+                    width: 200px;
+                    margin-top: -100px;
+                }
+            }
+            .cuerpo{
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+                gap: 10px;
+                
+                input{
+                    width: 35px;
+                    height: 40px;
+                    text-align: center;
+                    font-size: 1.2rem;
+                    border: none;
+                    border-radius: 8px;
+                }
+            }
+            .mensaje{
+                margin-bottom: 20px;
+
+                p{
+                    font-size: 0.7rem;
+                    text-align: center;
+                    margin-bottom: 0;
+                }
+            }
+            .reintentar{
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: center;
+
+                p{
+                    font-size: 0.7rem;
+                    margin-bottom: 0;
+
+                    span{
+                        color: #007bff;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .error{
+                margin-bottom: 10px;
+
+                p{
+                    font-size: 0.7rem;
+                    margin-bottom: 0;
+                    text-align: center;
+                    color: red;
+                }
+            }
+            .footer{
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+
+                button{
+                    padding: 5px 20px;
+                    outline: none;
+                    border: transparent;
+                    border-radius: 8px;
+                    background: $colorBtnVerde;
+                    outline: none!important;
+                }
+                .desactivate{
+                    background: rgb(225, 225, 225);
+                    pointer-events: none;
+                }
+            }
+            .cerrar{
+                display: flex;
+                justify-content: center;
+
+                button{
+                    background: transparent;
+                    outline: none!important;
+                    border: transparent;
+                    text-transform: uppercase;
+                    font-size: 0.7rem;
+                    color: #5b8f94;
                 }
             }
         }
