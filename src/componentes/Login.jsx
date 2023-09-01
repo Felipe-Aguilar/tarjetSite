@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Sesion } from './contextos/Sesion';
 import { enviarPostLogin } from './contextos/EnviarPostLogin';
-import { DatosUsuario } from './contextos/ComprobarUsuario';
+import { DatosUsuario, DatosUsuarioTarjetSite } from './contextos/ComprobarUsuario';
 
 import { DatosUsuarioSesion } from './contextos/DatosUsuarioSesion';
 
@@ -63,7 +63,7 @@ const Login = () => {
 
             const datosLogin = await enviarPostLogin(usuarioForm, passwordForm);
 
-            console.log(datosLogin);
+            // console.log(datosLogin);
 
             if (!datosLogin.Acceso){
                 setErrorLogin2(true);
@@ -71,7 +71,7 @@ const Login = () => {
                 setErrorLogin2(false);
 
                 const datosUsuario = await DatosUsuario(datosLogin.usuId);
-                console.log(datosUsuario);
+                // console.log(datosUsuario);
                 setDatosUsuario(datosUsuario);
                 setDatosUsuarioId(datosLogin.usuId);
 
@@ -80,6 +80,10 @@ const Login = () => {
                 sesionTrue();
                 localStorage.setItem('DatosSesion', JSON.stringify(datosUsuario));
                 localStorage.setItem('IdDatosSesion', JSON.stringify(datosLogin));
+
+                // Cachar datos en localstorage de tarjetSite
+                const datosSite = await DatosUsuarioTarjetSite(datosLogin.usuId);
+                localStorage.setItem('DatosTarjetSite', JSON.stringify(datosSite.SDTSite));
             }
         }
     }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
@@ -11,6 +12,15 @@ import iconoComentarioOculto from '../../assets/icono-mensaje-oculto.svg';
 const Perfil = () => {
 
     const navigate = useNavigate();
+    const [datosUsuario, setDatosUsuario] = useState([]);
+    const [datosSesion, setDatosSesion] = useState([]);
+
+    useEffect(()=>{
+
+        const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
+        setDatosUsuario(datosTarjetSite);
+        
+    },[]);
 
     return ( 
         <div className="container-fluid Perfil">
@@ -23,8 +33,8 @@ const Perfil = () => {
                     <div className='info'>
                         <h1>Bienvenido a tu perfil</h1>
                         <h2>
-                            Alicia Hernández Gutierrez <br/>
-                            <span>@usuariotarjet</span>
+                            {datosUsuario.NomCompleto} <br/>
+                            <span>@{datosUsuario.Cuenta}</span>
                         </h2>
                     </div>
                 </div>

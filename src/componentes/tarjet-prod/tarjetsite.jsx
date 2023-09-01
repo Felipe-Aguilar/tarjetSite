@@ -253,7 +253,7 @@ END:VCARD`;
                         </a>
                     </motion.div>
 
-                    { !usuario.SiteTelefono2 == '' &&
+                    { !usuario.SiteTelefono1 == '' &&
                         <motion.div 
                             className='mb-3 contacto-div' 
                             style={{background: '#d0ead6'}}
@@ -261,13 +261,13 @@ END:VCARD`;
                             transition={{delay: 0.4}}
                         >
                             <a
-                                href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono2}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`} 
+                                href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`} 
                                 target={"_blank"}
                             >
                                 Envíame un WhatsApp
                             </a>
                             <a 
-                                href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono2}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`}
+                                href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`}
                                 target={"_blank"} 
                                 className='icon' 
                                 style={{background: '#00943e'}}
@@ -286,6 +286,30 @@ END:VCARD`;
                         >
                             Contacto Whats Mxmx
                         </a> */}
+                    
+                    { !usuario.SiteTelefono2 == '' &&
+                        <motion.div 
+                            className='mb-3 contacto-div' 
+                            style={{background: '#d0ead6'}}
+                            {...animacionBtn}
+                            transition={{delay: 0.5}}
+                        >
+                            <a 
+                                href={`https://wa.me/${usuario.SiteTelefono2}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
+                                target={"_blank"}
+                            >
+                                Envíame un WhatsApp
+                            </a>
+                            <a 
+                                href={`https://wa.me/${usuario.SiteTelefono2}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
+                                target={"_blank"} 
+                                className='icon' 
+                                style={{background: '#00943e'}}
+                            >
+                                <img src={IconBtnWhats}/>
+                            </a>
+                        </motion.div>
+                    }
 
                     { !usuario.SiteTelefono3 == '' &&
                         <motion.div 

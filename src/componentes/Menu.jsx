@@ -13,6 +13,8 @@ const Menu = ({cambioMenu}) => {
 
     const navigate = useNavigate();
 
+    const usuario = JSON.parse(localStorage.getItem('DatosSesion'));
+
     return ( 
         <>
             <MenuContenedor className=''>
@@ -29,7 +31,7 @@ const Menu = ({cambioMenu}) => {
                     }
 
                     { sesionLocal &&
-                        <NavLink to={'/mi-perfil'} onClick={()=>cambioMenu(true)}>Mi perfil</NavLink>
+                        <NavLink to={`/mi-perfil/${btoa(usuario.UsuToken)}`} onClick={()=>cambioMenu(true)}>Mi perfil</NavLink>
                     }
 
                     <NavLink to={'directorio-tarjet'} onClick={()=>cambioMenu(true)}>Directorio Tarjet </NavLink>

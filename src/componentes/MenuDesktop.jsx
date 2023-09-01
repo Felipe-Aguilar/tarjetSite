@@ -11,6 +11,8 @@ const MenuDesktop = () => {
 
     const navigate = useNavigate();
 
+    const usuario = JSON.parse(localStorage.getItem('DatosSesion'));
+
     return ( 
         <MenuDesktopContenedor>
             
@@ -27,7 +29,7 @@ const MenuDesktop = () => {
             }
 
             { sesionLocal && 
-                <NavLink to={'/mi-perfil'}>Mi perfil</NavLink>
+                <NavLink to={`/mi-perfil/${btoa(usuario.UsuToken)}`}>Mi perfil</NavLink>
             }
 
             <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet</a>

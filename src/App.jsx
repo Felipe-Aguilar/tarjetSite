@@ -38,7 +38,7 @@ const App = () => {
           <Route path='/directorio-tarjet' element={<HomeDirectorio />} />
 
           <Route path='/registro' element={<HomeFormulario />} />
-          <Route path='/mi-perfil' element={<Perfil />} />
+          <Route path='/mi-perfil/:usuId' element={<Perfil />} />
           <Route path='/disena-tu-tarjet' element={<DiseñaTarjet/>} />
           <Route path='/disena-tu-tarjetsite' element={<DiseñaTarjetSite />} />
         </Routes>

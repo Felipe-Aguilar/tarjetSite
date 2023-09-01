@@ -60,6 +60,7 @@ const MiTarjetero = () => {
 
             const datosUsuarios = await DatosUsuarioTarjetSite(comprobarUsuario.usuId);
             setDatos(datosUsuarios.SDTSite);
+
         }
 
         const ConsultaMiTarjetero = async () =>{
