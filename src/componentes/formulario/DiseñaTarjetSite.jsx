@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import ilustracion from '../../assets/ilustracion-diseña-tarjetsite.png';
@@ -23,6 +23,32 @@ import iconoSubirImagen from '../../assets/icono-imagen.svg';
 
 
 const DiseñaTarjetSite = () => {
+
+    const { usuId } = useParams();
+    const [datosUsuario, setDatosUsuario] = useState([]);
+    const [datosSesion, setDatosSesion] = useState([]);
+
+    useEffect(()=>{
+
+        const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
+        setDatosUsuario(datosTarjetSite);
+
+        const datosSesion = JSON.parse(localStorage.getItem('DatosSesion'));
+        setDatosSesion(datosSesion);
+
+        // Comprobar si es la sesión
+        if (localStorage.UsuarioSesion && atob(usuId) === datosSesion.UsuToken) {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+        else{
+            navigate('/login');
+        } 
+        
+    },[]);
+
     const navigate = useNavigate();
 
     const [portada, setPortada] = useState(true);

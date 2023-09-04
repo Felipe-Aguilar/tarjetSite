@@ -82,4 +82,18 @@ const BusquedaNivel3 = async (nivel) => {
     return dataUsuario;
 }
 
-export { BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNombre, BusquedaNivel3};
+const ObtenerSegmentos = async (descripcion) => {
+    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ObtenerSegmentos?Descripcion=${descripcion}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+
+    const dataUsuario = await response.json();
+
+    return dataUsuario;
+}
+
+export { BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNombre, BusquedaNivel3, ObtenerSegmentos};

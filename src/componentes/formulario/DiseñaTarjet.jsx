@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
 import Slider from 'react-slick';
 
 import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
@@ -9,6 +10,42 @@ import ilustracionPersonalizada from '../../assets/ilustracion-personalizada.png
 
 
 const DiseñaTarjet = () => {
+
+    const { usuId } = useParams();
+    const [datosUsuario, setDatosUsuario] = useState([]);
+    const [datosSesion, setDatosSesion] = useState([]);
+
+    const [segmentos, setSegmentos] = useState([]);
+    
+
+    useEffect(()=>{
+
+        const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
+        setDatosUsuario(datosTarjetSite);
+
+        const datosSesion = JSON.parse(localStorage.getItem('DatosSesion'));
+        setDatosSesion(datosSesion);
+
+        // Obtiene segmento para TUS DATOS
+        const selecActividad = async () => {
+            const respuesta = await ObtenerSegmentos('');
+            setSegmentos(respuesta.ListSegmentos);
+        }
+
+        // Comprobar si es la sesión
+        if (localStorage.UsuarioSesion && atob(usuId) === datosSesion.UsuToken) {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+            selecActividad();
+        }
+        else{
+            navigate('/login');
+        } 
+
+    },[]);
 
     const navigate = useNavigate();
 
@@ -44,6 +81,22 @@ const DiseñaTarjet = () => {
     const btnDatos = () => {
         setDatos(true);
         setDiseño(false);
+    }
+
+    // Selección de actividad
+    const [categoria, setCategoria] = useState([]);
+    const [buscaActividad, setBuscaActividad] = useState('');
+
+    const selectOnChange = async (e) => {
+        const response = await ObtenerSegmentos(e.target.value);
+        setCategoria(response.ListSegmentos[0]);
+    }
+
+    const actividadOnChange = async (e) => {
+        setBuscaActividad(e.target.value);
+
+        const response = await ObtenerSegmentos(e.target.value);
+        setSegmentos(response.ListSegmentos);
     }
 
     return ( 
@@ -407,14 +460,43 @@ const DiseñaTarjet = () => {
                     <div className='formulario'>
                         <form>
                             <input type="text" placeholder='Empresa o nombre y apellidos (40 caracteres)' maxLength={40}/>
-                            <select name="" id="">
-                                <option value="categiria" key="1">Categoría *</option>
+                            <select disabled>
+                                
+                                { categoria &&
+                                    <option 
+                                        value={categoria.Nivel1Desc}
+                                        key={categoria.Nivel1Id}
+                                        selected
+                                    >
+                                        {categoria.Nivel1Desc}
+                                    </option>
+                                }
+                                <option value="categoría" key="1" selected>Categoría *</option>
                             </select>
                             <a href='' target='_blank'>
                                 Si no aparece tu área, solicítala aquí, con tu apoyo nos ayudas a aprender.
                             </a>
-                            <select name="" id="">
-                                <option value="categiria" key="1">Actividad *</option>
+
+                            <input 
+                                type="text" 
+                                placeholder='Buscar actividad' 
+                                maxLength={20}
+                                value={buscaActividad}
+                                onChange={actividadOnChange}
+                            />
+                            <select onChange={selectOnChange}>
+                                { !buscaActividad &&
+                                    <option value="actividad" key="1">Actividad *</option>
+                                }
+                                { segmentos.map((segmento)=>(
+                                    <option 
+                                        // value={segmento.Descripcion} 
+                                        key={segmento.Nivel3Id}
+                                    >
+                                        {segmento.Descripcion}
+                                    </option>
+                                ))
+                                }
                             </select>
                             <a href='' target='_blank'>
                                 Si no se menciona tu especialidad, solicítala aquí, nos encantará ayudarte.
@@ -467,7 +549,7 @@ const DiseñaTarjet = () => {
 
                             <div className='accept'>
                                 <div className='switches'>
-                                    <label class="switch mb-0">
+                                    <label className="switch mb-0">
                                         <input type="checkbox" />
                                         <span className="slider"></span>
                                     </label>
@@ -479,7 +561,7 @@ const DiseñaTarjet = () => {
 
                             <div className='accept'>
                                 <div className='switches'>
-                                    <label class="switch mb-0">
+                                    <label className="switch mb-0">
                                         <input type="checkbox" />
                                         <span className="slider"></span>
                                     </label>
@@ -491,7 +573,7 @@ const DiseñaTarjet = () => {
 
                             <div className='accept'>
                                 <div className='switches'>
-                                    <label class="switch mb-0">
+                                    <label className="switch mb-0">
                                         <input type="checkbox" />
                                         <span className="slider"></span>
                                     </label>

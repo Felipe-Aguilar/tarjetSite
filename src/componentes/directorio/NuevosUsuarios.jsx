@@ -1,7 +1,26 @@
+import { useEffect, useState } from "react";
+import { UltimosGenerados } from "../contextos/TopUsuarios";
+import { useNavigate } from "react-router-dom";
+
 import Slider from "react-slick";
 import tarjetaGenerica from '../../assets/tarjetageneric.png';
 
 const NuevosUsuarios = () => {
+
+    const [topUsuarios, setTopUsuarios] = useState([]);
+
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+
+        const consultarUltimosUsuarios = async() => {
+            const response = await UltimosGenerados();
+            setTopUsuarios(response.ListTarjets);
+        }
+
+        consultarUltimosUsuarios();
+
+    },[]);
 
     const settings = {
         dots: true,
@@ -40,25 +59,20 @@ const NuevosUsuarios = () => {
 
             <div className="tarjetas">
                 <Slider {...settings}>
-                    <div className="slide-tarjeta">
-                        <img src={tarjetaGenerica} />
-                    </div>
-                    <div className="slide-tarjeta">
-                        <img src={tarjetaGenerica} />
-                    </div>
-                    <div className="slide-tarjeta">
-                        <img src={tarjetaGenerica} />
-                    </div>
-                    <div className="slide-tarjeta">
-                        <img src={tarjetaGenerica} />
-                    </div>
-                    <div className="slide-tarjeta">
-                        <img src={tarjetaGenerica} />
-                    </div>
-                    <div className="slide-tarjeta">
-                        <img src={tarjetaGenerica} />
-                    </div>
-                    
+                    { topUsuarios.map((usuario)=>(
+                        <div 
+                            key={usuario.IdUsuario}
+                            className="slide-tarjeta"
+                            onClick={()=>navigate(`/st/${btoa(usuario.Token)}`)}
+                        >
+                            { usuario.FondoF ?
+                                <img src={`https://tarjet.site/imagenes/${usuario.FondoF}`} />
+                            :
+                                <img src={tarjetaGenerica} />
+                            }
+                        </div>
+                    ))
+                    }
                 </Slider>
             </div>
             <p>Da click sobre la imagen para ver su tarjeta digital</p>

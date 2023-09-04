@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
 import iconoOjo from '../../assets/icono-ojo.svg';
@@ -11,15 +11,29 @@ import iconoComentarioOculto from '../../assets/icono-mensaje-oculto.svg';
 
 const Perfil = () => {
 
+    const { usuId } = useParams();
     const navigate = useNavigate();
     const [datosUsuario, setDatosUsuario] = useState([]);
     const [datosSesion, setDatosSesion] = useState([]);
 
     useEffect(()=>{
-
         const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
         setDatosUsuario(datosTarjetSite);
+
+        const datosSesion = JSON.parse(localStorage.getItem('DatosSesion'));
+        setDatosSesion(datosSesion);
+
         
+        // Comprobar si es la sesión
+        if (localStorage.UsuarioSesion && atob(usuId) === datosSesion.UsuToken) {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+        else{
+            navigate('/login');
+        }        
     },[]);
 
     return ( 
@@ -124,10 +138,10 @@ const Perfil = () => {
 
             <div className='buttonsPerfil'>
                 <div className='cuerpo'>
-                    <button className='btn-editar' onClick={()=>navigate('/disena-tu-tarjet')}>
+                    <button className='btn-editar' onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
                         Edita tu tarjet
                     </button>
-                    <button className='btn-site' onClick={()=>navigate('/disena-tu-tarjetsite')}>
+                    <button className='btn-site' onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}>
                         Editar tu tarjet site (tarjeta digital)
                     </button>
                     <button className='btn-fisica'>
@@ -139,7 +153,7 @@ const Perfil = () => {
                         </button>
                         <p>(plan válido hasta 17/12/2024)</p>
                     </div>
-                    <button className='btn-visitar'>
+                    <button className='btn-visitar' onClick={()=>navigate(`/${btoa(datosSesion.UsuToken)}`)}>
                         Visitar tarjetero
                     </button>
                 </div>

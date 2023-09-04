@@ -133,7 +133,7 @@ const Login = () => {
     // Verificar código de email
     const btnVerificarCodigo = async() => {
 
-        const busqueda = await VerificarCodigo(codigo, email);
+        const busqueda = await VerificarCodigo(codigo, email, password);
         setMensajeAcceso(busqueda.Mensaje);
 
         if (busqueda.Mensaje.length === 121) {

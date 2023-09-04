@@ -24,7 +24,7 @@ const HomeDirectorio = () => {
             <BusquedaActividad />
                 {/* <BusquedaGeneral />
                 <BusquedaMapa /> */}
-            <Interesar />
+            {/* <Interesar /> */}
         </>
     );
 }

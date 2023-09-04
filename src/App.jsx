@@ -39,8 +39,8 @@ const App = () => {
 
           <Route path='/registro' element={<HomeFormulario />} />
           <Route path='/mi-perfil/:usuId' element={<Perfil />} />
-          <Route path='/disena-tu-tarjet' element={<DiseñaTarjet/>} />
-          <Route path='/disena-tu-tarjetsite' element={<DiseñaTarjetSite />} />
+          <Route path='/disena-tu-tarjet/:usuId' element={<DiseñaTarjet/>} />
+          <Route path='/disena-tu-tarjetsite/:usuId' element={<DiseñaTarjetSite />} />
         </Routes>
 
         <Footer />
