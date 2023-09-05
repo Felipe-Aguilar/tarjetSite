@@ -90,6 +90,8 @@ const DiseñaTarjet = () => {
     const selectOnChange = async (e) => {
         const response = await ObtenerSegmentos(e.target.value);
         setCategoria(response.ListSegmentos[0]);
+
+        setBuscaActividad(e.target.value);
     }
 
     const actividadOnChange = async (e) => {
@@ -482,6 +484,7 @@ const DiseñaTarjet = () => {
                                 placeholder='Buscar actividad' 
                                 maxLength={20}
                                 value={buscaActividad}
+                                style={{textTransform: 'uppercase'}}
                                 onChange={actividadOnChange}
                             />
                             <select onChange={selectOnChange}>
@@ -496,6 +499,9 @@ const DiseñaTarjet = () => {
                                         {segmento.Descripcion}
                                     </option>
                                 ))
+                                }
+                                { segmentos.length === 0 &&
+                                    <option value="actividad" key="2">* Actividad no encontrada *</option>
                                 }
                             </select>
                             <a href='' target='_blank'>
