@@ -205,6 +205,7 @@ const MiTarjetero = () => {
         const resultadosSegmento = await ConsultaTarjeteroFiltro(idUsuarioSesion.usuId , SegmentoId);
 
         setReBusSegmento(resultadosSegmento.SDTTarjetsG);
+        console.log(resultadosSegmento); //Aquiiiiiiiiiiiiiiiiiiii
         setNomSeg(resultadosSegmento.SDTTarjetsG[0].SegmentoDesc);
     }
 
@@ -213,7 +214,7 @@ const MiTarjetero = () => {
         setResultadoOpen(index === resultadoOpen ? null : index);
     }
 
-    console.log(datosMiTarjetero);
+    // console.log(datosMiTarjetero);
 
     // Comprobando si existe o no
     if(comprobarUsuario.usuId === 0) return null;
@@ -665,180 +666,6 @@ const MiTarjetero = () => {
                         </div>
                     </div>
                 </div>
-
-
-                {/* Antiguo tarjetero */}
-                {/* <div className='row mt-4 justify-content-center MiTarjeteroPersonal2'>
-                    <div className='col-12 col-md-4 p-0'>
-                        <div className='imagen-titulo'>
-                            <img src={MiTarjeteroTitulo} />
-                        </div>
-                        <div className='cuerpo'>
-                            <div className='d-flex justify-content-center mb-2'>
-                                <div className=''>
-                                    <h6>Actualmente ({datosMiTarjetero.length}) Tarjets</h6>
-                                </div>
-                            </div>
-                            <div className='d-flex justify-content-start mb-2'>
-                                <div className='col-md-4 col-5 p-0'>
-                                    <img src={miniTarjetero} className='img-fluid' />
-                                </div>
-                                <div className='col-md-6 col-6 p-0 ml-3'>
-                                    <h5>mi Tarjetero personal</h5>
-                                    <h6>Actualmente ({datosMiTarjetero.length}) Tarjets</h6>
-                                </div>
-                            </div>
-
-                            <form>
-                                <label>Mostrar por:</label>
-                                <select value={opcionSelected} onChange={(e)=>setOpcionSelected(e.target.value)}>
-                                    <option value="">Seleccione</option>
-                                    <option value="segmento">Segmento</option>
-                                    <option value="nombre">Nombre</option>
-                                </select>
-                            </form>
-                            <form>
-                                <div className='mt-3'>
-                                    <label className='lbl-nombre'>Buscar por nombre:</label>
-                                    { opcionSelected == 'segmento' | opcionSelected == '' ? 
-                                        <input type="text" value={capturaNombre} disabled/>
-                                    :
-                                        <input 
-                                            type="text"
-                                            value={capturaNombre}
-                                            onChange={ConsultaNombre}
-                                        />
-                                    }
-                                </div>
-                                <div className='mt-2'>
-                                    <label>Resultados por página: </label>
-                                    <select>
-                                        <option value="5" >5</option>
-                                        <option value="5" >10</option>
-                                        <option value="5" >15</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> */}
-
-                {/* Antiguos resultados */}
-                {/* <div className='row mt-4 my-4 justify-content-center Datos'>
-                    <div className='col-11 col-md-4'>
-                        { opcionSelected == '' &&
-                            <>
-                                <h6>
-                                    <i className="bi bi-search"></i>
-                                    Resultados de búsqueda
-                                </h6>
-                                <hr/>
-                                <p>
-                                    Para mostrar los resultados de búsqueda seleccione una opción mostrar por: (segmento o nombre).
-                                </p>
-                            </>
-                        }
-                        {  opcionSelected == 'segmento' &&
-                            <>
-                                <h6>
-                                    <i className="bi bi-search"></i>
-                                    Resultados de búsqueda por segmento
-                                </h6>
-                                { !busquedaSegmento &&
-                                    <>
-                                        <p>Mostrando: Todos</p>
-                                        <hr/>
-
-                                        {   datosSegmentos.map((segmento)=>(
-                                            <button 
-                                                className='resultado' 
-                                                key={segmento.SegmentoId}
-                                                onClick={() => ConsultaFiltroSegmento(segmento.SegmentoId)}
-                                            >
-                                                {segmento.SegmentoDesc}
-                                            </button>
-                                        ))
-                                        }
-                                    </>
-                                }
-                                { busquedaSegmento && 
-                                    <>
-                                        <p>Mostrando: {nomSeg}</p>
-                                        <hr/>
-                                        {   reBusSegmento.map((segmento, index)=>(
-                                            <button 
-                                                className='resultado' 
-                                                key={index}
-                                                onClick={()=>ConsultaUsuarioClic(segmento.IdUsuario)}
-                                            >
-                                                {segmento.NombreCompleto}
-                                                <span>{segmento.UsuEncabezado}</span>
-                                            </button>
-                                        ))
-                                        }
-                                        <button className='regresar' onClick={()=>setBusquedaSegmento(false)}>
-                                            <i className="bi bi-arrow-left-circle-fill"></i>
-                                            Regresar
-                                        </button>
-                                    </>
-                                }
-                                
-                            </>
-                        }
-                        { opcionSelected == 'nombre' && 
-                            <>
-                                <h6>
-                                    <i className="bi bi-search"></i>
-                                    Resultados de búsqueda por nombre
-                                </h6>
-                                { !busquedaNombre &&
-                                    <>
-                                        <p>Mostrando: Todos</p>
-                                        <hr/>
-                                        { datosMiTarjetero.map((dato, index)=>(
-                                            <button 
-                                                className='resultado' 
-                                                key={index}
-                                                onClick={()=>ConsultaUsuarioClic(dato.IdUsuario)}
-                                            >
-                                                {dato.NombreCompleto}
-                                                <span>{dato.UsuEncabezado}</span>
-                                            </button>
-                                        ))
-                                        }
-                                    </>
-                                }
-                                { busquedaNombre &&
-                                    <>
-                                        <p>Mostrando: {capturaNombre}</p>
-                                        <hr/>
-                                        { reBusNombre.map((dato, index)=>(
-                                            <button 
-                                                className='resultado' 
-                                                key={index}
-                                                onClick={()=>ConsultaUsuarioClic(dato.IdUsuario)}
-                                            >
-                                                {dato.NombreCompleto}
-                                                <span>{dato.UsuActividad}</span>
-                                            </button>
-                                        ))
-                                        }
-                                        { reBusNombre.length == 0 &&
-                                            <p className='noEncontrado'>
-                                                <i className="bi bi-exclamation-circle"></i>
-                                                No se encontraron resultados para <b>{capturaNombre}</b>
-                                            </p>
-                                        }
-                                        <button className='regresar' onClick={()=>setBusquedaNombre(false)}>
-                                            <i className="bi bi-arrow-left-circle-fill"></i>
-                                            Regresar
-                                        </button>
-                                    </>
-                                }
-                            </>
-                        }
-                    </div>
-                </div> */}
             </div>
         </div>
     );
