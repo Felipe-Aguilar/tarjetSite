@@ -87,18 +87,21 @@ const DiseñaTarjet = () => {
     const [categoria, setCategoria] = useState([]);
     const [buscaActividad, setBuscaActividad] = useState('');
 
-    const selectOnChange = async (e) => {
-        const response = await ObtenerSegmentos(e.target.value);
-        setCategoria(response.ListSegmentos[0]);
+    // const selectOnChange = async (e) => {
+    //     const response = await ObtenerSegmentos(e.target.value);
+    //     setCategoria(response.ListSegmentos[0]);
 
-        setBuscaActividad(e.target.value);
-    }
+    //     setBuscaActividad(e.target.value);
+    // }
+
+    // Filtro de la actividad
+    const [filtroSegmento, setFiltroSegmento] = useState([]);
 
     const actividadOnChange = async (e) => {
         setBuscaActividad(e.target.value);
 
         const response = await ObtenerSegmentos(e.target.value);
-        setSegmentos(response.ListSegmentos);
+        setFiltroSegmento(response.ListSegmentos[0]);
     }
 
     return ( 
@@ -464,13 +467,27 @@ const DiseñaTarjet = () => {
                             <input type="text" placeholder='Empresa o nombre y apellidos (40 caracteres)' maxLength={40}/>
                             <select disabled>
                                 
-                                { categoria &&
+                                { buscaActividad === filtroSegmento?.Descripcion &&
                                     <option 
-                                        value={categoria.Nivel1Desc}
-                                        key={categoria.Nivel1Id}
+                                        value={filtroSegmento.Nivel1Desc}
+                                        key={filtroSegmento.Nivel1Id}
                                         selected
                                     >
-                                        {categoria.Nivel1Desc}
+                                        {filtroSegmento.Nivel1Desc}
+                                    </option>
+                                }
+                                <option value="categoría" key="1" selected>Categoría *</option>
+                            </select>
+
+                            <select disabled>
+                                
+                                { buscaActividad === filtroSegmento?.Descripcion  &&
+                                    <option 
+                                        value={filtroSegmento.Nivel2Desc}
+                                        key={filtroSegmento.Nivel2Id}
+                                        selected
+                                    >
+                                        {filtroSegmento.Nivel2Desc}
                                     </option>
                                 }
                                 <option value="categoría" key="1" selected>Categoría *</option>
@@ -482,12 +499,23 @@ const DiseñaTarjet = () => {
                             <input 
                                 type="text" 
                                 placeholder='Buscar actividad' 
-                                maxLength={20}
+                                maxLength={30}
                                 value={buscaActividad}
                                 style={{textTransform: 'uppercase'}}
                                 onChange={actividadOnChange}
+                                list='actividad-resultados'
                             />
-                            <select onChange={selectOnChange}>
+
+                            <datalist id='actividad-resultados'>
+                                { segmentos.map((segmento)=>(
+                                    <option value={segmento.Descripcion} key={segmento.Nivel3Id}></option>
+                                ))
+                                }
+                            </datalist>
+
+                            <input type="text" placeholder='Ingresa tu cargo'/>
+
+                            {/* <select onChange={selectOnChange}>
                                 { !buscaActividad &&
                                     <option value="actividad" key="1">Actividad *</option>
                                 }
@@ -503,7 +531,8 @@ const DiseñaTarjet = () => {
                                 { segmentos.length === 0 &&
                                     <option value="actividad" key="2">* Actividad no encontrada *</option>
                                 }
-                            </select>
+                            </select> */}
+
                             <a href='' target='_blank'>
                                 Si no se menciona tu especialidad, solicítala aquí, nos encantará ayudarte.
                             </a>

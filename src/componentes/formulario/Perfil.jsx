@@ -42,7 +42,11 @@ const Perfil = () => {
             <div className='EncabezadoPerfil'>
                 <div className='encabezado-perfil'>
                     <div className='imagen-perfil'>
-                        <img src={PerfilTemporal} />
+                        { datosUsuario.ImgFoto ?
+                            <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosUsuario.ImgFoto}`} />
+                        :
+                            <img src={PerfilTemporal} />
+                        }
                     </div>
                     <div className='info'>
                         <h1>Bienvenido a tu perfil</h1>
