@@ -104,17 +104,6 @@ const TarjetSite = () => {
 
     const urlMaps = `https://www.google.com/maps?q=${usuario.UsuMapsCoord}`;
 
-    const settings = {
-        dots: true,
-        arrows: false,
-        infinite: true,
-        autoplaySpeed: 6000,
-        autoplay: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        rtl: true
-    };
-
     // Imagen Modal
     const abrirImagen = async(imagen) =>{
         const img = await imagen;
@@ -225,7 +214,7 @@ END:VCARD`;
                     <div>
                         <h5>{datos.NombreCompleto}</h5>
                         <p>
-                            {datos.UsuEncabezado}
+                            {usuario.Cargo}
                         </p>
                     </div>
                 </div>

@@ -1,9 +1,12 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GoogleOAuthProvider, GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 
 import { CodigoCorreo, VerificarCodigo } from '../contextos/ValidarCorreo';
+import { enviarPostLogin } from '../contextos/EnviarPostLogin';
+import { DatosUsuario, DatosUsuarioTarjetSite } from '../contextos/ComprobarUsuario';
+import { Sesion } from '../contextos/Sesion';
 
 import ilustracion from '../../assets/loginIlustracion.png';
 import ilustracionExitoso from '../../assets/ilustracion-registro-exitoso.png';
@@ -21,10 +24,14 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    // Estado Global de la sesión 
+    const {sesionTrue} = useContext(Sesion);
+
     const [viewContraseña, setViewContraseña] = useState(false);
     const [error, setError] = useState('');
     const [error2, setError2] = useState('');
     const [errorSend, setErrorSend] = useState('');
+    const [errorLogin, setErrorLogin] = useState(false);
     const [checkButton, setCheckButton] = useState(false);
 
     const [mode, setMode] = useState('correo');
@@ -73,11 +80,36 @@ const Login = () => {
     }
 
     // IniciarSesión
-    const IniciarSesion = () =>{     
-        if (error || email === '' || password === '') {
+    const IniciarSesion = async () =>{     
+        if (error || error2 || email === '' || password === '') {
             setErrorSend('Falta uno o más campos por llenar');
         }else{
             setErrorSend('');
+
+            const datosLogin = await enviarPostLogin(email, password);
+
+            if (!datosLogin.Acceso) {
+                setErrorLogin(true);
+            }
+            else{
+                setErrorLogin(false);
+
+                const datosUsuario = await DatosUsuario(datosLogin.usuId);
+                console.log(datosUsuario);
+
+                sesionTrue();
+
+                navigate('/' + btoa(datosUsuario.UsuToken));
+
+                localStorage.setItem('DatosSesion', JSON.stringify(datosUsuario));
+                localStorage.setItem('IdDatosSesion', JSON.stringify(datosLogin));
+
+                // Cachar datos en localstorage de tarjetSite
+                const datosSite = await DatosUsuarioTarjetSite(datosLogin.usuId);
+                localStorage.setItem('DatosTarjetSite', JSON.stringify(datosSite.SDTSite));
+
+                localStorage.setItem('UsuarioSesion', true);
+            }
         }
     }
 
@@ -107,12 +139,12 @@ const Login = () => {
     const inputRefs = Array(6).fill(null).map(()=>useRef(null));
     const [codigos, setCodigos] = useState(Array(6).fill(''));
     const [codigo, setCodigo] = useState('');
-    const [mensajeAcceso, setMensajeAcceso] = useState('');
+    const [acceso, setAcceso] = useState([]);
 
     const numeroChange = (index, value) => {
 
         const codigo = value.replace(/\D/g, '');
-        const regex = /^\d+$/;
+        const regex = /^\d+$/; 
 
         const newCodigo = [...codigos];
         newCodigo[index] = codigo;
@@ -134,10 +166,26 @@ const Login = () => {
     const btnVerificarCodigo = async() => {
 
         const busqueda = await VerificarCodigo(codigo, email, password);
-        setMensajeAcceso(busqueda.Mensaje);
 
-        if (busqueda.Mensaje.length === 121) {
+        setAcceso(busqueda);
+
+        if (busqueda.Token) {
             setMensajeCodigo('');
+            localStorage.setItem('UsuarioSesion', true);
+
+            const datosUsuario = await DatosUsuario(busqueda.usuId);
+            const datosSite = await DatosUsuarioTarjetSite(busqueda.usuId);
+
+            localStorage.setItem('DatosSesion', JSON.stringify(datosUsuario));
+            localStorage.setItem('DatosTarjetSite', JSON.stringify(datosSite.SDTSite));
+            localStorage.setItem('IdDatosSesion', JSON.stringify(busqueda));
+
+            setTimeout(()=>{
+
+                sesionTrue();
+                navigate(`/mi-perfil/${btoa(busqueda.Token)}`);
+
+            }, 3000);
         }
     }
 
@@ -308,6 +356,12 @@ const Login = () => {
                     </div>
                 }
 
+                {errorLogin &&
+                    <div className='mensajeError'>
+                        <p>Correo o contraseña incorrectos</p>
+                    </div>
+                }
+
                 <div className='buttons'>
                     <div className={`registrar ${!checkButton && 'desactivate'}`}>
                         <button onClick={Registrar}>
@@ -354,7 +408,7 @@ const Login = () => {
                                         ¿No te llegó el código? <span onClick={EnviarNuevamente}>Enviar nuevamente</span>
                                     </p>
                                 </div>
-                                { mensajeAcceso.length === 200 &&
+                                { acceso.Token === "" &&
                                     <div className='error'>
                                         <p>
                                             Código no válido, segúrese de ingresar el código exacto que le fue proporcionado. Si está teniendo dificultades, no dude en solicitar un nuevo código
@@ -376,7 +430,7 @@ const Login = () => {
                     </AnimatePresence>
 
                     <AnimatePresence>
-                        { mensajeAcceso.length === 121 &&
+                        { acceso.Token &&
                             <motion.div 
                                 className='cuerpo-pop'
                                 {...animation}
