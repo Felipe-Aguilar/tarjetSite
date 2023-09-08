@@ -30,14 +30,14 @@ const App = () => {
       <>
         <Routes>
           <Route path='/' element={<BannerPrincipal />}/>
-          <Route path='/login' element={<Login />}/>
+          <Route path='/login-tarjet' element={<Login />}/>
           <Route path='/:pageId' element={<VistaSesion />}/>   
           <Route path='/st/:pageId' element={<TarjetSiteProd />}/>
           <Route path='/st/bXhtdGFyamV0' element={<Perfilmxm />}/>
           <Route path='/aviso-privacidad' element={<AvisoPrivacidad />}/>
           <Route path='/directorio-tarjet' element={<HomeDirectorio />} />
 
-          <Route path='/registro' element={<HomeFormulario />} />
+          <Route path='/login' element={<HomeFormulario />} />
           <Route path='/mi-perfil/:usuId' element={<Perfil />} />
           <Route path='/disena-tu-tarjet/:usuId' element={<DiseñaTarjet/>} />
           <Route path='/disena-tu-tarjetsite/:usuId' element={<DiseñaTarjetSite />} />

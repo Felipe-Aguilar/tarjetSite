@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GoogleOAuthProvider, GoogleLogin, useGoogleLogin } from '@react-oauth/google';
@@ -21,6 +21,15 @@ import iconoOjoOculto from '../../assets/icono-ojo-oculto.svg';
 import BtnGoogle from './btnGoogle';
 
 const Login = () => {
+
+    useEffect(()=>{
+        const localUsuarioSesion = localStorage.getItem('UsuarioSesion');
+        const localUsuarioToken = JSON.parse(localStorage.getItem('DatosSesion'));
+    
+        if (localUsuarioSesion === 'true' ) {
+            navigate('/'+ btoa(localUsuarioToken.UsuToken));
+        }
+    },[]);
 
     const navigate = useNavigate();
 
