@@ -105,6 +105,27 @@ const DiseñaTarjetSite = () => {
         closed: { height: 0 }
     };
 
+    // BtnPasos
+    const btnPaso2 = () => {
+        setPortada(false);
+        setDatos(true);
+    }
+
+    const btnPaso3 = () => {
+        setDatos(false);
+        setServicios(true);
+    }
+
+    const btnRegresarPaso1 = () => {
+        setDatos(false);
+        setPortada(true);
+    }
+
+    const btnRegresarPaso2 = () => {
+        setServicios(false);
+        setDatos(true);
+    }
+
     return ( 
         <div className="container-fluid DiseñaTarjetSite">
             <div className='img-banner'>
@@ -222,7 +243,7 @@ const DiseñaTarjetSite = () => {
 
                             <div className='buttons-confirm'>
                                 <button>
-                                    Cargar archivo de imagen
+                                    Cargar archivo de imagen (premium)
                                 </button>
                                 <button className='guardar'>
                                     Guardar imagen
@@ -230,13 +251,13 @@ const DiseñaTarjetSite = () => {
                             </div>
 
                             <div className='btn-continuar'>
-                                <button>
+                                <button onClick={btnPaso2}>
                                     Continuar a paso 2
                                 </button>
                             </div>
 
                             <div className='btn-regresarr'>
-                                <button>
+                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
                                     Regresar a perfil (x)
                                 </button>
                             </div>
@@ -388,16 +409,16 @@ const DiseñaTarjetSite = () => {
                             </div>
 
                             <div className='buttons-pasos'>
-                                <button>
+                                <button onClick={btnRegresarPaso1}>
                                     Regresar a paso 1
                                 </button>
-                                <button>
-                                    Regresar a paso 3
+                                <button onClick={btnPaso3}>
+                                    Continuar a paso 3
                                 </button>
                             </div>
 
                             <div className='btn-regresarr'>
-                                <button>
+                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
                                     Regresar a perfil (x)
                                 </button>
                             </div>
@@ -647,13 +668,13 @@ const DiseñaTarjetSite = () => {
                         </button>
 
                         <div className='pasos'>
-                            <button>
+                            <button onClick={btnRegresarPaso2}>
                                 Regresar a paso 2
                             </button>
                         </div>
 
                         <div className='btn-regresarr'>
-                            <button>
+                            <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
                                 Regresar a perfil (x)
                             </button>
                         </div>

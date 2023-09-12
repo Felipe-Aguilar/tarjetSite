@@ -189,6 +189,21 @@ $colorBtnVerde: #91ba14;
         }
     }
 
+    .olvidaste-contraseña{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+        button{
+            color: #007bff;
+            background: transparent;
+            outline: none!important;
+            border: none;
+            font-size: 0.8rem;
+            text-decoration: underline;
+        }
+    }
+
     .mensajeError{
         width: 32%;
         margin: auto;

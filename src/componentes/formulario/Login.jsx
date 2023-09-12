@@ -333,6 +333,12 @@ const Login = () => {
                 
             </div>
 
+            <div className='olvidaste-contraseña'>
+                <button>
+                    ¿Olvidaste tu contraseña?
+                </button>
+            </div>
+
             { (error || error2) &&
                 <div className='mensajeError'>
                     <p>{error}</p>

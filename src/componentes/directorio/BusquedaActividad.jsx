@@ -156,12 +156,13 @@ const BusquedaActividad = () => {
     const imagenesActividad = [
         {id:1, imagen: iconoServicios},
         {id:2, imagen: iconoSalud},
-        {id:3, imagen: iconoTurismo},
-        {id:4, imagen: iconoEducacion},
-        {id:5, imagen: iconoTransporte},
-        {id:6, imagen: iconoComida},
-        {id:7, imagen: iconoModa},
-        {id:8, imagen: iconoTiendas},
+        {id:3, imagen: iconoTiendas},
+        {id:4, imagen: iconoTurismo},
+        {id:5, imagen: iconoEducacion},
+        {id:6, imagen: iconoTransporte},
+        {id:7, imagen: iconoComida},
+        {id:8, imagen: iconoModa},
+        {id:9, imagen: iconoTiendas},
     ]
 
     return ( 

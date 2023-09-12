@@ -134,10 +134,9 @@ FN:${datos.NombreCompleto}
 TITLE:${datos.UsuEncabezado};
 EMAIL;type=INTERNET;type=pref:${usuario.SiteMail}
 TEL;type=MAIN:${datos.UsuActividad}
-TEL;type=CELL;type=VOICE;type=pref:${usuario.SiteTelefono2}
+TEL;type=CELL;type=VOICE;type=pref:${usuario.SiteTelefono1}
 ADR;type=WORK;type=pref:;;;${usuario.UsuColonia};;;
 END:VCARD`;
-
         const blob = new Blob([content], { type: "text/vcard;charset=utf-8" });
         FileSaver.saveAs(blob, `${datos.NombreCompleto}.vcf`, true);
     }

@@ -59,19 +59,26 @@ const NuevosUsuarios = () => {
 
             <div className="tarjetas">
                 <Slider {...settings}>
-                    { topUsuarios.map((usuario)=>(
-                        <div 
-                            key={usuario.IdUsuario}
-                            className="slide-tarjeta"
-                            onClick={()=>navigate(`/st/${btoa(usuario.Token)}`)}
-                        >
-                            { usuario.FondoF ?
-                                <img src={`https://tarjet.site/imagenes/${usuario.FondoF}`} />
-                            :
-                                <img src={tarjetaGenerica} />
+                    { topUsuarios.map((usuario)=>{
+
+                        if (usuario.Tipo === 'IND') {
+                            if (usuario.PublicPriva === 0) {
+                                return(
+                                    <div 
+                                        key={usuario.IdUsuario}
+                                        className="slide-tarjeta"
+                                        onClick={()=>navigate(`/st/${btoa(usuario.Token)}`)}
+                                    >
+                                        { usuario.FondoF ?
+                                            <img src={`https://tarjet.site/imagenes/${usuario.FondoF}`} />
+                                        :
+                                            <img src={tarjetaGenerica} />
+                                        }
+                                    </div>
+                                );
                             }
-                        </div>
-                    ))
+                        }
+                    })
                     }
                 </Slider>
             </div>

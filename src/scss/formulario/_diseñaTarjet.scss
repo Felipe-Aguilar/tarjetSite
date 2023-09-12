@@ -377,6 +377,20 @@ $btnAmarillo: #fab947;
                                 margin-left: 0;
                             }
                         }
+                        .apellidos{
+                            display: flex;
+                            
+                            input{
+                                width: 50%;
+                            }
+                        }
+                        a{
+                            font-size: 0.8rem;
+                            text-decoration: underline;
+                            color: #000;
+                            display: flex;
+                            justify-content: center;
+                        }
                         .buttons{
                             margin-top: 20px;
                             display: flex;

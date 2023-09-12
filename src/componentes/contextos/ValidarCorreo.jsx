@@ -33,4 +33,45 @@ const VerificarCodigo = async(codigo, correo, password) => {
     return data;
 }
 
-export { CodigoCorreo, VerificarCodigo }
+const VerificarCodigoGoogle = async(codigo) => {
+    console.log(codigo);
+    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify({
+            "RegistroUsu": {
+                "Nombre": "Nombre",
+                "ApellidoPat": "ApellidoPat",
+                "ApellidoMat": "ApellidoMat",
+                "Codigo": codigo,
+                "Correo": "",
+                "Password": "",
+                "TipoAut": "G"
+            }
+        })
+    });
+    const data = await response.json();
+    return data;
+}
+
+const LoginGoogle = async (password) => {
+    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/Login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+
+        body: JSON.stringify({
+            "Cuenta": "",
+            "Password": password,
+            "tipoLogin": "G"
+        })
+    });
+    const data = await response.json();
+
+    return data;
+}
+
+export { CodigoCorreo, VerificarCodigo, VerificarCodigoGoogle, LoginGoogle }

@@ -252,9 +252,36 @@ const DiseñaTarjet = () => {
                                             </div>
                                             <input type="text" placeholder='Empresa ó tu Nombre (40 caracteres)' maxLength={40}/>
                                         </div>
+
+                                        <div className='apellidos'>
+                                            <input type="text" maxLength={40} placeholder='Apellido Paterno'/>
+                                            <input type="text" maxLength={40} placeholder='Apellido Materno'/>
+                                        </div>
+
+                                        <input 
+                                            type="text" 
+                                            placeholder='Buscar actividad' 
+                                            maxLength={80}
+                                            value={buscaActividad}
+                                            style={{textTransform: 'uppercase'}}
+                                            onChange={actividadOnChange}
+                                            list='actividad-resultados'
+                                        />
+
+                                        <datalist id='actividad-resultados'>
+                                            { segmentos.map((segmento)=>(
+                                                <option value={segmento.Descripcion} key={segmento.Nivel3Id}></option>
+                                            ))
+                                            }
+                                        </datalist>
+
+                                        <a href='' target='_blank' style={{marginBottom: '15px'}}>
+                                            Si no aparece tu área, solicítala aquí, con tu apoyo nos ayudas a aprender.
+                                        </a>
                                         
                                         <input type="text" placeholder='Texto debajo de tu nombre (30 caracteres)' maxLength={30}/>
-                                        <input type="text" placeholder='Encabezado ó servicio principal (opcional)' maxLength={30}/>
+
+                                        {/* <input type="text" placeholder='Encabezado ó servicio principal (opcional)' maxLength={30}/> */}
 
                                         <div className='buttons'>
                                             <div className='primer'>
@@ -270,7 +297,7 @@ const DiseñaTarjet = () => {
                                         </div>
 
                                         <div className='regresar'>
-                                            <button>
+                                            <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
                                                 Regresar a perfil (x)
                                             </button>
                                         </div>
@@ -417,7 +444,7 @@ const DiseñaTarjet = () => {
                             </div>
 
                             <div className='regresar'>
-                                <button>
+                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
                                     Regresar a perfil (x)
                                 </button>
                             </div>
@@ -464,8 +491,13 @@ const DiseñaTarjet = () => {
 
                     <div className='formulario'>
                         <form>
-                            <input type="text" placeholder='Empresa o nombre y apellidos (40 caracteres)' maxLength={40}/>
-                            <select disabled>
+                            <input 
+                                type="text" 
+                                placeholder='Empresa o nombre y apellidos (40 caracteres)' 
+                                maxLength={40}
+                                readOnly
+                            />
+                            {/* <select disabled>
                                 
                                 { buscaActividad === filtroSegmento?.Descripcion &&
                                     <option 
@@ -477,9 +509,17 @@ const DiseñaTarjet = () => {
                                     </option>
                                 }
                                 <option value="categoría" key="1" selected>Categoría *</option>
-                            </select>
+                            </select> */}
 
-                            <select disabled>
+                            <input 
+                                type="text" 
+                                readOnly
+                                placeholder='Categoría*'
+                                value={buscaActividad === filtroSegmento?.Descripcion ? filtroSegmento.Nivel1Desc : ''}
+                                style={{color: '#8e8e8e'}}
+                            />
+
+                            {/* <select disabled>
                                 
                                 { buscaActividad === filtroSegmento?.Descripcion  &&
                                     <option 
@@ -491,15 +531,20 @@ const DiseñaTarjet = () => {
                                     </option>
                                 }
                                 <option value="categoría" key="1" selected>Categoría *</option>
-                            </select>
-                            <a href='' target='_blank'>
-                                Si no aparece tu área, solicítala aquí, con tu apoyo nos ayudas a aprender.
-                            </a>
+                            </select> */}
 
                             <input 
                                 type="text" 
+                                readOnly
+                                placeholder='Categoría*'
+                                value={buscaActividad === filtroSegmento?.Descripcion ? filtroSegmento.Nivel2Desc : ''}
+                                style={{color: '#8e8e8e'}}
+                            />
+
+                            {/* <input 
+                                type="text" 
                                 placeholder='Buscar actividad' 
-                                maxLength={30}
+                                maxLength={80}
                                 value={buscaActividad}
                                 style={{textTransform: 'uppercase'}}
                                 onChange={actividadOnChange}
@@ -511,7 +556,7 @@ const DiseñaTarjet = () => {
                                     <option value={segmento.Descripcion} key={segmento.Nivel3Id}></option>
                                 ))
                                 }
-                            </datalist>
+                            </datalist> */}
 
                             <input type="text" placeholder='Ingresa tu cargo'/>
 
@@ -534,7 +579,7 @@ const DiseñaTarjet = () => {
                             </select> */}
 
                             <a href='' target='_blank'>
-                                Si no se menciona tu especialidad, solicítala aquí, nos encantará ayudarte.
+                                Aparecerá debajo de tu nombre en tu tarjeta
                             </a>
 
                             <h6>Ubicación</h6>
@@ -632,7 +677,7 @@ const DiseñaTarjet = () => {
                             </div>
 
                             <div className='regresar'>
-                                <button>
+                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
                                     Regresar a perfil (x)
                                 </button>
                             </div>
