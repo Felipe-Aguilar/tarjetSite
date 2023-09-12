@@ -104,7 +104,6 @@ const Login = () => {
                 setErrorLogin(false);
 
                 const datosUsuario = await DatosUsuario(datosLogin.usuId);
-                console.log(datosUsuario);
 
                 sesionTrue();
 
