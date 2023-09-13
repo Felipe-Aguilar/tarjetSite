@@ -14,7 +14,7 @@ const ConsultaTarjetero = async( datosUsuarioId ) => {
 }
 
 const ConsultaTarjeteroFiltro = async(datosUsuarioId, segmentoId) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaTarjetero/?Usutarjetid=${datosUsuarioId}&Segmentoid=${segmentoId}`, {
+    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaTarjetero/?Usutarjetid=${datosUsuarioId}&Segmentoid=${segmentoId}&nivel=2`, {
         method: 'GET',
         mode: 'cors',
         headers: {

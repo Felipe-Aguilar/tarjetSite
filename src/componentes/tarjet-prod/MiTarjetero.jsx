@@ -205,7 +205,7 @@ const MiTarjetero = () => {
         const resultadosSegmento = await ConsultaTarjeteroFiltro(idUsuarioSesion.usuId , SegmentoId);
 
         setReBusSegmento(resultadosSegmento.SDTTarjetsG);
-        console.log(SegmentoId); //Aquiiiiiiiiiiiiiiiiiiii
+        
         setNomSeg(resultadosSegmento.SDTTarjetsG[0].SegmentoDesc);
     }
 

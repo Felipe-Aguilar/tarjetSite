@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
+import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 import Slider from 'react-slick';
 
 import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
@@ -16,6 +17,7 @@ const DiseñaTarjet = () => {
     const [datosSesion, setDatosSesion] = useState([]);
 
     const [segmentos, setSegmentos] = useState([]);
+    const [ datosGenerales, setDatosGenerales ] = useState([]);
     
 
     useEffect(()=>{
@@ -25,11 +27,19 @@ const DiseñaTarjet = () => {
 
         const datosSesion = JSON.parse(localStorage.getItem('DatosSesion'));
         setDatosSesion(datosSesion);
+        
+        const usuarioID = JSON.parse(localStorage.getItem('IdDatosSesion'));
 
         // Obtiene segmento para TUS DATOS
         const selecActividad = async () => {
             const respuesta = await ObtenerSegmentos('');
             setSegmentos(respuesta.ListSegmentos);
+        }
+
+        // Obtiene datos generales
+        const DatosGenerales = async () => {
+            const respuesta = await DatosEditaPerfil(usuarioID.usuId);
+            setDatosGenerales(respuesta);
         }
 
         // Comprobar si es la sesión
@@ -39,7 +49,9 @@ const DiseñaTarjet = () => {
                 top: 0,
                 behavior: "smooth"
             });
+
             selecActividad();
+            DatosGenerales();
         }
         else{
             navigate('/login');
@@ -250,12 +262,27 @@ const DiseñaTarjet = () => {
                                                     <option value="Lic" key="3">Doc.</option>
                                                 </select>
                                             </div>
-                                            <input type="text" placeholder='Empresa ó tu Nombre (40 caracteres)' maxLength={40}/>
+                                            <input 
+                                                type="text" 
+                                                placeholder='Empresa ó tu Nombre (40 caracteres)' 
+                                                maxLength={40}
+                                                value={datosGenerales.Nom ? datosGenerales.Nom : ''}
+                                            />
                                         </div>
 
                                         <div className='apellidos'>
-                                            <input type="text" maxLength={40} placeholder='Apellido Paterno'/>
-                                            <input type="text" maxLength={40} placeholder='Apellido Materno'/>
+                                            <input 
+                                                type="text" 
+                                                maxLength={40} 
+                                                placeholder='Apellido Paterno'
+                                                value={datosGenerales.AppP ? datosGenerales.AppP : ''}
+                                            />
+                                            <input 
+                                                type="text" 
+                                                maxLength={40} 
+                                                placeholder='Apellido Materno'
+                                                value={datosGenerales.AppM ? datosGenerales.AppM : ''}
+                                            />
                                         </div>
 
                                         <input 
