@@ -13,17 +13,23 @@ import ilustracionPersonalizada from '../../assets/ilustracion-personalizada.png
 const DiseñaTarjet = () => {
 
     const { usuId } = useParams();
-    const [datosUsuario, setDatosUsuario] = useState([]);
     const [datosSesion, setDatosSesion] = useState([]);
 
     const [segmentos, setSegmentos] = useState([]);
     const [ datosGenerales, setDatosGenerales ] = useState([]);
-    
+
+    // Datos Formulario
+    const [nombre, setNombre] = useState('');
+    const [appPat, setAppPat] = useState('');
+    const [appMat, setAppMat] = useState('');
+    const [calle, setCalle] = useState('');
+    const [codigoPostal, setCodigoPostal] = useState('');
+    const [colonia, setColonia] = useState('');
+    const [ubicacion, setUbicacion] = useState(false);
+    const [calificacion, setCalificacion] = useState(false);
+    const [comentarios, setComentarios] = useState(false);
 
     useEffect(()=>{
-
-        const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
-        setDatosUsuario(datosTarjetSite);
 
         const datosSesion = JSON.parse(localStorage.getItem('DatosSesion'));
         setDatosSesion(datosSesion);
@@ -40,6 +46,23 @@ const DiseñaTarjet = () => {
         const DatosGenerales = async () => {
             const respuesta = await DatosEditaPerfil(usuarioID.usuId);
             setDatosGenerales(respuesta);
+
+            setNombre(respuesta.Nom);
+            setAppPat(respuesta.AppP);
+            setAppMat(respuesta.AppM);
+            setCalle(respuesta.Calle);
+            setCodigoPostal(respuesta.CodP);
+            setColonia(respuesta.Colonia);
+            
+            if (respuesta.VerUbicacion === 1) {
+                setUbicacion(true);
+            }
+            if (respuesta.PermitirCalif === 1) {
+                setCalificacion(true);
+            }
+            if (respuesta.PermitirComments) {
+                setComentarios(true);
+            }
         }
 
         // Comprobar si es la sesión
@@ -98,13 +121,6 @@ const DiseñaTarjet = () => {
     // Selección de actividad
     const [categoria, setCategoria] = useState([]);
     const [buscaActividad, setBuscaActividad] = useState('');
-
-    // const selectOnChange = async (e) => {
-    //     const response = await ObtenerSegmentos(e.target.value);
-    //     setCategoria(response.ListSegmentos[0]);
-
-    //     setBuscaActividad(e.target.value);
-    // }
 
     // Filtro de la actividad
     const [filtroSegmento, setFiltroSegmento] = useState([]);
@@ -241,7 +257,11 @@ const DiseñaTarjet = () => {
                             <div className='formulario'>
                                 <div className='logotipo'>
                                     <div className='img-perfil'>
-                                        <img src={perfilTemporal} />
+                                        { datosGenerales.ImgFoto ?
+                                            <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
+                                        :
+                                            <img src={perfilTemporal} />
+                                        }
                                     </div>
                                     <button className='cargar-imagen'>
                                         Logotipo <span>cargar ó cambiar imagen</span>
@@ -266,7 +286,8 @@ const DiseñaTarjet = () => {
                                                 type="text" 
                                                 placeholder='Empresa ó tu Nombre (40 caracteres)' 
                                                 maxLength={40}
-                                                value={datosGenerales.Nom ? datosGenerales.Nom : ''}
+                                                value={nombre}
+                                                onChange={(e)=>setNombre(e.target.value)}
                                             />
                                         </div>
 
@@ -275,13 +296,15 @@ const DiseñaTarjet = () => {
                                                 type="text" 
                                                 maxLength={40} 
                                                 placeholder='Apellido Paterno'
-                                                value={datosGenerales.AppP ? datosGenerales.AppP : ''}
+                                                value={appPat}
+                                                onChange={(e)=>setAppPat(e.target.value)}
                                             />
                                             <input 
                                                 type="text" 
                                                 maxLength={40} 
                                                 placeholder='Apellido Materno'
-                                                value={datosGenerales.AppM ? datosGenerales.AppM : ''}
+                                                value={appMat}
+                                                onChange={(e)=>setAppMat(e.target.value)}
                                             />
                                         </div>
 
@@ -509,7 +532,11 @@ const DiseñaTarjet = () => {
                     <h6>Esta información se mostrará en el directorio</h6>
 
                     <div className='imagen-perfil'>
-                        <img src={perfilTemporal} />
+                        { datosGenerales.ImgFoto ?
+                            <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
+                        :
+                            <img src={perfilTemporal} />
+                        }
 
                         <button>
                             Imagen ó Logotipo <span>(editar)</span>
@@ -523,6 +550,7 @@ const DiseñaTarjet = () => {
                                 placeholder='Empresa o nombre y apellidos (40 caracteres)' 
                                 maxLength={40}
                                 readOnly
+                                value={nombre + " " + appPat + " " + appMat}
                             />
                             {/* <select disabled>
                                 
@@ -587,24 +615,6 @@ const DiseñaTarjet = () => {
 
                             <input type="text" placeholder='Ingresa tu cargo'/>
 
-                            {/* <select onChange={selectOnChange}>
-                                { !buscaActividad &&
-                                    <option value="actividad" key="1">Actividad *</option>
-                                }
-                                { segmentos.map((segmento)=>(
-                                    <option 
-                                        // value={segmento.Descripcion} 
-                                        key={segmento.Nivel3Id}
-                                    >
-                                        {segmento.Descripcion}
-                                    </option>
-                                ))
-                                }
-                                { segmentos.length === 0 &&
-                                    <option value="actividad" key="2">* Actividad no encontrada *</option>
-                                }
-                            </select> */}
-
                             <a href='' target='_blank'>
                                 Aparecerá debajo de tu nombre en tu tarjeta
                             </a>
@@ -619,18 +629,35 @@ const DiseñaTarjet = () => {
                             <select name="" id="">
                                 <option value="categiria" key="1">Delegación *</option>
                             </select>
-                            <input type="text" placeholder='Calle, privada, avenida'/>
+
+                            <input 
+                                type="text" 
+                                placeholder='Calle, privada, avenida'
+                                value={calle}
+                                onChange={(e)=>setCalle(e.target.value)}
+                            />
 
                             <div className='twoInput'>
                                 <div className='w-50'>
                                     <input type="text" placeholder='Número'/>
                                 </div>
                                 <div className='w-50'>
-                                    <input type="text" placeholder='C.P'/>
+                                    <input 
+                                        type="text" 
+                                        maxLength={5}
+                                        placeholder='C.P'
+                                        value={codigoPostal}
+                                        onChange={(e)=>setCodigoPostal(e.target.value)}
+                                    />
                                 </div>
                             </div>
 
-                            <input type="text" placeholder='Colonia'/>
+                            <input 
+                                type="text" 
+                                placeholder='Colonia'
+                                value={colonia}
+                                onChange={(e)=>setColonia(e.target.value)}
+                            />
 
                             <div className='check'>
                                 <input type="checkbox" id='mostrarEmpresa'/>
@@ -657,7 +684,7 @@ const DiseñaTarjet = () => {
                             <div className='accept'>
                                 <div className='switches'>
                                     <label className="switch mb-0">
-                                        <input type="checkbox" />
+                                        <input type="checkbox" checked={ubicacion} onChange={()=>setUbicacion(!ubicacion)}/>
                                         <span className="slider"></span>
                                     </label>
                                 </div>
@@ -669,7 +696,7 @@ const DiseñaTarjet = () => {
                             <div className='accept'>
                                 <div className='switches'>
                                     <label className="switch mb-0">
-                                        <input type="checkbox" />
+                                        <input type="checkbox" checked={calificacion} onChange={()=>setCalificacion(!calificacion)}/>
                                         <span className="slider"></span>
                                     </label>
                                 </div>
@@ -681,7 +708,7 @@ const DiseñaTarjet = () => {
                             <div className='accept'>
                                 <div className='switches'>
                                     <label className="switch mb-0">
-                                        <input type="checkbox" />
+                                        <input type="checkbox" checked={comentarios} onChange={()=>setComentarios(!comentarios)}/>
                                         <span className="slider"></span>
                                     </label>
                                 </div>

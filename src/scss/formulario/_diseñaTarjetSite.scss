@@ -635,6 +635,16 @@ $btnRegresar: #4f8b92;
                         width: 50%;
                     }
                 }
+                .imagen-servicio{
+                    width: 80%;
+                    display: block;
+                    margin: auto;
+                    border-radius: 7px;
+
+                    @media (width <= 575px) {
+                        width: 100%;
+                    }
+                }
 
                 .btn-subir{
                     width: 80%;

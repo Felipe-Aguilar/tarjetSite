@@ -18,7 +18,7 @@ const MenuDesktop = () => {
             
             {/* <a href="https://tarjet.mx/#/que-es-tarjet">Qué es Tarjet</a> */}
             <a href="https://shop.tarjet.mx/" target='_blank'>Tienda</a>
-            <a href='https://tarjet.mx/#/empresas' className='disabled'>Empresas</a>
+            <a href='https://tarjet.mx/#/empresas'>Empresas</a>
             <a href="https://tarjet.mx/#/hazte-premium">Premium</a>
             {/* <a href='https://wa.me/5586763895' target='_blank'>Contacto</a> */}
 

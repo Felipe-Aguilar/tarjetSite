@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 
 import ilustracion from '../../assets/ilustracion-diseña-tarjetsite.png';
 import tarjetaGenerica from '../../assets/tarjetageneric.png';
@@ -25,16 +26,80 @@ import iconoSubirImagen from '../../assets/icono-imagen.svg';
 const DiseñaTarjetSite = () => {
 
     const { usuId } = useParams();
-    const [datosUsuario, setDatosUsuario] = useState([]);
     const [datosSesion, setDatosSesion] = useState([]);
+    const [ datosGenerales, setDatosGenerales ] = useState([]);
+
+    // Datos generales
+    const [telefono1, setTelefono1] = useState('');
+    const [telefono2, setTelefono2] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [sitioWeb, setSitioWeb] = useState('');
+    const [facebook, setFacebook] = useState('');
+    const [instagram, setInstagram] = useState('');
+    const [tiktok, setTiktok] = useState('');
+    const [twitter, setTwitter] = useState('');
+    const [youtube, setYoutube] = useState('');
+    const [linkedin, setLinkedin] = useState('');
+    const [telegram, setTelegram] = useState('');
+    const [servicio1, setServicio1] = useState({});
+    const [servicio2, setServicio2] = useState({});
+    const [servicio3, setServicio3] = useState({});
+    const [servicio4, setServicio4] = useState({});
 
     useEffect(()=>{
 
-        const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
-        setDatosUsuario(datosTarjetSite);
-
         const datosSesion = JSON.parse(localStorage.getItem('DatosSesion'));
         setDatosSesion(datosSesion);
+
+        const usuarioID = JSON.parse(localStorage.getItem('IdDatosSesion'));
+
+        // Obtiene datos generales
+        const DatosGenerales = async() => {
+            const respuesta = await DatosEditaPerfil(usuarioID.usuId);
+            setDatosGenerales(respuesta);
+
+            setTelefono1(respuesta.Telefono1);
+            setTelefono2(respuesta.Telefono2);
+            setCorreo(respuesta.Mail);
+            setSitioWeb(respuesta.Web);
+            setFacebook(respuesta.Facebook);
+            setInstagram(respuesta.Instagram);
+            setTiktok(respuesta.Tiktok);
+            setTwitter(respuesta.Twitter);
+            setYoutube(respuesta.Youtube);
+            setLinkedin(respuesta.Linkedin);
+            setTelegram(respuesta.Telegram);
+
+            // ESTO SE DEBE CAMBIAR!!!!
+            setServicio1({
+                ServDescrip: respuesta.Serv[1].ServDescrip,
+                ServSubTitulo: respuesta.Serv[1].ServSubTitulo,
+                ServImg: respuesta.Serv[1].ServImg,
+                ServIcono: respuesta.Serv[1].ServIcono,
+                ServSiteId: respuesta.Serv[1].ServSiteId,
+            });
+            setServicio2({
+                ServDescrip: respuesta.Serv[3].ServDescrip,
+                ServSubTitulo: respuesta.Serv[3].ServSubTitulo,
+                ServImg: respuesta.Serv[3].ServImg,
+                ServIcono: respuesta.Serv[3].ServIcono,
+                ServSiteId: respuesta.Serv[3].ServSiteId,
+            });
+            setServicio3({
+                ServDescrip: respuesta.Serv[4].ServDescrip,
+                ServSubTitulo: respuesta.Serv[4].ServSubTitulo,
+                ServImg: respuesta.Serv[4].ServImg,
+                ServIcono: respuesta.Serv[4].ServIcono,
+                ServSiteId: respuesta.Serv[4].ServSiteId,
+            });
+            setServicio4({
+                ServDescrip: respuesta.Serv[5].ServDescrip,
+                ServSubTitulo: respuesta.Serv[5].ServSubTitulo,
+                ServImg: respuesta.Serv[5].ServImg,
+                ServIcono: respuesta.Serv[5].ServIcono,
+                ServSiteId: respuesta.Serv[5].ServSiteId,
+            });
+        }
 
         // Comprobar si es la sesión
         if (localStorage.UsuarioSesion && atob(usuId) === datosSesion.UsuToken) {
@@ -42,6 +107,8 @@ const DiseñaTarjetSite = () => {
                 top: 0,
                 behavior: "smooth"
             });
+
+            DatosGenerales();
         }
         else{
             navigate('/login');
@@ -271,12 +338,27 @@ const DiseñaTarjetSite = () => {
                     <form>
                         <div className='img-perfil'>
                             <div className='img'>
-                                <img src={perfilTemporal} />
+                                { datosGenerales.ImgFoto ?
+                                    <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
+                                :
+                                    <img src={perfilTemporal} />
+                                }
                             </div>
 
                             <div className='inputs'>
-                                <input type="text" placeholder='Empresa ó Nombre (40 caracteres)' maxLength={40}/>
-                                <input type="text" placeholder='Cargo o giro de la empresa'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Empresa ó Nombre (40 caracteres)' 
+                                    maxLength={40}
+                                    value={datosGenerales.Nom + " " +datosGenerales.AppP + " " +datosGenerales.AppM}
+                                    readOnly
+                                />
+                                <input 
+                                    type="text" 
+                                    placeholder='Cargo o giro de la empresa'
+                                    value={datosGenerales.Cargo}
+                                    readOnly
+                                />
                             </div>
                         </div>
 
@@ -299,13 +381,24 @@ const DiseñaTarjetSite = () => {
                                 <div className='cont'>
                                     <img src={iconoWhats}/>
                                 </div>
-                                <input type="text" placeholder='Teléfono whatsapp'/>
+                                <input 
+                                    type="text" 
+                                    maxLength={10}
+                                    placeholder='Teléfono whatsapp'
+                                    value={telefono1}
+                                    onChange={(e)=>setTelefono1(e.target.value)}
+                                />
                             </div>
                             <div className='input-datos'>
                                 <div className='cont'>
                                     <img src={iconoTelefono}/>
                                 </div>
-                                <input type="text" placeholder='Teléfono fijo ó de contacto'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Teléfono fijo ó de contacto'
+                                    value={telefono2}
+                                    onChange={(e)=>setTelefono2(e.target.value)}
+                                />
                             </div>
 
                             <div className='checkbox'>
@@ -326,14 +419,24 @@ const DiseñaTarjetSite = () => {
                                 <div className='cont ubi'>
                                     <img src={iconoCorreo}/>
                                 </div>
-                                <input type="text" placeholder='Correo electrónico'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Correo electrónico'
+                                    value={correo}
+                                    onChange={(e)=>setCorreo(e.target.value)}
+                                />
                             </div>
 
                             <div className='input-datos'>
                                 <div className='cont ubi'>
                                     <img src={iconoWeb}/>
                                 </div>
-                                <input type="text" placeholder='Sitio web'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Sitio web'
+                                    value={sitioWeb}
+                                    onChange={(e)=>setSitioWeb(e.target.value)}
+                                />
                             </div>
 
                             <h3 className='mt-5 mb-0'>Redes sociales</h3>
@@ -342,49 +445,84 @@ const DiseñaTarjetSite = () => {
                                 <div className='cont ubi'>
                                     <img src={iconoFacebook}/>
                                 </div>
-                                <input type="text" placeholder='Url Facebook'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Url Facebook'
+                                    value={facebook}
+                                    onChange={(e)=>setFacebook(e.target.value)}
+                                />
                             </div>
 
                             <div className='input-datos'>
                                 <div className='cont ubi'>
                                     <img src={iconoInstagram}/>
                                 </div>
-                                <input type="text" placeholder='Url Instagram'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Url Instagram'
+                                    value={instagram}
+                                    onChange={(e)=>setInstagram(e.target.value)}
+                                />
                             </div>
 
                             <div className='input-datos'>
                                 <div className='cont ubi'>
                                     <img src={iconoTiktok}/>
                                 </div>
-                                <input type="text" placeholder='Url Tiktok'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Url Tiktok'
+                                    value={tiktok}
+                                    onChange={(e)=>setTiktok(e.target.value)}
+                                />
                             </div>
 
                             <div className='input-datos'>
                                 <div className='cont ubi'>
                                     <img src={iconoTwitter}/>
                                 </div>
-                                <input type="text" placeholder='Url Twitter'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Url Twitter'
+                                    value={twitter}
+                                    onChange={(e)=>setTwitter(e.target.value)}
+                                />
                             </div>
 
                             <div className='input-datos'>
                                 <div className='cont ubi'>
                                     <img src={iconoYoutube}/>
                                 </div>
-                                <input type="text" placeholder='Url Youtube'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Url Youtube'
+                                    value={youtube}
+                                    onChange={(e)=>setYoutube(e.target.value)}
+                                />
                             </div>
 
                             <div className='input-datos'>
                                 <div className='cont ubi'>
                                     <img src={iconoLinkedin}/>
                                 </div>
-                                <input type="text" placeholder='Url Linkedin'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Url Linkedin'
+                                    value={linkedin}
+                                    onChange={(e)=>setLinkedin(e.target.value)}
+                                />
                             </div>
 
                             <div className='input-datos'>
                                 <div className='cont ubi'>
                                     <img src={iconoTelegram}/>
                                 </div>
-                                <input type="text" placeholder='Url Telegram'/>
+                                <input 
+                                    type="text" 
+                                    placeholder='Url Telegram'
+                                    value={telegram}
+                                    onChange={(e)=>setTelegram(e.target.value)}
+                                />
                             </div>
 
                             <div className='input-datos mostrarUsuario'>
@@ -446,7 +584,10 @@ const DiseñaTarjetSite = () => {
                             Sugerimos uses enunciados en forma de lista que describan tus actividades ó principales servicios.
                         </p>
                         <h3>Servicios</h3>
-                        <textarea placeholder='Escribe aquí tu listado ó parrafo de servicios / actividades'></textarea>
+                        <textarea 
+                            placeholder='Escribe aquí tu listado ó parrafo de servicios / actividades'
+                            value={datosGenerales.Serv[0].ServDescrip}
+                        ></textarea>
 
                         <h3>Muestra de productos ó servicios</h3>
 
@@ -466,16 +607,33 @@ const DiseñaTarjetSite = () => {
                                         exit= "closed"
                                         variants={acordeonVariantes}
                                     >
-                                        <input type="text" placeholder='Escribe su título'/>
-                                        <div className='mostrar-imagen'>
-                                            <img src={iconoSubirImagen} />
-                                        </div>
+                                        <input 
+                                            type="text" 
+                                            placeholder='Escribe su título'
+                                            value={servicio1.ServSubTitulo}
+                                            onChange={(e) => setServicio1({...servicio1, ServSubTitulo: e.target.value })}
+                                        />
+                                        { servicio1.ServImg ?
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/servicios/${servicio1.ServImg}`} 
+                                                className='imagen-servicio'
+                                            />
+                                        :
+                                            <div className='mostrar-imagen'>
+                                                <img src={iconoSubirImagen} />
+                                            </div>
+                                        }
                                         <div className='btn-subir'>
                                             <button>
                                                 Subir imagen
                                             </button>
                                         </div>
-                                        <textarea placeholder='Descripción de la foto (hasta 60 caracteres)' maxLength={60}>
+                                        <textarea 
+                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                            maxLength={60}
+                                            value={servicio1.ServDescrip}
+                                            onChange={(e) => setServicio1({...servicio1, ServDescrip: e.target.value })}
+                                        >
                                         </textarea>
                                         <div className='borrar'>
                                             <button>
@@ -503,16 +661,33 @@ const DiseñaTarjetSite = () => {
                                         exit= "closed"
                                         variants={acordeonVariantes}
                                     >
-                                        <input type="text" placeholder='Escribe su título'/>
-                                        <div className='mostrar-imagen'>
-                                            <img src={iconoSubirImagen} />
-                                        </div>
+                                        <input 
+                                            type="text" 
+                                            placeholder='Escribe su título'
+                                            value={servicio2.ServSubTitulo}
+                                            onChange={(e) => setServicio2({...servicio2, ServSubTitulo: e.target.value })}
+                                        />
+                                        { servicio2.ServImg ?
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/servicios/${servicio2.ServImg}`} 
+                                                className='imagen-servicio'
+                                            />
+                                        :
+                                            <div className='mostrar-imagen'>
+                                                <img src={iconoSubirImagen} />
+                                            </div>
+                                        }
                                         <div className='btn-subir'>
                                             <button>
                                                 Subir imagen
                                             </button>
                                         </div>
-                                        <textarea placeholder='Descripción de la foto (hasta 60 caracteres)' maxLength={60}>
+                                        <textarea 
+                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                            maxLength={60}
+                                            value={servicio2.ServDescrip}
+                                            onChange={(e) => setServicio2({...servicio2, ServDescrip: e.target.value })}
+                                        >
                                         </textarea>
                                         <div className='borrar'>
                                             <button>
@@ -540,16 +715,33 @@ const DiseñaTarjetSite = () => {
                                         exit= "closed"
                                         variants={acordeonVariantes}
                                     >
-                                        <input type="text" placeholder='Escribe su título'/>
-                                        <div className='mostrar-imagen'>
-                                            <img src={iconoSubirImagen} />
-                                        </div>
+                                        <input 
+                                            type="text" 
+                                            placeholder='Escribe su título'
+                                            value={servicio3.ServSubTitulo}
+                                            onChange={(e) => setServicio3({...servicio3, ServSubTitulo: e.target.value })}
+                                        />
+                                        { servicio3.ServImg ?
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/servicios/${servicio3.ServImg}`} 
+                                                className='imagen-servicio'
+                                            />
+                                        :
+                                            <div className='mostrar-imagen'>
+                                                <img src={iconoSubirImagen} />
+                                            </div>
+                                        }
                                         <div className='btn-subir'>
                                             <button>
                                                 Subir imagen
                                             </button>
                                         </div>
-                                        <textarea placeholder='Descripción de la foto (hasta 60 caracteres)' maxLength={60}>
+                                        <textarea 
+                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                            maxLength={60}
+                                            value={servicio3.ServDescrip}
+                                            onChange={(e) => setServicio3({...servicio3, ServDescrip: e.target.value })}
+                                        >
                                         </textarea>
                                         <div className='borrar'>
                                             <button>
@@ -578,16 +770,33 @@ const DiseñaTarjetSite = () => {
                                         exit= "closed"
                                         variants={acordeonVariantes}
                                     >
-                                        <input type="text" placeholder='Escribe su título'/>
-                                        <div className='mostrar-imagen'>
-                                            <img src={iconoSubirImagen} />
-                                        </div>
+                                        <input 
+                                            type="text" 
+                                            placeholder='Escribe su título'
+                                            value={servicio4.ServSubTitulo}
+                                            onChange={(e) => setServicio4({...servicio4, ServSubTitulo: e.target.value })}
+                                        />
+                                        { servicio4.ServImg ?
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/servicios/${servicio4.ServImg}`} 
+                                                className='imagen-servicio'
+                                            />
+                                        :
+                                            <div className='mostrar-imagen'>
+                                                <img src={iconoSubirImagen} />
+                                            </div>
+                                        }
                                         <div className='btn-subir'>
                                             <button>
                                                 Subir imagen
                                             </button>
                                         </div>
-                                        <textarea placeholder='Descripción de la foto (hasta 60 caracteres)' maxLength={60}>
+                                        <textarea 
+                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                            maxLength={60}
+                                            value={servicio4.ServDescrip}
+                                            onChange={(e) => setServicio4({...servicio4, ServDescrip: e.target.value })}
+                                        >
                                         </textarea>
                                         <div className='borrar'>
                                             <button>
