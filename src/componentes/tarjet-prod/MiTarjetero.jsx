@@ -37,6 +37,7 @@ const MiTarjetero = () => {
     const [comprobarUsuario, setComprobarUsuario] = useState([]);
     const [ usuario, setUsuario ] = useState([]);
     const [datos, setDatos] = useState([]);
+    const [soloNombre, setSoloNombre] = useState([]);
 
     const usuarioSesion = JSON.parse(localStorage.getItem('DatosSesion'));
     const idUsuarioSesion = JSON.parse(localStorage.getItem('IdDatosSesion'));
@@ -60,6 +61,7 @@ const MiTarjetero = () => {
 
             const datosUsuarios = await DatosUsuarioTarjetSite(comprobarUsuario.usuId);
             setDatos(datosUsuarios.SDTSite);
+            setSoloNombre(datosUsuarios.SDTSite.NomCompleto.split(' '));
 
         }
 
@@ -219,10 +221,6 @@ const MiTarjetero = () => {
     // Comprobando si existe o no
     if(comprobarUsuario.usuId === 0) return null;
 
-    // Nombre nada más
-    const nombreCompleto = datos.NomCompleto;
-    const SoloNombre = nombreCompleto.split(' ');
-
     return (
 
         <div className='container-fluid p-0'>
@@ -235,7 +233,7 @@ const MiTarjetero = () => {
                         <div className='col-12 col-lg-4 '>
                             <img src={PortadaTarjet}/>
                             <h5>
-                                Hola {SoloNombre[0]}<br/>
+                                Hola {soloNombre[0]}<br/>
                                 <span>Bienvenido a tu</span>
                             </h5>
                             <h4>
