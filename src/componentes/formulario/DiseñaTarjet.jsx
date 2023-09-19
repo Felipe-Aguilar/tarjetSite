@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
 import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 import Slider from 'react-slick';
+import CargarImagen from './CargarImagen';
 
 import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
 import tarjetaGenerica from '../../assets/tarjetageneric.png';
@@ -18,10 +19,13 @@ const DiseñaTarjet = () => {
     const [segmentos, setSegmentos] = useState([]);
     const [ datosGenerales, setDatosGenerales ] = useState([]);
 
+    const [cargarImagen, setCargarImagen] = useState(false);
+
     // Datos Formulario
     const [nombre, setNombre] = useState('');
     const [appPat, setAppPat] = useState('');
     const [appMat, setAppMat] = useState('');
+    const [cargo, setCargo] = useState('');
     const [calle, setCalle] = useState('');
     const [codigoPostal, setCodigoPostal] = useState('');
     const [colonia, setColonia] = useState('');
@@ -50,6 +54,7 @@ const DiseñaTarjet = () => {
             setNombre(respuesta.Nom);
             setAppPat(respuesta.AppP);
             setAppMat(respuesta.AppM);
+            setCargo(respuesta.Cargo);
             setCalle(respuesta.Calle);
             setCodigoPostal(respuesta.CodP);
             setColonia(respuesta.Colonia);
@@ -263,10 +268,14 @@ const DiseñaTarjet = () => {
                                             <img src={perfilTemporal} />
                                         }
                                     </div>
-                                    <button className='cargar-imagen'>
+                                    <button className='cargar-imagen' onClick={()=>setCargarImagen(true)}>
                                         Logotipo <span>cargar ó cambiar imagen</span>
                                     </button>
                                 </div>
+
+                                { cargarImagen &&
+                                    <CargarImagen />
+                                }
 
                                 <div className='prefijo'>
                                     <p>Prefijo</p>
@@ -613,7 +622,12 @@ const DiseñaTarjet = () => {
                                 }
                             </datalist> */}
 
-                            <input type="text" placeholder='Ingresa tu cargo'/>
+                            <input 
+                                type="text" 
+                                placeholder='Ingresa tu cargo'
+                                value={cargo}
+                                onChange={(e)=>setCargo(e.target.value)}
+                            />
 
                             <a href='' target='_blank'>
                                 Aparecerá debajo de tu nombre en tu tarjeta

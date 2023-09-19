@@ -1,0 +1,101 @@
+.pop-cargarimagen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    .cuerpo {
+        position: relative;
+        padding: 20px;
+        width: 50%;
+        background: #d8e3ec;
+        border-radius: 20px;
+
+        @media (width <= 575px) {
+            width: 95%;
+        }
+
+        .header{
+            display: flex;
+            justify-content: center;
+
+            h2{
+                color: #067232;
+                margin-bottom: 0;
+                font-size: 1.25rem;
+            }
+        }
+        .body{
+            margin-top: 20px;
+
+            .dropzone{
+                width: 100%;
+                height: 100px;
+                color: #a5a5a5;
+                background: #fafafa;
+                background-color: transparent;
+                border-radius: 2px;
+                border-style: dashed;
+                border-width: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                p{
+                    text-align: center;
+                    margin-bottom: 0;
+                }
+
+                @media (width <= 575px) {
+                    padding: 5px;
+                    height: 120px;
+                    font-size: 0.8rem;
+                }
+            }
+            .resultados{
+                margin-top: 10px;
+
+                h6{
+                    font-weight: bold;
+                }
+                .error{
+                    color: red;
+                }
+
+                .img-preview{
+                    display: block;
+                    margin-top: 20px;
+                    width: 50%;
+                    
+                    @media (width <= 575px) {
+                        margin: auto;
+                        margin-top: 20px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .footer{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+
+            button{
+                background: transparent;
+                border: transparent;
+                outline: none!important;
+                text-transform: uppercase;
+                font-size: .7rem;
+                color: #5b8f94;
+            }
+        }
+    }
+}

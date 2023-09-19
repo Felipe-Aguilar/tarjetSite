@@ -349,8 +349,9 @@ $btnAmarillo: #fab947;
                             outline: none!important;
                         }
                         input{
-                            width: calc(100% - 28px);
-                            margin-left: 28px;
+                            // width: calc(100% - 28px);
+                            width: 100%;
+                            // margin-left: 28px;
                             display: block;
                             margin-bottom: 15px;
 
@@ -362,12 +363,13 @@ $btnAmarillo: #fab947;
                         }
                         .select{
                             display: flex;
+                            gap: 10px;
                             
                             div{
                                 width: 20%;
 
                                 select{
-                                    width: 70px;
+                                    width: 100%;
                                     display: block;
                                     margin: auto;
                                 }
@@ -379,6 +381,7 @@ $btnAmarillo: #fab947;
                         }
                         .apellidos{
                             display: flex;
+                            gap: 10px;
                             
                             input{
                                 width: 50%;

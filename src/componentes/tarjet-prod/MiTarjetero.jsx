@@ -219,6 +219,10 @@ const MiTarjetero = () => {
     // Comprobando si existe o no
     if(comprobarUsuario.usuId === 0) return null;
 
+    // Nombre nada más
+    const nombreCompleto = datos.NomCompleto;
+    const SoloNombre = nombreCompleto.split(' ');
+
     return (
 
         <div className='container-fluid p-0'>
@@ -231,7 +235,7 @@ const MiTarjetero = () => {
                         <div className='col-12 col-lg-4 '>
                             <img src={PortadaTarjet}/>
                             <h5>
-                                Hola {datos.Cuenta}<br/>
+                                Hola {SoloNombre[0]}<br/>
                                 <span>Bienvenido a tu</span>
                             </h5>
                             <h4>
