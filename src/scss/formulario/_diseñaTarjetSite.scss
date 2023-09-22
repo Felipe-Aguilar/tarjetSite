@@ -448,6 +448,10 @@ $btnRegresar: #4f8b92;
                     height: 35px;
                     width: 100%;
                 }
+
+                .input-error{
+                    border: 2px solid red;
+                }
             }
 
             .checkbox{
@@ -480,6 +484,15 @@ $btnRegresar: #4f8b92;
                     input{
                         width: auto;
                     }
+                }
+            }
+
+            .message-error{
+                margin-top: 20px;
+                margin-bottom: 0;
+
+                p{
+                    color: red;
                 }
             }
 

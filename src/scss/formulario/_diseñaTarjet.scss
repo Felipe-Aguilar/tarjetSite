@@ -361,6 +361,9 @@ $btnAmarillo: #fab947;
                                 width: calc(100% - 5px);
                             }
                         }
+                        .input-error{
+                            border: 2px solid red;
+                        }
                         .select{
                             display: flex;
                             gap: 10px;
@@ -439,6 +442,11 @@ $btnAmarillo: #fab947;
                                 font-size: 0.8rem;
                                 display: block;
                                 margin: auto;
+                            }
+                        }
+                        .error-message{
+                            p{
+                                color: red;
                             }
                         }
                     }

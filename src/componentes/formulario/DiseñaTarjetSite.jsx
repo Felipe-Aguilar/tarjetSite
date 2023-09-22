@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { DatosEditaPerfil } from '../contextos/EditaPerfil';
+import { DatosEditaPerfil, ActualizarPerfil2 } from '../contextos/EditaPerfil';
 
 import ilustracion from '../../assets/ilustracion-diseña-tarjetsite.png';
 import tarjetaGenerica from '../../assets/tarjetageneric.png';
@@ -21,6 +21,7 @@ import iconoLinkedin from '../../assets/icono-t-linkedin.svg';
 import iconoTelegram from '../../assets/icono-t-telegram.svg';
 import iconoTarjet from '../../assets/icono-t-tarjet.svg';
 import iconoSubirImagen from '../../assets/icono-imagen.svg';
+import PopCorrecto from './PopCorrecto';
 
 
 const DiseñaTarjetSite = () => {
@@ -28,6 +29,7 @@ const DiseñaTarjetSite = () => {
     const { usuId } = useParams();
     const [datosSesion, setDatosSesion] = useState([]);
     const [ datosGenerales, setDatosGenerales ] = useState([]);
+    const [error, setError] = useState(false);
 
     // Datos generales
     const [telefono1, setTelefono1] = useState('');
@@ -193,8 +195,80 @@ const DiseñaTarjetSite = () => {
         setDatos(true);
     }
 
+    // Sacar pop de datos actualizados
+    const [popActualiza, setPopActualiza] = useState(false);
+
+    // Guardar Tarjeta 1
+    const GuardarTarjeta1 = async () => {
+
+        if (error) {
+            return;
+        }
+
+        const datosFormulario = {
+            "Telefono1": telefono1,
+            "Telefono2": telefono2,
+            "Mail": correo,
+            "Web": sitioWeb,
+            "Facebook": facebook,
+            "Instagram": instagram,
+            "Tiktok": tiktok,
+            "Twitter": twitter,
+            "Youtube": youtube,
+            "Telegram": telegram,
+            "Servicio1": servicio1,
+            "Servicio2": servicio2,
+            "Servicio3": servicio3,
+            "Servicio4": servicio4,
+        }
+
+        await ActualizarPerfil2(datosGenerales, datosFormulario);
+        setPopActualiza(true);
+
+        setTimeout(()=>{
+            setPopActualiza(false);
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+            
+        }, 3500);
+    }
+
+    const OnlyNumbers = (e) => {
+        const numero = e.target.value.replace(/\D/g, '');
+        setTelefono1(numero);
+    }
+
+    const OnlyNumbers2 = (e) => {
+        const numero = e.target.value.replace(/\D/g, '');
+        setTelefono2(numero);
+    }
+
+    const OnlyEmail = (e) => {
+        setCorreo(e.target.value);
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(e.target.value)) {
+            setError(true);
+
+            if (e.target.value === '') {
+                setError(false);
+            }
+        }else{
+            setError(false);
+        }
+    }
+
     return ( 
         <div className="container-fluid DiseñaTarjetSite">
+
+            { popActualiza &&
+                <PopCorrecto />
+            }
+
             <div className='img-banner'>
                 <img src={ilustracion} />
             </div>
@@ -386,7 +460,7 @@ const DiseñaTarjetSite = () => {
                                     maxLength={10}
                                     placeholder='Teléfono whatsapp'
                                     value={telefono1}
-                                    onChange={(e)=>setTelefono1(e.target.value)}
+                                    onChange={OnlyNumbers}
                                 />
                             </div>
                             <div className='input-datos'>
@@ -396,8 +470,9 @@ const DiseñaTarjetSite = () => {
                                 <input 
                                     type="text" 
                                     placeholder='Teléfono fijo ó de contacto'
+                                    maxLength={10}
                                     value={telefono2}
-                                    onChange={(e)=>setTelefono2(e.target.value)}
+                                    onChange={OnlyNumbers2}
                                 />
                             </div>
 
@@ -422,8 +497,9 @@ const DiseñaTarjetSite = () => {
                                 <input 
                                     type="text" 
                                     placeholder='Correo electrónico'
+                                    className={error ? 'input-error' : ''}
                                     value={correo}
-                                    onChange={(e)=>setCorreo(e.target.value)}
+                                    onChange={OnlyEmail}
                                 />
                             </div>
 
@@ -535,13 +611,21 @@ const DiseñaTarjetSite = () => {
                                 </div>
                             </div>
 
-                            <div className='terminos'>
+                            { error &&
+                                <div className='message-error'>
+                                    <p>
+                                        Por favor ingresa una dirección de correo válida. 
+                                    </p>
+                                </div>
+                            }
+
+                            {/* <div className='terminos'>
                                 <input type="checkbox" id="terminos" />
                                 <label htmlFor='terminos'>Acepto <span onClick={()=>navigate('/aviso-privacidad')}>términos de privacidad</span></label>
-                            </div>
+                            </div> */}
 
                             <div className='guardar'>
-                                <button>
+                                <button onClick={GuardarTarjeta1}>
                                     Guardar ó actualizar información
                                 </button>
                             </div>

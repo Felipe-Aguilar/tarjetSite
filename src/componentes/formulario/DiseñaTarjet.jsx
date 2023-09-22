@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
-import { DatosEditaPerfil } from '../contextos/EditaPerfil';
+import { DatosEditaPerfil, ActualizarPerfil } from '../contextos/EditaPerfil';
 import Slider from 'react-slick';
 import CargarImagen from './CargarImagen';
+import PopCorrecto from './PopCorrecto';
 
 import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
 import tarjetaGenerica from '../../assets/tarjetageneric.png';
@@ -32,6 +33,14 @@ const DiseñaTarjet = () => {
     const [ubicacion, setUbicacion] = useState(false);
     const [calificacion, setCalificacion] = useState(false);
     const [comentarios, setComentarios] = useState(false);
+    const [actividad, setActividad] = useState('');
+
+    const [error, setError] = useState(false);
+
+    // Selecciona actividad
+    const [buscaActividad, setBuscaActividad] = useState('');
+    // Filtro de la actividad
+    const [filtroSegmento, setFiltroSegmento] = useState([]);
 
     useEffect(()=>{
 
@@ -51,6 +60,7 @@ const DiseñaTarjet = () => {
             const respuesta = await DatosEditaPerfil(usuarioID.usuId);
             setDatosGenerales(respuesta);
 
+            // Datos
             setNombre(respuesta.Nom);
             setAppPat(respuesta.AppP);
             setAppMat(respuesta.AppM);
@@ -58,7 +68,17 @@ const DiseñaTarjet = () => {
             setCalle(respuesta.Calle);
             setCodigoPostal(respuesta.CodP);
             setColonia(respuesta.Colonia);
-            
+            setActividad(respuesta.Lev3Desc);
+
+            // Filtro de Busca actividad
+            setBuscaActividad(respuesta.Lev3Desc);
+            if (respuesta.Lev3Desc !== '') {
+                const responseSegmento = await ObtenerSegmentos(respuesta.Lev3Desc);
+                setFiltroSegmento(responseSegmento.ListSegmentos[0]);
+            }
+
+
+            // CheckButtons
             if (respuesta.VerUbicacion === 1) {
                 setUbicacion(true);
             }
@@ -123,23 +143,61 @@ const DiseñaTarjet = () => {
         setDiseño(false);
     }
 
-    // Selección de actividad
-    const [categoria, setCategoria] = useState([]);
-    const [buscaActividad, setBuscaActividad] = useState('');
-
-    // Filtro de la actividad
-    const [filtroSegmento, setFiltroSegmento] = useState([]);
-
     const actividadOnChange = async (e) => {
         setBuscaActividad(e.target.value);
 
-        const response = await ObtenerSegmentos(e.target.value);
-        setFiltroSegmento(response.ListSegmentos[0]);
+        if (buscaActividad !== '' || e.target.value !== '') {
+            
+            const response = await ObtenerSegmentos(e.target.value);
+            setFiltroSegmento(response.ListSegmentos[0]);
+        }
+    }
+
+    // Sacar pop de datos actualizados
+    const [popActualiza, setPopActualiza] = useState(false);
+
+    // Guardar Tarjeta 1
+    const GuardarTarjeta1 = async () => {
+
+        if (buscaActividad === '') {
+            setError(true);
+            return;
+        }
+
+        const datosFormulario = {
+            "Nom": nombre,
+            "AppP": appPat,
+            "AppM": appMat,
+            "Cargo": cargo,
+            "Lev1Id": buscaActividad ? filtroSegmento.Nivel1Id : '',
+            "Lev1Desc": buscaActividad ? filtroSegmento.Nivel1Desc : '',
+            "Lev2Id": buscaActividad ? filtroSegmento.Nivel2Id : '',
+            "Lev2Desc": buscaActividad ? filtroSegmento.Nivel2Desc : '',
+            "Lev3Id": buscaActividad ? filtroSegmento.Nivel3Id : '',
+            "Lev3Desc": buscaActividad,
+            "VerUbicacion": ubicacion ? 1 : 0,
+            "PermitirCalif": calificacion ? 1 : 0,
+            "PermitirComments": comentarios ? 1 : 0,
+            "Calle": calle,
+            "CodP": codigoPostal,
+            "Colonia": colonia,
+        }
+
+        await ActualizarPerfil(datosGenerales, datosFormulario);
+        setPopActualiza(true);
+
+        setTimeout(()=>{
+            window.location.reload(true);
+        }, 3500);
     }
 
     return ( 
         <div className="container-fluid diseñaTarjet">
 
+            { popActualiza &&
+                <PopCorrecto />
+            }
+            
             <div className="img-banner">
                 <img src={ilustracion} />
             </div>
@@ -320,6 +378,7 @@ const DiseñaTarjet = () => {
                                         <input 
                                             type="text" 
                                             placeholder='Buscar actividad' 
+                                            className={error ? 'input-error' : ''}
                                             maxLength={80}
                                             value={buscaActividad}
                                             style={{textTransform: 'uppercase'}}
@@ -338,9 +397,22 @@ const DiseñaTarjet = () => {
                                             Si no aparece tu área, solicítala aquí, con tu apoyo nos ayudas a aprender.
                                         </a>
                                         
-                                        <input type="text" placeholder='Texto debajo de tu nombre (30 caracteres)' maxLength={30}/>
+                                        <input 
+                                            type="text" 
+                                            placeholder='Texto debajo de tu nombre (30 caracteres)' maxLength={30}
+                                            value={cargo}
+                                            onChange={(e)=>setCargo(e.target.value)}
+                                        />
 
                                         {/* <input type="text" placeholder='Encabezado ó servicio principal (opcional)' maxLength={30}/> */}
+
+                                        { error &&
+                                            <div className='error-message'>
+                                                <p>
+                                                    Por favor ingrese una actividad
+                                                </p>
+                                            </div>
+                                        }
 
                                         <div className='buttons'>
                                             <div className='primer'>
@@ -349,7 +421,7 @@ const DiseñaTarjet = () => {
                                                 </button>
                                             </div>
                                             <div className='segundo'>
-                                                <button>
+                                                <button onClick={GuardarTarjeta1}>
                                                     Guardar Tarjeta
                                                 </button>
                                             </div>
@@ -626,7 +698,7 @@ const DiseñaTarjet = () => {
                                 type="text" 
                                 placeholder='Ingresa tu cargo'
                                 value={cargo}
-                                onChange={(e)=>setCargo(e.target.value)}
+                                readOnly
                             />
 
                             <a href='' target='_blank'>
@@ -731,15 +803,15 @@ const DiseñaTarjet = () => {
                                 </div>
                             </div>
 
-                            <div className='terminos'>
+                            {/* <div className='terminos'>
                                 <input type="checkbox" id='terminos'/>
                                 <label htmlFor='terminos'>
                                     Acepto <span onClick={()=>navigate('/aviso-privacidad')}>términos de privacidad</span>
                                 </label>
-                            </div>
+                            </div> */}
 
                             <div className='btn-guardar'>
-                                <button>
+                                <button onClick={GuardarTarjeta1}>
                                     Guardar mis datos de tarjeta
                                 </button>
                             </div>
