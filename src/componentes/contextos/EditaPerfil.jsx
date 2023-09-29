@@ -269,64 +269,64 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                // "Serv": [
-                //     {
-                //         "ServNum": datosGenerales.Serv[0].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[0].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[0].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[0].ServImg,
-                //         "ServIcono": datosGenerales.Serv[0].ServIcono,
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[1].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[1].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[1].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[1].ServImg,
-                //         "ServIcono": datosGenerales.Serv[1].ServIcono,
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[2].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[2].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[2].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[2].ServImg,
-                //         "ServIcono": datosGenerales.Serv[2].ServIcono,
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[3].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[3].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[3].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[3].ServImg,
-                //         "ServIcono": datosGenerales.Serv[3].ServIcono,
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[4].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[4].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[4].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[4].ServImg,
-                //         "ServIcono": datosGenerales.Serv[4].ServIcono,
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[5].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[5].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[5].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[5].ServImg,
-                //         "ServIcono": datosGenerales.Serv[5].ServIcono,
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[6].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[6].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[6].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[6].ServImg,
-                //         "ServIcono": datosGenerales.Serv[6].ServIcono,
-                //         "ServSiteId": 2
-                //     }
-                // ]
+                "Serv": [
+                    {
+                        "ServNum": 1,
+                        "ServDescrip": datosFormulario.Servicio1.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio1.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio1.ServImg,
+                        "ServIcono": datosFormulario.Servicio1.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 2,
+                        "ServDescrip": datosFormulario.Servicio2.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio2.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio2.ServImg,
+                        "ServIcono": datosFormulario.Servicio2.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 3,
+                        "ServDescrip": datosFormulario.Servicio3.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio3.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio3.ServImg,
+                        "ServIcono": datosFormulario.Servicio3.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 4,
+                        "ServDescrip": datosFormulario.Servicio4.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio4.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio4.ServImg,
+                        "ServIcono": datosFormulario.Servicio4.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 5,
+                        "ServDescrip": datosFormulario.Servicio5.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio5.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio5.ServImg,
+                        "ServIcono": datosFormulario.Servicio5.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 6,
+                        "ServDescrip": datosFormulario.Servicio6.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio6.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio6.ServImg,
+                        "ServIcono": datosFormulario.Servicio6.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 7,
+                        "ServDescrip": datosFormulario.Servicio7.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio7.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio7.ServImg,
+                        "ServIcono": datosFormulario.Servicio7.ServIcono,
+                        "ServSiteId": 2
+                    }
+                ]
             }
         })
     });

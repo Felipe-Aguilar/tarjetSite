@@ -10,6 +10,7 @@ import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
 import tarjetaGenerica from '../../assets/tarjetageneric.png';
 import perfilTemporal from '../../assets/perfiltemporal.jpg';
 import ilustracionPersonalizada from '../../assets/ilustracion-personalizada.png';
+import Previsualizar from './Previsualizar';
 
 
 const DiseñaTarjet = () => {
@@ -21,6 +22,7 @@ const DiseñaTarjet = () => {
     const [ datosGenerales, setDatosGenerales ] = useState([]);
 
     const [cargarImagen, setCargarImagen] = useState(false);
+    const [previsualizar, setPrevisualizar] = useState(false);
 
     // Datos Formulario
     const [nombre, setNombre] = useState('');
@@ -191,6 +193,14 @@ const DiseñaTarjet = () => {
         }, 3500);
     }
 
+    const CerrarCarga = () => {
+        setCargarImagen(false);
+    }
+
+    const CerrarPrevisualizar = () => {
+        setPrevisualizar(false);
+    }
+
     return ( 
         <div className="container-fluid diseñaTarjet">
 
@@ -332,7 +342,7 @@ const DiseñaTarjet = () => {
                                 </div>
 
                                 { cargarImagen &&
-                                    <CargarImagen />
+                                    <CargarImagen onBotonClick={CerrarCarga}/>
                                 }
 
                                 <div className='prefijo'>
@@ -414,9 +424,16 @@ const DiseñaTarjet = () => {
                                             </div>
                                         }
 
+                                        { previsualizar &&
+                                            <Previsualizar 
+                                                onClickButton={CerrarPrevisualizar} 
+                                                datosGenerales={datosGenerales}
+                                            />
+                                        }
+
                                         <div className='buttons'>
                                             <div className='primer'>
-                                                <button>
+                                                <button onClick={()=>setPrevisualizar(true)}>
                                                     Previsualizar
                                                 </button>
                                             </div>

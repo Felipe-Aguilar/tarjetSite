@@ -17,6 +17,10 @@
         background: #d8e3ec;
         border-radius: 20px;
 
+        @media (width <= 575px) {
+            width: 90%;
+        }
+
         h2{
             color: #067232;
             font-size: 1.2rem;

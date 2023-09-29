@@ -31,6 +31,15 @@ const DiseñaTarjetSite = () => {
     const [ datosGenerales, setDatosGenerales ] = useState([]);
     const [error, setError] = useState(false);
 
+    const objeto = {
+        ServNum: "",
+        ServDescrip: "",
+        ServSubTitulo: "",
+        ServImg: "",
+        ServIcono: "",
+        ServSiteId: "",
+    }
+
     // Datos generales
     const [telefono1, setTelefono1] = useState('');
     const [telefono2, setTelefono2] = useState('');
@@ -43,10 +52,13 @@ const DiseñaTarjetSite = () => {
     const [youtube, setYoutube] = useState('');
     const [linkedin, setLinkedin] = useState('');
     const [telegram, setTelegram] = useState('');
-    const [servicio1, setServicio1] = useState({});
-    const [servicio2, setServicio2] = useState({});
-    const [servicio3, setServicio3] = useState({});
-    const [servicio4, setServicio4] = useState({});
+    const [servicio1, setServicio1] = useState(objeto);
+    const [servicio2, setServicio2] = useState(objeto);
+    const [servicio3, setServicio3] = useState(objeto);
+    const [servicio4, setServicio4] = useState(objeto);
+    const [servicio5, setServicio5] = useState(objeto);
+    const [servicio6, setServicio6] = useState(objeto);
+    const [servicio7, setServicio7] = useState(objeto);
 
     useEffect(()=>{
 
@@ -74,32 +86,60 @@ const DiseñaTarjetSite = () => {
 
             // ESTO SE DEBE CAMBIAR!!!!
             setServicio1({
-                ServDescrip: respuesta.Serv[1].ServDescrip,
-                ServSubTitulo: respuesta.Serv[1].ServSubTitulo,
-                ServImg: respuesta.Serv[1].ServImg,
-                ServIcono: respuesta.Serv[1].ServIcono,
-                ServSiteId: respuesta.Serv[1].ServSiteId,
+                ServNum: 1,
+                ServDescrip: respuesta.Serv[0]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[0]?.ServSubTitulo,
+                ServImg: respuesta.Serv[0]?.ServImg,
+                ServIcono: respuesta.Serv[0]?.ServIcono,
+                ServSiteId: 1,
             });
             setServicio2({
-                ServDescrip: respuesta.Serv[3].ServDescrip,
-                ServSubTitulo: respuesta.Serv[3].ServSubTitulo,
-                ServImg: respuesta.Serv[3].ServImg,
-                ServIcono: respuesta.Serv[3].ServIcono,
-                ServSiteId: respuesta.Serv[3].ServSiteId,
+                ServNum: 2,
+                ServDescrip: respuesta.Serv[1]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[1]?.ServSubTitulo,
+                ServImg: respuesta.Serv[1]?.ServImg,
+                ServIcono: respuesta.Serv[1]?.ServIcono,
+                ServSiteId: 1,
             });
             setServicio3({
-                ServDescrip: respuesta.Serv[4].ServDescrip,
-                ServSubTitulo: respuesta.Serv[4].ServSubTitulo,
-                ServImg: respuesta.Serv[4].ServImg,
-                ServIcono: respuesta.Serv[4].ServIcono,
-                ServSiteId: respuesta.Serv[4].ServSiteId,
+                ServNum: 3,
+                ServDescrip: respuesta.Serv[2]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[2]?.ServSubTitulo,
+                ServImg: respuesta.Serv[2]?.ServImg,
+                ServIcono: respuesta.Serv[2]?.ServIcono,
+                ServSiteId: 1,
             });
             setServicio4({
-                ServDescrip: respuesta.Serv[5].ServDescrip,
-                ServSubTitulo: respuesta.Serv[5].ServSubTitulo,
-                ServImg: respuesta.Serv[5].ServImg,
-                ServIcono: respuesta.Serv[5].ServIcono,
-                ServSiteId: respuesta.Serv[5].ServSiteId,
+                ServNum: 4,
+                ServDescrip: respuesta.Serv[3]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[3]?.ServSubTitulo,
+                ServImg: respuesta.Serv[3]?.ServImg,
+                ServIcono: respuesta.Serv[3]?.ServIcono,
+                ServSiteId: 2,
+            });
+            setServicio5({
+                ServNum: 5,
+                ServDescrip: respuesta.Serv[4]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[4]?.ServSubTitulo,
+                ServImg: respuesta.Serv[4]?.ServImg,
+                ServIcono: respuesta.Serv[4]?.ServIcono,
+                ServSiteId: 2,
+            });
+            setServicio6({
+                ServNum: 6,
+                ServDescrip: respuesta.Serv[5]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[5]?.ServSubTitulo,
+                ServImg: respuesta.Serv[5]?.ServImg,
+                ServIcono: respuesta.Serv[5]?.ServIcono,
+                ServSiteId: 2,
+            });
+            setServicio7({
+                ServNum: 7,
+                ServDescrip: respuesta.Serv[6]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[6]?.ServSubTitulo,
+                ServImg: respuesta.Serv[6]?.ServImg,
+                ServIcono: respuesta.Serv[6]?.ServIcono,
+                ServSiteId: 2,
             });
         }
 
@@ -220,6 +260,9 @@ const DiseñaTarjetSite = () => {
             "Servicio2": servicio2,
             "Servicio3": servicio3,
             "Servicio4": servicio4,
+            "Servicio5": servicio5,
+            "Servicio6": servicio6,
+            "Servicio7": servicio7,
         }
 
         await ActualizarPerfil2(datosGenerales, datosFormulario);
@@ -259,6 +302,47 @@ const DiseñaTarjetSite = () => {
             }
         }else{
             setError(false);
+        }
+    }
+
+    const BorrarBloque = (numero) => {
+
+        if (numero === 4) {
+            setServicio4({
+                ServNum: numero,
+                ServDescrip: "",
+                ServSubTitulo: "",
+                ServImg: "",
+                ServIcono: "",
+                ServSiteId: "",
+            });
+        }else if (numero === 5) {
+            setServicio5({
+                ServNum: numero,
+                ServDescrip: "",
+                ServSubTitulo: "",
+                ServImg: "",
+                ServIcono: "",
+                ServSiteId: "",
+            });
+        }else if (numero === 6) {
+            setServicio6({
+                ServNum: numero,
+                ServDescrip: "",
+                ServSubTitulo: "",
+                ServImg: "",
+                ServIcono: "",
+                ServSiteId: "",
+            });
+        }else if (numero === 7) {
+            setServicio7({
+                ServNum: numero,
+                ServDescrip: "",
+                ServSubTitulo: "",
+                ServImg: "",
+                ServIcono: "",
+                ServSiteId: "",
+            });
         }
     }
 
@@ -661,7 +745,7 @@ const DiseñaTarjetSite = () => {
                     </p>
 
                     <form>
-                        <input type="text" placeholder='Estética profesional canina.'/>
+                        <input type="text" placeholder='Estética profesional canina.' readOnly value={datosGenerales.Lev3Desc}/>
 
                         <h3>Listado de actividades</h3>
                         <p>
@@ -670,8 +754,10 @@ const DiseñaTarjetSite = () => {
                         <h3>Servicios</h3>
                         <textarea 
                             placeholder='Escribe aquí tu listado ó parrafo de servicios / actividades'
-                            value={datosGenerales.Serv[0].ServDescrip}
-                        ></textarea>
+                            value={servicio1.ServDescrip}
+                            onChange={(e)=>setServicio1({...servicio1, ServDescrip: e.target.value})}
+                        >
+                        </textarea>
 
                         <h3>Muestra de productos ó servicios</h3>
 
@@ -684,169 +770,6 @@ const DiseñaTarjetSite = () => {
                             </button>
                             <AnimatePresence>
                                 { bloque1 &&
-                                    <motion.div 
-                                        className='cuerpo-bloque'
-                                        initial= "closed"
-                                        animate= "open"
-                                        exit= "closed"
-                                        variants={acordeonVariantes}
-                                    >
-                                        <input 
-                                            type="text" 
-                                            placeholder='Escribe su título'
-                                            value={servicio1.ServSubTitulo}
-                                            onChange={(e) => setServicio1({...servicio1, ServSubTitulo: e.target.value })}
-                                        />
-                                        { servicio1.ServImg ?
-                                            <img 
-                                                src={`https://tarjet.site/imagenes/servicios/${servicio1.ServImg}`} 
-                                                className='imagen-servicio'
-                                            />
-                                        :
-                                            <div className='mostrar-imagen'>
-                                                <img src={iconoSubirImagen} />
-                                            </div>
-                                        }
-                                        <div className='btn-subir'>
-                                            <button>
-                                                Subir imagen
-                                            </button>
-                                        </div>
-                                        <textarea 
-                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                            maxLength={60}
-                                            value={servicio1.ServDescrip}
-                                            onChange={(e) => setServicio1({...servicio1, ServDescrip: e.target.value })}
-                                        >
-                                        </textarea>
-                                        <div className='borrar'>
-                                            <button>
-                                                Borrar contenido de bloque
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                }
-                            </AnimatePresence>
-                        </div>
-
-                        <div>
-                            <button className='btn-bloque' onClick={()=>setBloque2(!bloque2)}>
-                                Bloque de servicio No. 2
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                            <AnimatePresence>
-                                { bloque2 &&
-                                    <motion.div 
-                                        className='cuerpo-bloque'
-                                        initial= "closed"
-                                        animate= "open"
-                                        exit= "closed"
-                                        variants={acordeonVariantes}
-                                    >
-                                        <input 
-                                            type="text" 
-                                            placeholder='Escribe su título'
-                                            value={servicio2.ServSubTitulo}
-                                            onChange={(e) => setServicio2({...servicio2, ServSubTitulo: e.target.value })}
-                                        />
-                                        { servicio2.ServImg ?
-                                            <img 
-                                                src={`https://tarjet.site/imagenes/servicios/${servicio2.ServImg}`} 
-                                                className='imagen-servicio'
-                                            />
-                                        :
-                                            <div className='mostrar-imagen'>
-                                                <img src={iconoSubirImagen} />
-                                            </div>
-                                        }
-                                        <div className='btn-subir'>
-                                            <button>
-                                                Subir imagen
-                                            </button>
-                                        </div>
-                                        <textarea 
-                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                            maxLength={60}
-                                            value={servicio2.ServDescrip}
-                                            onChange={(e) => setServicio2({...servicio2, ServDescrip: e.target.value })}
-                                        >
-                                        </textarea>
-                                        <div className='borrar'>
-                                            <button>
-                                                Borrar contenido de bloque
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                }
-                            </AnimatePresence>
-                        </div>
-
-                        <div>
-                            <button className='btn-bloque' onClick={()=>setBloque3(!bloque3)}>
-                                Bloque de servicio No. 3
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                            <AnimatePresence>
-                                { bloque3 &&
-                                    <motion.div 
-                                        className='cuerpo-bloque'
-                                        initial= "closed"
-                                        animate= "open"
-                                        exit= "closed"
-                                        variants={acordeonVariantes}
-                                    >
-                                        <input 
-                                            type="text" 
-                                            placeholder='Escribe su título'
-                                            value={servicio3.ServSubTitulo}
-                                            onChange={(e) => setServicio3({...servicio3, ServSubTitulo: e.target.value })}
-                                        />
-                                        { servicio3.ServImg ?
-                                            <img 
-                                                src={`https://tarjet.site/imagenes/servicios/${servicio3.ServImg}`} 
-                                                className='imagen-servicio'
-                                            />
-                                        :
-                                            <div className='mostrar-imagen'>
-                                                <img src={iconoSubirImagen} />
-                                            </div>
-                                        }
-                                        <div className='btn-subir'>
-                                            <button>
-                                                Subir imagen
-                                            </button>
-                                        </div>
-                                        <textarea 
-                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                            maxLength={60}
-                                            value={servicio3.ServDescrip}
-                                            onChange={(e) => setServicio3({...servicio3, ServDescrip: e.target.value })}
-                                        >
-                                        </textarea>
-                                        <div className='borrar'>
-                                            <button>
-                                                Borrar contenido de bloque
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                }
-                            </AnimatePresence>
-                        </div>
-
-                        <div>
-                            <button className='btn-bloque' onClick={()=>setBloque4(!bloque4)}>
-                                Bloque de servicio No. 4
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-
-                            <AnimatePresence>
-                                { bloque4 &&
                                     <motion.div 
                                         className='cuerpo-bloque'
                                         initial= "closed"
@@ -883,7 +806,170 @@ const DiseñaTarjetSite = () => {
                                         >
                                         </textarea>
                                         <div className='borrar'>
+                                            <button onClick={()=>BorrarBloque(4)}>
+                                                Borrar contenido de bloque
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                }
+                            </AnimatePresence>
+                        </div>
+
+                        <div>
+                            <button className='btn-bloque' onClick={()=>setBloque2(!bloque2)}>
+                                Bloque de servicio No. 2
+                                <div>
+                                    <i className="bi bi-plus-lg"></i>
+                                </div>
+                            </button>
+                            <AnimatePresence>
+                                { bloque2 &&
+                                    <motion.div 
+                                        className='cuerpo-bloque'
+                                        initial= "closed"
+                                        animate= "open"
+                                        exit= "closed"
+                                        variants={acordeonVariantes}
+                                    >
+                                        <input 
+                                            type="text" 
+                                            placeholder='Escribe su título'
+                                            value={servicio5.ServSubTitulo}
+                                            onChange={(e) => setServicio5({...servicio5, ServSubTitulo: e.target.value })}
+                                        />
+                                        { servicio5.ServImg ?
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/servicios/${servicio5.ServImg}`} 
+                                                className='imagen-servicio'
+                                            />
+                                        :
+                                            <div className='mostrar-imagen'>
+                                                <img src={iconoSubirImagen} />
+                                            </div>
+                                        }
+                                        <div className='btn-subir'>
                                             <button>
+                                                Subir imagen
+                                            </button>
+                                        </div>
+                                        <textarea 
+                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                            maxLength={60}
+                                            value={servicio5.ServDescrip}
+                                            onChange={(e) => setServicio5({...servicio5, ServDescrip: e.target.value })}
+                                        >
+                                        </textarea>
+                                        <div className='borrar'>
+                                            <button onClick={()=>BorrarBloque(5)}>
+                                                Borrar contenido de bloque
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                }
+                            </AnimatePresence>
+                        </div>
+
+                        <div>
+                            <button className='btn-bloque' onClick={()=>setBloque3(!bloque3)}>
+                                Bloque de servicio No. 3
+                                <div>
+                                    <i className="bi bi-plus-lg"></i>
+                                </div>
+                            </button>
+                            <AnimatePresence>
+                                { bloque3 &&
+                                    <motion.div 
+                                        className='cuerpo-bloque'
+                                        initial= "closed"
+                                        animate= "open"
+                                        exit= "closed"
+                                        variants={acordeonVariantes}
+                                    >
+                                        <input 
+                                            type="text" 
+                                            placeholder='Escribe su título'
+                                            value={servicio6.ServSubTitulo}
+                                            onChange={(e) => setServicio6({...servicio6, ServSubTitulo: e.target.value })}
+                                        />
+                                        { servicio6.ServImg ?
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/servicios/${servicio6.ServImg}`} 
+                                                className='imagen-servicio'
+                                            />
+                                        :
+                                            <div className='mostrar-imagen'>
+                                                <img src={iconoSubirImagen} />
+                                            </div>
+                                        }
+                                        <div className='btn-subir'>
+                                            <button>
+                                                Subir imagen
+                                            </button>
+                                        </div>
+                                        <textarea 
+                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                            maxLength={60}
+                                            value={servicio6.ServDescrip}
+                                            onChange={(e) => setServicio6({...servicio6, ServDescrip: e.target.value })}
+                                        >
+                                        </textarea>
+                                        <div className='borrar'>
+                                            <button onClick={()=>BorrarBloque(6)}>
+                                                Borrar contenido de bloque
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                }
+                            </AnimatePresence>
+                        </div>
+
+                        <div>
+                            <button className='btn-bloque' onClick={()=>setBloque4(!bloque4)}>
+                                Bloque de servicio No. 4
+                                <div>
+                                    <i className="bi bi-plus-lg"></i>
+                                </div>
+                            </button>
+
+                            <AnimatePresence>
+                                { bloque4 &&
+                                    <motion.div 
+                                        className='cuerpo-bloque'
+                                        initial= "closed"
+                                        animate= "open"
+                                        exit= "closed"
+                                        variants={acordeonVariantes}
+                                    >
+                                        <input 
+                                            type="text" 
+                                            placeholder='Escribe su título'
+                                            value={servicio7.ServSubTitulo}
+                                            onChange={(e) => setServicio7({...servicio7, ServSubTitulo: e.target.value })}
+                                        />
+                                        { servicio7.ServImg ?
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/servicios/${servicio7.ServImg}`} 
+                                                className='imagen-servicio'
+                                            />
+                                        :
+                                            <div className='mostrar-imagen'>
+                                                <img src={iconoSubirImagen} />
+                                            </div>
+                                        }
+                                        <div className='btn-subir'>
+                                            <button>
+                                                Subir imagen
+                                            </button>
+                                        </div>
+                                        <textarea 
+                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                            maxLength={60}
+                                            value={servicio7.ServDescrip}
+                                            onChange={(e) => setServicio7({...servicio7, ServDescrip: e.target.value })}
+                                        >
+                                        </textarea>
+                                        <div className='borrar'>
+                                            <button onClick={()=>BorrarBloque(7)}>
                                                 Borrar contenido de bloque
                                             </button>
                                         </div>
@@ -949,14 +1035,14 @@ const DiseñaTarjetSite = () => {
                             </button>
                         </div>
 
-                        <div className='Btnterminos'>
+                        {/* <div className='Btnterminos'>
                             <input type="checkbox" id="termino" />
                             <label htmlFor='termino'>
                                 Acepto <span onClick={()=>navigate('/aviso-privacidad')}>términos de privacidad</span>
                             </label>
-                        </div>
+                        </div> */}
 
-                        <button className='btn-guardar'>
+                        <button className='btn-guardar' onClick={GuardarTarjeta1}>
                             Guardar ó actualizar información
                         </button>
 

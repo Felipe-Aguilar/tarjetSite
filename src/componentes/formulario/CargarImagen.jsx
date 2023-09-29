@@ -7,7 +7,7 @@ import { Cropper } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
 
-const CargarImagen = () => {
+const CargarImagen = ({onBotonClick}) => {
 
     const animation = {
         initial: {scale: 0},
@@ -109,7 +109,7 @@ const CargarImagen = () => {
                 {/* <img src={URL.createObjectURL(file)} alt="" /> */}
 
                 <div className="footer">
-                    <button>
+                    <button onClick={onBotonClick}>
                         Cerrar ventana (x)
                     </button>
                 </div>
