@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DatosEditaPerfil, ActualizarPerfil2 } from '../contextos/EditaPerfil';
+import CargarImagen from './CargarImagen';
 
 import ilustracion from '../../assets/ilustracion-diseña-tarjetsite.png';
 import tarjetaGenerica from '../../assets/tarjetageneric.png';
@@ -346,6 +347,19 @@ const DiseñaTarjetSite = () => {
         }
     }
 
+    // Subir Imagen de servicios
+    const [cargarImagen, setCargarImagen] = useState(false);
+    const [nServicioImagen, setNServicioImagen] = useState(0);
+
+    const SubirImagen = (numero) => {
+        setCargarImagen(true);
+        setNServicioImagen(numero);
+    }
+
+    const CerrarCarga = () => {
+        setCargarImagen(false);
+    }
+
     return ( 
         <div className="container-fluid DiseñaTarjetSite">
 
@@ -520,11 +534,11 @@ const DiseñaTarjetSite = () => {
                             </div>
                         </div>
 
-                        <div className='subirimagen'>
+                        {/* <div className='subirimagen'>
                             <button>
                                 Subir imagen
                             </button>
-                        </div>
+                        </div> */}
 
                         <div className='indicaciones'>
                             <p>
@@ -761,6 +775,10 @@ const DiseñaTarjetSite = () => {
 
                         <h3>Muestra de productos ó servicios</h3>
 
+                        { cargarImagen && 
+                            <CargarImagen onBotonClick={CerrarCarga}  tipoImagen={"SERV"} numeroServicio={nServicioImagen}/>
+                        }
+
                         <div>
                             <button className='btn-bloque' onClick={()=>setBloque1(!bloque1)}>
                                 Bloque de servicio No. 1
@@ -794,7 +812,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button>
+                                            <button onClick={()=> SubirImagen(1)}>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -848,7 +866,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button>
+                                            <button onClick={()=> SubirImagen(2)}>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -902,7 +920,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button>
+                                            <button onClick={()=> SubirImagen(3)}>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -957,7 +975,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button>
+                                            <button onClick={()=> SubirImagen(4)}>
                                                 Subir imagen
                                             </button>
                                         </div>

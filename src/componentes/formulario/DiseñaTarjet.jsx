@@ -198,9 +198,9 @@ const DiseñaTarjet = () => {
         await ActualizarPerfil(datosGenerales, datosFormulario);
         setPopActualiza(true);
 
-        setTimeout(()=>{
-            window.location.reload(true);
-        }, 3500);
+        // setTimeout(()=>{
+        //     window.location.reload(true);
+        // }, 3500);
     }
 
     // Guardar TUS DATOS
@@ -242,9 +242,9 @@ const DiseñaTarjet = () => {
         await ActualizarPerfil(datosGenerales, datosFormulario);
         setPopActualiza(true);
 
-        setTimeout(()=>{
-            window.location.reload(true);
-        }, 3500);
+        // setTimeout(()=>{
+        //     window.location.reload(true);
+        // }, 3500);
     }
 
     const CerrarCarga = () => {
@@ -419,7 +419,7 @@ const DiseñaTarjet = () => {
                                 </div>
 
                                 { cargarImagen &&
-                                    <CargarImagen onBotonClick={CerrarCarga}/>
+                                    <CargarImagen onBotonClick={CerrarCarga} tipoImagen={"PERF"}/>
                                 }
 
                                 <div className='prefijo'>
@@ -510,7 +510,7 @@ const DiseñaTarjet = () => {
 
                                         <div className='buttons'>
                                             <div className='primer'>
-                                                <button onClick={()=>setPrevisualizar(true)}>
+                                                <button onClick={()=>setPrevisualizar(true)} type='button'>
                                                     Previsualizar
                                                 </button>
                                             </div>
@@ -706,7 +706,7 @@ const DiseñaTarjet = () => {
                 <div className='tusDatos'>
                     <h6>Esta información se mostrará en el directorio</h6>
 
-                    <div className='imagen-perfil'>
+                    {/* <div className='imagen-perfil'>
                         { datosGenerales.ImgFoto ?
                             <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
                         :
@@ -716,7 +716,7 @@ const DiseñaTarjet = () => {
                         <button>
                             Imagen ó Logotipo <span>(editar)</span>
                         </button>
-                    </div>
+                    </div> */}
 
                     <div className='formulario'>
                         <form onSubmit={GuardarTarjeta2}>

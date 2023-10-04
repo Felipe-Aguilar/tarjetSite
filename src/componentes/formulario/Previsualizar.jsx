@@ -42,9 +42,6 @@ const Previsualizar = ({onClickButton, datosGenerales}) => {
         setTimeout(()=>{
             setGuardado(true);
 
-            setTimeout(()=>{
-                onClickButton();
-            },2600);
         },3000);
     }
 

@@ -19,10 +19,18 @@ const SubirImagenSegundo = async (token, tipo, imagen) => {
 
 
 // Primer Servicio
-const SubirImagenPrimer = async (blob2, token, tipo) => {
+const SubirImagenPrimer = async (blob2, token, tipo, numeroServicio) => {
+
 
     const formData = new FormData();
-    formData.append('file', blob2, `${token}_${tipo}.jpeg`);
+
+    if (tipo === 'PERF') {
+        formData.append('file', blob2, `${token}_${tipo}.jpeg`);
+    }
+    if (tipo === 'SERV') {
+        formData.append('file', blob2, `${token}_${tipo}_${numeroServicio}.jpeg`);
+    }
+
 
     const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/gxobject', {
         method: 'POST',

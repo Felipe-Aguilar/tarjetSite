@@ -9,11 +9,10 @@ import { Cropper } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
 
-const CargarImagen = ({onBotonClick}) => {
+const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
 
-    const [disabled, setDisabled] = useState(true);
     const [datosSesion, setDatosSesion] = useState({});
-
+    const [correcto, setCorrecto] = useState(false);
 
     useEffect(()=>{
 
@@ -51,12 +50,6 @@ const CargarImagen = ({onBotonClick}) => {
         }
     });
 
-    // const files = acceptedFiles.map(file => (
-    //     <li key={file.path}>
-    //         {file.path} - {file.size} bytes
-    //     </li>
-    // ));
-
     const files = acceptedFiles.map(file => (
         <>
             <li key={file.path}>
@@ -68,20 +61,40 @@ const CargarImagen = ({onBotonClick}) => {
                 className="img-preview"
             /> */}
 
-            <Cropper
-                src={URL.createObjectURL(file)}
-                className="img-preview"
+            { tipoImagen === 'PERF' ? 
+                
+                <Cropper
+                    src={URL.createObjectURL(file)}
+                    className="img-preview"
+    
+                    // Cropper.js options
+                    initialAspectRatio={1/1}
+                    aspectRatio={1}
+                    guides={true}
+                    crop={onCrop}
+                    ref={cropperRef}
+                    viewMode={2}
+                    dragMode={'none'}
+                    minCropBoxWidth={500}
+                />
 
-                // Cropper.js options
-                initialAspectRatio={1/1}
-                aspectRatio={1}
-                guides={true}
-                crop={onCrop}
-                ref={cropperRef}
-                viewMode={2}
-                dragMode={'none'}
-                minCropBoxWidth={500}
-            />
+                :
+
+                <Cropper
+                    src={URL.createObjectURL(file)}
+                    className="img-preview"
+    
+                    // Cropper.js options
+                    guides={false}
+                    crop={onCrop}
+                    ref={cropperRef}
+                    viewMode={2}
+                    dragMode={'none'}
+                    minCropBoxWidth={1000}
+                    minCropBoxHeight={1000}
+                />
+            }
+
         </>
     ));
 
@@ -114,9 +127,16 @@ const CargarImagen = ({onBotonClick}) => {
                     60,
                     0,
                     (blob2) => {
-                        SubirImagenPrimer(blob2 ,datosSesion.Token, 'PERF');
+                        SubirImagenPrimer(blob2 ,datosSesion.Token, tipoImagen, numeroServicio);
 
-                        
+                        setTimeout(()=>{
+                            setCorrecto(true);
+
+                            setTimeout(()=>{
+                                onBotonClick();
+                            }, 4000);
+
+                        }, 1000);
                     },
                     "blob"
                 );
@@ -148,8 +168,17 @@ const CargarImagen = ({onBotonClick}) => {
                     </div>
                 </div>
 
+                { correcto &&
+                    <motion.div className="correcto" {...animation}>
+                        <h5>La imagen se subió correctamente</h5>
+                        <p>
+                            <i className="bi bi-check2-circle"></i>
+                        </p>
+                    </motion.div>
+                }
+
                 <div className="guardar">
-                    <button onClick={EnviarImagen} >
+                    <button onClick={EnviarImagen} className={ files.length === 0 ? 'disabled' : ''}>
                         Guardar imagen
                     </button>
                 </div>
