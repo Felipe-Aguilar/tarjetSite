@@ -148,9 +148,9 @@ const Perfil = () => {
                     <button className='btn-site' onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}>
                         Editar tu tarjet site (tarjeta digital)
                     </button>
-                    <button className='btn-fisica'>
+                    {/* <button className='btn-fisica'>
                         Tu tarjeta física
-                    </button>
+                    </button> */}
                     <div>
                         <button className='btn-premium'>
                             Tienes <span>1</span> producto premium <span className='span-detalles'>(ver detalles)</span>

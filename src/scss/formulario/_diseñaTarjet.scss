@@ -904,6 +904,15 @@ $btnAmarillo: #fab947;
                         margin: auto;
                     }
                 }
+                .input-error{
+                    border: 2px solid red;
+                }
+                .error-message{
+                    p{
+                        color: red;
+                        text-align: left;
+                    }
+                }
             }
         }
     }

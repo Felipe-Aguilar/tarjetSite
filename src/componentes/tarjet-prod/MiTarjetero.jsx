@@ -322,7 +322,7 @@ const MiTarjetero = () => {
                             Copiar enlace
                         </button>
 
-                        <button>
+                        <button onClick={()=>navigate('/directorio-tarjet')}>
                             <img src={BtnDirectorio}/>
                             Visitar directorio
                         </button>
@@ -380,7 +380,7 @@ const MiTarjetero = () => {
                 </div> */}
 
                 {/* Últimas consultas */}
-                <div className='row justify-content-center consultas'>
+                {/* <div className='row justify-content-center consultas'>
                     <div className='col-11 col-lg-4'>
                         <div className='cuerpo'>
                             <h5>Últimas consultas</h5>
@@ -392,7 +392,7 @@ const MiTarjetero = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Tu tarjetero */}
                 <div className='row justify-content-center TuTarjetero'>

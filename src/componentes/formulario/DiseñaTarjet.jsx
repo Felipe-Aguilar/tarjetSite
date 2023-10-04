@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
 import { DatosEditaPerfil, ActualizarPerfil } from '../contextos/EditaPerfil';
+import { CodigoPostal } from '../contextos/CodigoPostal';
 import Slider from 'react-slick';
 import CargarImagen from './CargarImagen';
 import PopCorrecto from './PopCorrecto';
@@ -32,12 +33,15 @@ const DiseñaTarjet = () => {
     const [calle, setCalle] = useState('');
     const [codigoPostal, setCodigoPostal] = useState('');
     const [colonia, setColonia] = useState('');
+    const [estado, setEstado] = useState('');
+    const [municipio, setMunicipio] = useState('');
     const [ubicacion, setUbicacion] = useState(false);
     const [calificacion, setCalificacion] = useState(false);
     const [comentarios, setComentarios] = useState(false);
     const [actividad, setActividad] = useState('');
 
     const [error, setError] = useState(false);
+    const [error2, setError2] = useState(false);
 
     // Selecciona actividad
     const [buscaActividad, setBuscaActividad] = useState('');
@@ -69,6 +73,7 @@ const DiseñaTarjet = () => {
             setCargo(respuesta.Cargo);
             setCalle(respuesta.Calle);
             setCodigoPostal(respuesta.CodP);
+            setMunicipio(respuesta.Municip);
             setColonia(respuesta.Colonia);
             setActividad(respuesta.Lev3Desc);
 
@@ -158,12 +163,16 @@ const DiseñaTarjet = () => {
     // Sacar pop de datos actualizados
     const [popActualiza, setPopActualiza] = useState(false);
 
-    // Guardar Tarjeta 1
-    const GuardarTarjeta1 = async () => {
+    // Guardar TU DISEÑO
+    const GuardarTarjeta1 = async (e) => {
+
+        e.preventDefault();
 
         if (buscaActividad === '') {
             setError(true);
             return;
+        }else{
+            setError(false);
         }
 
         const datosFormulario = {
@@ -182,6 +191,51 @@ const DiseñaTarjet = () => {
             "PermitirComments": comentarios ? 1 : 0,
             "Calle": calle,
             "CodP": codigoPostal,
+            "Municip": municipio,
+            "Colonia": colonia,
+        }
+
+        await ActualizarPerfil(datosGenerales, datosFormulario);
+        setPopActualiza(true);
+
+        setTimeout(()=>{
+            window.location.reload(true);
+        }, 3500);
+    }
+
+    // Guardar TUS DATOS
+    const GuardarTarjeta2 = async (e) => {
+
+        e.preventDefault();
+
+        if (!colonia) {
+            setError2(true);
+            return;
+        }
+        if (codigoPostal < 5) {
+            setError2(true);
+            return;
+        }else{
+            setError2(false);
+        }
+
+        const datosFormulario = {
+            "Nom": nombre,
+            "AppP": appPat,
+            "AppM": appMat,
+            "Cargo": cargo,
+            "Lev1Id": buscaActividad ? filtroSegmento.Nivel1Id : '',
+            "Lev1Desc": buscaActividad ? filtroSegmento.Nivel1Desc : '',
+            "Lev2Id": buscaActividad ? filtroSegmento.Nivel2Id : '',
+            "Lev2Desc": buscaActividad ? filtroSegmento.Nivel2Desc : '',
+            "Lev3Id": buscaActividad ? filtroSegmento.Nivel3Id : '',
+            "Lev3Desc": buscaActividad,
+            "VerUbicacion": ubicacion ? 1 : 0,
+            "PermitirCalif": calificacion ? 1 : 0,
+            "PermitirComments": comentarios ? 1 : 0,
+            "Calle": calle,
+            "CodP": codigoPostal,
+            "Municip": municipio,
             "Colonia": colonia,
         }
 
@@ -199,6 +253,29 @@ const DiseñaTarjet = () => {
 
     const CerrarPrevisualizar = () => {
         setPrevisualizar(false);
+    }
+
+    // Asignar Estado, ciudad, delegación, etc.
+
+    const [consultaCP, setConsultaCP] = useState([]);
+
+    const onChangeCodigoPostal = async (e) => {
+
+        const codigo = e.target.value.replace(/\D/g, '');
+        setCodigoPostal(codigo);
+
+        if (codigo.length === 5) {
+            const responseCP = await CodigoPostal(codigo);
+            setConsultaCP(responseCP.ListColonias);
+
+            setEstado(responseCP.ListColonias[0]?.CPEstado);
+            setMunicipio(responseCP.ListColonias[0]?.CPMunicipio);
+
+        }else{
+            setConsultaCP([]);
+            setEstado('');
+            setMunicipio('');
+        }
     }
 
     return ( 
@@ -350,7 +427,7 @@ const DiseñaTarjet = () => {
                                 </div>
 
                                 <div className='form'>
-                                    <form>
+                                    <form onSubmit={GuardarTarjeta1}>
                                         <div className='select'>
                                             <div>
                                                 <select>
@@ -438,7 +515,7 @@ const DiseñaTarjet = () => {
                                                 </button>
                                             </div>
                                             <div className='segundo'>
-                                                <button onClick={GuardarTarjeta1}>
+                                                <button type='submit'>
                                                     Guardar Tarjeta
                                                 </button>
                                             </div>
@@ -642,7 +719,7 @@ const DiseñaTarjet = () => {
                     </div>
 
                     <div className='formulario'>
-                        <form>
+                        <form onSubmit={GuardarTarjeta2}>
                             <input 
                                 type="text" 
                                 placeholder='Empresa o nombre y apellidos (40 caracteres)' 
@@ -671,20 +748,6 @@ const DiseñaTarjet = () => {
                                 value={buscaActividad === filtroSegmento?.Descripcion ? filtroSegmento.Nivel1Desc : ''}
                                 style={{color: '#8e8e8e'}}
                             />
-
-                            {/* <select disabled>
-                                
-                                { buscaActividad === filtroSegmento?.Descripcion  &&
-                                    <option 
-                                        value={filtroSegmento.Nivel2Desc}
-                                        key={filtroSegmento.Nivel2Id}
-                                        selected
-                                    >
-                                        {filtroSegmento.Nivel2Desc}
-                                    </option>
-                                }
-                                <option value="categoría" key="1" selected>Categoría *</option>
-                            </select> */}
 
                             <input 
                                 type="text" 
@@ -723,15 +786,6 @@ const DiseñaTarjet = () => {
                             </a>
 
                             <h6>Ubicación</h6>
-                            <select name="" id="">
-                                <option value="categiria" key="1">Estado *</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="categiria" key="1">Ciudad *</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="categiria" key="1">Delegación *</option>
-                            </select>
 
                             <input 
                                 type="text" 
@@ -750,17 +804,48 @@ const DiseñaTarjet = () => {
                                         maxLength={5}
                                         placeholder='C.P'
                                         value={codigoPostal}
-                                        onChange={(e)=>setCodigoPostal(e.target.value)}
+                                        onChange={onChangeCodigoPostal}
                                     />
                                 </div>
                             </div>
 
                             <input 
                                 type="text" 
+                                readOnly
+                                placeholder='Estado'
+                                value={estado}
+                            />
+
+                            <input 
+                                type="text" 
+                                readOnly
+                                placeholder='Municipio'
+                                value={municipio}
+                            />
+
+                            {/* <select name="" id="">
+                                <option value="categiria" key="1">Delegación *</option>
+                            </select> */}
+
+                            <select 
+                                value={colonia} 
+                                onChange={(e)=>setColonia(e.target.value)}
+                                className={error2 ? 'input-error' : ''}
+                            >
+                                <option value="categiria" key="1">Colonia *</option>
+
+                                { consultaCP.map((colonia, index)=>(
+                                    <option key={index} value={colonia.CPColonia}>{colonia.CPColonia}</option>
+                                ))
+                                }
+                            </select>
+
+                            {/* <input 
+                                type="text" 
                                 placeholder='Colonia'
                                 value={colonia}
                                 onChange={(e)=>setColonia(e.target.value)}
-                            />
+                            /> */}
 
                             <div className='check'>
                                 <input type="checkbox" id='mostrarEmpresa'/>
@@ -827,8 +912,16 @@ const DiseñaTarjet = () => {
                                 </label>
                             </div> */}
 
+                            { error2 &&
+                                <div className='error-message'>
+                                    <p>
+                                        Por favor introduzca un código postal válido y seleccione una colonia
+                                    </p>
+                                </div>
+                            }
+
                             <div className='btn-guardar'>
-                                <button onClick={GuardarTarjeta1}>
+                                <button type='submit'>
                                     Guardar mis datos de tarjeta
                                 </button>
                             </div>

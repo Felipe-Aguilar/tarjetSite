@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { SubirImagenPrimer } from "../contextos/SubirImagen";
 
+import FileResizer from "react-image-file-resizer";
 import { useDropzone } from "react-dropzone";
 
 import { Cropper } from "react-cropper";
@@ -8,6 +10,18 @@ import "cropperjs/dist/cropper.css";
 
 
 const CargarImagen = ({onBotonClick}) => {
+
+    const [disabled, setDisabled] = useState(true);
+    const [datosSesion, setDatosSesion] = useState({});
+
+
+    useEffect(()=>{
+
+        const data = JSON.parse(localStorage.getItem('IdDatosSesion'));
+        setDatosSesion(data);
+
+    },[]);
+
 
     const animation = {
         initial: {scale: 0},
@@ -82,6 +96,34 @@ const CargarImagen = ({onBotonClick}) => {
         </li>
     ));
 
+    const EnviarImagen = async () => {
+
+        const cropper = await cropperRef.current?.cropper;
+        // const image = await cropper.getCroppedCanvas().toDataURL("image/jpg");
+        
+        const image = await cropper.getCroppedCanvas();
+
+        if (image) {
+            image.toBlob((blob)=>{
+
+                FileResizer.imageFileResizer(
+                    blob,
+                    500,
+                    500,
+                    "JPEG",
+                    60,
+                    0,
+                    (blob2) => {
+                        SubirImagenPrimer(blob2 ,datosSesion.Token, 'PERF');
+
+                        
+                    },
+                    "blob"
+                );
+            })
+        }
+    }
+
     return ( 
         <div className="pop-cargarimagen">
             <motion.div {...animation} className="cuerpo" >
@@ -106,7 +148,11 @@ const CargarImagen = ({onBotonClick}) => {
                     </div>
                 </div>
 
-                {/* <img src={URL.createObjectURL(file)} alt="" /> */}
+                <div className="guardar">
+                    <button onClick={EnviarImagen} >
+                        Guardar imagen
+                    </button>
+                </div>
 
                 <div className="footer">
                     <button onClick={onBotonClick}>

@@ -83,6 +83,25 @@
             }
         }
 
+        .guardar{
+            display: flex;
+            justify-content: center;
+
+            button{
+                outline: none!important;
+                padding: 5px 20px;
+                background: #91ba14;
+                border-radius: 8px;
+                border: transparent;
+            }
+
+            .disabled {
+                
+                background: rgb(225,225,225);
+                pointer-events: none;
+            }
+        }
+
         .footer{
             display: flex;
             justify-content: center;
