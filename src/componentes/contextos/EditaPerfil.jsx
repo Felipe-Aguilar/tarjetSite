@@ -57,7 +57,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "Calle": datosFormulario.Calle,
                 "CodP": datosFormulario.CodP,
                 "Colonia": datosFormulario.Colonia,
-                "Municip": datosGenerales.Municip,
+                "Municip": datosFormulario.Municip,
                 "MapsGeoloc": datosGenerales.MapsGeoloc,
                 "Activo": datosGenerales.Activo,
                 "RangoLocal": datosGenerales.RangoLocal,

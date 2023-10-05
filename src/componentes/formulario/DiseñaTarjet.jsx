@@ -39,6 +39,7 @@ const DiseñaTarjet = () => {
     const [calificacion, setCalificacion] = useState(false);
     const [comentarios, setComentarios] = useState(false);
     const [actividad, setActividad] = useState('');
+    const [consultaCP, setConsultaCP] = useState([]);
 
     const [error, setError] = useState(false);
     const [error2, setError2] = useState(false);
@@ -76,6 +77,11 @@ const DiseñaTarjet = () => {
             setMunicipio(respuesta.Municip);
             setColonia(respuesta.Colonia);
             setActividad(respuesta.Lev3Desc);
+
+            if (respuesta.CodP) {
+                const responseCP = await CodigoPostal(respuesta.CodP);
+                setConsultaCP(responseCP.ListColonias);
+            }
 
             // Filtro de Busca actividad
             setBuscaActividad(respuesta.Lev3Desc);
@@ -198,9 +204,10 @@ const DiseñaTarjet = () => {
         await ActualizarPerfil(datosGenerales, datosFormulario);
         setPopActualiza(true);
 
-        // setTimeout(()=>{
-        //     window.location.reload(true);
-        // }, 3500);
+        setTimeout(()=>{
+            // window.location.reload(true);
+            setPopActualiza(false);
+        }, 3500);
     }
 
     // Guardar TUS DATOS
@@ -242,9 +249,9 @@ const DiseñaTarjet = () => {
         await ActualizarPerfil(datosGenerales, datosFormulario);
         setPopActualiza(true);
 
-        // setTimeout(()=>{
-        //     window.location.reload(true);
-        // }, 3500);
+        setTimeout(()=>{
+            setPopActualiza(false);
+        }, 3500);
     }
 
     const CerrarCarga = () => {
@@ -257,7 +264,7 @@ const DiseñaTarjet = () => {
 
     // Asignar Estado, ciudad, delegación, etc.
 
-    const [consultaCP, setConsultaCP] = useState([]);
+    
 
     const onChangeCodigoPostal = async (e) => {
 
@@ -832,10 +839,17 @@ const DiseñaTarjet = () => {
                                 onChange={(e)=>setColonia(e.target.value)}
                                 className={error2 ? 'input-error' : ''}
                             >
-                                <option value="categiria" key="1">Colonia *</option>
+                                <option value="categoria" key="1">Colonia *</option>
 
-                                { consultaCP.map((colonia, index)=>(
-                                    <option key={index} value={colonia.CPColonia}>{colonia.CPColonia}</option>
+
+                                { consultaCP.map((coloniaa, index)=>(
+                                    <option 
+                                        key={index} 
+                                        value={coloniaa.CPColonia}
+                                        selected
+                                    >
+                                        {coloniaa.CPColonia}
+                                    </option>
                                 ))
                                 }
                             </select>
