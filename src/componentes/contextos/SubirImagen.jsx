@@ -24,7 +24,7 @@ const SubirImagenPrimer = async (blob2, token, tipo, numeroServicio) => {
 
     const formData = new FormData();
 
-    if (tipo === 'PERF') {
+    if (tipo === 'PERF' || tipo === 'TFRE') {
         formData.append('file', blob2, `${token}_${tipo}.jpeg`);
     }
     if (tipo === 'SERV') {

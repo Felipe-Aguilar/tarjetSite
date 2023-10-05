@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Tarjeta from '../../assets/tarjetageneric.png';
 
+import { SubirImagenPrimer } from "../contextos/SubirImagen";
+
 import html2canvas from "html2canvas";
 
 const Previsualizar = ({onClickButton, datosGenerales}) => {
@@ -37,11 +39,21 @@ const Previsualizar = ({onClickButton, datosGenerales}) => {
             a.href = imgData;
             a.download = 'imagen_con_texto.png';
             a.click();
+
+            canvas.toBlob((blob)=>{
+
+                SubirImagenPrimer(blob, datosGenerales.TokenId, "TFRE")
+
+            })
         });
 
         setTimeout(()=>{
             setGuardado(true);
+            onClickButton();
 
+            setTimeout(()=>{
+                window.location.reload(true);
+            }, 3000)
         },3000);
     }
 
