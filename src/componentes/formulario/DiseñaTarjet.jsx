@@ -31,6 +31,7 @@ const DiseñaTarjet = () => {
     const [appMat, setAppMat] = useState('');
     const [cargo, setCargo] = useState('');
     const [calle, setCalle] = useState('');
+    const [numeroExterior, setNumeroExterior] = useState('');
     const [codigoPostal, setCodigoPostal] = useState('');
     const [colonia, setColonia] = useState('');
     const [estado, setEstado] = useState('');
@@ -73,7 +74,9 @@ const DiseñaTarjet = () => {
             setAppMat(respuesta.AppM);
             setCargo(respuesta.Cargo);
             setCalle(respuesta.Calle);
+            setNumeroExterior(respuesta.NumExt);
             setCodigoPostal(respuesta.CodP);
+            setEstado(respuesta.Estado);
             setMunicipio(respuesta.Municip);
             setColonia(respuesta.Colonia);
             setActividad(respuesta.Lev3Desc);
@@ -241,6 +244,8 @@ const DiseñaTarjet = () => {
             "PermitirCalif": calificacion ? 1 : 0,
             "PermitirComments": comentarios ? 1 : 0,
             "Calle": calle,
+            "NumExt": numeroExterior,
+            "Estado": estado,
             "CodP": codigoPostal,
             "Municip": municipio,
             "Colonia": colonia,
@@ -803,7 +808,12 @@ const DiseñaTarjet = () => {
 
                             <div className='twoInput'>
                                 <div className='w-50'>
-                                    <input type="text" placeholder='Número'/>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Número'
+                                        value={numeroExterior}
+                                        onChange={(e)=>setNumeroExterior(e.target.value)}
+                                    />
                                 </div>
                                 <div className='w-50'>
                                     <input 
