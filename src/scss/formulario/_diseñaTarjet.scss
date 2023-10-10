@@ -192,6 +192,18 @@ $btnAmarillo: #fab947;
                 }
             }
 
+            .slick-dots li {
+                width: 75px;
+
+                // @media (width <= 575px) {
+                //     width: 80%;
+                // }
+
+                img{
+                    border-radius: 5px;
+                }
+            }
+
             .mas-imagenes{
                 display: flex;
                 width: 70%;

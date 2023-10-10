@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
 import { DatosEditaPerfil, ActualizarPerfil } from '../contextos/EditaPerfil';
 import { CodigoPostal } from '../contextos/CodigoPostal';
+import { ColeccionTarjeta } from '../contextos/Colecciones';
 import Slider from 'react-slick';
 import CargarImagen from './CargarImagen';
 import PopCorrecto from './PopCorrecto';
@@ -49,6 +50,8 @@ const DiseñaTarjet = () => {
     const [buscaActividad, setBuscaActividad] = useState('');
     // Filtro de la actividad
     const [filtroSegmento, setFiltroSegmento] = useState([]);
+
+    const [colecciones, setColecciones] = useState([]);
 
     useEffect(()=>{
 
@@ -106,6 +109,12 @@ const DiseñaTarjet = () => {
             }
         }
 
+        // Comprobar Colecciones de tarjetas
+        const Colecciones = async () => {
+            const response = await ColeccionTarjeta();
+            setColecciones(response.ListTarjetas);
+        }
+
         // Comprobar si es la sesión
         if (localStorage.UsuarioSesion && atob(usuId) === datosSesion.UsuToken) {
 
@@ -116,6 +125,7 @@ const DiseñaTarjet = () => {
 
             selecActividad();
             DatosGenerales();
+            Colecciones();
         }
         else{
             navigate('/login');
@@ -147,6 +157,41 @@ const DiseñaTarjet = () => {
                 <i className="bi bi-chevron-right" ></i>
             </div>
         ),
+    }
+
+    const [state,setState] = useState({
+        activeSlide: 0,
+        activeSlide2: 0
+    })
+    
+    const settingsSlider = {
+        customPaging: function(i) {
+
+        return (
+            <a className='tarjetaGratuitas'>
+                <img src={`${tarjetaGenerica}`} />
+            </a>
+        );
+        },
+        dots: true,
+        arrows: true,
+        dotsClass: "slick-dots slick-thumb",
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        prevArrow: (
+            <div className='custom-arrow custom-prev-arrow'>
+                <i className="bi bi-chevron-left" ></i>
+            </div>
+        ),
+        nextArrow: (
+            <div className='custom-arrow custom-prev-arrow'>
+                <i className="bi bi-chevron-right" ></i>
+            </div>
+        ),
+        beforeChange: (current, next) => this.setState({ activeSlide: next }),
+        afterChange: current => this.setState({ activeSlide2: current })
     }
 
     const btnDiseño = () => {
@@ -269,8 +314,6 @@ const DiseñaTarjet = () => {
 
     // Asignar Estado, ciudad, delegación, etc.
 
-    
-
     const onChangeCodigoPostal = async (e) => {
 
         const codigo = e.target.value.replace(/\D/g, '');
@@ -376,7 +419,7 @@ const DiseñaTarjet = () => {
 
                     { optionColecciones === 'Gratuitas' &&
                         <div className='gratuitas'>
-                            <Slider {...settings}>
+                            {/* <Slider {...settings}>
                                 <div className='tarjetaGratuitas'>
                                     <img src={tarjetaGenerica}/>
                                 </div>
@@ -398,22 +441,37 @@ const DiseñaTarjet = () => {
                                 <div className='viewpremium'>
                                     <img src={tarjetaGenerica} />
                                 </div>
-                            </div>
+                            </div> */}
 
-                            <div className='info'>
-                                <div className='modelos'>
+                            <Slider {...settingsSlider}>
+                                <div className='tarjetaGratuitas'>
+                                    <img src={`${tarjetaGenerica}`}/>
+                                </div>
+                                <div className='tarjetaGratuitas'>
+                                    <img src={`${tarjetaGenerica}`}/>
+                                </div>
+                                <div className='tarjetaGratuitas'>
+                                    <img src={`${tarjetaGenerica}`}/>
+                                </div>
+                                <div className='tarjetaGratuitas'>
+                                    <img src={`${tarjetaGenerica}`}/>
+                                </div>
+                            </Slider>
+
+                            <div className='info mt-5'>
+                                <div className='modelos w-100'>
                                     <p>
                                         1 de 8 modelos gratuitos
                                     </p>
                                 </div>
-                                <div className='premium-select'>
+                                {/* <div className='premium-select'>
                                     <div>
                                         <p>1</p>
                                     </div>
                                     <p>
                                         Tarjeta premium seleccionada
                                     </p>
-                                </div>
+                                </div> */}
                             </div>
 
                             <div className='formulario'>
