@@ -159,23 +159,21 @@ const DiseñaTarjet = () => {
         ),
     }
 
-    const [state,setState] = useState({
-        activeSlide: 0,
-        activeSlide2: 0
-    })
-    
-    const settingsSlider = {
-        customPaging: function(i) {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentFondo, setCurrentFondo] = useState('');
 
-        return (
-            <a className='tarjetaGratuitas'>
-                <img src={`${tarjetaGenerica}`} />
-            </a>
-        );
-        },
-        dots: true,
+    const settingsSlider = {
+        // customPaging: function(i) {
+
+        // return (
+        //     <a className='tarjetaGratuitas'>
+        //         <img src={`${tarjetaGenerica}`} />
+        //     </a>
+        // );
+        // },
+        // dots: true,
         arrows: true,
-        dotsClass: "slick-dots slick-thumb",
+        // dotsClass: "slick-dots slick-thumb",
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -190,8 +188,13 @@ const DiseñaTarjet = () => {
                 <i className="bi bi-chevron-right" ></i>
             </div>
         ),
-        beforeChange: (current, next) => this.setState({ activeSlide: next }),
-        afterChange: current => this.setState({ activeSlide2: current })
+        afterChange: (current) => {
+            // Se ejecuta después de que cambie la diapositiva
+            setCurrentSlide(current);
+
+            const objectImagen = colecciones.find(coleccion => coleccion.TarjetaId == current+1);
+            setCurrentFondo(objectImagen.TarjetaImagen);
+        },
     }
 
     const btnDiseño = () => {
@@ -444,24 +447,18 @@ const DiseñaTarjet = () => {
                             </div> */}
 
                             <Slider {...settingsSlider}>
-                                <div className='tarjetaGratuitas'>
-                                    <img src={`${tarjetaGenerica}`}/>
-                                </div>
-                                <div className='tarjetaGratuitas'>
-                                    <img src={`${tarjetaGenerica}`}/>
-                                </div>
-                                <div className='tarjetaGratuitas'>
-                                    <img src={`${tarjetaGenerica}`}/>
-                                </div>
-                                <div className='tarjetaGratuitas'>
-                                    <img src={`${tarjetaGenerica}`}/>
-                                </div>
+                                { colecciones.map((coleccion)=>(
+                                    <div className='tarjetaGratuitas' key={coleccion.ColeccionId}>
+                                        <img src={`https://tarjet.site/imagenes/tarjetas_frente/${coleccion.TarjetaImagen}`}/>
+                                    </div>
+                                ))
+                                }
                             </Slider>
 
-                            <div className='info mt-5'>
+                            <div className='info'>
                                 <div className='modelos w-100'>
                                     <p>
-                                        1 de 8 modelos gratuitos
+                                        {`${currentSlide+1} de 10 modelos gratuitos`}
                                     </p>
                                 </div>
                                 {/* <div className='premium-select'>
@@ -575,6 +572,7 @@ const DiseñaTarjet = () => {
                                             <Previsualizar 
                                                 onClickButton={CerrarPrevisualizar} 
                                                 datosGenerales={datosGenerales}
+                                                currentFondo={currentFondo}
                                             />
                                         }
 

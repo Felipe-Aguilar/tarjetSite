@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Tarjeta from '../../assets/tarjetageneric.png';
+// import Tarjeta from '../../assets/tarjetageneric.png';
 
 import { SubirImagenPrimer } from "../contextos/SubirImagen";
 
 import html2canvas from "html2canvas";
 
-const Previsualizar = ({onClickButton, datosGenerales}) => {
+const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
+
+    const Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo}`;
 
     const propsAnimation = {
         initial: {y:20, opacity: 0},
@@ -35,10 +37,10 @@ const Previsualizar = ({onClickButton, datosGenerales}) => {
             const imgData = canvas.toDataURL('image/jpg');
     
             // Crea un enlace para descargar la imagen
-            const a = document.createElement('a');
-            a.href = imgData;
-            a.download = 'imagen_con_texto.png';
-            a.click();
+            // const a = document.createElement('a');
+            // a.href = imgData;
+            // a.download = 'imagen_con_texto.png';
+            // a.click();
 
             canvas.toBlob((blob)=>{
 
@@ -49,10 +51,10 @@ const Previsualizar = ({onClickButton, datosGenerales}) => {
 
         setTimeout(()=>{
             setGuardado(true);
-            onClickButton();
-
+            
             setTimeout(()=>{
-                window.location.reload(true);
+                onClickButton();
+                // window.location.reload(true);
             }, 3000)
         },3000);
     }
@@ -98,13 +100,13 @@ const Previsualizar = ({onClickButton, datosGenerales}) => {
                         </div>
 
                         <div className="guardar-imagen">
-                            <button onClick={GuardarImagen}>
+                            <button onClick={GuardarImagen} type="button">
                                 Guardar Tarjeta
                             </button>
                         </div>
 
                         <div className="footer">
-                            <button onClick={onClickButton}>
+                            <button onClick={onClickButton} type="button">
                                 Cerrar ventana (x)
                             </button>
                         </div>

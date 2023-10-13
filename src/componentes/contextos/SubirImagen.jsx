@@ -5,6 +5,7 @@ const SubirImagenSegundo = async (token, tipo, imagen) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
+            // 'Content-Type': 'multipart/form-data'
         },
         body: JSON.stringify({
             "UsuToken": token,
@@ -21,19 +22,22 @@ const SubirImagenSegundo = async (token, tipo, imagen) => {
 // Primer Servicio
 const SubirImagenPrimer = async (blob2, token, tipo, numeroServicio) => {
 
-
     const formData = new FormData();
 
     if (tipo === 'PERF' || tipo === 'TFRE') {
-        formData.append('file', blob2, `${token}_${tipo}.jpeg`);
+        formData.append('file', blob2, `${tipo}_${token}.png`);
     }
     if (tipo === 'SERV') {
-        formData.append('file', blob2, `${token}_${tipo}_${numeroServicio}.jpeg`);
+        formData.append('file', blob2, `${tipo}_${token}_${numeroServicio}.png`);
     }
 
 
     const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/gxobject', {
         method: 'POST',
+        headers: {
+            // 'Content-Type': 'application/x-www-form-urlencoded'
+            // 'Content-Type': 'multipart/form-data'
+        },
         body: formData,
     });
 
@@ -41,6 +45,9 @@ const SubirImagenPrimer = async (blob2, token, tipo, numeroServicio) => {
     const ImageFileImage = data.files[0].path;
 
     const responseSecond = await SubirImagenSegundo(token, tipo, ImageFileImage);
+    // const responseSecond = await SubirImagenSegundo(token, tipo, data.object_id);
+
+    console.log(data);
 
     return responseSecond;
 }

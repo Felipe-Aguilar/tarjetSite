@@ -46,7 +46,8 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
         maxSize: 5000000,
         accept: {
             'image/jpeg': [],
-            'image/png': []
+            'image/png': [],
+            'image/webp': []
         }
     });
 
@@ -123,8 +124,8 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                     blob,
                     500,
                     500,
-                    "JPEG",
-                    60,
+                    "PNG",
+                    50,
                     0,
                     (blob2) => {
                         SubirImagenPrimer(blob2 ,datosSesion.Token, tipoImagen, numeroServicio);
@@ -144,9 +145,42 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
         }
     }
 
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file && file.type === 'image/webp') {
+        setSelectedFile(file);
+        } else {
+        alert('Por favor, seleccione un archivo en formato webp.');
+        }
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (selectedFile) {
+        // Aquí puedes hacer lo que necesites con el archivo seleccionado, como enviarlo al servidor.
+        console.log('Archivo seleccionado:', selectedFile);
+
+        const response = await SubirImagenPrimer(selectedFile, '9171Tq139', 'PERF', 0);
+
+        } else {
+        alert('Por favor, seleccione un archivo en formato webp antes de enviar.');
+        }
+    };
+
     return ( 
         <div className="pop-cargarimagen">
             <motion.div {...animation} className="cuerpo" >
+
+            <div>
+                <h1>Subir imagen en formato webp</h1>
+                <form onSubmit={handleSubmit}>
+                    <input type="file" accept=".webp" onChange={handleFileChange} />
+                    <button type="submit">Subir</button>
+                </form>
+            </div>
+
                 <div className="header">
                     <h2>Cambia tu logotipo o imagen</h2>
                 </div>
@@ -178,13 +212,13 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                 }
 
                 <div className="guardar">
-                    <button onClick={EnviarImagen} className={ files.length === 0 ? 'disabled' : ''}>
+                    <button onClick={EnviarImagen} className={ files.length === 0 ? 'disabled' : ''} type="button">
                         Guardar imagen
                     </button>
                 </div>
 
                 <div className="footer">
-                    <button onClick={onBotonClick}>
+                    <button onClick={onBotonClick} type="button">
                         Cerrar ventana (x)
                     </button>
                 </div>

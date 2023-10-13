@@ -12,4 +12,18 @@ const ColeccionTarjeta = async () => {
     return data;
 }
 
-export { ColeccionTarjeta }
+const ColeccionEncabezados = async () => {
+    const response = await fetch('https://systemweb.ddns.net/WebTarjet/ApiCatalogos/ListaSiteHeader',{
+        method: 'GET',
+        mode: 'cors',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+
+    const data = response.json();
+
+    return data;
+}
+
+export { ColeccionTarjeta, ColeccionEncabezados }

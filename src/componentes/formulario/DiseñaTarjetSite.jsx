@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DatosEditaPerfil, ActualizarPerfil2 } from '../contextos/EditaPerfil';
+import { ColeccionEncabezados } from '../contextos/Colecciones';
 import CargarImagen from './CargarImagen';
 
 import ilustracion from '../../assets/ilustracion-diseña-tarjetsite.png';
@@ -60,6 +61,8 @@ const DiseñaTarjetSite = () => {
     const [servicio5, setServicio5] = useState(objeto);
     const [servicio6, setServicio6] = useState(objeto);
     const [servicio7, setServicio7] = useState(objeto);
+
+    const [colecciones, setColecciones] = useState([]);
 
     useEffect(()=>{
 
@@ -144,6 +147,11 @@ const DiseñaTarjetSite = () => {
             });
         }
 
+        const Colecciones = async () => {
+            const response = await ColeccionEncabezados();
+            setColecciones(response.ListSiteHeader);
+        }
+
         // Comprobar si es la sesión
         if (localStorage.UsuarioSesion && atob(usuId) === datosSesion.UsuToken) {
             window.scrollTo({
@@ -152,6 +160,7 @@ const DiseñaTarjetSite = () => {
             });
 
             DatosGenerales();
+            Colecciones();
         }
         else{
             navigate('/login');
@@ -185,6 +194,9 @@ const DiseñaTarjetSite = () => {
 
     const [opcion, setOpcion] = useState('Gratuitas');
 
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentFondo, setCurrentFondo] = useState('');
+
     const settings = {
         arrows: true,
         infinite: true,
@@ -202,6 +214,13 @@ const DiseñaTarjetSite = () => {
                 <i className="bi bi-chevron-right" ></i>
             </div>
         ),
+        afterChange: (current) => {
+            // Se ejecuta después de que cambie la diapositiva
+            setCurrentSlide(current);
+
+            const objectImagen = colecciones.find(coleccion => coleccion.SiteHeaderId == current+1);
+            setCurrentFondo(objectImagen.SiteHeaderImagen);
+        },
     }
 
     // Btn Bloque
@@ -444,15 +463,20 @@ const DiseñaTarjetSite = () => {
                     { opcion === 'Gratuitas' &&
                         <div className='gratuitas'>
                             <Slider {...settings}>
-                                <div className='tarjetaGratuita'>
-                                    <div className='cuerpo'></div>
-                                </div>
-                                <div className='tarjetaGratuita'>
-                                    <div className='cuerpo'></div>
-                                </div>
+
+                                {colecciones.map((coleccion)=>(
+                                    <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
+                                        <div 
+                                            className='cuerpo' 
+                                            style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/${coleccion.SiteHeaderImagen})`}}
+                                        >
+                                        </div>
+                                    </div>
+                                ))
+                                }
                             </Slider>
 
-                            <div className='mas-imagenes'>
+                            {/* <div className='mas-imagenes'>
                                 <div className='view3'>
                                     <img src={tarjetaGenerica} />
                                     <img src={tarjetaGenerica} />
@@ -462,22 +486,22 @@ const DiseñaTarjetSite = () => {
                                 <div className='viewpremium'>
                                     <img src={tarjetaGenerica} />
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className='info'>
-                                <div className='modelos'>
+                                <div className='modelos w-100'>
                                     <p>
-                                        1 de 8 modelos gratuitos
+                                        {`${currentSlide + 1} de 2 modelos gratuitos`}
                                     </p>
                                 </div>
-                                <div className='premium-select'>
+                                {/* <div className='premium-select'>
                                     <div>
                                         <p>1</p>
                                     </div>
                                     <p>
                                         Tarjeta premium seleccionada
                                     </p>
-                                </div>
+                                </div> */}
                             </div>
 
                             <div className='buttons-confirm'>
