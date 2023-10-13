@@ -163,17 +163,7 @@ const DiseñaTarjet = () => {
     const [currentFondo, setCurrentFondo] = useState('');
 
     const settingsSlider = {
-        // customPaging: function(i) {
-
-        // return (
-        //     <a className='tarjetaGratuitas'>
-        //         <img src={`${tarjetaGenerica}`} />
-        //     </a>
-        // );
-        // },
-        // dots: true,
         arrows: true,
-        // dotsClass: "slick-dots slick-thumb",
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -737,7 +727,7 @@ const DiseñaTarjet = () => {
                             </div>
 
                             <div className='regresar'>
-                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
                                     Regresar a perfil (x)
                                 </button>
                             </div>
@@ -945,7 +935,7 @@ const DiseñaTarjet = () => {
                                 Tu tarjet podrá ser vista en el buscador por personas que se encuentren dentro del rango configurado
                             </p>
 
-                            <button className='btn-amarillo'>
+                            <button className='btn-amarillo' type='button'>
                                 Necesitas ser encontrado en mayor rango, <span>inscríbete a Premium, tu tarjeta sin límites.</span>
                             </button>
 
@@ -1007,7 +997,7 @@ const DiseñaTarjet = () => {
                             </div>
 
                             <div className='regresar'>
-                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
                                     Regresar a perfil (x)
                                 </button>
                             </div>

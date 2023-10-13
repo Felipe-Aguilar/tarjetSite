@@ -14,6 +14,8 @@ const DatosEditaPerfil = async (idUsuario) => {
 
 const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
 
+    console.log(datosGenerales.UUID);
+
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
@@ -80,127 +82,71 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                // "Serv": [
-                //     {
-                //         "ServNum": datosGenerales.Serv[0].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[0].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[0].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[0].ServImg,
-                //         "ServIcono": datosGenerales.Serv[0].ServIcono,
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[1].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[1].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[1].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[1].ServImg,
-                //         "ServIcono": datosGenerales.Serv[1].ServIcono,
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[2].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[2].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[2].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[2].ServImg,
-                //         "ServIcono": datosGenerales.Serv[2].ServIcono,
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[3].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[3].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[3].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[3].ServImg,
-                //         "ServIcono": datosGenerales.Serv[3].ServIcono,
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[4].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[4].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[4].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[4].ServImg,
-                //         "ServIcono": datosGenerales.Serv[4].ServIcono,
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[5].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[5].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[5].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[5].ServImg,
-                //         "ServIcono": datosGenerales.Serv[5].ServIcono,
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": datosGenerales.Serv[6].ServNum,
-                //         "ServDescrip": datosGenerales.Serv[6].ServDescrip,
-                //         "ServSubTitulo": datosGenerales.Serv[6].ServSubTitulo,
-                //         "ServImg": datosGenerales.Serv[6].ServImg,
-                //         "ServIcono": datosGenerales.Serv[6].ServIcono,
-                //         "ServSiteId": 2
-                //     }
-                // ]
-                // "Serv": [
-                //     {
-                //         "ServNum": "",
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": "",
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": "",
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": "",
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": "",
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": "",
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": "",
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 2
-                //     }
-                // ]
+                "Serv": [
+                    {
+                        "ServNum": 1,
+                        "ServDescrip": "",
+                        "ServSubTitulo": "",
+                        "ServImg": "",
+                        "ServIcono": "",
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 2,
+                        "ServDescrip": "",
+                        "ServSubTitulo": "",
+                        "ServImg": "",
+                        "ServIcono": "",
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 3,
+                        "ServDescrip": "",
+                        "ServSubTitulo": "",
+                        "ServImg": "",
+                        "ServIcono": "",
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 4,
+                        "ServDescrip": "",
+                        "ServSubTitulo": "",
+                        "ServImg": "",
+                        "ServIcono": "",
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 5,
+                        "ServDescrip": "",
+                        "ServSubTitulo": "",
+                        "ServImg": "",
+                        "ServIcono": "",
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 6,
+                        "ServDescrip": "",
+                        "ServSubTitulo": "",
+                        "ServImg": "",
+                        "ServIcono": "",
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 7,
+                        "ServDescrip": "",
+                        "ServSubTitulo": "",
+                        "ServImg": "",
+                        "ServIcono": "",
+                        "ServSiteId": 2
+                    }
+                ]
             }
         })
     });
     
     const dataUsuario = await response.json();
+
+    console.log(dataUsuario);
 
     return dataUsuario;
 }

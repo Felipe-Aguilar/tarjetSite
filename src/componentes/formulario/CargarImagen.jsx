@@ -124,10 +124,11 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                     blob,
                     500,
                     500,
-                    "PNG",
+                    "WEBP",
                     50,
                     0,
                     (blob2) => {
+                        console.log(blob2);
                         SubirImagenPrimer(blob2 ,datosSesion.Token, tipoImagen, numeroServicio);
 
                         setTimeout(()=>{
@@ -149,7 +150,7 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        if (file && file.type === 'image/webp') {
+        if (file && file.type === 'image/jpeg') {
         setSelectedFile(file);
         } else {
         alert('Por favor, seleccione un archivo en formato webp.');
@@ -162,7 +163,31 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
         // Aquí puedes hacer lo que necesites con el archivo seleccionado, como enviarlo al servidor.
         console.log('Archivo seleccionado:', selectedFile);
 
-        const response = await SubirImagenPrimer(selectedFile, '9171Tq139', 'PERF', 0);
+        const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/gxobject', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+            body: selectedFile,
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+
+        const response2 = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/ServiceUpload', {
+            method: 'POST',
+            headers: {
+                // 'Content-Type': 'application/x-www-form-urlencoded'
+                // 'Content-Type': 'multipart/form-data'
+                // 'Content-Type': 'image/webp'
+            },
+            body: JSON.stringify({
+                "UsuToken": "9171Tq139",
+                "ImageFileImage": data.object_id,
+                "TipoImagen": "PERF"
+            })
+        });
 
         } else {
         alert('Por favor, seleccione un archivo en formato webp antes de enviar.');
@@ -176,7 +201,7 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
             <div>
                 <h1>Subir imagen en formato webp</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="file" accept=".webp" onChange={handleFileChange} />
+                    <input type="file" accept=".webp, .jpeg" onChange={handleFileChange} />
                     <button type="submit">Subir</button>
                 </form>
             </div>
