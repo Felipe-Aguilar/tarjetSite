@@ -3,12 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 // import Tarjeta from '../../assets/tarjetageneric.png';
 
 import { SubirImagenPrimer } from "../contextos/SubirImagen";
-
 import html2canvas from "html2canvas";
 
-const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
 
+const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
+    
     const Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo}`;
+    
 
     const propsAnimation = {
         initial: {y:20, opacity: 0},
@@ -33,18 +34,19 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
     const GuardarImagen = () => {
         // Captura la representación de la imagen con los textos superpuestos
         html2canvas(constraintsRef.current).then((canvas) => {
+
             // Convierte el lienzo en una URL de datos
             const imgData = canvas.toDataURL('image/jpg');
     
             // Crea un enlace para descargar la imagen
-            // const a = document.createElement('a');
-            // a.href = imgData;
-            // a.download = 'imagen_con_texto.png';
-            // a.click();
+            const a = document.createElement('a');
+            a.href = imgData;
+            a.download = 'imagen_con_texto.png';
+            a.click();
 
             canvas.toBlob((blob)=>{
 
-                SubirImagenPrimer(blob, datosGenerales.TokenId, "TFRE")
+                // SubirImagenPrimer(blob, datosGenerales.TokenId, "TFRE");
 
             })
         });
@@ -55,8 +57,8 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
             setTimeout(()=>{
                 onClickButton();
                 // window.location.reload(true);
-            }, 3000)
-        },3000);
+            }, 4000)
+        },1000);
     }
 
     return ( 
@@ -71,7 +73,7 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
 
                         <div className="body">
                             <p>Sobre tu tarjeta seleccionada, desliza tu nombre</p>
-
+                            
                             <motion.div 
                                 className="back" 
                                 ref={constraintsRef}

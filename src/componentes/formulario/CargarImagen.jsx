@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { SubirImagenPrimer } from "../contextos/SubirImagen";
 
 import FileResizer from "react-image-file-resizer";
@@ -113,7 +113,6 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
     const EnviarImagen = async () => {
 
         const cropper = await cropperRef.current?.cropper;
-        // const image = await cropper.getCroppedCanvas().toDataURL("image/jpg");
         
         const image = await cropper.getCroppedCanvas();
 
@@ -128,7 +127,6 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                     50,
                     0,
                     (blob2) => {
-                        console.log(blob2);
                         SubirImagenPrimer(blob2 ,datosSesion.Token, tipoImagen, numeroServicio);
 
                         setTimeout(()=>{
@@ -146,108 +144,120 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
         }
     }
 
-    const [selectedFile, setSelectedFile] = useState(null);
+    // const [selectedFile, setSelectedFile] = useState(null);
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file && file.type === 'image/jpeg') {
-        setSelectedFile(file);
-        } else {
-        alert('Por favor, seleccione un archivo en formato webp.');
-        }
-    };
+    // const handleFileChange = (event) => {
+    //     const file = event.target.files[0];
+    //     if (file && file.type === 'image/jpeg') {
+    //     setSelectedFile(file);
+    //     } else {
+    //     alert('Por favor, seleccione un archivo en formato webp.');
+    //     }
+    // };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (selectedFile) {
-        // Aquí puedes hacer lo que necesites con el archivo seleccionado, como enviarlo al servidor.
-        console.log('Archivo seleccionado:', selectedFile);
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     if (selectedFile) {
+    //     // Aquí puedes hacer lo que necesites con el archivo seleccionado, como enviarlo al servidor.
+    //     console.log('Archivo seleccionado:', selectedFile);
 
-        const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/gxobject', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        },
-            body: selectedFile,
-        });
+    //     const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/gxobject', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'multipart/form-data'
+    //     },
+    //         body: selectedFile,
+    //     });
 
-        const data = await response.json();
+    //     const data = await response.json();
 
-        console.log(data);
+    //     console.log(data);
 
-        const response2 = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/ServiceUpload', {
-            method: 'POST',
-            headers: {
-                // 'Content-Type': 'application/x-www-form-urlencoded'
-                // 'Content-Type': 'multipart/form-data'
-                // 'Content-Type': 'image/webp'
-            },
-            body: JSON.stringify({
-                "UsuToken": "9171Tq139",
-                "ImageFileImage": data.object_id,
-                "TipoImagen": "PERF"
-            })
-        });
+    //     const response2 = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/ServiceUpload', {
+    //         method: 'POST',
+    //         headers: {
+    //             // 'Content-Type': 'application/x-www-form-urlencoded'
+    //             // 'Content-Type': 'multipart/form-data'
+    //             // 'Content-Type': 'image/webp'
+    //         },
+    //         body: JSON.stringify({
+    //             "UsuToken": "9171Tq139",
+    //             "ImageFileImage": data.object_id,
+    //             "TipoImagen": "PERF"
+    //         })
+    //     });
 
-        } else {
-        alert('Por favor, seleccione un archivo en formato webp antes de enviar.');
-        }
-    };
+    //     } else {
+    //     alert('Por favor, seleccione un archivo en formato webp antes de enviar.');
+    //     }
+    // };
 
     return ( 
         <div className="pop-cargarimagen">
-            <motion.div {...animation} className="cuerpo" >
 
-            <div>
-                <h1>Subir imagen en formato webp</h1>
-                <form onSubmit={handleSubmit}>
-                    <input type="file" accept=".webp, .jpeg" onChange={handleFileChange} />
-                    <button type="submit">Subir</button>
-                </form>
-            </div>
+            <AnimatePresence>
+                { !correcto &&(
 
-                <div className="header">
-                    <h2>Cambia tu logotipo o imagen</h2>
-                </div>
+                    <motion.div {...animation} className="cuerpo" >
 
-                <div className="body">
-                    <div {...getRootProps()} className="dropzone">
-                        <input {...getInputProps()} />
-                        <p>
-                            Arrastra y suelta tu imagen aquí, o haz clic para seleccionar imagen. <br/>
-                            (solo se permite subir un archivo con extension .jpg ó .png y un tamaño máximo de 5MB)
-                        </p>
-                    </div>
+                        {/* <div>
+                            <h1>Subir imagen en formato webp</h1>
+                            <form onSubmit={handleSubmit}>
+                                <input type="file" accept=".webp, .jpeg" onChange={handleFileChange} />
+                                <button type="submit">Subir</button>
+                            </form>
+                        </div> */}
 
-                    <div className="resultados">
-                        <h6>Imagen</h6>
-                        <ul>{files}</ul>
+                        <div className="header">
+                            <h2>Cambia tu logotipo o imagen</h2>
+                        </div>
 
-                        <ul className="error">{fileRejectionItems}</ul>
-                    </div>
-                </div>
+                        <div className="body">
+                            <div {...getRootProps()} className="dropzone">
+                                <input {...getInputProps()} />
+                                <p>
+                                    Arrastra y suelta tu imagen aquí, o haz clic para seleccionar imagen. <br/>
+                                    (solo se permite subir un archivo con extension .jpg ó .png y un tamaño máximo de 5MB)
+                                </p>
+                            </div>
 
-                { correcto &&
-                    <motion.div className="correcto" {...animation}>
+                            <div className="resultados">
+                                <h6>Imagen</h6>
+                                <ul>{files}</ul>
+
+                                <ul className="error">{fileRejectionItems}</ul>
+                            </div>
+                        </div>
+
+                        <div className="guardar">
+                            <button onClick={EnviarImagen} className={ files.length === 0 ? 'disabled' : ''} type="button">
+                                Guardar imagen
+                            </button>
+                        </div>
+
+                        <div className="footer">
+                            <button onClick={onBotonClick} type="button">
+                                Cerrar ventana (x)
+                            </button>
+                        </div>
+                    </motion.div>
+
+                )
+                }
+            </AnimatePresence>
+
+            <AnimatePresence>
+                { correcto && (
+                    <motion.div className="cuerpo correcto" {...animation} >
                         <h5>La imagen se subió correctamente</h5>
                         <p>
                             <i className="bi bi-check2-circle"></i>
                         </p>
                     </motion.div>
+                )
                 }
+            </AnimatePresence>
 
-                <div className="guardar">
-                    <button onClick={EnviarImagen} className={ files.length === 0 ? 'disabled' : ''} type="button">
-                        Guardar imagen
-                    </button>
-                </div>
-
-                <div className="footer">
-                    <button onClick={onBotonClick} type="button">
-                        Cerrar ventana (x)
-                    </button>
-                </div>
-            </motion.div>
         </div>
     );
 }

@@ -51,7 +51,11 @@ const DiseñaTarjet = () => {
     // Filtro de la actividad
     const [filtroSegmento, setFiltroSegmento] = useState([]);
 
+    
+    // Slider y colecciones
     const [colecciones, setColecciones] = useState([]);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentFondo, setCurrentFondo] = useState('');
 
     useEffect(()=>{
 
@@ -113,6 +117,7 @@ const DiseñaTarjet = () => {
         const Colecciones = async () => {
             const response = await ColeccionTarjeta();
             setColecciones(response.ListTarjetas);
+            setCurrentFondo(response.ListTarjetas[0].TarjetaImagen);
         }
 
         // Comprobar si es la sesión
@@ -158,9 +163,6 @@ const DiseñaTarjet = () => {
             </div>
         ),
     }
-
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [currentFondo, setCurrentFondo] = useState('');
 
     const settingsSlider = {
         arrows: true,

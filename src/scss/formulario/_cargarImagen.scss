@@ -83,24 +83,6 @@
             }
         }
 
-        .correcto{
-            text-align: center;
-            color: #067232;
-            
-            h5, p{
-                font-weight: bold;
-            }
-
-            p{
-                margin-bottom: 20px;
-                
-                i{
-                    font-size: 2.1rem;
-                    color: #067232;
-                }
-            }
-        }
-
         .guardar{
             display: flex;
             justify-content: center;
@@ -134,5 +116,24 @@
                 color: #5b8f94;
             }
         }
+    }
+
+    .cuerpo.correcto{
+        width: 30%;
+        text-align: center;
+        color: #067232;
+
+        h5{
+            font-weight: 400;
+        }
+
+        p{
+            margin-bottom: 0;
+            i{
+                font-size: 2.5rem;
+                color: #067232;
+            }
+        }
+        
     }
 }
