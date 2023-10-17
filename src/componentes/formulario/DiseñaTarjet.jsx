@@ -579,6 +579,8 @@ const DiseñaTarjet = () => {
                                                 onClickButton={CerrarPrevisualizar} 
                                                 datosGenerales={datosGenerales}
                                                 currentFondo={currentFondo}
+                                                nombreCompleto = {`${nombre} ${appPat} ${appMat}`}
+                                                cargo = { cargo }
                                             />
                                         }
 

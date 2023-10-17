@@ -6,7 +6,7 @@ import { SubirImagenPrimer } from "../contextos/SubirImagen";
 import html2canvas from "html2canvas";
 
 
-const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
+const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompleto, cargo}) => {
     
     const Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo}`;
     
@@ -23,9 +23,6 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
         animate: {scale: 1},
         // transition: {delay: 2}
     }
-
-    const nombreCompleto = datosGenerales.Nom + " "+ datosGenerales.AppP +" " + datosGenerales.AppM;
-    const cargo = datosGenerales.Cargo;
 
     const constraintsRef = useRef(null);
 
