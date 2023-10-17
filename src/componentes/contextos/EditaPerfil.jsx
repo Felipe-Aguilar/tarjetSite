@@ -2,8 +2,10 @@ const DatosEditaPerfil = async (idUsuario) => {
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/Usuario/${idUsuario}`, {
         method: 'GET',
         mode: 'cors',
+        cache: 'no-store',
+
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
         }
     });
     
@@ -166,7 +168,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "AppM": datosGenerales.AppM,
                 "Cargo": datosGenerales.Cargo,
                 "Tipo": datosGenerales.Tipo,
-                "Titulo": datosGenerales.Titulo,
+                "Titulo": datosFormulario.Titulo,
                 "Lev1Id": datosGenerales.Lev1Id,
                 "Lev1Desc": datosGenerales.Lev1Desc,
                 "Lev2Id": datosGenerales.Lev2Id,

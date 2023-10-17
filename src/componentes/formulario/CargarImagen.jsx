@@ -133,7 +133,7 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                             setCorrecto(true);
 
                             setTimeout(()=>{
-                                onBotonClick();
+                                window.location.reload();
                             }, 4000);
 
                         }, 1000);

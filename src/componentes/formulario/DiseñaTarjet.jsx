@@ -255,11 +255,7 @@ const DiseñaTarjet = () => {
             setPopActualiza(false);
             
             setTimeout(()=>{
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-                // window.location.reload(true);
+                window.location.reload();
             }, 500);
 
         }, 3500);
@@ -301,6 +297,7 @@ const DiseñaTarjet = () => {
             "CodP": codigoPostal,
             "Municip": municipio,
             "Colonia": colonia,
+            "Titulo": titulo
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -308,6 +305,11 @@ const DiseñaTarjet = () => {
 
         setTimeout(()=>{
             setPopActualiza(false);
+
+            setTimeout(()=>{
+                window.location.reload();
+            }, 500);
+
         }, 3500);
     }
 
@@ -320,7 +322,6 @@ const DiseñaTarjet = () => {
     }
 
     // Asignar Estado, ciudad, delegación, etc.
-
     const onChangeCodigoPostal = async (e) => {
 
         const codigo = e.target.value.replace(/\D/g, '');
