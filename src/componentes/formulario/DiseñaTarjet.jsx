@@ -42,6 +42,7 @@ const DiseñaTarjet = () => {
     const [comentarios, setComentarios] = useState(false);
     const [actividad, setActividad] = useState('');
     const [consultaCP, setConsultaCP] = useState([]);
+    const [titulo, setTitulo] = useState('');
 
     const [error, setError] = useState(false);
     const [error2, setError2] = useState(false);
@@ -87,6 +88,7 @@ const DiseñaTarjet = () => {
             setMunicipio(respuesta.Municip);
             setColonia(respuesta.Colonia);
             setActividad(respuesta.Lev3Desc);
+            setTitulo(respuesta.Titulo);
 
             if (respuesta.CodP) {
                 const responseCP = await CodigoPostal(respuesta.CodP);
@@ -137,6 +139,7 @@ const DiseñaTarjet = () => {
         } 
 
     },[]);
+
 
     const navigate = useNavigate();
 
@@ -242,14 +245,23 @@ const DiseñaTarjet = () => {
             "CodP": codigoPostal,
             "Municip": municipio,
             "Colonia": colonia,
+            "Titulo": titulo
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
         setPopActualiza(true);
 
         setTimeout(()=>{
-            // window.location.reload(true);
             setPopActualiza(false);
+            
+            setTimeout(()=>{
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+                // window.location.reload(true);
+            }, 500);
+
         }, 3500);
     }
 
@@ -489,10 +501,12 @@ const DiseñaTarjet = () => {
                                     <form onSubmit={GuardarTarjeta1}>
                                         <div className='select'>
                                             <div>
-                                                <select>
-                                                    <option value="Lic" key="1">Lic.</option>
-                                                    <option value="Lic" key="2">Arq.</option>
-                                                    <option value="Lic" key="3">Doc.</option>
+                                                <select value={titulo} onChange={(e)=>setTitulo(e.target.value)}>
+                                                    <option value="Lic" key="1">Lic</option>
+                                                    <option value="Ing" key="2">Ing</option>
+                                                    <option value="Arq" key="3">Arq</option>
+                                                    <option value="Doc" key="4">Doc</option>
+                                                    <option value="Técni" key="5">Técni</option>
                                                 </select>
                                             </div>
                                             <input 

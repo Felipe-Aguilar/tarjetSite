@@ -14,8 +14,6 @@ const DatosEditaPerfil = async (idUsuario) => {
 
 const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
 
-    console.log(datosGenerales.UUID);
-
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
@@ -33,7 +31,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "AppM": datosFormulario.AppM,
                 "Cargo": datosFormulario.Cargo,
                 "Tipo": datosGenerales.Tipo,
-                "Titulo": datosGenerales.Titulo,
+                "Titulo": datosFormulario.Titulo,
                 "Lev1Id": datosFormulario.Lev1Id,
                 "Lev1Desc": datosFormulario.Lev1Desc,
                 "Lev2Id": datosFormulario.Lev2Id,
@@ -82,71 +80,69 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "Serv": [
-                    {
-                        "ServNum": 1,
-                        "ServDescrip": "",
-                        "ServSubTitulo": "",
-                        "ServImg": "",
-                        "ServIcono": "",
-                        "ServSiteId": 1
-                    },
-                    {
-                        "ServNum": 2,
-                        "ServDescrip": "",
-                        "ServSubTitulo": "",
-                        "ServImg": "",
-                        "ServIcono": "",
-                        "ServSiteId": 1
-                    },
-                    {
-                        "ServNum": 3,
-                        "ServDescrip": "",
-                        "ServSubTitulo": "",
-                        "ServImg": "",
-                        "ServIcono": "",
-                        "ServSiteId": 1
-                    },
-                    {
-                        "ServNum": 4,
-                        "ServDescrip": "",
-                        "ServSubTitulo": "",
-                        "ServImg": "",
-                        "ServIcono": "",
-                        "ServSiteId": 2
-                    },
-                    {
-                        "ServNum": 5,
-                        "ServDescrip": "",
-                        "ServSubTitulo": "",
-                        "ServImg": "",
-                        "ServIcono": "",
-                        "ServSiteId": 2
-                    },
-                    {
-                        "ServNum": 6,
-                        "ServDescrip": "",
-                        "ServSubTitulo": "",
-                        "ServImg": "",
-                        "ServIcono": "",
-                        "ServSiteId": 2
-                    },
-                    {
-                        "ServNum": 7,
-                        "ServDescrip": "",
-                        "ServSubTitulo": "",
-                        "ServImg": "",
-                        "ServIcono": "",
-                        "ServSiteId": 2
-                    }
-                ]
+                // "Serv": [
+                //     {
+                //         "ServNum": 1,
+                //         "ServDescrip": "",
+                //         "ServSubTitulo": "",
+                //         "ServImg": "",
+                //         "ServIcono": "",
+                //         "ServSiteId": 1
+                //     },
+                //     {
+                //         "ServNum": 2,
+                //         "ServDescrip": "",
+                //         "ServSubTitulo": "",
+                //         "ServImg": "",
+                //         "ServIcono": "",
+                //         "ServSiteId": 1
+                //     },
+                //     {
+                //         "ServNum": 3,
+                //         "ServDescrip": "",
+                //         "ServSubTitulo": "",
+                //         "ServImg": "",
+                //         "ServIcono": "",
+                //         "ServSiteId": 1
+                //     },
+                //     {
+                //         "ServNum": 4,
+                //         "ServDescrip": "",
+                //         "ServSubTitulo": "",
+                //         "ServImg": "",
+                //         "ServIcono": "",
+                //         "ServSiteId": 2
+                //     },
+                //     {
+                //         "ServNum": 5,
+                //         "ServDescrip": "",
+                //         "ServSubTitulo": "",
+                //         "ServImg": "",
+                //         "ServIcono": "",
+                //         "ServSiteId": 2
+                //     },
+                //     {
+                //         "ServNum": 6,
+                //         "ServDescrip": "",
+                //         "ServSubTitulo": "",
+                //         "ServImg": "",
+                //         "ServIcono": "",
+                //         "ServSiteId": 2
+                //     },
+                //     {
+                //         "ServNum": 7,
+                //         "ServDescrip": "",
+                //         "ServSubTitulo": "",
+                //         "ServImg": "",
+                //         "ServIcono": "",
+                //         "ServSiteId": 2
+                //     }
+                // ]
             }
         })
     });
     
     const dataUsuario = await response.json();
-
-    console.log(dataUsuario);
 
     return dataUsuario;
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
 import iconoOjo from '../../assets/icono-ojo.svg';
@@ -15,6 +16,7 @@ const Perfil = () => {
     const navigate = useNavigate();
     const [datosUsuario, setDatosUsuario] = useState([]);
     const [datosSesion, setDatosSesion] = useState([]);
+    const [datosActualizados, setDatosActualizados] = useState([]);
 
     useEffect(()=>{
         const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
@@ -23,6 +25,12 @@ const Perfil = () => {
         const datosSesion = JSON.parse(localStorage.getItem('DatosSesion'));
         setDatosSesion(datosSesion);
 
+        const idUsuario = JSON.parse(localStorage.getItem('IdDatosSesion'));
+
+        const ConsultaDatos = async () => {
+            const response = await DatosEditaPerfil(idUsuario.usuId);
+            setDatosActualizados(response);
+        }
         
         // Comprobar si es la sesión
         if (localStorage.UsuarioSesion && atob(usuId) === datosSesion.UsuToken) {
@@ -30,6 +38,8 @@ const Perfil = () => {
                 top: 0,
                 behavior: "smooth"
             });
+
+            ConsultaDatos();
         }
         else{
             navigate('/login');
@@ -42,8 +52,8 @@ const Perfil = () => {
             <div className='EncabezadoPerfil'>
                 <div className='encabezado-perfil'>
                     <div className='imagen-perfil'>
-                        { datosUsuario.ImgFoto ?
-                            <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosUsuario.ImgFoto}`} />
+                        { datosActualizados.ImgFoto ?
+                            <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosActualizados.ImgFoto}`} />
                         :
                             <img src={PerfilTemporal} />
                         }
@@ -51,7 +61,7 @@ const Perfil = () => {
                     <div className='info'>
                         <h1>Bienvenido a tu perfil</h1>
                         <h2>
-                            {datosUsuario.NomCompleto} <br/>
+                            {`${datosActualizados.Nom} ${datosActualizados.AppP} ${datosActualizados.AppM}`} <br/>
                             <span>@{datosUsuario.Cuenta}</span>
                         </h2>
                     </div>
@@ -59,7 +69,7 @@ const Perfil = () => {
 
                 <div className='btnCambio'>
                     <div className='btnfoto'>
-                        <button>
+                        <button onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
                             Cambiar foto
                         </button>
                     </div>

@@ -259,7 +259,9 @@ const DiseñaTarjetSite = () => {
     const [popActualiza, setPopActualiza] = useState(false);
 
     // Guardar Tarjeta 1
-    const GuardarTarjeta1 = async () => {
+    const GuardarTarjeta1 = async (e) => {
+
+        e.preventDefault();
 
         if (error) {
             return;
@@ -531,7 +533,7 @@ const DiseñaTarjetSite = () => {
 
             { datos &&
                 <div className='Tusdatos'>
-                    <form>
+                    <form onSubmit={GuardarTarjeta1}>
                         <div className='img-perfil'>
                             <div className='img'>
                                 { datosGenerales.ImgFoto ?
@@ -747,13 +749,13 @@ const DiseñaTarjetSite = () => {
                             </div> */}
 
                             <div className='guardar'>
-                                <button onClick={GuardarTarjeta1}>
+                                <button type='submit'>
                                     Guardar ó actualizar información
                                 </button>
                             </div>
 
                             <div className='buttons-pasos'>
-                                <button onClick={btnRegresarPaso1}>
+                                <button onClick={btnRegresarPaso1} type='button'>
                                     Regresar a paso 1
                                 </button>
                                 <button onClick={btnPaso3}>
@@ -762,7 +764,7 @@ const DiseñaTarjetSite = () => {
                             </div>
 
                             <div className='btn-regresarr'>
-                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
                                     Regresar a perfil (x)
                                 </button>
                             </div>
@@ -782,7 +784,7 @@ const DiseñaTarjetSite = () => {
                         Sugerimos uses palabras claves que resuman tu actividad. En el cuadro de llenado te damos un ejemplo:
                     </p>
 
-                    <form>
+                    <form onSubmit={GuardarTarjeta1}>
                         <input type="text" placeholder='Estética profesional canina.' readOnly value={datosGenerales.Lev3Desc}/>
 
                         <h3>Listado de actividades</h3>
@@ -804,7 +806,7 @@ const DiseñaTarjetSite = () => {
                         }
 
                         <div>
-                            <button className='btn-bloque' onClick={()=>setBloque1(!bloque1)}>
+                            <button className='btn-bloque' onClick={()=>setBloque1(!bloque1)} type='button'>
                                 Bloque de servicio No. 1
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -836,7 +838,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(1)}>
+                                            <button onClick={()=> SubirImagen(1)} type='button'>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -848,7 +850,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                         </textarea>
                                         <div className='borrar'>
-                                            <button onClick={()=>BorrarBloque(4)}>
+                                            <button onClick={()=>BorrarBloque(4)} type='button'>
                                                 Borrar contenido de bloque
                                             </button>
                                         </div>
@@ -858,7 +860,7 @@ const DiseñaTarjetSite = () => {
                         </div>
 
                         <div>
-                            <button className='btn-bloque' onClick={()=>setBloque2(!bloque2)}>
+                            <button className='btn-bloque' onClick={()=>setBloque2(!bloque2)} type='button'>
                                 Bloque de servicio No. 2
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -890,7 +892,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(2)}>
+                                            <button onClick={()=> SubirImagen(2)} type='button'>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -902,7 +904,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                         </textarea>
                                         <div className='borrar'>
-                                            <button onClick={()=>BorrarBloque(5)}>
+                                            <button onClick={()=>BorrarBloque(5)} type='button'>
                                                 Borrar contenido de bloque
                                             </button>
                                         </div>
@@ -912,7 +914,7 @@ const DiseñaTarjetSite = () => {
                         </div>
 
                         <div>
-                            <button className='btn-bloque' onClick={()=>setBloque3(!bloque3)}>
+                            <button className='btn-bloque' onClick={()=>setBloque3(!bloque3)} type='button'>
                                 Bloque de servicio No. 3
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -944,7 +946,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(3)}>
+                                            <button onClick={()=> SubirImagen(3)} type='button'>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -956,7 +958,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                         </textarea>
                                         <div className='borrar'>
-                                            <button onClick={()=>BorrarBloque(6)}>
+                                            <button onClick={()=>BorrarBloque(6)} type='button'>
                                                 Borrar contenido de bloque
                                             </button>
                                         </div>
@@ -966,7 +968,7 @@ const DiseñaTarjetSite = () => {
                         </div>
 
                         <div>
-                            <button className='btn-bloque' onClick={()=>setBloque4(!bloque4)}>
+                            <button className='btn-bloque' onClick={()=>setBloque4(!bloque4)} type='button'>
                                 Bloque de servicio No. 4
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -999,7 +1001,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(4)}>
+                                            <button onClick={()=> SubirImagen(4)} type='button'>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -1011,7 +1013,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                         </textarea>
                                         <div className='borrar'>
-                                            <button onClick={()=>BorrarBloque(7)}>
+                                            <button onClick={()=>BorrarBloque(7)} type='button'>
                                                 Borrar contenido de bloque
                                             </button>
                                         </div>
@@ -1029,7 +1031,7 @@ const DiseñaTarjetSite = () => {
                         </a>
 
                         <div>
-                            <button className='btn-bloque premium'>
+                            <button className='btn-bloque premium' type='button'>
                                 Bloque de servicio No. 5
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -1037,7 +1039,7 @@ const DiseñaTarjetSite = () => {
                             </button>
                         </div>
                         <div>
-                            <button className='btn-bloque premium'>
+                            <button className='btn-bloque premium' type='button'>
                                 Bloque de servicio No. 6
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -1045,7 +1047,7 @@ const DiseñaTarjetSite = () => {
                             </button>
                         </div>
                         <div>
-                            <button className='btn-bloque premium'>
+                            <button className='btn-bloque premium' type='button'>
                                 Bloque de servicio No. 7
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -1053,7 +1055,7 @@ const DiseñaTarjetSite = () => {
                             </button>
                         </div>
                         <div>
-                            <button className='btn-bloque premium'>
+                            <button className='btn-bloque premium' type='button'>
                                 Bloque de servicio No. 8
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -1061,7 +1063,7 @@ const DiseñaTarjetSite = () => {
                             </button>
                         </div>
                         <div>
-                            <button className='btn-bloque premium'>
+                            <button className='btn-bloque premium' type='button'>
                                 Bloque de servicio No. 9
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -1069,7 +1071,7 @@ const DiseñaTarjetSite = () => {
                             </button>
                         </div>
                         <div>
-                            <button className='btn-bloque premium'>
+                            <button className='btn-bloque premium' type='button'>
                                 Bloque de servicio No. 10
                                 <div>
                                     <i className="bi bi-plus-lg"></i>
@@ -1084,18 +1086,18 @@ const DiseñaTarjetSite = () => {
                             </label>
                         </div> */}
 
-                        <button className='btn-guardar' onClick={GuardarTarjeta1}>
+                        <button className='btn-guardar' type='submit'>
                             Guardar ó actualizar información
                         </button>
 
                         <div className='pasos'>
-                            <button onClick={btnRegresarPaso2}>
+                            <button onClick={btnRegresarPaso2} type='button'>
                                 Regresar a paso 2
                             </button>
                         </div>
 
                         <div className='btn-regresarr'>
-                            <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                            <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
                                 Regresar a perfil (x)
                             </button>
                         </div>

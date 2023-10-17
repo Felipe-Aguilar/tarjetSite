@@ -14,6 +14,8 @@ const SubirImagenSegundo = async (token, tipo, imagen) => {
     });
     const dataSubir = await response.json();
 
+    // console.log(dataSubir);
+
     return dataSubir; 
 }
 
@@ -39,7 +41,6 @@ const SubirImagenPrimer = async (blob2, token, tipo) => {
     });
 
     const data = await response.json();
-    console.log(data);
 
     // const ImageFileImage = data.files[0].path;
     // const responseSecond = await SubirImagenSegundo(token, tipo, ImageFileImage);

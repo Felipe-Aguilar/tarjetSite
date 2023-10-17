@@ -261,7 +261,7 @@ const MiTarjetero = () => {
                     <div className='row justify-content-center tarjeta2'>
                         <div className='col-11 col-lg-4'>
                             <img 
-                                src={`https://tarjet.site/imagenes/${usuario.UsuFondoF}`}
+                                src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.UsuFondoF}`}
                                 onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
                             />
                             <p>
@@ -274,7 +274,7 @@ const MiTarjetero = () => {
                 <>
                     <div 
                         className='row justify-content-center tarjeta' 
-                        style={{backgroundImage: `url(${'https://tarjet.site/imagenes/'+usuarioBuscado.UsuFondoF})`}}
+                        style={{backgroundImage: `url(${'https://tarjet.site/imagenes/tarjetas_frente_usuarios/'+usuarioBuscado.UsuFondoF})`}}
                         onClick={()=>navigate('/st/'+btoa(usuarioBuscado.UsuToken))}
                     >
                         <div className='col-11 col-md-4 p-0'>
@@ -472,7 +472,7 @@ const MiTarjetero = () => {
                                                 variants={resultadoVariante}
                                             >
                                                 <img 
-                                                    src={`https://tarjet.site/imagenes/${resultado.UsuFondoF}`}
+                                                    src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.UsuFondoF}`}
                                                     onClick={()=>navigate('/st/'+btoa(resultado.UsuToken))}
                                                 />
                                                 <div className='info'>
@@ -549,7 +549,7 @@ const MiTarjetero = () => {
                                                             variants={resultadoVariante}
                                                         >
                                                             <img 
-                                                                src={`https://tarjet.site/imagenes/${resultado.UsuFondoF}`}
+                                                                src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.UsuFondoF}`}
                                                                 onClick={()=>navigate('/st/'+btoa(resultado.UsuToken))}
                                                             />
                                                             <div className='info'>
@@ -619,7 +619,7 @@ const MiTarjetero = () => {
                                                 variants={resultadoVariante}
                                             >
                                                 <img 
-                                                    src={`https://tarjet.site/imagenes/${resultado.UsuFondoF}`}
+                                                    src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.UsuFondoF}`}
                                                     onClick={()=>navigate('/st/'+btoa(resultado.UsuToken))}
                                                 />
                                                 <div className='info'>

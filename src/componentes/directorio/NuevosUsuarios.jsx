@@ -68,7 +68,7 @@ const NuevosUsuarios = () => {
                                     onClick={()=>navigate(`/st/${btoa(usuario.Token)}`)}
                                 >
                                     { usuario.FondoF ?
-                                        <img src={`https://tarjet.site/imagenes/${usuario.FondoF}`} />
+                                        <img src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.FondoF}`} />
                                     :
                                         <img src={tarjetaGenerica} />
                                     }

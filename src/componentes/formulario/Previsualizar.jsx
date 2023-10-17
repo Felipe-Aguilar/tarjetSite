@@ -39,14 +39,14 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo}) => {
             const imgData = canvas.toDataURL('image/jpg');
     
             // Crea un enlace para descargar la imagen
-            const a = document.createElement('a');
-            a.href = imgData;
-            a.download = 'imagen_con_texto.png';
-            a.click();
+            // const a = document.createElement('a');
+            // a.href = imgData;
+            // a.download = 'imagen_con_texto.png';
+            // a.click();
 
             canvas.toBlob((blob)=>{
 
-                // SubirImagenPrimer(blob, datosGenerales.TokenId, "TFRE");
+                SubirImagenPrimer(blob, datosGenerales.TokenId, "TFRE");
 
             })
         });
