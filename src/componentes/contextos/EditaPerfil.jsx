@@ -168,7 +168,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "AppM": datosGenerales.AppM,
                 "Cargo": datosGenerales.Cargo,
                 "Tipo": datosGenerales.Tipo,
-                "Titulo": datosFormulario.Titulo,
+                "Titulo": datosGenerales.Titulo,
                 "Lev1Id": datosGenerales.Lev1Id,
                 "Lev1Desc": datosGenerales.Lev1Desc,
                 "Lev2Id": datosGenerales.Lev2Id,

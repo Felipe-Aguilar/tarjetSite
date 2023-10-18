@@ -293,10 +293,9 @@ const DiseñaTarjetSite = () => {
         setTimeout(()=>{
             setPopActualiza(false);
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            setTimeout(()=>{
+                window.location.reload();
+            },1000);
             
         }, 3500);
     }
