@@ -18,6 +18,7 @@
         background: #d8e3ec;
         border-radius: 20px;
 
+        
         @media (width <= 575px) {
             width: 95%;
         }
@@ -72,12 +73,12 @@
                 .img-preview{
                     display: block;
                     margin-top: 20px;
-                    width: 50%;
+                    width: 20%;
                     
                     @media (width <= 575px) {
                         margin: auto;
                         margin-top: 20px;
-                        width: 100%;
+                        width: 60%;
                     }
                 }
             }

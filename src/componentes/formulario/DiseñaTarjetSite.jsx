@@ -75,6 +75,7 @@ const DiseñaTarjetSite = () => {
         const DatosGenerales = async() => {
             const respuesta = await DatosEditaPerfil(usuarioID.usuId);
             setDatosGenerales(respuesta);
+            console.log(respuesta);
 
             setTelefono1(respuesta.Telefono1);
             setTelefono2(respuesta.Telefono2);

@@ -181,7 +181,7 @@ const MiTarjetero = () => {
     }
 
     // Resultados por A-Z
-    const [orden, setOrden] = useState('');
+    const [orden, setOrden] = useState('alfabeto');
     const [resultadoOpen, setResultadoOpen] = useState(null);
     const resultadoVariante = {
         open: {height: 'auto'},

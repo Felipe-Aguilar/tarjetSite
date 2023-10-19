@@ -1,5 +1,7 @@
 // Segundo servicio
-const SubirImagenSegundo = async (token, tipo, imagen) => {
+const SubirImagenSegundo = async (token, tipo, imagen, numeroServicio) => {
+
+    console.log(numeroServicio);
 
     const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/ServiceUpload', {
         method: 'POST',
@@ -9,19 +11,18 @@ const SubirImagenSegundo = async (token, tipo, imagen) => {
         body: JSON.stringify({
             "UsuToken": token,
             "ImageFileImage": imagen,
-            "TipoImagen": tipo
+            "TipoImagen": tipo,
+            "ServId": numeroServicio === undefined ? '0' : `${numeroServicio}`
         })
     });
     const dataSubir = await response.json();
-
-    // console.log(dataSubir);
 
     return dataSubir; 
 }
 
 
 // Primer Servicio
-const SubirImagenPrimer = async (blob2, token, tipo) => {
+const SubirImagenPrimer = async (blob2, token, tipo, numeroServicio) => {
 
     // const formData = new FormData();
 
@@ -45,7 +46,7 @@ const SubirImagenPrimer = async (blob2, token, tipo) => {
     // const ImageFileImage = data.files[0].path;
     // const responseSecond = await SubirImagenSegundo(token, tipo, ImageFileImage);
 
-    const responseSecond = await SubirImagenSegundo(token, tipo, data.object_id);
+    const responseSecond = await SubirImagenSegundo(token, tipo, data.object_id, numeroServicio);
 
     return responseSecond;
 }
