@@ -17,6 +17,7 @@ const ComprobarUsuario = async (tokenURL) => {
 const DatosUsuario = async (idUsuario) => {
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaMiTarjet?Usutarjetid=${idUsuario}`, {
         method: 'GET',
+        cache: 'no-store',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -31,6 +32,7 @@ const DatosUsuarioTarjetSite = async (idUsuario) => {
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaMiSite?Siteusuid=${idUsuario}`, {
         method: 'GET',
         mode: 'cors',
+        cache: 'no-store',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }

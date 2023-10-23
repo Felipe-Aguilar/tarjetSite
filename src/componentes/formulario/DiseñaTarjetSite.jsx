@@ -61,6 +61,7 @@ const DiseñaTarjetSite = () => {
     const [servicio5, setServicio5] = useState(objeto);
     const [servicio6, setServicio6] = useState(objeto);
     const [servicio7, setServicio7] = useState(objeto);
+    const [titulo, setTitulo] = useState('Lic');
 
     const [colecciones, setColecciones] = useState([]);
 
@@ -75,7 +76,6 @@ const DiseñaTarjetSite = () => {
         const DatosGenerales = async() => {
             const respuesta = await DatosEditaPerfil(usuarioID.usuId);
             setDatosGenerales(respuesta);
-            console.log(respuesta);
 
             setTelefono1(respuesta.Telefono1);
             setTelefono2(respuesta.Telefono2);
@@ -88,6 +88,11 @@ const DiseñaTarjetSite = () => {
             setYoutube(respuesta.Youtube);
             setLinkedin(respuesta.Linkedin);
             setTelegram(respuesta.Telegram);
+            if (respuesta.Titulo === '') {
+                setTitulo('Lic');
+            }else{
+                setTitulo(respuesta.Titulo);
+            }
 
             // ESTO SE DEBE CAMBIAR!!!!
             setServicio1({
@@ -196,7 +201,7 @@ const DiseñaTarjetSite = () => {
     const [opcion, setOpcion] = useState('Gratuitas');
 
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [currentFondo, setCurrentFondo] = useState('');
+    const [currentFondo, setCurrentFondo] = useState('SiteHeader1.webp');
 
     const settings = {
         arrows: true,
@@ -261,7 +266,6 @@ const DiseñaTarjetSite = () => {
 
     // Guardar Tarjeta 1
     const GuardarTarjeta1 = async (e) => {
-
         e.preventDefault();
 
         if (error) {
@@ -286,6 +290,8 @@ const DiseñaTarjetSite = () => {
             "Servicio5": servicio5,
             "Servicio6": servicio6,
             "Servicio7": servicio7,
+            "ImgHeader": currentFondo,
+            "Titulo": titulo
         }
 
         await ActualizarPerfil2(datosGenerales, datosFormulario);
@@ -510,7 +516,7 @@ const DiseñaTarjetSite = () => {
                                 <button>
                                     Cargar archivo de imagen (premium)
                                 </button>
-                                <button className='guardar'>
+                                <button className='guardar' onClick={GuardarTarjeta1}>
                                     Guardar imagen
                                 </button>
                             </div>
@@ -838,7 +844,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(1)} type='button'>
+                                            <button onClick={()=> SubirImagen(4)} type='button'>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -892,7 +898,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(2)} type='button'>
+                                            <button onClick={()=> SubirImagen(5)} type='button'>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -946,7 +952,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(3)} type='button'>
+                                            <button onClick={()=> SubirImagen(6)} type='button'>
                                                 Subir imagen
                                             </button>
                                         </div>
@@ -1001,7 +1007,7 @@ const DiseñaTarjetSite = () => {
                                             </div>
                                         }
                                         <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(4)} type='button'>
+                                            <button onClick={()=> SubirImagen(7)} type='button'>
                                                 Subir imagen
                                             </button>
                                         </div>

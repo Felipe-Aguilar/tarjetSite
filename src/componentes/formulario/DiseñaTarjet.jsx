@@ -42,7 +42,7 @@ const DiseñaTarjet = () => {
     const [comentarios, setComentarios] = useState(false);
     const [actividad, setActividad] = useState('');
     const [consultaCP, setConsultaCP] = useState([]);
-    const [titulo, setTitulo] = useState('');
+    const [titulo, setTitulo] = useState('Lic');
 
     const [error, setError] = useState(false);
     const [error2, setError2] = useState(false);
@@ -88,7 +88,11 @@ const DiseñaTarjet = () => {
             setMunicipio(respuesta.Municip);
             setColonia(respuesta.Colonia);
             setActividad(respuesta.Lev3Desc);
-            setTitulo(respuesta.Titulo);
+            if (respuesta.Titulo === '') {
+                setTitulo('Lic');
+            } else{
+                setTitulo(respuesta.Titulo);
+            }
 
             if (respuesta.CodP) {
                 const responseCP = await CodigoPostal(respuesta.CodP);
@@ -139,7 +143,6 @@ const DiseñaTarjet = () => {
         } 
 
     },[]);
-
 
     const navigate = useNavigate();
 
@@ -217,7 +220,7 @@ const DiseñaTarjet = () => {
 
     // Guardar TU DISEÑO
     const GuardarTarjeta1 = async (e) => {
-
+        
         e.preventDefault();
 
         if (buscaActividad === '') {

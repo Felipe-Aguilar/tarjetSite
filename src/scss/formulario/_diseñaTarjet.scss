@@ -155,6 +155,12 @@ $btnAmarillo: #fab947;
                 outline: none!important;
                 border: transparent;
                 border-left: 1px solid #000;
+
+                @media (width <= 320px) {
+                    border-left: transparent;
+                    font-size: 0.8rem;
+                    gap: 5px;
+                }
             }
             .activeOption{
                 color: #d45524;

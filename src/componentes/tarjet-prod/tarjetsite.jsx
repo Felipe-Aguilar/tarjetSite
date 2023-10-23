@@ -163,9 +163,6 @@ END:VCARD`;
         viewport: {once:true}
     }
 
-    // console.log(datos);
-    // console.log(usuario);
-
     // Compartir
     const [compartir, setCompartir] = useState(false);
 
@@ -468,10 +465,15 @@ END:VCARD`;
                     <h5>{datos.UsuActividad}</h5>
                     <img src={IconServicios} />
                     <h6>{usuario.SiteTituloServ2}</h6>
+                    
                     <ul>
                         {
                             servicios.map((servicio, index)=>(
-                                <li key={index}>{servicio.SiteServDescrip}</li>
+                                <>
+                                    {servicio.SiteServDescrip &&
+                                        <li key={index}>{servicio.SiteServDescrip}</li>
+                                    }
+                                </>
                             ))
                         }
                     </ul>
@@ -483,7 +485,7 @@ END:VCARD`;
                     <hr/>
                 </div>
             </div>
-
+            
             { 
                 imagenServicios.map((servicio, index)=>(
                     <>
@@ -495,7 +497,11 @@ END:VCARD`;
                                     </div>
                                 }
                                 <h5>{servicio.SiteServSubTitulo}</h5>
-                                <img src={`https://tarjet.site/imagenes/servicios/${servicio.SiteServIMG}`} />
+
+                                { servicio.SiteServIMG &&
+                                    <img src={`https://tarjet.site/imagenes/servicios/${servicio.SiteServIMG}`} />
+                                }
+
                                 <h6>{servicio.SiteServDescrip}</h6>
                             </div>
                         </div>

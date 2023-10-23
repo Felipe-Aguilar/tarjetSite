@@ -105,18 +105,21 @@ const Login = () => {
 
                 const datosUsuario = await DatosUsuario(datosLogin.usuId);
 
-                sesionTrue();
-
-                navigate('/' + btoa(datosUsuario.UsuToken));
-
+                
+                
                 localStorage.setItem('DatosSesion', JSON.stringify(datosUsuario));
                 localStorage.setItem('IdDatosSesion', JSON.stringify(datosLogin));
-
+                
                 // Cachar datos en localstorage de tarjetSite
                 const datosSite = await DatosUsuarioTarjetSite(datosLogin.usuId);
                 localStorage.setItem('DatosTarjetSite', JSON.stringify(datosSite.SDTSite));
-
+                
                 localStorage.setItem('UsuarioSesion', true);
+                
+                
+                await sesionTrue();
+                window.location.reload(true);
+                navigate('/' + btoa(datosUsuario.UsuToken));
             }
         }
     }
@@ -227,7 +230,7 @@ const Login = () => {
                         <img src={iconoTelefono} />
                         Teléfono
                     </button> */}
-                    <button onClick={()=>setMode('correo')}>
+                    <button onClick={()=>setMode('correo')} type='button'>
                         <img src={iconoCorreo} />
                         Correo
                     </button>
@@ -238,7 +241,7 @@ const Login = () => {
                         <img src={iconoFacebook} />
                         Facebook
                     </button> */}
-                    <button>
+                    <button type='button'>
                         <img src={iconoApple} />
                         Apple
                     </button>
@@ -317,7 +320,7 @@ const Login = () => {
                             />
 
                             <div className='eye'>
-                                <button onClick={()=>setViewContraseña(!viewContraseña)}>
+                                <button onClick={()=>setViewContraseña(!viewContraseña)} type='button'>
                                     { !viewContraseña ?
                                         <img src={iconoOjo} />
                                         :
@@ -333,7 +336,7 @@ const Login = () => {
             </div>
 
             <div className='olvidaste-contraseña'>
-                <button>
+                <button type='button'>
                     ¿Olvidaste tu contraseña?
                 </button>
             </div>
@@ -378,7 +381,7 @@ const Login = () => {
 
                 <div className='buttons'>
                     <div className={`registrar ${!checkButton && 'desactivate'}`}>
-                        <button onClick={Registrar}>
+                        <button onClick={Registrar} type='button'>
                             Registrar
                         </button>
                     </div>
