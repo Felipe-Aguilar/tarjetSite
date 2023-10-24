@@ -142,7 +142,7 @@ const MiTarjetero = () => {
     // Copiar link portapapeles
     const copiarPortapapeles = () => {
 
-        toast('Copiado en el portapapeles',{
+        toast.success('Copiado en el portapapeles',{
             duration: 4500,
             position: 'bottom-center',
         });
@@ -224,6 +224,8 @@ const MiTarjetero = () => {
     return (
 
         <div className='container-fluid p-0'>
+
+            <Toaster />
 
             <div className='miTarjetero' >
                 { !busquedaUsuario ?
@@ -340,7 +342,7 @@ const MiTarjetero = () => {
                                         src={icono2} 
                                         onClick={GuardarTarjetero}
                                     />
-                                    <Toaster />
+                                    
                                 </div>
                                 <div>
                                     <img 
@@ -507,88 +509,89 @@ const MiTarjetero = () => {
                                 ))
                             }
                             { orden == 'giro' &&
-
                                 datosSegmentos.map((segmento)=>(
-                                    <>
-                                        <div className='giro' key={segmento.SegmentoId}>
-                                            <div 
-                                                className='giro-body'
-                                                onClick={() => ConsultaFiltroSegmento(segmento.SegmentoId)}
-                                            >
-                                                {segmento.SegmentoDesc}
+                                    segmento.SegmentoId !== '' ? (
+                                        <>
+                                            <div className='giro' key={segmento.SegmentoId}>
+                                                <div 
+                                                    className='giro-body'
+                                                    onClick={() => ConsultaFiltroSegmento(segmento.SegmentoId)}
+                                                >
+                                                    {segmento.SegmentoDesc}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        {   indexSegmento === segmento.SegmentoId &&
-                                            reBusSegmento.map((resultado,index)=>(
-                                                <div className='resultado' key={resultado.IdUsuario}>
-                                                    <div className='body' onClick={()=>resultadoClick(index)}>
-                                                        <div className='title'>
-                                                            <div className='img'>
-                                                                <img src={
-                                                                    resultado.ImgFoto ?
-                                                                    `https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`
-                                                                    :
-                                                                    perfilGenerico
-                                                                }/>
-                                                            </div>
-                                                            <div>
-                                                                <h5>
-                                                                    {resultado.NombreCompleto}<br/>
-                                                                    <span>{resultado.UsuEncabezado}</span>
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    { resultadoOpen === index &&
-                                                        <motion.div 
-                                                            className='body2'
-                                                            initial="closed"
-                                                            animate="open"
-                                                            exit="closed"
-                                                            variants={resultadoVariante}
-                                                        >
-                                                            <img 
-                                                                src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.UsuFondoF}`}
-                                                                onClick={()=>navigate('/st/'+btoa(resultado.UsuToken))}
-                                                            />
-                                                            <div className='info'>
-                                                                <p>
-                                                                    Da click sobre la imagen para ver tarjeta digital
-                                                                </p>
-                                                                <QRCodeSVG 
-                                                                    value={`https://tarjet.site/#/st/${btoa(resultado.UsuToken)}`}
-                                                                    size={'50%'}
-                                                                    style={{display: 'block', margin: 'auto', padding: '20px 0'}}
-                                                                />
-                                                                <p className='escanea'>
-                                                                    Escanea con tu smartphone
-                                                                </p>
-                                                                <div className='buttons'>
-                                                                    <button
-                                                                        onClick={()=> btnResuComp(resultado.UsuToken)}
-                                                                    >
-                                                                        <img src={BtnCompartir} />
-                                                                        Compartir tarjeta
-                                                                    </button>
-
-                                                                    <button
-                                                                        onClick={()=> copiarResultado(resultado.UsuToken)}
-                                                                    >
-                                                                        <img src={BtnCopiar} />
-                                                                        Copiar enlace
-                                                                    </button>
+                                            {   indexSegmento === segmento.SegmentoId &&
+                                                reBusSegmento.map((resultado,index)=>(
+                                                    <div className='resultado' key={resultado.IdUsuario}>
+                                                        <div className='body' onClick={()=>resultadoClick(index)}>
+                                                            <div className='title'>
+                                                                <div className='img'>
+                                                                    <img src={
+                                                                        resultado.ImgFoto ?
+                                                                        `https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`
+                                                                        :
+                                                                        perfilGenerico
+                                                                    }/>
+                                                                </div>
+                                                                <div>
+                                                                    <h5>
+                                                                        {resultado.NombreCompleto}<br/>
+                                                                        <span>{resultado.UsuEncabezado}</span>
+                                                                    </h5>
                                                                 </div>
                                                             </div>
-                                                        </motion.div>
-                                                    }
-                                                </div>
-                                            ))                   
-                                        }
-                                    </>
-                                ))
+                                                        </div>
+                                                        { resultadoOpen === index &&
+                                                            <motion.div 
+                                                                className='body2'
+                                                                initial="closed"
+                                                                animate="open"
+                                                                exit="closed"
+                                                                variants={resultadoVariante}
+                                                            >
+                                                                <img 
+                                                                    src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.UsuFondoF}`}
+                                                                    onClick={()=>navigate('/st/'+btoa(resultado.UsuToken))}
+                                                                />
+                                                                <div className='info'>
+                                                                    <p>
+                                                                        Da click sobre la imagen para ver tarjeta digital
+                                                                    </p>
+                                                                    <QRCodeSVG 
+                                                                        value={`https://tarjet.site/#/st/${btoa(resultado.UsuToken)}`}
+                                                                        size={'50%'}
+                                                                        style={{display: 'block', margin: 'auto', padding: '20px 0'}}
+                                                                    />
+                                                                    <p className='escanea'>
+                                                                        Escanea con tu smartphone
+                                                                    </p>
+                                                                    <div className='buttons'>
+                                                                        <button
+                                                                            onClick={()=> btnResuComp(resultado.UsuToken)}
+                                                                        >
+                                                                            <img src={BtnCompartir} />
+                                                                            Compartir tarjeta
+                                                                        </button>
 
+                                                                        <button
+                                                                            onClick={()=> copiarResultado(resultado.UsuToken)}
+                                                                        >
+                                                                            <img src={BtnCopiar} />
+                                                                            Copiar enlace
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </motion.div>
+                                                        }
+                                                    </div>
+                                                ))                   
+                                            }
+                                        </>
+                                    ) : null
+                                ))
                             }
+
                             { busquedaNombre &&
                                 reBusNombre.map((resultado, index)=>(
                                     <div className='resultado' key={resultado.IdUsuario}>

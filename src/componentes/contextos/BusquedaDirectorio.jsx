@@ -30,6 +30,7 @@ const ConsultaNivel3 = async (idCategoriaSeleccionada, idActividad) => {
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaCategorias?Nivel1=${idCategoriaSeleccionada}&Nivel2=${idActividad}`, {
         method: 'GET',
         mode: 'cors',
+        cache: 'no-store',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -44,6 +45,7 @@ const BusquedaNombre = async (nombre) => {
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=${nombre}`, {
         method: 'GET',
         mode: 'cors',
+        cache: 'no-store',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -55,6 +57,7 @@ const BusquedaNombre = async (nombre) => {
         const response2 = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=${nombre}&Nombre=`, {
             method: 'GET',
             mode: 'cors',
+            cache: 'no-store',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -72,6 +75,7 @@ const BusquedaNivel3 = async (nivel) => {
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXCategoria?Categoriaid=${nivel}`, {
         method: 'GET',
         mode: 'cors',
+        cache: 'no-store',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }

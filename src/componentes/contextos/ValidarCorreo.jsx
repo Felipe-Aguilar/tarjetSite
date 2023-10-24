@@ -20,9 +20,9 @@ const VerificarCodigo = async(codigo, correo, password) => {
         },
         body: JSON.stringify({
             "RegistroUsu": {
-                "Nombre": "Nombre",
-                "ApellidoPat": "ApellidoPat",
-                "ApellidoMat": "ApellidoMat",
+                "Nombre": "",
+                "ApellidoPat": "",
+                "ApellidoMat": "",
                 "Codigo": codigo,
                 "Correo": correo,
                 "Password": password
@@ -41,9 +41,9 @@ const VerificarCodigoGoogle = async(codigo) => {
         },
         body: JSON.stringify({
             "RegistroUsu": {
-                "Nombre": "Nombre",
-                "ApellidoPat": "ApellidoPat",
-                "ApellidoMat": "ApellidoMat",
+                "Nombre": "",
+                "ApellidoPat": "",
+                "ApellidoMat": "",
                 "Codigo": codigo,
                 "Correo": "",
                 "Password": "",

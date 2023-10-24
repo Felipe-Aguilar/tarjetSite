@@ -42,7 +42,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "Activid": datosGenerales.Activid,
                 "ImgTarFrente": datosGenerales.ImgTarFrente,
                 "ImgTarReverso": datosGenerales.ImgTarReverso,
-                "PublicPriva": datosGenerales.PublicPriva,
+                "PublicPriva": datosFormulario.PublicPriva,
                 "Telefono1": datosGenerales.Telefono1,
                 "Tel1WP": datosGenerales.Tel1WP,
                 "Telefono2": datosGenerales.Telefono2,
@@ -51,7 +51,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "Tel3WP": datosGenerales.Tel3WP,
                 "Telefono4": datosGenerales.Telefono4,
                 "Tel4WP": datosGenerales.Tel4WP,
-                "VerUbicacion": datosFormulario.VerUbicacion,
+                "VerUbicacion": datosGenerales.VerUbicacion,
                 "PermitirCalif": datosFormulario.PermitirCalif,
                 "PermitirComments": datosFormulario.PermitirComments,
                 "TexoUbica": "Visitanos en:",
@@ -246,7 +246,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                         "ServSubTitulo": datosFormulario.Servicio4.ServSubTitulo,
                         "ServImg": datosFormulario.Servicio4.ServImg,
                         "ServIcono": datosFormulario.Servicio4.ServIcono,
-                        "ServSiteId": 2
+                        "ServSiteId": 1
                     },
                     {
                         "ServNum": 5,
@@ -271,7 +271,15 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                         "ServImg": datosFormulario.Servicio7.ServImg,
                         "ServIcono": datosFormulario.Servicio7.ServIcono,
                         "ServSiteId": 2
-                    }
+                    },
+                    {
+                        "ServNum": 8,
+                        "ServDescrip": datosFormulario.Servicio8.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio8.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio8.ServImg,
+                        "ServIcono": datosFormulario.Servicio8.ServIcono,
+                        "ServSiteId": 2
+                    },
                 ]
             }
         })

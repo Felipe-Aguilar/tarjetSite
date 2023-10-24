@@ -227,7 +227,7 @@ END:VCARD`;
                         style={usuario.SiteColorBton1 ? {background: `${usuario.SiteColorBton1}`} : {background: '#dce6ec'}}
                     >
                         <a onClick={GuardaContacto} className='save'>
-                            Guardar Contacto
+                            Guardar en mis contactos
                         </a>
                         <a 
                             onClick={GuardaContacto} 

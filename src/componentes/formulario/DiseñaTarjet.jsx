@@ -37,7 +37,7 @@ const DiseñaTarjet = () => {
     const [colonia, setColonia] = useState('');
     const [estado, setEstado] = useState('');
     const [municipio, setMunicipio] = useState('');
-    const [ubicacion, setUbicacion] = useState(false);
+    const [directorio, setDirectorio] = useState(false);
     const [calificacion, setCalificacion] = useState(false);
     const [comentarios, setComentarios] = useState(false);
     const [actividad, setActividad] = useState('');
@@ -108,13 +108,13 @@ const DiseñaTarjet = () => {
 
 
             // CheckButtons
-            if (respuesta.VerUbicacion === 1) {
-                setUbicacion(true);
+            if (respuesta.PublicPriva === 0) {
+                setDirectorio(true);
             }
-            if (respuesta.PermitirCalif === 1) {
+            if (respuesta.PermitirCalif === 0) {
                 setCalificacion(true);
             }
-            if (respuesta.PermitirComments) {
+            if (respuesta.PermitirComments === 0) {
                 setComentarios(true);
             }
         }
@@ -241,9 +241,9 @@ const DiseñaTarjet = () => {
             "Lev2Desc": buscaActividad ? filtroSegmento.Nivel2Desc : '',
             "Lev3Id": buscaActividad ? filtroSegmento.Nivel3Id : '',
             "Lev3Desc": buscaActividad,
-            "VerUbicacion": ubicacion ? 1 : 0,
-            "PermitirCalif": calificacion ? 1 : 0,
-            "PermitirComments": comentarios ? 1 : 0,
+            "PublicPriva": directorio ? 0 : 1,
+            "PermitirCalif": calificacion ? 0 : 1,
+            "PermitirComments": comentarios ? 0 : 1,
             "Calle": calle,
             "CodP": codigoPostal,
             "Municip": municipio,
@@ -291,9 +291,9 @@ const DiseñaTarjet = () => {
             "Lev2Desc": buscaActividad ? filtroSegmento.Nivel2Desc : '',
             "Lev3Id": buscaActividad ? filtroSegmento.Nivel3Id : '',
             "Lev3Desc": buscaActividad,
-            "VerUbicacion": ubicacion ? 1 : 0,
-            "PermitirCalif": calificacion ? 1 : 0,
-            "PermitirComments": comentarios ? 1 : 0,
+            "PublicPriva": directorio ? 0 : 1,
+            "PermitirCalif": calificacion ? 0 : 1,
+            "PermitirComments": comentarios ? 0 : 1,
             "Calle": calle,
             "NumExt": numeroExterior,
             "Estado": estado,
@@ -538,6 +538,15 @@ const DiseñaTarjet = () => {
                                                 onChange={(e)=>setAppMat(e.target.value)}
                                             />
                                         </div>
+
+                                        <input 
+                                            type="text" 
+                                            placeholder='Nombre de usuario' 
+                                            maxLength={20}
+                                        />
+                                        <p className='text-usuario'>
+                                            (con este usuario te podrán encontrar más fácil en el directorio)
+                                        </p>
 
                                         <input 
                                             type="text" 
@@ -964,7 +973,7 @@ const DiseñaTarjet = () => {
                             <div className='accept'>
                                 <div className='switches'>
                                     <label className="switch mb-0">
-                                        <input type="checkbox" checked={ubicacion} onChange={()=>setUbicacion(!ubicacion)}/>
+                                        <input type="checkbox" checked={directorio} onChange={()=>setDirectorio(!directorio)}/>
                                         <span className="slider"></span>
                                     </label>
                                 </div>
