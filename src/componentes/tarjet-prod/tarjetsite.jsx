@@ -541,30 +541,32 @@ END:VCARD`;
             
             { 
                 imagenServicios.map((servicio, index)=>(
-                    <>
-                        <div className='row justify-content-center Servicios2' key={servicio.SiteServNum}>
-                            <div className='col-11 col-md-4'>
-                                { servicio.Icono &&
-                                    <div className='icon'>
-                                        <img src={IconFolleto} />
-                                    </div>
-                                }
-                                <h5>{servicio.SiteServSubTitulo}</h5>
-
-                                { servicio.SiteServIMG &&
-                                    <img src={`https://tarjet.site/imagenes/servicios/${servicio.SiteServIMG}`} />
-                                }
-
-                                <h6>{servicio.SiteServDescrip}</h6>
+                    servicio.SiteServSubTitulo &&
+                        <>
+                            <div className='row justify-content-center Servicios2' key={servicio.SiteServNum}>
+                                <div className='col-11 col-md-4'>
+                                    { servicio.Icono &&
+                                        <div className='icon'>
+                                            <img src={IconFolleto} />
+                                        </div>
+                                    }
+                                    <h5>{servicio.SiteServSubTitulo}</h5>
+    
+                                    { servicio.SiteServIMG &&
+                                        <img src={`https://tarjet.site/imagenes/servicios/${servicio.SiteServIMG}`} />
+                                    }
+    
+                                    <h6>{servicio.SiteServDescrip}</h6>
+                                </div>
                             </div>
-                        </div>
-
-                        <div className='row justify-content-center' key={index}>
-                            <div className='col-11 col-md-4 p-0'>
-                                <hr/>
+    
+                            <div className='row justify-content-center' key={index}>
+                                <div className='col-11 col-md-4 p-0'>
+                                    <hr/>
+                                </div>
                             </div>
-                        </div>
-                    </>
+                        </>
+                    
                 ))
             }
 

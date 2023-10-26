@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { DatosEditaPerfil, ActualizarPerfil2 } from '../contextos/EditaPerfil';
+import { DatosEditaPerfil, ActualizarPerfil2, ActualizarPerfil3 } from '../contextos/EditaPerfil';
 import { ColeccionEncabezados } from '../contextos/Colecciones';
 import CargarImagen from './CargarImagen';
 
@@ -395,6 +395,21 @@ const DiseñaTarjetSite = () => {
 
     const CerrarCarga = () => {
         setCargarImagen(false);
+    }
+
+    const handleBlur = async () => {
+        const datosFormulario = {
+            "Servicio1": servicio1,
+            "Servicio2": servicio2,
+            "Servicio3": servicio3,
+            "Servicio4": servicio4,
+            "Servicio5": servicio5,
+            "Servicio6": servicio6,
+            "Servicio7": servicio7,
+            "Servicio8": servicio8,
+        }
+
+        await ActualizarPerfil3(datosGenerales, datosFormulario);
     }
 
     return ( 
@@ -843,7 +858,7 @@ const DiseñaTarjetSite = () => {
                         <h3>Muestra de productos ó servicios</h3>
 
                         { cargarImagen && 
-                            <CargarImagen onBotonClick={CerrarCarga}  tipoImagen={"SERV"} numeroServicio={nServicioImagen}/>
+                            <CargarImagen onBotonClick={CerrarCarga}  tipoImagen={"SERV"} numeroServicio={nServicioImagen} />
                         }
 
                         <div>
@@ -867,6 +882,7 @@ const DiseñaTarjetSite = () => {
                                             placeholder='Escribe su título'
                                             value={servicio5.ServSubTitulo}
                                             onChange={(e) => setServicio5({...servicio5, ServSubTitulo: e.target.value })}
+                                            onBlur={handleBlur}
                                         />
                                         { servicio5.ServImg ?
                                             <img 
@@ -888,6 +904,7 @@ const DiseñaTarjetSite = () => {
                                             maxLength={60}
                                             value={servicio5.ServDescrip}
                                             onChange={(e) => setServicio5({...servicio5, ServDescrip: e.target.value })}
+                                            onBlur={handleBlur}
                                         >
                                         </textarea>
                                         <div className='borrar'>
@@ -921,6 +938,7 @@ const DiseñaTarjetSite = () => {
                                             placeholder='Escribe su título'
                                             value={servicio6.ServSubTitulo}
                                             onChange={(e) => setServicio6({...servicio6, ServSubTitulo: e.target.value })}
+                                            onBlur={handleBlur}
                                         />
                                         { servicio6.ServImg ?
                                             <img 
@@ -942,6 +960,7 @@ const DiseñaTarjetSite = () => {
                                             maxLength={60}
                                             value={servicio6.ServDescrip}
                                             onChange={(e) => setServicio6({...servicio6, ServDescrip: e.target.value })}
+                                            onBlur={handleBlur}
                                         >
                                         </textarea>
                                         <div className='borrar'>
@@ -975,6 +994,7 @@ const DiseñaTarjetSite = () => {
                                             placeholder='Escribe su título'
                                             value={servicio7.ServSubTitulo}
                                             onChange={(e) => setServicio7({...servicio7, ServSubTitulo: e.target.value })}
+                                            onBlur={handleBlur}
                                         />
                                         { servicio7.ServImg ?
                                             <img 
@@ -996,6 +1016,7 @@ const DiseñaTarjetSite = () => {
                                             maxLength={60}
                                             value={servicio7.ServDescrip}
                                             onChange={(e) => setServicio7({...servicio7, ServDescrip: e.target.value })}
+                                            onBlur={handleBlur}
                                         >
                                         </textarea>
                                         <div className='borrar'>
@@ -1030,6 +1051,7 @@ const DiseñaTarjetSite = () => {
                                             placeholder='Escribe su título'
                                             value={servicio8.ServSubTitulo}
                                             onChange={(e) => setServicio8({...servicio8, ServSubTitulo: e.target.value })}
+                                            onBlur={handleBlur}
                                         />
                                         { servicio8.ServImg ?
                                             <img 
@@ -1051,6 +1073,7 @@ const DiseñaTarjetSite = () => {
                                             maxLength={60}
                                             value={servicio8.ServDescrip}
                                             onChange={(e) => setServicio8({...servicio8, ServDescrip: e.target.value })}
+                                            onBlur={handleBlur}
                                         >
                                         </textarea>
                                         <div className='borrar'>

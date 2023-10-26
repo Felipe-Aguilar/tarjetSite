@@ -133,7 +133,7 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                             setCorrecto(true);
 
                             setTimeout(()=>{
-                                window.location.reload();
+                                window.location.reload(true);
                             }, 4000);
 
                         }, 1000);
@@ -142,55 +142,8 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                 );
             })
         }
+
     }
-
-    // const [selectedFile, setSelectedFile] = useState(null);
-
-    // const handleFileChange = (event) => {
-    //     const file = event.target.files[0];
-    //     if (file && file.type === 'image/jpeg') {
-    //     setSelectedFile(file);
-    //     } else {
-    //     alert('Por favor, seleccione un archivo en formato webp.');
-    //     }
-    // };
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     if (selectedFile) {
-    //     // Aquí puedes hacer lo que necesites con el archivo seleccionado, como enviarlo al servidor.
-    //     console.log('Archivo seleccionado:', selectedFile);
-
-    //     const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/gxobject', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'multipart/form-data'
-    //     },
-    //         body: selectedFile,
-    //     });
-
-    //     const data = await response.json();
-
-    //     console.log(data);
-
-    //     const response2 = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/ServiceUpload', {
-    //         method: 'POST',
-    //         headers: {
-    //             // 'Content-Type': 'application/x-www-form-urlencoded'
-    //             // 'Content-Type': 'multipart/form-data'
-    //             // 'Content-Type': 'image/webp'
-    //         },
-    //         body: JSON.stringify({
-    //             "UsuToken": "9171Tq139",
-    //             "ImageFileImage": data.object_id,
-    //             "TipoImagen": "PERF"
-    //         })
-    //     });
-
-    //     } else {
-    //     alert('Por favor, seleccione un archivo en formato webp antes de enviar.');
-    //     }
-    // };
 
     return ( 
         <div className="pop-cargarimagen">
