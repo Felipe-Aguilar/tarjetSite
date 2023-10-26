@@ -132,15 +132,6 @@ const TarjetSite = () => {
     // Guardar contacto
     const GuardaContacto = () => {
         console.log(datos);
-        const data = {
-            firstName: 'Felipe',
-            lastName: 'Aguilar',
-            title: 'Desarrollador Web',
-            email: 'felipe@correo.com',
-            mobile: '5560078218',
-            work: 'TekRobot',
-            location: 'México'
-        };
 
         const content = `BEGIN:VCARD
 VERSION:3.0
@@ -210,7 +201,9 @@ END:VCARD`;
     // Guardar en mi tarjetero
     const btnGuardarTarjeta = async () => {
 
-        if (datosActualizados.RegistroTarjet) {
+        const sesionLocal = localStorage.getItem('UsuarioSesion');
+
+        if (sesionLocal) {
             const misDatos = await JSON.parse(localStorage.getItem('IdDatosSesion'));
             
             const idUsuario = comprobarUsuario.usuId;
