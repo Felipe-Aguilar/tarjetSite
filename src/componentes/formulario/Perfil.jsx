@@ -62,7 +62,7 @@ const Perfil = () => {
                         <h1>Bienvenido a tu perfil</h1>
                         <h2>
                             {`${datosActualizados.Nom} ${datosActualizados.AppP} ${datosActualizados.AppM}`} <br/>
-                            <span>@{datosUsuario.Cuenta}</span>
+                            <span>{datosUsuario.Cuenta}</span>
                         </h2>
                     </div>
                 </div>

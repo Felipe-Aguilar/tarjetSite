@@ -30,6 +30,7 @@ import rostro from '../../assets/rostro-04.jpg';
 import perfilGenerico from '../../assets/perfiltemporal.jpg';
 
 import { QRCodeSVG } from 'qrcode.react';
+import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 
 const MiTarjetero = () => {
 
@@ -37,7 +38,6 @@ const MiTarjetero = () => {
     const [comprobarUsuario, setComprobarUsuario] = useState([]);
     const [ usuario, setUsuario ] = useState([]);
     const [datos, setDatos] = useState([]);
-    const [soloNombre, setSoloNombre] = useState([]);
 
     const usuarioSesion = JSON.parse(localStorage.getItem('DatosSesion'));
     const idUsuarioSesion = JSON.parse(localStorage.getItem('IdDatosSesion'));
@@ -59,10 +59,9 @@ const MiTarjetero = () => {
             const resultados = await DatosUsuario(comprobarUsuario.usuId);
             setUsuario(resultados);
 
-            const datosUsuarios = await DatosUsuarioTarjetSite(comprobarUsuario.usuId);
-            setDatos(datosUsuarios.SDTSite);
-            setSoloNombre(datosUsuarios.SDTSite.NomCompleto.split(' '));
-
+            // const datosUsuarios = await DatosUsuarioTarjetSite(comprobarUsuario.usuId);
+            const datosUsuarios = await DatosEditaPerfil(comprobarUsuario.usuId);
+            setDatos(datosUsuarios);
         }
 
         const ConsultaMiTarjetero = async () =>{
@@ -226,7 +225,6 @@ const MiTarjetero = () => {
         <div className='container-fluid p-0'>
 
             <Toaster />
-
             <div className='miTarjetero' >
                 { !busquedaUsuario ?
                 <>
@@ -235,7 +233,7 @@ const MiTarjetero = () => {
                         <div className='col-12 col-lg-4 '>
                             <img src={PortadaTarjet}/>
                             <h5>
-                                Hola {soloNombre[0]}<br/>
+                                Hola {datos.Nom}<br/>
                                 <span>Bienvenido a tu</span>
                             </h5>
                             <h4>
@@ -262,13 +260,17 @@ const MiTarjetero = () => {
                         </div> */}
                     <div className='row justify-content-center tarjeta2'>
                         <div className='col-11 col-lg-4'>
-                            <img 
-                                src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.UsuFondoF}`}
-                                onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
-                            />
-                            <p>
-                                Da click sobre la imagen para ver tu tarjeta digital
-                            </p>
+                            { (datos.RegistroTarjet && usuario.UsuFondoF) &&
+                                    <>
+                                        <img 
+                                            src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.UsuFondoF}`}
+                                            onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
+                                        />
+                                        <p>
+                                            Da click sobre la imagen para ver tu tarjeta digital
+                                        </p>
+                                    </>
+                            }
                         </div>
                     </div>
                 </>

@@ -43,8 +43,11 @@ const DiseñaTarjet = () => {
     const [actividad, setActividad] = useState('');
     const [consultaCP, setConsultaCP] = useState([]);
     const [titulo, setTitulo] = useState('Lic');
+    const [nombreUsuario, setNombreUsuario] = useState('');
 
     const [error, setError] = useState(false);
+    const [errorActividad, setErrorActividad] = useState(false);
+    const [errorNombre, setErrorNombre] = useState(false);
     const [error2, setError2] = useState(false);
 
     // Selecciona actividad
@@ -88,6 +91,7 @@ const DiseñaTarjet = () => {
             setMunicipio(respuesta.Municip);
             setColonia(respuesta.Colonia);
             setActividad(respuesta.Lev3Desc);
+            setNombreUsuario(respuesta.Alias);
             if (respuesta.Titulo === '') {
                 setTitulo('Lic');
             } else{
@@ -223,8 +227,21 @@ const DiseñaTarjet = () => {
         
         e.preventDefault();
 
-        if (buscaActividad === '') {
+        if (buscaActividad === '' || nombreUsuario === '') {
             setError(true);
+
+            if (buscaActividad === '') {
+                setErrorActividad(true);
+            }else{
+                setErrorActividad(false);
+            }
+
+            if (nombreUsuario === '') {
+                setErrorNombre(true);
+            }else{
+                setErrorNombre(false);
+            }
+
             return;
         }else{
             setError(false);
@@ -248,7 +265,8 @@ const DiseñaTarjet = () => {
             "CodP": codigoPostal,
             "Municip": municipio,
             "Colonia": colonia,
-            "Titulo": titulo
+            "Titulo": titulo,
+            "Alias": nombreUsuario
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -341,6 +359,18 @@ const DiseñaTarjet = () => {
             setConsultaCP([]);
             setEstado('');
             setMunicipio('');
+        }
+    }
+
+    // Comprobar NOMBRE DE USUARIO
+    const onChangeNombreUsuario = async (e) => {
+        
+        const pattern = /^[a-zA-Z0-9\s]*$/;
+        
+        if (!pattern.test(e.target.value)) {
+            
+        } else {
+            setNombreUsuario(e.target.value);
         }
     }
 
@@ -542,7 +572,10 @@ const DiseñaTarjet = () => {
                                         <input 
                                             type="text" 
                                             placeholder='Nombre de usuario' 
-                                            maxLength={20}
+                                            maxLength={8}
+                                            value={nombreUsuario}
+                                            onChange={onChangeNombreUsuario}
+                                            className={errorNombre ? 'input-error' : ''}
                                         />
                                         <p className='text-usuario'>
                                             (con este usuario te podrán encontrar más fácil en el directorio)
@@ -551,7 +584,7 @@ const DiseñaTarjet = () => {
                                         <input 
                                             type="text" 
                                             placeholder='Buscar actividad' 
-                                            className={error ? 'input-error' : ''}
+                                            className={errorActividad ? 'input-error' : ''}
                                             maxLength={80}
                                             value={buscaActividad}
                                             style={{textTransform: 'uppercase'}}
@@ -579,11 +612,18 @@ const DiseñaTarjet = () => {
 
                                         {/* <input type="text" placeholder='Encabezado ó servicio principal (opcional)' maxLength={30}/> */}
 
-                                        { error &&
+                                        { error && 
                                             <div className='error-message'>
-                                                <p>
-                                                    Por favor ingrese una actividad
-                                                </p>
+                                                { buscaActividad === '' &&
+                                                    <p>
+                                                        Por favor ingrese una actividad
+                                                    </p>
+                                                }
+                                                { nombreUsuario === '' &&
+                                                    <p>
+                                                        Por favor ingrese nombre de usuario
+                                                    </p>
+                                                }
                                             </div>
                                         }
 

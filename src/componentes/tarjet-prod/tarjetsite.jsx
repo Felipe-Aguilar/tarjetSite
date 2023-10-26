@@ -34,6 +34,10 @@ import IconBtnCorreo from '../../assets/boton-correo-site.svg';
 import IconBtnWeb from '../../assets/boton-web-site.svg';
 import IconBtnRedes from '../../assets/boton-redes-site.svg';
 import IconBtnCatalogo from '../../assets/mxm/boton-catalogo-site.svg';
+import IconBtnTarjetero from '../../assets/boton-tarjetero-site.svg';
+import { GuardarTarjet } from '../contextos/GuardarTarjet';
+import { DatosEditaPerfil } from '../contextos/EditaPerfil';
+import PopGuardarTarjet from './PopGuardarTarjet';
 
 
 const TarjetSite = () => {
@@ -45,6 +49,7 @@ const TarjetSite = () => {
     const [ usuario, setUsuario ] = useState([]);
     const [ token, setToken ] = useState([]);
     const [datos, setDatos] = useState([]);
+    const [datosActualizados, setDatosActualizados] = useState([]);
 
     const [servicios, setServicios] = useState([]);
     const [descServicios, setDescServicios] = useState([]);
@@ -55,18 +60,24 @@ const TarjetSite = () => {
     const [vistaImageModal, setVistaImageModal] = useState(false);
     const [imgModal, setImgModal] = useState('');
 
-    const [popGuardar, setPopGuardar] = useState(false);
-    const localSesion = localStorage.getItem('UsuarioSesion');
+    const [popGuardarTarjetero, setPopGuardarTarjetero] = useState(false);
+    const [btnEnable, setBtnEnable] = useState(false);
     
     useEffect(()=>{
 
         const ConsultaUsuario = async () => {
 
-            window.scrollTo(0, 0);
-
             const comprobar = await ComprobarUsuario(atob(pageId));
             setComprobarUsuario(comprobar);
 
+            const datosSesion = await JSON.parse(localStorage.getItem('IdDatosSesion'));
+
+            if (datosSesion.Token === atob(pageId)) {
+                setBtnEnable(true);
+            }
+
+            const datosActualizados = await DatosEditaPerfil(comprobar.usuId);
+            setDatosActualizados(datosActualizados);
 
             const datosUsuarios = await DatosUsuarioTarjetSite(comprobar.usuId);
             setUsuario(datosUsuarios.SDTSite);
@@ -97,6 +108,10 @@ const TarjetSite = () => {
             setServiciosVideo(datosServiciosVideo);
         }
         
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
         ConsultaUsuario();
     },[]);
 
@@ -191,6 +206,29 @@ END:VCARD`;
 
     // Comprobando si existe o no
     if(comprobarUsuario.usuId === 0) return null;
+
+    // Guardar en mi tarjetero
+    const btnGuardarTarjeta = async () => {
+
+        if (datosActualizados.RegistroTarjet) {
+            const misDatos = await JSON.parse(localStorage.getItem('IdDatosSesion'));
+            
+            const idUsuario = comprobarUsuario.usuId;
+            const idMiUsuario = misDatos.usuId;
+    
+            await GuardarTarjet(idMiUsuario, idUsuario);
+
+            setPopGuardarTarjetero(true);
+
+            setTimeout(()=>{
+                window.location.reload();
+            }, 4000);
+            
+        } else{
+            navigate('/login');
+        }
+
+    }
 
     return ( 
         <div className='tarjetSite' style={{background: usuario.SiteFondo}}>
@@ -451,8 +489,30 @@ END:VCARD`;
                         </a>
                     </motion.div>
 
+                    <motion.div 
+                        style={{background: `${btnEnable ? '#c0c0c0' : '#e1dcf4'}`}}
+                        className={`mt-3 contacto-div`} 
+                        {...animacionBtn}
+                        transition={{delay: 0.9}}
+                    >
+                        <a onClick={btnGuardarTarjeta} className={btnEnable ? 'disabled' : ''}>
+                            Guardar en tarjetero Tarjet
+                        </a>
+                        <a 
+                            onClick={btnGuardarTarjeta} 
+                            className={`icon ${btnEnable ? 'disabled' : ''}`} 
+                            style={{background: `${btnEnable ? '#7a7a7a' : '#76BB20'}`}}
+                        >
+                            <img src={IconBtnTarjetero}/>
+                        </a>
+                    </motion.div>
+
                 </div>
             </div>
+
+            { popGuardarTarjetero &&
+                <PopGuardarTarjet />
+            }
 
             <div className='row mt-4 justify-content-center'>
                 <div className='col-11 col-md-4 p-0'>
@@ -608,7 +668,7 @@ END:VCARD`;
                     <p>Tarjeta digital tarjet</p>
                     <p>Nombre de usuario en directorio tarjet:</p>
                     <p>
-                        <span>{usuario.Cuenta}</span>
+                        <span>{datosActualizados.Alias}</span>
                     </p>
 
                     <div className='cuerpo'>

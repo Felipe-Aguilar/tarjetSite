@@ -1,5 +1,5 @@
-const GuardarTarjet = (IdSesion, IdTarjet) => {
-    fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/GuardaTarjet', {
+const GuardarTarjet = async (IdSesion, IdTarjet) => {
+    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/GuardaTarjet', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -9,10 +9,12 @@ const GuardarTarjet = (IdSesion, IdTarjet) => {
             "TarjetGIdUsuario": IdSesion,
             "TarjetGIdTarjet": IdTarjet,
         })
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+    });
+
+    const data = await response.json();
+
+    return data; 
+    
 }
 
 export { GuardarTarjet };

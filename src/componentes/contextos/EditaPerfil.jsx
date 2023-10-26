@@ -27,6 +27,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "UUID": datosGenerales.UUID,
                 "TokenId": datosGenerales.TokenId,
                 "EmpleadoId": datosGenerales.EmpleadoId,
+                "Alias": datosFormulario.Alias,
                 "Nom": datosFormulario.Nom,
                 "AppP": datosFormulario.AppP,
                 "AppM": datosFormulario.AppM,
@@ -81,64 +82,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                // "Serv": [
-                //     {
-                //         "ServNum": 1,
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": 2,
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": 3,
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 1
-                //     },
-                //     {
-                //         "ServNum": 4,
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": 5,
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": 6,
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 2
-                //     },
-                //     {
-                //         "ServNum": 7,
-                //         "ServDescrip": "",
-                //         "ServSubTitulo": "",
-                //         "ServImg": "",
-                //         "ServIcono": "",
-                //         "ServSiteId": 2
-                //     }
-                // ]
+                "RegistroTarjet": true
             }
         })
     });
@@ -215,6 +159,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
+                "RegistroTarjet": true,
                 "Serv": [
                     {
                         "ServNum": 1,
