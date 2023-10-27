@@ -92,6 +92,84 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
     return dataUsuario;
 }
 
+const ActualizarHeaderPerfil = async (datosGenerales, datosFormulario) => {
+    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify({
+            "usuId": datosGenerales.UUID,
+            "ListUsuario": {
+                "UUID": datosGenerales.UUID,
+                "TokenId": datosGenerales.TokenId,
+                "EmpleadoId": datosGenerales.EmpleadoId,
+                "Alias": datosGenerales.Alias,
+                "Nom": datosGenerales.Nom,
+                "AppP": datosGenerales.AppP,
+                "AppM": datosGenerales.AppM,
+                "Cargo": datosGenerales.Cargo,
+                "Tipo": datosGenerales.Tipo,
+                "Titulo": datosGenerales.Titulo,
+                "Lev1Id": datosGenerales.Lev1Id,
+                "Lev1Desc": datosGenerales.Lev1Desc,
+                "Lev2Id": datosGenerales.Lev2Id,
+                "Lev2Desc": datosGenerales.Lev2Desc,
+                "Lev3Id": datosGenerales.Lev3Id,
+                "Lev3Desc": datosGenerales.Lev3Id,
+                "Activid": datosGenerales.Activid,
+                "ImgTarFrente": datosGenerales.ImgTarFrente,
+                "ImgTarReverso": datosGenerales.ImgTarReverso,
+                "PublicPriva": datosGenerales.PublicPriva,
+                "Telefono1": datosGenerales.Telefono1,
+                "Tel1WP": datosGenerales.Tel1WP,
+                "Telefono2": datosGenerales.Telefono2,
+                "Tel2WP": datosGenerales.Tel2WP,
+                "Telefono3": datosGenerales.Telefono3,
+                "Tel3WP": datosGenerales.Tel3WP,
+                "Telefono4": datosGenerales.Telefono4,
+                "Tel4WP": datosGenerales.Tel4WP,
+                "VerUbicacion": datosGenerales.VerUbicacion,
+                "PermitirCalif": datosGenerales.PermitirCalif,
+                "PermitirComments": datosGenerales.PermitirComments,
+                "TexoUbica": "Visitanos en:",
+                "Calle": datosGenerales.Calle,
+                "NumExt": datosGenerales.NumExt,
+                "CodP": datosGenerales.CodP,
+                "Colonia": datosGenerales.Colonia,
+                "Estado": datosGenerales.Estado,
+                "Municip": datosGenerales.Municip,
+                "MapsGeoloc": datosGenerales.MapsGeoloc,
+                "Activo": datosGenerales.Activo,
+                "RangoLocal": datosGenerales.RangoLocal,
+                "ImgHeader": datosFormulario.ImgHeader,
+                "Mail": datosGenerales.Mail,
+                "Web": datosGenerales.Web,
+                "IconoComents": datosGenerales.IconoComents,
+                "Facebook": datosGenerales.Facebook,
+                "Instagram": datosGenerales.Instagram,
+                "Youtube": datosGenerales.Youtube,
+                "Tiktok": datosGenerales.Tiktok,
+                "Pinterest": datosGenerales.Pinterest,
+                "Twitter": datosGenerales.Twitter,
+                "Telegram": datosGenerales.Telegram,
+                "TituloServ": datosGenerales.TituloServ,
+                "SubTituloServ": datosGenerales.SubTituloServ,
+                "ColorBton1": datosGenerales.ColorBton1,
+                "ColorBton2": datosGenerales.ColorBton2,
+                "ImgFoto": datosGenerales.ImgFoto,
+                "ImgLogo": datosGenerales.ImgLogo,
+                "RegistroTarjet": true
+            }
+        })
+    });
+    
+    const dataUsuario = await response.json();
+
+    return dataUsuario;
+}
+
 const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
@@ -105,6 +183,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "UUID": datosGenerales.UUID,
                 "TokenId": datosGenerales.TokenId,
                 "EmpleadoId": datosGenerales.EmpleadoId,
+                "Alias": datosGenerales.Alias,
                 "Nom": datosGenerales.Nom,
                 "AppP": datosGenerales.AppP,
                 "AppM": datosGenerales.AppM,
@@ -142,7 +221,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "MapsGeoloc": datosGenerales.MapsGeoloc,
                 "Activo": datosGenerales.Activo,
                 "RangoLocal": datosGenerales.RangoLocal,
-                "ImgHeader": datosFormulario.ImgHeader,
+                "ImgHeader": datosGenerales.ImgHeader,
                 "Mail": datosFormulario.Mail,
                 "Web": datosFormulario.Web,
                 "IconoComents": datosGenerales.IconoComents,
@@ -249,6 +328,7 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
                 "UUID": datosGenerales.UUID,
                 "TokenId": datosGenerales.TokenId,
                 "EmpleadoId": datosGenerales.EmpleadoId,
+                "Alias": datosGenerales.Alias,
                 "Nom": datosGenerales.Nom,
                 "AppP": datosGenerales.AppP,
                 "AppM": datosGenerales.AppM,
@@ -305,38 +385,38 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
                 "ImgLogo": datosGenerales.ImgLogo,
                 "RegistroTarjet": true,
                 "Serv": [
-                    // {
-                    //     "ServNum": 1,
-                    //     "ServDescrip": datosGenerales.Servicio1.ServDescrip,
-                    //     "ServSubTitulo": datosGenerales.Servicio1.ServSubTitulo,
-                    //     "ServImg": datosGenerales.Servicio1.ServImg,
-                    //     "ServIcono": datosGenerales.Servicio1.ServIcono,
-                    //     "ServSiteId": 1
-                    // },
-                    // {
-                    //     "ServNum": 2,
-                    //     "ServDescrip": datosGenerales.Servicio2.ServDescrip,
-                    //     "ServSubTitulo": datosGenerales.Servicio2.ServSubTitulo,
-                    //     "ServImg": datosGenerales.Servicio2.ServImg,
-                    //     "ServIcono": datosGenerales.Servicio2.ServIcono,
-                    //     "ServSiteId": 1
-                    // },
-                    // {
-                    //     "ServNum": 3,
-                    //     "ServDescrip": datosGenerales.Servicio3.ServDescrip,
-                    //     "ServSubTitulo": datosGenerales.Servicio3.ServSubTitulo,
-                    //     "ServImg": datosGenerales.Servicio3.ServImg,
-                    //     "ServIcono": datosGenerales.Servicio3.ServIcono,
-                    //     "ServSiteId": 1
-                    // },
-                    // {
-                    //     "ServNum": 4,
-                    //     "ServDescrip": datosGenerales.Servicio4.ServDescrip,
-                    //     "ServSubTitulo": datosGenerales.Servicio4.ServSubTitulo,
-                    //     "ServImg": datosGenerales.Servicio4.ServImg,
-                    //     "ServIcono": datosGenerales.Servicio4.ServIcono,
-                    //     "ServSiteId": 1
-                    // },
+                    {
+                        "ServNum": 1,
+                        "ServDescrip": datosFormulario.Servicio1.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio1.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio1.ServImg,
+                        "ServIcono": datosFormulario.Servicio1.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 2,
+                        "ServDescrip": datosFormulario.Servicio2.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio2.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio2.ServImg,
+                        "ServIcono": datosFormulario.Servicio2.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 3,
+                        "ServDescrip": datosFormulario.Servicio3.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio3.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio3.ServImg,
+                        "ServIcono": datosFormulario.Servicio3.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 4,
+                        "ServDescrip": datosFormulario.Servicio4.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio4.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio4.ServImg,
+                        "ServIcono": datosFormulario.Servicio4.ServIcono,
+                        "ServSiteId": 1
+                    },
                     {
                         "ServNum": 5,
                         "ServDescrip": datosFormulario.Servicio5.ServDescrip,
@@ -379,4 +459,4 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
     return dataUsuario;
 }
 
-export { DatosEditaPerfil, ActualizarPerfil, ActualizarPerfil2, ActualizarPerfil3 }
+export { DatosEditaPerfil, ActualizarPerfil, ActualizarPerfil2, ActualizarPerfil3, ActualizarHeaderPerfil }

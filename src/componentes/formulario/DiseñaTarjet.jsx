@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
+import { BusquedaAlias, ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
 import { DatosEditaPerfil, ActualizarPerfil } from '../contextos/EditaPerfil';
 import { CodigoPostal } from '../contextos/CodigoPostal';
 import { ColeccionTarjeta } from '../contextos/Colecciones';
@@ -48,6 +48,7 @@ const DiseñaTarjet = () => {
     const [error, setError] = useState(false);
     const [errorActividad, setErrorActividad] = useState(false);
     const [errorNombre, setErrorNombre] = useState(false);
+    const [errorAlias, setErrorAlias] = useState(false);
     const [error2, setError2] = useState(false);
 
     // Selecciona actividad
@@ -227,7 +228,7 @@ const DiseñaTarjet = () => {
         
         e.preventDefault();
 
-        if (buscaActividad === '' || nombreUsuario === '') {
+        if (buscaActividad === '' || nombreUsuario === '' || errorAlias === true) {
             setError(true);
 
             if (buscaActividad === '') {
@@ -318,7 +319,8 @@ const DiseñaTarjet = () => {
             "CodP": codigoPostal,
             "Municip": municipio,
             "Colonia": colonia,
-            "Titulo": titulo
+            "Titulo": titulo,
+            "Alias": nombreUsuario
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -367,10 +369,18 @@ const DiseñaTarjet = () => {
         
         const pattern = /^[a-zA-Z0-9\s]*$/;
         
-        if (!pattern.test(e.target.value)) {
+        if (pattern.test(e.target.value)) {
+            setNombreUsuario(e.target.value);     
             
-        } else {
-            setNombreUsuario(e.target.value);
+            const response = await BusquedaAlias(e.target.value);
+
+            const mismoAlias = response.ListTarjets.find(respuesta => respuesta.Alias === e.target.value);
+
+            if ( mismoAlias !== undefined ) {
+                setErrorAlias(true);
+            }else{
+                setErrorAlias(false);
+            }
         }
     }
 
@@ -496,7 +506,7 @@ const DiseñaTarjet = () => {
                             <div className='info'>
                                 <div className='modelos w-100'>
                                     <p>
-                                        {`${currentSlide+1} de 10 modelos gratuitos`}
+                                        {`${currentSlide+1} de ${colecciones.length} modelos gratuitos`}
                                     </p>
                                 </div>
                                 {/* <div className='premium-select'>
@@ -622,6 +632,11 @@ const DiseñaTarjet = () => {
                                                 { nombreUsuario === '' &&
                                                     <p>
                                                         Por favor ingrese nombre de usuario
+                                                    </p>
+                                                }
+                                                {  errorAlias &&
+                                                    <p>
+                                                        Nombre de usuario ya está en uso, por favor intente con otro.
                                                     </p>
                                                 }
                                             </div>

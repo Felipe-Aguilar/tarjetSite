@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { DatosEditaPerfil, ActualizarPerfil2, ActualizarPerfil3 } from '../contextos/EditaPerfil';
+import { DatosEditaPerfil, ActualizarPerfil2, ActualizarPerfil3, ActualizarHeaderPerfil } from '../contextos/EditaPerfil';
 import { ColeccionEncabezados } from '../contextos/Colecciones';
 import CargarImagen from './CargarImagen';
 
@@ -300,11 +300,31 @@ const DiseñaTarjetSite = () => {
             "Servicio6": servicio6,
             "Servicio7": servicio7,
             "Servicio8": servicio8,
-            "ImgHeader": currentFondo,
             "Titulo": titulo
         }
 
         await ActualizarPerfil2(datosGenerales, datosFormulario);
+        setPopActualiza(true);
+
+        setTimeout(()=>{
+            setPopActualiza(false);
+
+            setTimeout(()=>{
+                window.location.reload();
+            },1000);
+            
+        }, 3500);
+    }
+
+    // Guarda el encabezado
+    const GuardarImagenEncabezado = async (e) => {
+        e.preventDefault();
+
+        const datosFormulario = {
+            "ImgHeader": currentFondo,
+        }
+
+        await ActualizarHeaderPerfil(datosGenerales, datosFormulario);
         setPopActualiza(true);
 
         setTimeout(()=>{
@@ -524,7 +544,7 @@ const DiseñaTarjetSite = () => {
                             <div className='info'>
                                 <div className='modelos w-100'>
                                     <p>
-                                        {`${currentSlide + 1} de 2 modelos gratuitos`}
+                                        {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
                                     </p>
                                 </div>
                                 {/* <div className='premium-select'>
@@ -541,7 +561,7 @@ const DiseñaTarjetSite = () => {
                                 <button>
                                     Cargar archivo de imagen (premium)
                                 </button>
-                                <button className='guardar' onClick={GuardarTarjeta1}>
+                                <button className='guardar' onClick={GuardarImagenEncabezado}>
                                     Guardar imagen
                                 </button>
                             </div>
@@ -828,24 +848,28 @@ const DiseñaTarjetSite = () => {
                             placeholder='• Listado de servicio' 
                             value={servicio1.ServDescrip} 
                             onChange={(e)=>setServicio1({...servicio1, ServDescrip: e.target.value})}
+                            onBlur={handleBlur}
                         />
                         <input 
                             type="text" 
                             placeholder='• Listado de servicio' 
                             value={servicio2.ServDescrip} 
                             onChange={(e)=>setServicio2({...servicio2, ServDescrip: e.target.value})}
+                            onBlur={handleBlur}
                         />
                         <input 
                             type="text" 
                             placeholder='• Listado de servicio' 
                             value={servicio3.ServDescrip} 
                             onChange={(e)=>setServicio3({...servicio3, ServDescrip: e.target.value})}
+                            onBlur={handleBlur}
                         />
                         <input 
                             type="text" 
                             placeholder='• Listado de servicio' 
                             value={servicio4.ServDescrip} 
                             onChange={(e)=>setServicio4({...servicio4, ServDescrip: e.target.value})}
+                            onBlur={handleBlur}
                         />
                         
                         {/* <textarea 

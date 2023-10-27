@@ -156,6 +156,11 @@ $btnAmarillo: #fab947;
                 border: transparent;
                 border-left: 1px solid #000;
 
+                @media (width <= 393px) {
+                    // border-left: transparent;
+                    // font-size: 0.8rem;
+                    gap: 1px;
+                }
                 @media (width <= 320px) {
                     border-left: transparent;
                     font-size: 0.8rem;
@@ -431,6 +436,10 @@ $btnAmarillo: #fab947;
                                     border: transparent;
                                     padding: 5px 20px;
                                     outline: none!important;
+
+                                    @media (width <= 360px) {
+                                        font-size: 0.9rem;
+                                    }
                                 }
                             }
 

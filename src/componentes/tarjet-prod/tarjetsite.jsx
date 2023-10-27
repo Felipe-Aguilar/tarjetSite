@@ -227,7 +227,12 @@ END:VCARD`;
         <div className='tarjetSite' style={{background: usuario.SiteFondo}}>
             <div className='row justify-content-center encabezado'>
                 <div className='col-12 col-md-4 p-0'>
-                    <img src={imagenSRC+usuario.SiteImgEncabezado} className='img-fluid'/>
+
+                    { usuario.SiteImgEncabezado?.slice(0,10) === 'SiteHeader' ?
+                        <img src={`https://tarjet.site/imagenes/Headers_Collection/${usuario.SiteImgEncabezado}`} className='img-fluid'/>
+                    :
+                        <img src={imagenSRC+usuario.SiteImgEncabezado} className='img-fluid'/>
+                    }
                 </div>
             </div>
 

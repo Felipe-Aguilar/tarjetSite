@@ -71,6 +71,21 @@ const BusquedaNombre = async (nombre) => {
     return dataUsuario;
 }
 
+const BusquedaAlias = async (alias) => {
+    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=&Alias=${alias}`, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-store',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+
+    const dataUsuario = await response.json();
+    
+    return dataUsuario;
+}
+
 const BusquedaNivel3 = async (nivel) => {
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXCategoria?Categoriaid=${nivel}`, {
         method: 'GET',
@@ -100,4 +115,4 @@ const ObtenerSegmentos = async (descripcion) => {
     return dataUsuario;
 }
 
-export { BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNombre, BusquedaNivel3, ObtenerSegmentos};
+export { BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNombre, BusquedaAlias, BusquedaNivel3, ObtenerSegmentos};
