@@ -514,12 +514,60 @@ const BusquedaActividad = () => {
                             </div>
                             <div className='cards'>
                                 { resultadosNombre.map((resultado)=>(
+                                    resultado.PublicPriva === 0 ? (
+                                        <div className='contenedor' key={resultado.IdUsuario}>
+                                            <div className='title'>
+                                                <div className='img'>
+                                                    { resultado.ImgFoto !== '' ?
+                                                        <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
+                                                    : 
+                                                        <img src={PerfilTemporal}/>
+                                                    }
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        {resultado.NombreCompleto}
+                                                        <br/>
+                                                        <span>{resultado.Actividad}</span>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div className='tarjetaImg'>
+                                                <img 
+                                                    src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.FondoF}`} className='img-fluid'
+                                                    onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
+                                                />
+                                            </div>
+                                            <div className='footer'>
+                                                <p>
+                                                    Da click sobre la imagen para ver tarjeta digital
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ) : null
+                                ))
+                                }
+                            </div>
+                        </motion.div>
+                    }
+
+                    {   subresultadoSeleccionado &&
+                        <motion.div className='ResultadosCard' {...propsAnimacion}>
+                        <div className='encabezado'>
+                            <button onClick={()=>setSubresultadoSeleccionado('')}>
+                                <i className="bi bi-x-lg"></i>
+                                Cerrar ventana de resultados
+                            </button>
+                        </div>
+                        <div className='cards'>
+                            { resultadosNivel3.map((resultado)=>(
+                                resultado.PublicPriva === 0 ? (
                                     <div className='contenedor' key={resultado.IdUsuario}>
                                         <div className='title'>
                                             <div className='img'>
                                                 { resultado.ImgFoto !== '' ?
                                                     <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
-                                                : 
+                                                :
                                                     <img src={PerfilTemporal}/>
                                                 }
                                             </div>
@@ -543,51 +591,7 @@ const BusquedaActividad = () => {
                                             </p>
                                         </div>
                                     </div>
-                                ))
-                                }
-                            </div>
-                        </motion.div>
-                    }
-
-                    {   subresultadoSeleccionado &&
-                        <motion.div className='ResultadosCard' {...propsAnimacion}>
-                        <div className='encabezado'>
-                            <button onClick={()=>setSubresultadoSeleccionado('')}>
-                                <i className="bi bi-x-lg"></i>
-                                Cerrar ventana de resultados
-                            </button>
-                        </div>
-                        <div className='cards'>
-                            { resultadosNivel3.map((resultado)=>(
-                                <div className='contenedor' key={resultado.IdUsuario}>
-                                    <div className='title'>
-                                        <div className='img'>
-                                            { resultado.ImgFoto !== '' ?
-                                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
-                                            :
-                                                <img src={PerfilTemporal}/>
-                                            }
-                                        </div>
-                                        <div>
-                                            <h5>
-                                                {resultado.NombreCompleto}
-                                                <br/>
-                                                <span>{resultado.Actividad}</span>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div className='tarjetaImg'>
-                                        <img 
-                                            src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.FondoF}`} className='img-fluid'
-                                            onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
-                                        />
-                                    </div>
-                                    <div className='footer'>
-                                        <p>
-                                            Da click sobre la imagen para ver tarjeta digital
-                                        </p>
-                                    </div>
-                                </div>
+                                ) : null
                             ))
                             }
                         </div>

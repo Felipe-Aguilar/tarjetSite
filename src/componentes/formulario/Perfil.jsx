@@ -75,7 +75,7 @@ const Perfil = () => {
                     </div>
 
                     <div className='btneditar'>
-                        <button>
+                        <button onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
                             Editar nombre de usuario
                         </button>
                     </div>

@@ -228,7 +228,19 @@ const DiseñaTarjet = () => {
         
         e.preventDefault();
 
-        if (buscaActividad === '' || nombreUsuario === '' || errorAlias === true) {
+        if (sameAlias) {
+            setError(true);
+            
+            if (sameAlias.Token !== atob(usuId)) {
+                setErrorAlias(true);
+                return;
+
+            } else{
+                setErrorAlias(false);
+            }
+        }
+
+        if (buscaActividad === '' || nombreUsuario === '') {
             setError(true);
 
             if (buscaActividad === '') {
@@ -365,6 +377,9 @@ const DiseñaTarjet = () => {
     }
 
     // Comprobar NOMBRE DE USUARIO
+
+    const [sameAlias, setSameAlias] = useState('');
+
     const onChangeNombreUsuario = async (e) => {
         
         const pattern = /^[a-zA-Z0-9\s]*$/;
@@ -377,9 +392,9 @@ const DiseñaTarjet = () => {
             const mismoAlias = response.ListTarjets.find(respuesta => respuesta.Alias === e.target.value);
 
             if ( mismoAlias !== undefined ) {
-                setErrorAlias(true);
+                setSameAlias(mismoAlias);
             }else{
-                setErrorAlias(false);
+                setSameAlias('');
             }
         }
     }
@@ -585,7 +600,7 @@ const DiseñaTarjet = () => {
                                             maxLength={8}
                                             value={nombreUsuario}
                                             onChange={onChangeNombreUsuario}
-                                            className={errorNombre ? 'input-error' : ''}
+                                            className={errorAlias ? 'input-error' : ''}
                                         />
                                         <p className='text-usuario'>
                                             (con este usuario te podrán encontrar más fácil en el directorio)

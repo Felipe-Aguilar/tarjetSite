@@ -65,6 +65,20 @@ const BusquedaNombre = async (nombre) => {
 
         const dataUsuario2 = await response2.json();
 
+        if (dataUsuario2.ListTarjets.length === 0) {
+            const response3 = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=&Alias=${nombre}`, {
+                method: 'GET',
+                mode: 'cors',
+                cache: 'no-store',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            const dataUsuario3 = await response3.json();
+
+            return dataUsuario3;
+        }
+
         return dataUsuario2;
     }
     
