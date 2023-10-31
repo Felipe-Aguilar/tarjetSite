@@ -407,10 +407,16 @@ const DiseñaTarjetSite = () => {
     // Subir Imagen de servicios
     const [cargarImagen, setCargarImagen] = useState(false);
     const [nServicioImagen, setNServicioImagen] = useState(0);
+    const [tipoImagen, setTipoImagen] = useState('SERV');
 
     const SubirImagen = (numero) => {
         setCargarImagen(true);
         setNServicioImagen(numero);
+    }
+
+    const SubirImagenHeader = () => {
+        setCargarImagen(true);
+        setTipoImagen('SITE');
     }
 
     const CerrarCarga = () => {
@@ -559,7 +565,7 @@ const DiseñaTarjetSite = () => {
                                 </div>
 
                                 <div className='buttons-confirm'>
-                                    <button>
+                                    <button onClick={SubirImagenHeader}>
                                         Cargar archivo de imagen (premium)
                                     </button>
                                     <button className='guardar' onClick={GuardarImagenEncabezado}>
@@ -825,6 +831,10 @@ const DiseñaTarjetSite = () => {
                     </div>
                 }
 
+                { cargarImagen && 
+                    <CargarImagen onBotonClick={CerrarCarga}  tipoImagen={tipoImagen} numeroServicio={nServicioImagen} />
+                }
+
                 { servicios &&
                     <div className='TusServicios'>
                         <p>
@@ -881,10 +891,6 @@ const DiseñaTarjetSite = () => {
                             </textarea> */}
 
                             <h3>Muestra de productos ó servicios</h3>
-
-                            { cargarImagen && 
-                                <CargarImagen onBotonClick={CerrarCarga}  tipoImagen={"SERV"} numeroServicio={nServicioImagen} />
-                            }
 
                             <div>
                                 <button className='btn-bloque' onClick={()=>setBloque1(!bloque1)} type='button'>
