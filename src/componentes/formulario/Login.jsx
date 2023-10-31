@@ -207,281 +207,283 @@ const Login = () => {
     }
 
     return ( 
-        <div className="container-fluid loginFormulario">
+        <div className='backgroun-Green'>
+            <div className="container-fluid loginFormulario background-image">
 
-            <div className='ilustracion-banner'>
-                <img src={ ilustracion } alt="" />
-            </div>
-
-            <div className='texto'>
-                <h1>Listo para conectar de forma innovadora con personas y negocios</h1>
-
-                <h2>CREA TU CUENTA TARJET ó <br /> INICIA SESIÓN</h2>
-
-                <p>
-                    Elige la opción que más te agrade, <br/>
-                    <span>continuar con...</span>
-                </p>
-            </div>
-
-            <div className='iniciarSesion'>
-                <GoogleOAuthProvider clientId="795705014478-07c6ktiul0e14v0phdibro00h17lmgh5.apps.googleusercontent.com">
-                    {/* <button onClick={()=>setMode('telefono')}>
-                        <img src={iconoTelefono} />
-                        Teléfono
-                    </button> */}
-                    <button onClick={()=>setMode('correo')} type='button'>
-                        <img src={iconoCorreo} />
-                        Correo
-                    </button>
-
-                    <BtnGoogle />
-
-                    {/* <button>
-                        <img src={iconoFacebook} />
-                        Facebook
-                    </button> */}
-                    <button type='button'>
-                        <img src={iconoApple} />
-                        Apple
-                    </button>
-                </GoogleOAuthProvider>
-            </div>
-
-            <div className='separador'>
-                <hr/>
-            </div>
-
-            <div className='formulario'>
-                
-                {/* { mode === 'telefono' &&
-                    <form>
-                        <div className='row1'>
-                            <div className='selec'>
-                                <label htmlFor='number'>País</label>
-
-                                <select id="number">
-                                    <option value="" key="">+52</option>
-                                </select>
-                            </div>
-
-                            <div className='number'>
-                                <input 
-                                    type="text" 
-                                    inputMode="numeric" maxLength={10} 
-                                    placeholder='Número de teléfono móvil'
-                                    value={telefono}
-                                    onChange={changeNumero}
-                                />
-                            </div>
-                        </div>
-
-                        <div className='row2'>
-                            <input 
-                                type={`${!viewContraseña ? 'password' : 'text'}`} 
-                                placeholder='Escribe tu contraseña'
-                                value={password}
-                                onChange={changePassword}
-                            />
-
-                            <div className='eye'>
-                                <button onClick={()=>setViewContraseña(!viewContraseña)}>
-                                    { !viewContraseña ?
-                                        <img src={iconoOjo} />
-                                        :
-                                        <img src={iconoOjoOculto} />
-                                    }
-                                </button>
-                            </div>
-                        </div>
-                        
-                    </form>
-                } */}
-            
-                { mode === 'correo' &&
-                    <form>
-                        <div className='row1 row12'>
-                            <div className='number'>
-                                <input 
-                                    type="email" 
-                                    placeholder='Correo electrónico'
-                                    value={email}
-                                    onChange={changeEmail}
-                                />
-                            </div>
-                        </div>
-
-                        <div className='row2'>
-                            <input 
-                                type={`${!viewContraseña ? 'password' : 'text'}`} 
-                                placeholder='Escribe tu contraseña'
-                                value={password}
-                                onChange={changePassword}
-                            />
-
-                            <div className='eye'>
-                                <button onClick={()=>setViewContraseña(!viewContraseña)} type='button'>
-                                    { !viewContraseña ?
-                                        <img src={iconoOjo} />
-                                        :
-                                        <img src={iconoOjoOculto} />
-                                    }
-                                </button>
-                            </div>
-                        </div>
-                    
-                    </form>
-                }
-                
-            </div>
-
-            <div className='olvidaste-contraseña'>
-                <button type='button'>
-                    ¿Olvidaste tu contraseña?
-                </button>
-            </div>
-
-            { (error || error2) &&
-                <div className='mensajeError'>
-                    <p>{error}</p>
-                    <p>{error2}</p>
-                </div>
-            }
-
-            <div className='separador sep2'>
-                <hr/>
-            </div>
-
-            <div className='privacidad'>
-                <div className='check'>
-                    <input 
-                        type="checkbox" 
-                        id='accept' 
-                        checked={checkButton}
-                        onChange={(e)=>setCheckButton(e.target.checked)}
-                    />
-
-                    <label htmlFor='accept'>
-                        Acepto las <a href="">condiciones de uso</a> <br/>
-                        y la <a onClick={()=>navigate('/aviso-privacidad')}>política de privacidad</a>
-                    </label>
+                <div className='ilustracion-banner'>
+                    <img src={ ilustracion } alt="" />
                 </div>
 
-                { errorSend &&
-                    <div className='mensajeError'>
-                        <p>{errorSend}</p>
-                    </div>
-                }
+                <div className='texto'>
+                    <h1>Listo para conectar de forma innovadora con personas y negocios</h1>
 
-                {errorLogin &&
-                    <div className='mensajeError'>
-                        <p>Correo o contraseña incorrectos</p>
-                    </div>
-                }
+                    <h2>CREA TU CUENTA TARJET ó <br /> INICIA SESIÓN</h2>
 
-                <div className='buttons'>
-                    <div className={`registrar ${!checkButton && 'desactivate'}`}>
-                        <button onClick={Registrar} type='button'>
-                            Registrar
+                    <p>
+                        Elige la opción que más te agrade, <br/>
+                        <span>continuar con...</span>
+                    </p>
+                </div>
+
+                <div className='iniciarSesion'>
+                    <GoogleOAuthProvider clientId="795705014478-07c6ktiul0e14v0phdibro00h17lmgh5.apps.googleusercontent.com">
+                        {/* <button onClick={()=>setMode('telefono')}>
+                            <img src={iconoTelefono} />
+                            Teléfono
+                        </button> */}
+                        <button onClick={()=>setMode('correo')} type='button'>
+                            <img src={iconoCorreo} />
+                            Correo
                         </button>
+
+                        <BtnGoogle />
+
+                        {/* <button>
+                            <img src={iconoFacebook} />
+                            Facebook
+                        </button> */}
+                        <button type='button'>
+                            <img src={iconoApple} />
+                            Apple
+                        </button>
+                    </GoogleOAuthProvider>
+                </div>
+
+                <div className='separador'>
+                    <hr/>
+                </div>
+
+                <div className='formulario'>
+                    
+                    {/* { mode === 'telefono' &&
+                        <form>
+                            <div className='row1'>
+                                <div className='selec'>
+                                    <label htmlFor='number'>País</label>
+
+                                    <select id="number">
+                                        <option value="" key="">+52</option>
+                                    </select>
+                                </div>
+
+                                <div className='number'>
+                                    <input 
+                                        type="text" 
+                                        inputMode="numeric" maxLength={10} 
+                                        placeholder='Número de teléfono móvil'
+                                        value={telefono}
+                                        onChange={changeNumero}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='row2'>
+                                <input 
+                                    type={`${!viewContraseña ? 'password' : 'text'}`} 
+                                    placeholder='Escribe tu contraseña'
+                                    value={password}
+                                    onChange={changePassword}
+                                />
+
+                                <div className='eye'>
+                                    <button onClick={()=>setViewContraseña(!viewContraseña)}>
+                                        { !viewContraseña ?
+                                            <img src={iconoOjo} />
+                                            :
+                                            <img src={iconoOjoOculto} />
+                                        }
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    } */}
+                
+                    { mode === 'correo' &&
+                        <form>
+                            <div className='row1 row12'>
+                                <div className='number'>
+                                    <input 
+                                        type="email" 
+                                        placeholder='Correo electrónico'
+                                        value={email}
+                                        onChange={changeEmail}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='row2'>
+                                <input 
+                                    type={`${!viewContraseña ? 'password' : 'text'}`} 
+                                    placeholder='Escribe tu contraseña'
+                                    value={password}
+                                    onChange={changePassword}
+                                />
+
+                                <div className='eye'>
+                                    <button onClick={()=>setViewContraseña(!viewContraseña)} type='button'>
+                                        { !viewContraseña ?
+                                            <img src={iconoOjo} />
+                                            :
+                                            <img src={iconoOjoOculto} />
+                                        }
+                                    </button>
+                                </div>
+                            </div>
+                        
+                        </form>
+                    }
+                    
+                </div>
+
+                <div className='olvidaste-contraseña'>
+                    <button type='button'>
+                        ¿Olvidaste tu contraseña?
+                    </button>
+                </div>
+
+                { (error || error2) &&
+                    <div className='mensajeError'>
+                        <p>{error}</p>
+                        <p>{error2}</p>
                     </div>
-                    <div className={`iniciar ${!checkButton && 'desactivate'}`}>
-                        <button onClick={IniciarSesion}>Iniciar sesión</button>
+                }
+
+                <div className='separador sep2'>
+                    <hr/>
+                </div>
+
+                <div className='privacidad'>
+                    <div className='check'>
+                        <input 
+                            type="checkbox" 
+                            id='accept' 
+                            checked={checkButton}
+                            onChange={(e)=>setCheckButton(e.target.checked)}
+                        />
+
+                        <label htmlFor='accept'>
+                            Acepto las <a href="">condiciones de uso</a> <br/>
+                            y la <a onClick={()=>navigate('/aviso-privacidad')}>política de privacidad</a>
+                        </label>
+                    </div>
+
+                    { errorSend &&
+                        <div className='mensajeError'>
+                            <p>{errorSend}</p>
+                        </div>
+                    }
+
+                    {errorLogin &&
+                        <div className='mensajeError'>
+                            <p>Correo o contraseña incorrectos</p>
+                        </div>
+                    }
+
+                    <div className='buttons'>
+                        <div className={`registrar ${!checkButton && 'desactivate'}`}>
+                            <button onClick={Registrar} type='button'>
+                                Registrar
+                            </button>
+                        </div>
+                        <div className={`iniciar ${!checkButton && 'desactivate'}`}>
+                            <button onClick={IniciarSesion}>Iniciar sesión</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            { popValidar &&
-                <div className='popValidar'>
-                    <AnimatePresence>
-                        { mensajeCodigo &&
-                            <motion.div 
-                                className='cuerpo-pop'
-                                {...animation}
-                            >
-                                <div className='encabezado'>
-                                    <h5>Verifica tu correo</h5>
-                                </div>
-                                <div className='cuerpo'>
-                                    { codigos.map((codigo, index)=> (
-                                        <input 
-                                            key={index}
-                                            ref={inputRefs[index]}
-                                            type="text" 
-                                            maxLength={1}
-                                            value={codigo}
-                                            onChange={(e)=>numeroChange(index, e.target.value)}
-                                        />
-                                    ))
-                                    }
-                                </div>
-                                <div className='mensaje'>
-                                    <p>
-                                        {mensajeCodigo}
-                                    </p>
-                                </div>
-                                <div className='reintentar'>
-                                    <p>
-                                        ¿No te llegó el código? <span onClick={EnviarNuevamente}>Enviar nuevamente</span>
-                                    </p>
-                                </div>
-                                { acceso.Token === "" &&
-                                    <div className='error'>
+                { popValidar &&
+                    <div className='popValidar'>
+                        <AnimatePresence>
+                            { mensajeCodigo &&
+                                <motion.div 
+                                    className='cuerpo-pop'
+                                    {...animation}
+                                >
+                                    <div className='encabezado'>
+                                        <h5>Verifica tu correo</h5>
+                                    </div>
+                                    <div className='cuerpo'>
+                                        { codigos.map((codigo, index)=> (
+                                            <input 
+                                                key={index}
+                                                ref={inputRefs[index]}
+                                                type="text" 
+                                                maxLength={1}
+                                                value={codigo}
+                                                onChange={(e)=>numeroChange(index, e.target.value)}
+                                            />
+                                        ))
+                                        }
+                                    </div>
+                                    <div className='mensaje'>
                                         <p>
-                                            Código no válido, segúrese de ingresar el código exacto que le fue proporcionado. Si está teniendo dificultades, no dude en solicitar un nuevo código
+                                            {mensajeCodigo}
                                         </p>
                                     </div>
-                                }
-                                <div className='footer'>
-                                    <button className={codigo.length < 6 ? 'desactivate' : ''} onClick={btnVerificarCodigo}>
-                                        Verificar código
-                                    </button>
-                                </div>
-                                <div className='cerrar'>
-                                    <button onClick={()=>setPopValidar(false)}>
-                                        Cerrar ventana (x)
-                                    </button>
-                                </div>
-                            </motion.div>
-                        }
-                    </AnimatePresence>
+                                    <div className='reintentar'>
+                                        <p>
+                                            ¿No te llegó el código? <span onClick={EnviarNuevamente}>Enviar nuevamente</span>
+                                        </p>
+                                    </div>
+                                    { acceso.Token === "" &&
+                                        <div className='error'>
+                                            <p>
+                                                Código no válido, segúrese de ingresar el código exacto que le fue proporcionado. Si está teniendo dificultades, no dude en solicitar un nuevo código
+                                            </p>
+                                        </div>
+                                    }
+                                    <div className='footer'>
+                                        <button className={codigo.length < 6 ? 'desactivate' : ''} onClick={btnVerificarCodigo}>
+                                            Verificar código
+                                        </button>
+                                    </div>
+                                    <div className='cerrar'>
+                                        <button onClick={()=>setPopValidar(false)}>
+                                            Cerrar ventana (x)
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            }
+                        </AnimatePresence>
 
-                    <AnimatePresence>
-                        { acceso.Token &&
-                            <motion.div 
-                                className='cuerpo-pop'
-                                {...animation}
-                            >
-                                <div className='encabezado-img'>
-                                    <img src={ilustracionExitoso}/>
-                                </div>
-                                <div className='encabezado mb-0'>
-                                    <h5>Registro exitoso</h5>
-                                </div>
+                        <AnimatePresence>
+                            { acceso.Token &&
+                                <motion.div 
+                                    className='cuerpo-pop'
+                                    {...animation}
+                                >
+                                    <div className='encabezado-img'>
+                                        <img src={ilustracionExitoso}/>
+                                    </div>
+                                    <div className='encabezado mb-0'>
+                                        <h5>Registro exitoso</h5>
+                                    </div>
 
-                                <div className='footer'>
-                                    <button>
-                                        Accede a tu menú
-                                    </button>
-                                </div>
+                                    <div className='footer'>
+                                        <button>
+                                            Accede a tu menú
+                                        </button>
+                                    </div>
 
-                                <div className='mensaje'>
-                                    <p>
-                                        para configurar tu Tarjet y tu Tarjet Site
-                                    </p>
-                                </div>
+                                    <div className='mensaje'>
+                                        <p>
+                                            para configurar tu Tarjet y tu Tarjet Site
+                                        </p>
+                                    </div>
 
-                                {/* <div className='cerrar'>
-                                    <button onClick={()=>setPopValidar(false)}>
-                                        Cerrar ventana (x)
-                                    </button>
-                                </div> */}
-                            </motion.div>
-                        }
-                    </AnimatePresence>
-                </div>
-            }
+                                    {/* <div className='cerrar'>
+                                        <button onClick={()=>setPopValidar(false)}>
+                                            Cerrar ventana (x)
+                                        </button>
+                                    </div> */}
+                                </motion.div>
+                            }
+                        </AnimatePresence>
+                    </div>
+                }
 
+            </div>
         </div>
     );
 }

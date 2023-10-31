@@ -222,17 +222,17 @@ const MiTarjetero = () => {
 
     return (
 
-        <div className='container-fluid p-0'>
+        <div className='container-fluid p-0 backgroun-Green'>
 
             <Toaster />
-            <div className='miTarjetero' >
+            <div className='miTarjetero background-image' >
                 { !busquedaUsuario ?
                 <>
                     {/* Rediseño foto encabezado perfil normal */}
                     <div className='row justify-content-center encabezadoFoto'>
                         <div className='col-12 col-lg-4 '>
                             <img src={PortadaTarjet}/>
-                            <h5>
+                            <h5 className='mt-2'>
                                 Hola {datos.Nom}<br/>
                                 <span>Bienvenido a tu</span>
                             </h5>

@@ -224,491 +224,493 @@ END:VCARD`;
     }
 
     return ( 
-        <div className='tarjetSite' style={{background: usuario.SiteFondo}}>
-            <div className='row justify-content-center encabezado'>
-                <div className='col-12 col-md-4 p-0'>
+        <div className='backgroun-Green'>
+            <div className='tarjetSite background-image' style={{background: usuario.SiteFondo}}>
+                <div className='row justify-content-center encabezado'>
+                    <div className='col-12 col-md-4 p-0'>
 
-                    { usuario.SiteImgEncabezado?.slice(0,10) === 'SiteHeader' ?
-                        <img src={`https://tarjet.site/imagenes/Headers_Collection/${usuario.SiteImgEncabezado}`} className='img-fluid'/>
-                    :
-                        <img src={imagenSRC+usuario.SiteImgEncabezado} className='img-fluid'/>
-                    }
-                </div>
-            </div>
-
-            <div className='row justify-content-center perfil'>
-                <div className='col-12 col-md-4 contenedor'>
-                    { usuario.ImgFoto ?
-                        <img src={`https://tarjet.site/imagenes/perfil-imagenes/${usuario.ImgFoto}`}/>
-                    :
-                        <img src={perfilTemporal} />
-                    }
-                    <div>
-                        <h5>{datos.NombreCompleto}</h5>
-                        <p>
-                            {usuario.Cargo}
-                        </p>
+                        { usuario.SiteImgEncabezado?.slice(0,10) === 'SiteHeader' ?
+                            <img src={`https://tarjet.site/imagenes/Headers_Collection/${usuario.SiteImgEncabezado}`} className='img-fluid'/>
+                        :
+                            <img src={imagenSRC+usuario.SiteImgEncabezado} className='img-fluid'/>
+                        }
                     </div>
                 </div>
-            </div>
 
-            <div className='row mt-3 justify-content-center'>
+                <div className='row justify-content-center perfil'>
+                    <div className='col-12 col-md-4 contenedor'>
+                        { usuario.ImgFoto ?
+                            <img src={`https://tarjet.site/imagenes/perfil-imagenes/${usuario.ImgFoto}`}/>
+                        :
+                            <img src={perfilTemporal} />
+                        }
+                        <div>
+                            <h5>{datos.NombreCompleto}</h5>
+                            <p>
+                                {usuario.Cargo}
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                <div className='col-md-4 contacto2'>
+                <div className='row mt-3 justify-content-center'>
 
-                    <motion.div 
-                        className='mb-3 contacto-div'
-                        {...animacionBtn}
-                        transition={{delay: 0.2}}
-                        style={usuario.SiteColorBton1 ? {background: `${usuario.SiteColorBton1}`} : {background: '#dce6ec'}}
-                    >
-                        <a onClick={GuardaContacto} className='save'>
-                            Guardar en mis contactos
-                        </a>
-                        <a 
-                            onClick={GuardaContacto} 
-                            className='icon save'
-                            style={usuario.SiteColorBton2 ? {background: `${usuario.SiteColorBton2}`} : {background: '#4186a0'}}
-                        >
-                            <img src={IconBtnGuardar}/>
-                        </a>
-                    </motion.div>
+                    <div className='col-md-4 contacto2'>
 
-                    { !usuario.SiteTelefono1 == '' &&
-                        <motion.div 
-                            className='mb-3 contacto-div' 
-                            style={{background: '#d0ead6'}}
-                            {...animacionBtn}
-                            transition={{delay: 0.4}}
-                        >
-                            <a
-                                href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`} 
-                                target={"_blank"}
-                            >
-                                Envíame un WhatsApp
-                            </a>
-                            <a 
-                                href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`}
-                                target={"_blank"} 
-                                className='icon' 
-                                style={{background: '#00943e'}}
-                            >
-                                <img src={IconBtnWhats}/>
-                            </a>
-                        </motion.div>
-                    }
-                        {/* Boton MXM WHATS */}
-                        {/* <a 
-                            style={{display: 'none'}}
-                            // href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono2}&text=¡Hola!%20Te%20contacto%20a%20través%20de%20tu%20tarjeta%20digital:%20https://tarjet.site/#/st/${btoa(datos.UsuToken)}.`}
-                            href={`https://wa.me/${usuario.SiteTelefono2}?text=¡Hola! Te contacto a través de tu tarjeta digital: https://tarjet.site/${encodeURIComponent('#')}/st/${btoa(datos.UsuToken)}`}
-                            target='_blank'
-                            id='btnWhats'
-                        >
-                            Contacto Whats Mxmx
-                        </a> */}
-                    
-                    { !usuario.SiteTelefono2 == '' &&
-                        <motion.div 
-                            className='mb-3 contacto-div' 
-                            style={{background: '#d0ead6'}}
-                            {...animacionBtn}
-                            transition={{delay: 0.5}}
-                        >
-                            <a 
-                                href={`https://wa.me/${usuario.SiteTelefono2}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
-                                target={"_blank"}
-                            >
-                                Envíame un WhatsApp
-                            </a>
-                            <a 
-                                href={`https://wa.me/${usuario.SiteTelefono2}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
-                                target={"_blank"} 
-                                className='icon' 
-                                style={{background: '#00943e'}}
-                            >
-                                <img src={IconBtnWhats}/>
-                            </a>
-                        </motion.div>
-                    }
-
-                    { !usuario.SiteTelefono3 == '' &&
-                        <motion.div 
-                            className='mb-3 contacto-div' 
-                            style={{background: '#d0ead6'}}
-                            {...animacionBtn}
-                            transition={{delay: 0.5}}
-                        >
-                            <a 
-                                href={`https://wa.me/${usuario.SiteTelefono3}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
-                                target={"_blank"}
-                            >
-                                Envíame un WhatsApp
-                            </a>
-                            <a 
-                                href={`https://wa.me/${usuario.SiteTelefono3}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
-                                target={"_blank"} 
-                                className='icon' 
-                                style={{background: '#00943e'}}
-                            >
-                                <img src={IconBtnWhats}/>
-                            </a>
-                        </motion.div>
-                    }
-
-                    { usuario.SiteVerUbica == 1 &&
-                        <motion.div 
-                            className='mb-3 contacto-div' 
-                            style={{background: '#ffecd2'}}
-                            {...animacionBtn}
-                            transition={{delay: 0.6}}
-                        >
-                            <a href={urlMaps} target={"_blank"}>
-                                {usuario.SiteTextoUbica} <br/>
-                                {usuario.UsuColonia}
-                            </a>
-                            <a href={urlMaps} target={"_blank"} className='icon' style={{background: '#ffa200'}}>
-                                <img src={IconBtnUbi}/>
-                            </a>
-                        </motion.div>
-                    }
-                    
-                    { compartir &&
-                        <Compartir cerrarCompartir={setCompartirEstado} usuario={datos} />
-                    }
-
-                    { !usuario.SiteMail == '' &&
                         <motion.div 
                             className='mb-3 contacto-div'
                             {...animacionBtn}
-                            transition={{delay: 1}}
-                            style={{background: '#d4e0f6'}}
+                            transition={{delay: 0.2}}
+                            style={usuario.SiteColorBton1 ? {background: `${usuario.SiteColorBton1}`} : {background: '#dce6ec'}}
                         >
-                            <a href={"mailto: "+usuario.SiteMail}>
-                                {usuario.SiteMail}
+                            <a onClick={GuardaContacto} className='save'>
+                                Guardar en mis contactos
                             </a>
-                            <a href={"mailto: "+usuario.SiteMail} className='icon' style={{background: '#0073ce'}}>
-                                <img src={IconBtnCorreo}/>
+                            <a 
+                                onClick={GuardaContacto} 
+                                className='icon save'
+                                style={usuario.SiteColorBton2 ? {background: `${usuario.SiteColorBton2}`} : {background: '#4186a0'}}
+                            >
+                                <img src={IconBtnGuardar}/>
                             </a>
                         </motion.div>
-                    }
 
-                    { !usuario.SiteWeb == '' &&
-                        <motion.div 
+                        { !usuario.SiteTelefono1 == '' &&
+                            <motion.div 
+                                className='mb-3 contacto-div' 
+                                style={{background: '#d0ead6'}}
+                                {...animacionBtn}
+                                transition={{delay: 0.4}}
+                            >
+                                <a
+                                    href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`} 
+                                    target={"_blank"}
+                                >
+                                    Envíame un WhatsApp
+                                </a>
+                                <a 
+                                    href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`}
+                                    target={"_blank"} 
+                                    className='icon' 
+                                    style={{background: '#00943e'}}
+                                >
+                                    <img src={IconBtnWhats}/>
+                                </a>
+                            </motion.div>
+                        }
+                            {/* Boton MXM WHATS */}
+                            {/* <a 
+                                style={{display: 'none'}}
+                                // href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono2}&text=¡Hola!%20Te%20contacto%20a%20través%20de%20tu%20tarjeta%20digital:%20https://tarjet.site/#/st/${btoa(datos.UsuToken)}.`}
+                                href={`https://wa.me/${usuario.SiteTelefono2}?text=¡Hola! Te contacto a través de tu tarjeta digital: https://tarjet.site/${encodeURIComponent('#')}/st/${btoa(datos.UsuToken)}`}
+                                target='_blank'
+                                id='btnWhats'
+                            >
+                                Contacto Whats Mxmx
+                            </a> */}
+                        
+                        { !usuario.SiteTelefono2 == '' &&
+                            <motion.div 
+                                className='mb-3 contacto-div' 
+                                style={{background: '#d0ead6'}}
+                                {...animacionBtn}
+                                transition={{delay: 0.5}}
+                            >
+                                <a 
+                                    href={`https://wa.me/${usuario.SiteTelefono2}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
+                                    target={"_blank"}
+                                >
+                                    Envíame un WhatsApp
+                                </a>
+                                <a 
+                                    href={`https://wa.me/${usuario.SiteTelefono2}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
+                                    target={"_blank"} 
+                                    className='icon' 
+                                    style={{background: '#00943e'}}
+                                >
+                                    <img src={IconBtnWhats}/>
+                                </a>
+                            </motion.div>
+                        }
+
+                        { !usuario.SiteTelefono3 == '' &&
+                            <motion.div 
+                                className='mb-3 contacto-div' 
+                                style={{background: '#d0ead6'}}
+                                {...animacionBtn}
+                                transition={{delay: 0.5}}
+                            >
+                                <a 
+                                    href={`https://wa.me/${usuario.SiteTelefono3}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
+                                    target={"_blank"}
+                                >
+                                    Envíame un WhatsApp
+                                </a>
+                                <a 
+                                    href={`https://wa.me/${usuario.SiteTelefono3}?text=¡Hola! te contacto desde tu tarjeta, Tarjet`} 
+                                    target={"_blank"} 
+                                    className='icon' 
+                                    style={{background: '#00943e'}}
+                                >
+                                    <img src={IconBtnWhats}/>
+                                </a>
+                            </motion.div>
+                        }
+
+                        { usuario.SiteVerUbica == 1 &&
+                            <motion.div 
+                                className='mb-3 contacto-div' 
+                                style={{background: '#ffecd2'}}
+                                {...animacionBtn}
+                                transition={{delay: 0.6}}
+                            >
+                                <a href={urlMaps} target={"_blank"}>
+                                    {usuario.SiteTextoUbica} <br/>
+                                    {usuario.UsuColonia}
+                                </a>
+                                <a href={urlMaps} target={"_blank"} className='icon' style={{background: '#ffa200'}}>
+                                    <img src={IconBtnUbi}/>
+                                </a>
+                            </motion.div>
+                        }
+                        
+                        { compartir &&
+                            <Compartir cerrarCompartir={setCompartirEstado} usuario={datos} />
+                        }
+
+                        { !usuario.SiteMail == '' &&
+                            <motion.div 
+                                className='mb-3 contacto-div'
+                                {...animacionBtn}
+                                transition={{delay: 1}}
+                                style={{background: '#d4e0f6'}}
+                            >
+                                <a href={"mailto: "+usuario.SiteMail}>
+                                    {usuario.SiteMail}
+                                </a>
+                                <a href={"mailto: "+usuario.SiteMail} className='icon' style={{background: '#0073ce'}}>
+                                    <img src={IconBtnCorreo}/>
+                                </a>
+                            </motion.div>
+                        }
+
+                        { !usuario.SiteWeb == '' &&
+                            <motion.div 
+                                className='mb-3 contacto-div'
+                                style={{background: '#e1dcf4'}}
+                                {...animacionBtn}
+                                transition={{delay: 1.2}}
+                            >
+                                <a href={`https://${usuario.SiteWeb}`} target='_blank'>
+                                {usuario.SiteWeb}
+                                </a>
+                                <a href={`https://${usuario.SiteWeb}`} target='_blank' className='icon' style={{background: '#5060c6'}}>
+                                    <img src={IconBtnWeb}/>
+                                </a>
+                            </motion.div>
+                        }
+
+                        {/* <motion.div 
                             className='mb-3 contacto-div'
+                            {...animacionBtn}
+                            transition={{delay: 1.4}}
+                            style={{background: '#99c748'}}
+                        >
+                            <a onClick={()=>navigate("/"+btoa(token))} className='save'>
+                                Ver mi tarjeta
+                            </a>
+                            <a onClick={()=>navigate("/"+btoa(token))} className='icon save' style={{background: '#678731'}}>
+                                <i className="bi bi-person-vcard"></i>
+                            </a>
+                        </motion.div> */}
+
+                        <motion.div 
+                            className='contacto-div'
+                            onClick={redesSociales}
+                            {...animacionBtn}
+                            transition={{delay: 1.6}}
+                            style={{background: '#f1d1d9'}}
+                        >
+                            <a className='save'>
+                                Mis Redes Sociales
+                            </a>
+                            <a 
+                                onClick={redesSociales} 
+                                className='icon save'
+                                style={{background: '#9b034f'}}
+                            >
+                                <img src={IconBtnRedes}/>
+                            </a>
+                        </motion.div>
+
+                        { btoa(datos.UsuToken) === 'YjI5ZDFmNjY1' || 
+                            btoa(datos.UsuToken) === 'MWY3Y2UwOTNl' ||
+                            btoa(datos.UsuToken) === 'N2ZhZmQwZTFl' ||
+                            btoa(datos.UsuToken) === 'NjZkM2ViZWYw' ||
+                            btoa(datos.UsuToken) === 'ZGQxYmYzNGZi' ||
+                            btoa(datos.UsuToken) === 'YjkzYWM0YTQ1' ||
+                            btoa(datos.UsuToken) === 'YjIxMzg0MDE3'
+                            ?
+                            <motion.div
+                                className='contacto-div mt-3'
+                                // onClick={redesSociales}
+                                {...animacionBtn}
+                                transition={{delay: 1.8}}
+                                style={{background: '#cdd1de'}}
+                            >
+                                <a className='save' href='https://tarjet.site/mxm/NEWDROPSMXMCOLLECTION.pdf' target='_blank'>
+                                    Descargar catálogo
+                                </a>
+                                <a 
+                                    href='https://tarjet.site/mxm/NEWDROPSMXMCOLLECTION.pdf'
+                                    target='_blank'
+                                    className='icon save'
+                                    style={{background: '#2a3e68'}}
+                                >
+                                    <img src={IconBtnCatalogo} />
+                                </a>
+                            </motion.div>
+                            :
+                            null
+                        }
+
+                        <motion.div 
+                            className='mt-3 contacto-div' 
                             style={{background: '#e1dcf4'}}
                             {...animacionBtn}
-                            transition={{delay: 1.2}}
+                            transition={{delay: 0.8}}
                         >
-                            <a href={`https://${usuario.SiteWeb}`} target='_blank'>
-                            {usuario.SiteWeb}
+                            <a onClick={()=>setCompartir(true)}>
+                                Comparte mi tarjeta
                             </a>
-                            <a href={`https://${usuario.SiteWeb}`} target='_blank' className='icon' style={{background: '#5060c6'}}>
-                                <img src={IconBtnWeb}/>
+                            <a onClick={()=>setCompartir(true)} className='icon' style={{background: '#5060c6'}}>
+                                <img src={IconBtnCompartir}/>
                             </a>
                         </motion.div>
-                    }
 
-                    {/* <motion.div 
-                        className='mb-3 contacto-div'
-                        {...animacionBtn}
-                        transition={{delay: 1.4}}
-                        style={{background: '#99c748'}}
-                    >
-                        <a onClick={()=>navigate("/"+btoa(token))} className='save'>
-                            Ver mi tarjeta
-                        </a>
-                        <a onClick={()=>navigate("/"+btoa(token))} className='icon save' style={{background: '#678731'}}>
-                            <i className="bi bi-person-vcard"></i>
-                        </a>
-                    </motion.div> */}
-
-                    <motion.div 
-                        className='contacto-div'
-                        onClick={redesSociales}
-                        {...animacionBtn}
-                        transition={{delay: 1.6}}
-                        style={{background: '#f1d1d9'}}
-                    >
-                        <a className='save'>
-                            Mis Redes Sociales
-                        </a>
-                        <a 
-                            onClick={redesSociales} 
-                            className='icon save'
-                            style={{background: '#9b034f'}}
-                        >
-                            <img src={IconBtnRedes}/>
-                        </a>
-                    </motion.div>
-
-                    { btoa(datos.UsuToken) === 'YjI5ZDFmNjY1' || 
-                        btoa(datos.UsuToken) === 'MWY3Y2UwOTNl' ||
-                        btoa(datos.UsuToken) === 'N2ZhZmQwZTFl' ||
-                        btoa(datos.UsuToken) === 'NjZkM2ViZWYw' ||
-                        btoa(datos.UsuToken) === 'ZGQxYmYzNGZi' ||
-                        btoa(datos.UsuToken) === 'YjkzYWM0YTQ1' ||
-                        btoa(datos.UsuToken) === 'YjIxMzg0MDE3'
-                        ?
-                        <motion.div
-                            className='contacto-div mt-3'
-                            // onClick={redesSociales}
+                        <motion.div 
+                            style={{background: `${btnEnable ? '#c0c0c0' : '#e1dcf4'}`}}
+                            className={`mt-3 contacto-div`} 
                             {...animacionBtn}
-                            transition={{delay: 1.8}}
-                            style={{background: '#cdd1de'}}
+                            transition={{delay: 0.9}}
                         >
-                            <a className='save' href='https://tarjet.site/mxm/NEWDROPSMXMCOLLECTION.pdf' target='_blank'>
-                                Descargar catálogo
+                            <a onClick={btnGuardarTarjeta} className={btnEnable ? 'disabled' : ''}>
+                                Guardar en tarjetero Tarjet
                             </a>
                             <a 
-                                href='https://tarjet.site/mxm/NEWDROPSMXMCOLLECTION.pdf'
-                                target='_blank'
-                                className='icon save'
-                                style={{background: '#2a3e68'}}
+                                onClick={btnGuardarTarjeta} 
+                                className={`icon ${btnEnable ? 'disabled' : ''}`} 
+                                style={{background: `${btnEnable ? '#7a7a7a' : '#76BB20'}`}}
                             >
-                                <img src={IconBtnCatalogo} />
+                                <img src={IconBtnTarjetero}/>
                             </a>
                         </motion.div>
-                        :
-                        null
-                    }
 
-                    <motion.div 
-                        className='mt-3 contacto-div' 
-                        style={{background: '#e1dcf4'}}
-                        {...animacionBtn}
-                        transition={{delay: 0.8}}
-                    >
-                        <a onClick={()=>setCompartir(true)}>
-                            Comparte mi tarjeta
-                        </a>
-                        <a onClick={()=>setCompartir(true)} className='icon' style={{background: '#5060c6'}}>
-                            <img src={IconBtnCompartir}/>
-                        </a>
-                    </motion.div>
-
-                    <motion.div 
-                        style={{background: `${btnEnable ? '#c0c0c0' : '#e1dcf4'}`}}
-                        className={`mt-3 contacto-div`} 
-                        {...animacionBtn}
-                        transition={{delay: 0.9}}
-                    >
-                        <a onClick={btnGuardarTarjeta} className={btnEnable ? 'disabled' : ''}>
-                            Guardar en tarjetero Tarjet
-                        </a>
-                        <a 
-                            onClick={btnGuardarTarjeta} 
-                            className={`icon ${btnEnable ? 'disabled' : ''}`} 
-                            style={{background: `${btnEnable ? '#7a7a7a' : '#76BB20'}`}}
-                        >
-                            <img src={IconBtnTarjetero}/>
-                        </a>
-                    </motion.div>
-
-                </div>
-            </div>
-
-            { popGuardarTarjetero &&
-                <PopGuardarTarjet />
-            }
-
-            <div className='row mt-4 justify-content-center'>
-                <div className='col-11 col-md-4 p-0'>
-                    <hr/>
-                </div>
-            </div>
-
-            <div className='row justify-content-center Servicios1'>
-                <div className='col-11 col-md-4'>
-                    <h5>{datos.UsuActividad}</h5>
-                    <img src={IconServicios} />
-                    <h6>{usuario.SiteTituloServ2}</h6>
-                    
-                    <ul>
-                        {
-                            servicios.map((servicio, index)=>(
-                                <>
-                                    {servicio.SiteServDescrip &&
-                                        <li key={index}>{servicio.SiteServDescrip}</li>
-                                    }
-                                </>
-                            ))
-                        }
-                    </ul>
-                </div>
-            </div>
-
-            <div className='row justify-content-center'>
-                <div className='col-11 col-md-4 p-0'>
-                    <hr/>
-                </div>
-            </div>
-            
-            { 
-                imagenServicios.map((servicio, index)=>(
-                    servicio.SiteServSubTitulo &&
-                        <>
-                            <div className='row justify-content-center Servicios2' key={servicio.SiteServNum}>
-                                <div className='col-11 col-md-4'>
-                                    { servicio.Icono &&
-                                        <div className='icon'>
-                                            <img src={IconFolleto} />
-                                        </div>
-                                    }
-                                    <h5>{servicio.SiteServSubTitulo}</h5>
-    
-                                    { servicio.SiteServIMG &&
-                                        <img src={`https://tarjet.site/imagenes/servicios/${servicio.SiteServIMG}`} />
-                                    }
-    
-                                    <h6>{servicio.SiteServDescrip}</h6>
-                                </div>
-                            </div>
-    
-                            <div className='row justify-content-center' key={index}>
-                                <div className='col-11 col-md-4 p-0'>
-                                    <hr/>
-                                </div>
-                            </div>
-                        </>
-                    
-                ))
-            }
-
-            {/* <div className='row justify-content-center Servicios2'>
-                <div className='col-11 col-md-4'>
-                    <div className='icon'>
-                        <img src={IconFolleto} />
                     </div>
-                    <h5>¡Ven y dale a tu mascota un apapacho de amor!</h5>
-                    <img src={imgServicio} />
-                    <h6>Transformando a tu mascota en una obra de arte.</h6>
                 </div>
-            </div>
 
-            <div className='row justify-content-center'>
-                <div className='col-11 col-md-4 p-0'>
-                    <hr/>
-                </div>
-            </div> */}
+                { popGuardarTarjetero &&
+                    <PopGuardarTarjet />
+                }
 
-            <div className='row justify-content-center redesRediseño' id='redesSocialesSecc'>
-                <div className='col-12 col-md-4'>
-                    <h5>Mis redes sociales</h5>
-                    <div className='iconos'>
-                        <a 
-                            href = {`https://www.facebook.com/${usuario.SiteFacebook}`}
-                            className={!usuario.SiteFacebook && 'desactivado'}
-                        >
-                            <img src={usuario.SiteFacebook ? socialFacebook : socialFacebookOff} />
-                        </a>
-
-                        <a 
-                            href = {`https://www.instagram.com/${usuario.SiteInstagram}`}
-                            className={!usuario.SiteInstagram && 'desactivado'}
-                        >
-                            <img src={usuario.SiteInstagram ? socialInstagram : socialInstagramOff} />
-                        </a>
-
-                        <a 
-                            href = {`https://www.tiktok.com/@${usuario.SiteTiktok}`}
-                            className={!usuario.SiteTiktok && 'desactivado'}
-                        >
-                            <img src={usuario.SiteTiktok ? socialTikTok : socialTikTokOff} />
-                        </a>
-
-                        <a 
-                            href = {`https://www.twitter.com/${usuario.SiteTwitter}`}
-                            className={!usuario.SiteTwitter && 'desactivado'}
-                        >
-                            <img src={usuario.SiteTwitter ? socialTwitter : socialTwitterOff} />
-                        </a>
+                <div className='row mt-4 justify-content-center'>
+                    <div className='col-11 col-md-4 p-0'>
+                        <hr/>
                     </div>
-                    <div className='iconos'>
-                        <a 
-                            href = {`https://www.youtube.com/${usuario.SiteYoutube}`}
-                            className={!usuario.SiteYoutube && 'desactivado'}
-                        >
-                            <img src={usuario.SiteYoutube ? socialYoutube : socialYoutubeOff} />
-                        </a>
+                </div>
 
-                        <a 
-                            href = {`https://www.linkedin.com/${usuario.SiteLinkedin}`}
-                            className={!usuario.SiteLinkedin && 'desactivado'}
-                        >
-                            <img src={usuario.SiteLinkedin ? socialLinkedIn : socialLinkedInOff} />
-                        </a>
-
-                        <a 
-                            href = {`https://msng.link/o?${usuario.SiteTelegram}=tg`}
-                            className={!usuario.SiteTelegram && 'desactivado'}
-                        >
-                            <img src={usuario.SiteTelegram ? socialTelegram : socialTelegramOff} />
-                        </a>
+                <div className='row justify-content-center Servicios1'>
+                    <div className='col-11 col-md-4'>
+                        <h5>{datos.UsuActividad}</h5>
+                        <img src={IconServicios} />
+                        <h6>{usuario.SiteTituloServ2}</h6>
                         
-                        <a 
-                            className={!sesion && 'desactivado'}
-                            onClick={()=> navigate("/"+btoa(token))}
-                        >
-                            <img src={sesion ? socialTarjet : socialTarjetOff}/>
-                        </a>
+                        <ul>
+                            {
+                                servicios.map((servicio, index)=>(
+                                    <>
+                                        {servicio.SiteServDescrip &&
+                                            <li key={index}>{servicio.SiteServDescrip}</li>
+                                        }
+                                    </>
+                                ))
+                            }
+                        </ul>
                     </div>
                 </div>
-            </div>
 
-            <div className='row justify-content-center'>
-                <div className='col-11 col-md-4 p-0'>
-                    <hr/>
-                </div>
-            </div>
-
-            <div className='row justify-content-center Promo'>
-                <div className='col-11 col-md-4'>
-                    <h4>Gracias por visitarme</h4>
-                    <p>Tarjeta digital tarjet</p>
-                    <p>Nombre de usuario en directorio tarjet:</p>
-                    <p>
-                        <span>{datosActualizados.Alias}</span>
-                    </p>
-
-                    <div className='cuerpo'>
-                        <img src={logoTarjet} className='logoTarjet' />
-                        <h5 className='contact'>Contectamos a personas con tu negocio</h5>
-                        <h5>
-                            Te agradó esta tarjeta digital <br/>
-                            <span>Tú también puedes tener la tuya</span>
-                        </h5>
-                        <a href="https://wa.me/5586763895" target='_blank' className='btn-verde'>
-                            Solicita gratuitamente <br/> tu tarjeta digital Tarjet
-                        </a>
-                        <h5>
-                            Actualízate <br/>
-                            <span>Genera un impacto positivo con tu tarjeta Física Tarjet</span>
-                        </h5>
-                        <img src={promoImg} className='img-promo'/>
-                        <a href="https://shop.tarjet.mx/" target='_blank'  className='btn-naranja'>
-                            Compra tu <br/>
-                            tarjeta física Tarjet con NFC <br className='d-block'/>
-                            <span>Es personalizada</span>
-                        </a>
-                        <h5>
-                            <span>Hagamos Networking</span> <br/>
-                            En nuestro directorio puedes ser encontrado fácilmente por personas que buscan lo que haces
-                        </h5>
-                        <a href="https://tarjet.site/#/login" target='_blank'  className='btn-morado'>
-                            Regístrate gratuitamente <br/>
-                            <span>y accede a tu tarjetero digital tarjet</span>
-                        </a>
+                <div className='row justify-content-center'>
+                    <div className='col-11 col-md-4 p-0'>
+                        <hr/>
                     </div>
                 </div>
-            </div>
+                
+                { 
+                    imagenServicios.map((servicio, index)=>(
+                        servicio.SiteServSubTitulo &&
+                            <>
+                                <div className='row justify-content-center Servicios2' key={servicio.SiteServNum}>
+                                    <div className='col-11 col-md-4'>
+                                        { servicio.Icono &&
+                                            <div className='icon'>
+                                                <img src={IconFolleto} />
+                                            </div>
+                                        }
+                                        <h5>{servicio.SiteServSubTitulo}</h5>
+        
+                                        { servicio.SiteServIMG &&
+                                            <img src={`https://tarjet.site/imagenes/servicios/${servicio.SiteServIMG}`} />
+                                        }
+        
+                                        <h6>{servicio.SiteServDescrip}</h6>
+                                    </div>
+                                </div>
+        
+                                <div className='row justify-content-center' key={index}>
+                                    <div className='col-11 col-md-4 p-0'>
+                                        <hr/>
+                                    </div>
+                                </div>
+                            </>
+                        
+                    ))
+                }
 
-            <div className='row justify-content-center teInvitamos'>
-                <div className='col-11 col-md-4'>
-                    <a href="https://tarjet.mx/">
-                        Te invitamos a conocernos, <br/>
-                        visita nuestro sitio oficial
-                    </a>
+                {/* <div className='row justify-content-center Servicios2'>
+                    <div className='col-11 col-md-4'>
+                        <div className='icon'>
+                            <img src={IconFolleto} />
+                        </div>
+                        <h5>¡Ven y dale a tu mascota un apapacho de amor!</h5>
+                        <img src={imgServicio} />
+                        <h6>Transformando a tu mascota en una obra de arte.</h6>
+                    </div>
+                </div>
+
+                <div className='row justify-content-center'>
+                    <div className='col-11 col-md-4 p-0'>
+                        <hr/>
+                    </div>
+                </div> */}
+
+                <div className='row justify-content-center redesRediseño' id='redesSocialesSecc'>
+                    <div className='col-12 col-md-4'>
+                        <h5>Mis redes sociales</h5>
+                        <div className='iconos'>
+                            <a 
+                                href = {`https://www.facebook.com/${usuario.SiteFacebook}`}
+                                className={!usuario.SiteFacebook && 'desactivado'}
+                            >
+                                <img src={usuario.SiteFacebook ? socialFacebook : socialFacebookOff} />
+                            </a>
+
+                            <a 
+                                href = {`https://www.instagram.com/${usuario.SiteInstagram}`}
+                                className={!usuario.SiteInstagram && 'desactivado'}
+                            >
+                                <img src={usuario.SiteInstagram ? socialInstagram : socialInstagramOff} />
+                            </a>
+
+                            <a 
+                                href = {`https://www.tiktok.com/@${usuario.SiteTiktok}`}
+                                className={!usuario.SiteTiktok && 'desactivado'}
+                            >
+                                <img src={usuario.SiteTiktok ? socialTikTok : socialTikTokOff} />
+                            </a>
+
+                            <a 
+                                href = {`https://www.twitter.com/${usuario.SiteTwitter}`}
+                                className={!usuario.SiteTwitter && 'desactivado'}
+                            >
+                                <img src={usuario.SiteTwitter ? socialTwitter : socialTwitterOff} />
+                            </a>
+                        </div>
+                        <div className='iconos'>
+                            <a 
+                                href = {`https://www.youtube.com/${usuario.SiteYoutube}`}
+                                className={!usuario.SiteYoutube && 'desactivado'}
+                            >
+                                <img src={usuario.SiteYoutube ? socialYoutube : socialYoutubeOff} />
+                            </a>
+
+                            <a 
+                                href = {`https://www.linkedin.com/${usuario.SiteLinkedin}`}
+                                className={!usuario.SiteLinkedin && 'desactivado'}
+                            >
+                                <img src={usuario.SiteLinkedin ? socialLinkedIn : socialLinkedInOff} />
+                            </a>
+
+                            <a 
+                                href = {`https://msng.link/o?${usuario.SiteTelegram}=tg`}
+                                className={!usuario.SiteTelegram && 'desactivado'}
+                            >
+                                <img src={usuario.SiteTelegram ? socialTelegram : socialTelegramOff} />
+                            </a>
+                            
+                            <a 
+                                className={!sesion && 'desactivado'}
+                                onClick={()=> navigate("/"+btoa(token))}
+                            >
+                                <img src={sesion ? socialTarjet : socialTarjetOff}/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='row justify-content-center'>
+                    <div className='col-11 col-md-4 p-0'>
+                        <hr/>
+                    </div>
+                </div>
+
+                <div className='row justify-content-center Promo'>
+                    <div className='col-11 col-md-4'>
+                        <h4>Gracias por visitarme</h4>
+                        <p>Tarjeta digital tarjet</p>
+                        <p>Nombre de usuario en directorio tarjet:</p>
+                        <p>
+                            <span>{datosActualizados.Alias}</span>
+                        </p>
+
+                        <div className='cuerpo'>
+                            <img src={logoTarjet} className='logoTarjet' />
+                            <h5 className='contact'>Contectamos a personas con tu negocio</h5>
+                            <h5>
+                                Te agradó esta tarjeta digital <br/>
+                                <span>Tú también puedes tener la tuya</span>
+                            </h5>
+                            <a href="https://wa.me/5586763895" target='_blank' className='btn-verde'>
+                                Solicita gratuitamente <br/> tu tarjeta digital Tarjet
+                            </a>
+                            <h5>
+                                Actualízate <br/>
+                                <span>Genera un impacto positivo con tu tarjeta Física Tarjet</span>
+                            </h5>
+                            <img src={promoImg} className='img-promo'/>
+                            <a href="https://shop.tarjet.mx/" target='_blank'  className='btn-naranja'>
+                                Compra tu <br/>
+                                tarjeta física Tarjet con NFC <br className='d-block'/>
+                                <span>Es personalizada</span>
+                            </a>
+                            <h5>
+                                <span>Hagamos Networking</span> <br/>
+                                En nuestro directorio puedes ser encontrado fácilmente por personas que buscan lo que haces
+                            </h5>
+                            <a href="https://tarjet.site/#/login" target='_blank'  className='btn-morado'>
+                                Regístrate gratuitamente <br/>
+                                <span>y accede a tu tarjetero digital tarjet</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='row justify-content-center teInvitamos'>
+                    <div className='col-11 col-md-4'>
+                        <a href="https://tarjet.mx/">
+                            Te invitamos a conocernos, <br/>
+                            visita nuestro sitio oficial
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

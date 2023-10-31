@@ -793,3 +793,17 @@ $btnRegresar: #4f8b92;
         }
     }
 }
+
+.backgroun-Green{
+    @media (width >=800px) {
+        background: #0080001c;
+    }
+}
+.background-image{
+    @media (width >= 800px) {
+        background: url('../assets/fondo-tarjet-1.png');
+        background-size: contain;
+        background-size: 50cqw;
+    }
+
+}

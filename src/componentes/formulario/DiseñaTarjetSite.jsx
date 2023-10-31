@@ -433,384 +433,755 @@ const DiseñaTarjetSite = () => {
     }
 
     return ( 
-        <div className="container-fluid DiseñaTarjetSite">
+        <div className='backgroun-Green'>
+            <div className="container-fluid DiseñaTarjetSite background-image">
 
-            { popActualiza &&
-                <PopCorrecto />
-            }
+                { popActualiza &&
+                    <PopCorrecto />
+                }
 
-            <div className='img-banner'>
-                <img src={ilustracion} />
-            </div>
-
-            <div className='text'>
-                <h1>Tarjet site</h1>
-                <p>
-                    El micro sitio que te ayudará a que la gente te contacte y conozca tus servicios y productos.
-                </p>
-                <p>
-                    Este site es tu presentación, se mostrará al momento de compartir tu tarjeta, ya sea en url, tarjeta nfc ó QR.
-                </p>
-            </div>
-
-            <div className='controls'>
-                <h2>Personaliza tu Tarjet site</h2>
-
-                <div className='cuerpo'>
-                    <button 
-                        className={portada ? 'active' : ''}
-                        onClick={btnPortada}
-                    >
-                        <div>1</div>
-                        Portada
-                    </button>
-                    <button
-                        className={datos ? 'active' : ''}
-                        onClick={btnDatos}
-                    >
-                        <div>2</div>
-                        Tus datos
-                    </button>
-                    <button 
-                        className={`btn-3 ${servicios ? 'active' : ''}`}
-                        onClick={btnServicios}
-                    >
-                        <div>3</div>
-                        Tus servicios
-                    </button>
+                <div className='img-banner'>
+                    <img src={ilustracion} />
                 </div>
-            </div>
 
-            <div className='separador'>
-                <hr/>
-            </div>
+                <div className='text'>
+                    <h1>Tarjet site</h1>
+                    <p>
+                        El micro sitio que te ayudará a que la gente te contacte y conozca tus servicios y productos.
+                    </p>
+                    <p>
+                        Este site es tu presentación, se mostrará al momento de compartir tu tarjeta, ya sea en url, tarjeta nfc ó QR.
+                    </p>
+                </div>
 
-            { portada &&
-                <div className='colecciones'>
-                    <h2>Colecciones</h2>
+                <div className='controls'>
+                    <h2>Personaliza tu Tarjet site</h2>
 
-                    <div className='opciones'>
+                    <div className='cuerpo'>
                         <button 
-                            className={`primer ${opcion === 'Gratuitas' ? 'activeOption' : ''}`}
-                            onClick={(e)=>setOpcion(e.target.innerText)}
+                            className={portada ? 'active' : ''}
+                            onClick={btnPortada}
                         >
-                            <i className="bi bi-caret-down-fill"></i>
-                            Gratuitas
+                            <div>1</div>
+                            Portada
                         </button>
                         <button
-                            className={opcion === 'Premium' ? 'activeOption' : ''}
-                            onClick={(e)=>setOpcion(e.target.innerText)}
+                            className={datos ? 'active' : ''}
+                            onClick={btnDatos}
                         >
-                            <i className="bi bi-caret-down-fill"></i>
-                            Premium
+                            <div>2</div>
+                            Tus datos
                         </button>
-                        <button
-                            className={opcion === 'Personalizado' ? 'activeOption' : ''}
-                            onClick={(e)=>setOpcion(e.target.innerText)}
+                        <button 
+                            className={`btn-3 ${servicios ? 'active' : ''}`}
+                            onClick={btnServicios}
                         >
-                            <i className="bi bi-caret-down-fill"></i>
-                            Personalizado
+                            <div>3</div>
+                            Tus servicios
                         </button>
                     </div>
+                </div>
 
-                    { opcion === 'Gratuitas' &&
-                        <div className='gratuitas'>
-                            <Slider {...settings}>
+                <div className='separador'>
+                    <hr/>
+                </div>
 
-                                {colecciones.map((coleccion)=>(
-                                    <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
-                                        <div 
-                                            className='cuerpo' 
-                                            style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/${coleccion.SiteHeaderImagen})`}}
-                                        >
+                { portada &&
+                    <div className='colecciones'>
+                        <h2>Colecciones</h2>
+
+                        <div className='opciones'>
+                            <button 
+                                className={`primer ${opcion === 'Gratuitas' ? 'activeOption' : ''}`}
+                                onClick={(e)=>setOpcion(e.target.innerText)}
+                            >
+                                <i className="bi bi-caret-down-fill"></i>
+                                Gratuitas
+                            </button>
+                            <button
+                                className={opcion === 'Premium' ? 'activeOption' : ''}
+                                onClick={(e)=>setOpcion(e.target.innerText)}
+                            >
+                                <i className="bi bi-caret-down-fill"></i>
+                                Premium
+                            </button>
+                            <button
+                                className={opcion === 'Personalizado' ? 'activeOption' : ''}
+                                onClick={(e)=>setOpcion(e.target.innerText)}
+                            >
+                                <i className="bi bi-caret-down-fill"></i>
+                                Personalizado
+                            </button>
+                        </div>
+
+                        { opcion === 'Gratuitas' &&
+                            <div className='gratuitas'>
+                                <Slider {...settings}>
+
+                                    {colecciones.map((coleccion)=>(
+                                        <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
+                                            <div 
+                                                className='cuerpo' 
+                                                style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/${coleccion.SiteHeaderImagen})`}}
+                                            >
+                                            </div>
                                         </div>
+                                    ))
+                                    }
+                                </Slider>
+
+                                {/* <div className='mas-imagenes'>
+                                    <div className='view3'>
+                                        <img src={tarjetaGenerica} />
+                                        <img src={tarjetaGenerica} />
+                                        <img src={tarjetaGenerica} />
                                     </div>
-                                ))
-                                }
-                            </Slider>
 
-                            {/* <div className='mas-imagenes'>
-                                <div className='view3'>
-                                    <img src={tarjetaGenerica} />
-                                    <img src={tarjetaGenerica} />
-                                    <img src={tarjetaGenerica} />
+                                    <div className='viewpremium'>
+                                        <img src={tarjetaGenerica} />
+                                    </div>
+                                </div> */}
+
+                                <div className='info'>
+                                    <div className='modelos w-100'>
+                                        <p>
+                                            {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
+                                        </p>
+                                    </div>
+                                    {/* <div className='premium-select'>
+                                        <div>
+                                            <p>1</p>
+                                        </div>
+                                        <p>
+                                            Tarjeta premium seleccionada
+                                        </p>
+                                    </div> */}
                                 </div>
 
-                                <div className='viewpremium'>
-                                    <img src={tarjetaGenerica} />
+                                <div className='buttons-confirm'>
+                                    <button>
+                                        Cargar archivo de imagen (premium)
+                                    </button>
+                                    <button className='guardar' onClick={GuardarImagenEncabezado}>
+                                        Guardar imagen
+                                    </button>
                                 </div>
+
+                                <div className='btn-continuar'>
+                                    <button onClick={btnPaso2}>
+                                        Continuar a paso 2
+                                    </button>
+                                </div>
+
+                                <div className='btn-regresarr'>
+                                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                                        Regresar a perfil (x)
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                { datos &&
+                    <div className='Tusdatos'>
+                        <form onSubmit={GuardarTarjeta1}>
+                            <div className='img-perfil'>
+                                <div className='img'>
+                                    { datosGenerales.ImgFoto ?
+                                        <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
+                                    :
+                                        <img src={perfilTemporal} />
+                                    }
+                                </div>
+
+                                <div className='inputs'>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Empresa ó Nombre (40 caracteres)' 
+                                        maxLength={40}
+                                        value={datosGenerales.Nom + " " +datosGenerales.AppP + " " +datosGenerales.AppM}
+                                        readOnly
+                                    />
+                                    <input 
+                                        type="text" 
+                                        placeholder='Cargo o giro de la empresa'
+                                        value={datosGenerales.Cargo}
+                                        readOnly
+                                    />
+                                </div>
+                            </div>
+
+                            {/* <div className='subirimagen'>
+                                <button>
+                                    Subir imagen
+                                </button>
                             </div> */}
 
-                            <div className='info'>
-                                <div className='modelos w-100'>
-                                    <p>
-                                        {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
-                                    </p>
-                                </div>
-                                {/* <div className='premium-select'>
-                                    <div>
-                                        <p>1</p>
+                            <div className='indicaciones'>
+                                <p>
+                                    En tu Tarjet Site, se mostrarán los campos con la información que llenes, mientras que los campos vacíos permanecerán ocultos.
+                                </p>
+                            </div>
+
+                            <div className='datosContacto'>
+                                <h3>Datos de contacto</h3>
+
+                                <div className='input-datos'>
+                                    <div className='cont'>
+                                        <img src={iconoWhats}/>
                                     </div>
-                                    <p>
-                                        Tarjeta premium seleccionada
-                                    </p>
-                                </div> */}
-                            </div>
+                                    <input 
+                                        type="text" 
+                                        maxLength={10}
+                                        placeholder='Teléfono whatsapp'
+                                        value={telefono1}
+                                        onChange={OnlyNumbers}
+                                    />
+                                </div>
+                                <div className='input-datos'>
+                                    <div className='cont'>
+                                        <img src={iconoTelefono}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Teléfono fijo ó de contacto'
+                                        maxLength={10}
+                                        value={telefono2}
+                                        onChange={OnlyNumbers2}
+                                    />
+                                </div>
 
-                            <div className='buttons-confirm'>
-                                <button>
-                                    Cargar archivo de imagen (premium)
-                                </button>
-                                <button className='guardar' onClick={GuardarImagenEncabezado}>
-                                    Guardar imagen
-                                </button>
-                            </div>
+                                <div className='checkbox'>
+                                    <input type="checkbox"/>
+                                    <label>Mostrar mi ubicación registrada en mi perfil</label>
+                                </div>
 
-                            <div className='btn-continuar'>
-                                <button onClick={btnPaso2}>
-                                    Continuar a paso 2
-                                </button>
-                            </div>
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoUbicacion}/>
+                                    </div>
+                                    <select name="" id="">
+                                        <option value="" key="001">Visita mi oficina ubicada en</option>
+                                    </select>
+                                </div>
 
-                            <div className='btn-regresarr'>
-                                <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
-                                    Regresar a perfil (x)
-                                </button>
-                            </div>
-                        </div>
-                    }
-                </div>
-            }
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoCorreo}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Correo electrónico'
+                                        className={error ? 'input-error' : ''}
+                                        value={correo}
+                                        onChange={OnlyEmail}
+                                    />
+                                </div>
 
-            { datos &&
-                <div className='Tusdatos'>
-                    <form onSubmit={GuardarTarjeta1}>
-                        <div className='img-perfil'>
-                            <div className='img'>
-                                { datosGenerales.ImgFoto ?
-                                    <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
-                                :
-                                    <img src={perfilTemporal} />
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoWeb}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Sitio web'
+                                        value={sitioWeb}
+                                        onChange={(e)=>setSitioWeb(e.target.value)}
+                                    />
+                                </div>
+
+                                <h3 className='mt-5 mb-0'>Redes sociales</h3>
+
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoFacebook}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Url Facebook'
+                                        value={facebook}
+                                        onChange={(e)=>setFacebook(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoInstagram}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Url Instagram'
+                                        value={instagram}
+                                        onChange={(e)=>setInstagram(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoTiktok}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Url Tiktok'
+                                        value={tiktok}
+                                        onChange={(e)=>setTiktok(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoTwitter}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Url Twitter'
+                                        value={twitter}
+                                        onChange={(e)=>setTwitter(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoYoutube}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Url Youtube'
+                                        value={youtube}
+                                        onChange={(e)=>setYoutube(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoLinkedin}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Url Linkedin'
+                                        value={linkedin}
+                                        onChange={(e)=>setLinkedin(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className='input-datos'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoTelegram}/>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Url Telegram'
+                                        value={telegram}
+                                        onChange={(e)=>setTelegram(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className='input-datos mostrarUsuario'>
+                                    <div className='cont ubi'>
+                                        <img src={iconoTarjet}/>
+                                    </div>
+                                    <div className='in'>
+                                        <label htmlFor='acept'>Mostrar mi usuario Tarjet</label>
+                                        <input type="checkbox" id='acept'/>
+                                    </div>
+                                </div>
+
+                                { error &&
+                                    <div className='message-error'>
+                                        <p>
+                                            Por favor ingresa una dirección de correo válida. 
+                                        </p>
+                                    </div>
                                 }
+
+                                {/* <div className='terminos'>
+                                    <input type="checkbox" id="terminos" />
+                                    <label htmlFor='terminos'>Acepto <span onClick={()=>navigate('/aviso-privacidad')}>términos de privacidad</span></label>
+                                </div> */}
+
+                                <div className='guardar'>
+                                    <button type='submit'>
+                                        Guardar ó actualizar información
+                                    </button>
+                                </div>
+
+                                <div className='buttons-pasos'>
+                                    <button onClick={btnRegresarPaso1} type='button'>
+                                        Regresar a paso 1
+                                    </button>
+                                    <button onClick={btnPaso3}>
+                                        Continuar a paso 3
+                                    </button>
+                                </div>
+
+                                <div className='btn-regresarr'>
+                                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
+                                        Regresar a perfil (x)
+                                    </button>
+                                </div>
                             </div>
+                        </form>
+                    </div>
+                }
 
-                            <div className='inputs'>
-                                <input 
-                                    type="text" 
-                                    placeholder='Empresa ó Nombre (40 caracteres)' 
-                                    maxLength={40}
-                                    value={datosGenerales.Nom + " " +datosGenerales.AppP + " " +datosGenerales.AppM}
-                                    readOnly
-                                />
-                                <input 
-                                    type="text" 
-                                    placeholder='Cargo o giro de la empresa'
-                                    value={datosGenerales.Cargo}
-                                    readOnly
-                                />
-                            </div>
-                        </div>
+                { servicios &&
+                    <div className='TusServicios'>
+                        <p>
+                            En tu Tarjet Site, se mostrarán los campos con la información que llenes, mientras que los campos vacíos permanecerán ocultos.
+                        </p>
+                        
+                        <h3>Actividad principal</h3>
+                        <p>
+                            Sugerimos uses palabras claves que resuman tu actividad. En el cuadro de llenado te damos un ejemplo:
+                        </p>
 
-                        {/* <div className='subirimagen'>
-                            <button>
-                                Subir imagen
-                            </button>
-                        </div> */}
+                        <form onSubmit={GuardarTarjeta1}>
+                            <input type="text" placeholder='Estética profesional canina.' readOnly value={datosGenerales.Lev3Desc}/>
 
-                        <div className='indicaciones'>
+                            <h3>Listado de actividades</h3>
                             <p>
-                                En tu Tarjet Site, se mostrarán los campos con la información que llenes, mientras que los campos vacíos permanecerán ocultos.
+                                Sugerimos uses enunciados en forma de lista que describan tus actividades ó principales servicios.
                             </p>
-                        </div>
+                            <h3>Servicios</h3>
+                            <input 
+                                type="text" 
+                                placeholder='• Listado de servicio' 
+                                value={servicio1.ServDescrip} 
+                                onChange={(e)=>setServicio1({...servicio1, ServDescrip: e.target.value})}
+                                onBlur={handleBlur}
+                            />
+                            <input 
+                                type="text" 
+                                placeholder='• Listado de servicio' 
+                                value={servicio2.ServDescrip} 
+                                onChange={(e)=>setServicio2({...servicio2, ServDescrip: e.target.value})}
+                                onBlur={handleBlur}
+                            />
+                            <input 
+                                type="text" 
+                                placeholder='• Listado de servicio' 
+                                value={servicio3.ServDescrip} 
+                                onChange={(e)=>setServicio3({...servicio3, ServDescrip: e.target.value})}
+                                onBlur={handleBlur}
+                            />
+                            <input 
+                                type="text" 
+                                placeholder='• Listado de servicio' 
+                                value={servicio4.ServDescrip} 
+                                onChange={(e)=>setServicio4({...servicio4, ServDescrip: e.target.value})}
+                                onBlur={handleBlur}
+                            />
+                            
+                            {/* <textarea 
+                                placeholder='Escribe aquí tu listado ó parrafo de servicios / actividades'
+                                value={servicio1.ServDescrip}
+                                onChange={(e)=>setServicio1({...servicio1, ServDescrip: e.target.value})}
+                            >
+                            </textarea> */}
 
-                        <div className='datosContacto'>
-                            <h3>Datos de contacto</h3>
+                            <h3>Muestra de productos ó servicios</h3>
 
-                            <div className='input-datos'>
-                                <div className='cont'>
-                                    <img src={iconoWhats}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    maxLength={10}
-                                    placeholder='Teléfono whatsapp'
-                                    value={telefono1}
-                                    onChange={OnlyNumbers}
-                                />
-                            </div>
-                            <div className='input-datos'>
-                                <div className='cont'>
-                                    <img src={iconoTelefono}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Teléfono fijo ó de contacto'
-                                    maxLength={10}
-                                    value={telefono2}
-                                    onChange={OnlyNumbers2}
-                                />
-                            </div>
-
-                            <div className='checkbox'>
-                                <input type="checkbox"/>
-                                <label>Mostrar mi ubicación registrada en mi perfil</label>
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoUbicacion}/>
-                                </div>
-                                <select name="" id="">
-                                    <option value="" key="001">Visita mi oficina ubicada en</option>
-                                </select>
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoCorreo}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Correo electrónico'
-                                    className={error ? 'input-error' : ''}
-                                    value={correo}
-                                    onChange={OnlyEmail}
-                                />
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoWeb}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Sitio web'
-                                    value={sitioWeb}
-                                    onChange={(e)=>setSitioWeb(e.target.value)}
-                                />
-                            </div>
-
-                            <h3 className='mt-5 mb-0'>Redes sociales</h3>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoFacebook}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Url Facebook'
-                                    value={facebook}
-                                    onChange={(e)=>setFacebook(e.target.value)}
-                                />
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoInstagram}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Url Instagram'
-                                    value={instagram}
-                                    onChange={(e)=>setInstagram(e.target.value)}
-                                />
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoTiktok}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Url Tiktok'
-                                    value={tiktok}
-                                    onChange={(e)=>setTiktok(e.target.value)}
-                                />
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoTwitter}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Url Twitter'
-                                    value={twitter}
-                                    onChange={(e)=>setTwitter(e.target.value)}
-                                />
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoYoutube}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Url Youtube'
-                                    value={youtube}
-                                    onChange={(e)=>setYoutube(e.target.value)}
-                                />
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoLinkedin}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Url Linkedin'
-                                    value={linkedin}
-                                    onChange={(e)=>setLinkedin(e.target.value)}
-                                />
-                            </div>
-
-                            <div className='input-datos'>
-                                <div className='cont ubi'>
-                                    <img src={iconoTelegram}/>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    placeholder='Url Telegram'
-                                    value={telegram}
-                                    onChange={(e)=>setTelegram(e.target.value)}
-                                />
-                            </div>
-
-                            <div className='input-datos mostrarUsuario'>
-                                <div className='cont ubi'>
-                                    <img src={iconoTarjet}/>
-                                </div>
-                                <div className='in'>
-                                    <label htmlFor='acept'>Mostrar mi usuario Tarjet</label>
-                                    <input type="checkbox" id='acept'/>
-                                </div>
-                            </div>
-
-                            { error &&
-                                <div className='message-error'>
-                                    <p>
-                                        Por favor ingresa una dirección de correo válida. 
-                                    </p>
-                                </div>
+                            { cargarImagen && 
+                                <CargarImagen onBotonClick={CerrarCarga}  tipoImagen={"SERV"} numeroServicio={nServicioImagen} />
                             }
 
-                            {/* <div className='terminos'>
-                                <input type="checkbox" id="terminos" />
-                                <label htmlFor='terminos'>Acepto <span onClick={()=>navigate('/aviso-privacidad')}>términos de privacidad</span></label>
-                            </div> */}
+                            <div>
+                                <button className='btn-bloque' onClick={()=>setBloque1(!bloque1)} type='button'>
+                                    Bloque de servicio No. 1
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+                                <AnimatePresence>
+                                    { bloque1 &&
+                                        <motion.div 
+                                            className='cuerpo-bloque'
+                                            initial= "closed"
+                                            animate= "open"
+                                            exit= "closed"
+                                            variants={acordeonVariantes}
+                                        >
+                                            <input 
+                                                type="text" 
+                                                placeholder='Escribe su título'
+                                                value={servicio5.ServSubTitulo}
+                                                onChange={(e) => setServicio5({...servicio5, ServSubTitulo: e.target.value })}
+                                                onBlur={handleBlur}
+                                            />
+                                            { servicio5.ServImg ?
+                                                <img 
+                                                    src={`https://tarjet.site/imagenes/servicios/${servicio5.ServImg}`} 
+                                                    className='imagen-servicio'
+                                                />
+                                            :
+                                                <div className='mostrar-imagen'>
+                                                    <img src={iconoSubirImagen} />
+                                                </div>
+                                            }
+                                            <div className='btn-subir'>
+                                                <button onClick={()=> SubirImagen(5)} type='button'>
+                                                    Subir imagen
+                                                </button>
+                                            </div>
+                                            <textarea 
+                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                                maxLength={60}
+                                                value={servicio5.ServDescrip}
+                                                onChange={(e) => setServicio5({...servicio5, ServDescrip: e.target.value })}
+                                                onBlur={handleBlur}
+                                            >
+                                            </textarea>
+                                            <div className='borrar'>
+                                                <button onClick={()=>BorrarBloque(5)} type='button'>
+                                                    Borrar contenido de bloque
+                                                </button>
+                                            </div>
+                                        </motion.div>
+                                    }
+                                </AnimatePresence>
+                            </div>
 
-                            <div className='guardar'>
-                                <button type='submit'>
-                                    Guardar ó actualizar información
+                            <div>
+                                <button className='btn-bloque' onClick={()=>setBloque2(!bloque2)} type='button'>
+                                    Bloque de servicio No. 2
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+                                <AnimatePresence>
+                                    { bloque2 &&
+                                        <motion.div 
+                                            className='cuerpo-bloque'
+                                            initial= "closed"
+                                            animate= "open"
+                                            exit= "closed"
+                                            variants={acordeonVariantes}
+                                        >
+                                            <input 
+                                                type="text" 
+                                                placeholder='Escribe su título'
+                                                value={servicio6.ServSubTitulo}
+                                                onChange={(e) => setServicio6({...servicio6, ServSubTitulo: e.target.value })}
+                                                onBlur={handleBlur}
+                                            />
+                                            { servicio6.ServImg ?
+                                                <img 
+                                                    src={`https://tarjet.site/imagenes/servicios/${servicio6.ServImg}`} 
+                                                    className='imagen-servicio'
+                                                />
+                                            :
+                                                <div className='mostrar-imagen'>
+                                                    <img src={iconoSubirImagen} />
+                                                </div>
+                                            }
+                                            <div className='btn-subir'>
+                                                <button onClick={()=> SubirImagen(6)} type='button'>
+                                                    Subir imagen
+                                                </button>
+                                            </div>
+                                            <textarea 
+                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                                maxLength={60}
+                                                value={servicio6.ServDescrip}
+                                                onChange={(e) => setServicio6({...servicio6, ServDescrip: e.target.value })}
+                                                onBlur={handleBlur}
+                                            >
+                                            </textarea>
+                                            <div className='borrar'>
+                                                <button onClick={()=>BorrarBloque(6)} type='button'>
+                                                    Borrar contenido de bloque
+                                                </button>
+                                            </div>
+                                        </motion.div>
+                                    }
+                                </AnimatePresence>
+                            </div>
+
+                            <div>
+                                <button className='btn-bloque' onClick={()=>setBloque3(!bloque3)} type='button'>
+                                    Bloque de servicio No. 3
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+                                <AnimatePresence>
+                                    { bloque3 &&
+                                        <motion.div 
+                                            className='cuerpo-bloque'
+                                            initial= "closed"
+                                            animate= "open"
+                                            exit= "closed"
+                                            variants={acordeonVariantes}
+                                        >
+                                            <input 
+                                                type="text" 
+                                                placeholder='Escribe su título'
+                                                value={servicio7.ServSubTitulo}
+                                                onChange={(e) => setServicio7({...servicio7, ServSubTitulo: e.target.value })}
+                                                onBlur={handleBlur}
+                                            />
+                                            { servicio7.ServImg ?
+                                                <img 
+                                                    src={`https://tarjet.site/imagenes/servicios/${servicio7.ServImg}`} 
+                                                    className='imagen-servicio'
+                                                />
+                                            :
+                                                <div className='mostrar-imagen'>
+                                                    <img src={iconoSubirImagen} />
+                                                </div>
+                                            }
+                                            <div className='btn-subir'>
+                                                <button onClick={()=> SubirImagen(7)} type='button'>
+                                                    Subir imagen
+                                                </button>
+                                            </div>
+                                            <textarea 
+                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                                maxLength={60}
+                                                value={servicio7.ServDescrip}
+                                                onChange={(e) => setServicio7({...servicio7, ServDescrip: e.target.value })}
+                                                onBlur={handleBlur}
+                                            >
+                                            </textarea>
+                                            <div className='borrar'>
+                                                <button onClick={()=>BorrarBloque(7)} type='button'>
+                                                    Borrar contenido de bloque
+                                                </button>
+                                            </div>
+                                        </motion.div>
+                                    }
+                                </AnimatePresence>
+                            </div>
+
+                            <div>
+                                <button className='btn-bloque' onClick={()=>setBloque4(!bloque4)} type='button'>
+                                    Bloque de servicio No. 4
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+
+                                <AnimatePresence>
+                                    { bloque4 &&
+                                        <motion.div 
+                                            className='cuerpo-bloque'
+                                            initial= "closed"
+                                            animate= "open"
+                                            exit= "closed"
+                                            variants={acordeonVariantes}
+                                        >
+                                            <input 
+                                                type="text" 
+                                                placeholder='Escribe su título'
+                                                value={servicio8.ServSubTitulo}
+                                                onChange={(e) => setServicio8({...servicio8, ServSubTitulo: e.target.value })}
+                                                onBlur={handleBlur}
+                                            />
+                                            { servicio8.ServImg ?
+                                                <img 
+                                                    src={`https://tarjet.site/imagenes/servicios/${servicio8.ServImg}`} 
+                                                    className='imagen-servicio'
+                                                />
+                                            :
+                                                <div className='mostrar-imagen'>
+                                                    <img src={iconoSubirImagen} />
+                                                </div>
+                                            }
+                                            <div className='btn-subir'>
+                                                <button onClick={()=> SubirImagen(8)} type='button'>
+                                                    Subir imagen
+                                                </button>
+                                            </div>
+                                            <textarea 
+                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
+                                                maxLength={60}
+                                                value={servicio8.ServDescrip}
+                                                onChange={(e) => setServicio8({...servicio8, ServDescrip: e.target.value })}
+                                                onBlur={handleBlur}
+                                            >
+                                            </textarea>
+                                            <div className='borrar'>
+                                                <button onClick={()=>BorrarBloque(8)} type='button'>
+                                                    Borrar contenido de bloque
+                                                </button>
+                                            </div>
+                                        </motion.div>
+                                    }
+                                </AnimatePresence>
+                            </div>
+
+                            <p>
+                                Al adquirir el plan Premium ******** <br/> puedes agregar hasta 10 productos ó servicios
+                            </p>
+
+                            <a href="" className='btn-premium'>
+                                ¡Adquiérelo aquí!
+                            </a>
+
+                            <div>
+                                <button className='btn-bloque premium' type='button'>
+                                    Bloque de servicio No. 5
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+                            </div>
+                            <div>
+                                <button className='btn-bloque premium' type='button'>
+                                    Bloque de servicio No. 6
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+                            </div>
+                            <div>
+                                <button className='btn-bloque premium' type='button'>
+                                    Bloque de servicio No. 7
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+                            </div>
+                            <div>
+                                <button className='btn-bloque premium' type='button'>
+                                    Bloque de servicio No. 8
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+                            </div>
+                            <div>
+                                <button className='btn-bloque premium' type='button'>
+                                    Bloque de servicio No. 9
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
+                                </button>
+                            </div>
+                            <div>
+                                <button className='btn-bloque premium' type='button'>
+                                    Bloque de servicio No. 10
+                                    <div>
+                                        <i className="bi bi-plus-lg"></i>
+                                    </div>
                                 </button>
                             </div>
 
-                            <div className='buttons-pasos'>
-                                <button onClick={btnRegresarPaso1} type='button'>
-                                    Regresar a paso 1
-                                </button>
-                                <button onClick={btnPaso3}>
-                                    Continuar a paso 3
+                            {/* <div className='Btnterminos'>
+                                <input type="checkbox" id="termino" />
+                                <label htmlFor='termino'>
+                                    Acepto <span onClick={()=>navigate('/aviso-privacidad')}>términos de privacidad</span>
+                                </label>
+                            </div> */}
+
+                            <button className='btn-guardar' type='submit'>
+                                Guardar ó actualizar información
+                            </button>
+
+                            <div className='pasos'>
+                                <button onClick={btnRegresarPaso2} type='button'>
+                                    Regresar a paso 2
                                 </button>
                             </div>
 
@@ -819,379 +1190,10 @@ const DiseñaTarjetSite = () => {
                                     Regresar a perfil (x)
                                 </button>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            }
-
-            { servicios &&
-                <div className='TusServicios'>
-                    <p>
-                        En tu Tarjet Site, se mostrarán los campos con la información que llenes, mientras que los campos vacíos permanecerán ocultos.
-                    </p>
-                    
-                    <h3>Actividad principal</h3>
-                    <p>
-                        Sugerimos uses palabras claves que resuman tu actividad. En el cuadro de llenado te damos un ejemplo:
-                    </p>
-
-                    <form onSubmit={GuardarTarjeta1}>
-                        <input type="text" placeholder='Estética profesional canina.' readOnly value={datosGenerales.Lev3Desc}/>
-
-                        <h3>Listado de actividades</h3>
-                        <p>
-                            Sugerimos uses enunciados en forma de lista que describan tus actividades ó principales servicios.
-                        </p>
-                        <h3>Servicios</h3>
-                        <input 
-                            type="text" 
-                            placeholder='• Listado de servicio' 
-                            value={servicio1.ServDescrip} 
-                            onChange={(e)=>setServicio1({...servicio1, ServDescrip: e.target.value})}
-                            onBlur={handleBlur}
-                        />
-                        <input 
-                            type="text" 
-                            placeholder='• Listado de servicio' 
-                            value={servicio2.ServDescrip} 
-                            onChange={(e)=>setServicio2({...servicio2, ServDescrip: e.target.value})}
-                            onBlur={handleBlur}
-                        />
-                        <input 
-                            type="text" 
-                            placeholder='• Listado de servicio' 
-                            value={servicio3.ServDescrip} 
-                            onChange={(e)=>setServicio3({...servicio3, ServDescrip: e.target.value})}
-                            onBlur={handleBlur}
-                        />
-                        <input 
-                            type="text" 
-                            placeholder='• Listado de servicio' 
-                            value={servicio4.ServDescrip} 
-                            onChange={(e)=>setServicio4({...servicio4, ServDescrip: e.target.value})}
-                            onBlur={handleBlur}
-                        />
-                        
-                        {/* <textarea 
-                            placeholder='Escribe aquí tu listado ó parrafo de servicios / actividades'
-                            value={servicio1.ServDescrip}
-                            onChange={(e)=>setServicio1({...servicio1, ServDescrip: e.target.value})}
-                        >
-                        </textarea> */}
-
-                        <h3>Muestra de productos ó servicios</h3>
-
-                        { cargarImagen && 
-                            <CargarImagen onBotonClick={CerrarCarga}  tipoImagen={"SERV"} numeroServicio={nServicioImagen} />
-                        }
-
-                        <div>
-                            <button className='btn-bloque' onClick={()=>setBloque1(!bloque1)} type='button'>
-                                Bloque de servicio No. 1
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                            <AnimatePresence>
-                                { bloque1 &&
-                                    <motion.div 
-                                        className='cuerpo-bloque'
-                                        initial= "closed"
-                                        animate= "open"
-                                        exit= "closed"
-                                        variants={acordeonVariantes}
-                                    >
-                                        <input 
-                                            type="text" 
-                                            placeholder='Escribe su título'
-                                            value={servicio5.ServSubTitulo}
-                                            onChange={(e) => setServicio5({...servicio5, ServSubTitulo: e.target.value })}
-                                            onBlur={handleBlur}
-                                        />
-                                        { servicio5.ServImg ?
-                                            <img 
-                                                src={`https://tarjet.site/imagenes/servicios/${servicio5.ServImg}`} 
-                                                className='imagen-servicio'
-                                            />
-                                        :
-                                            <div className='mostrar-imagen'>
-                                                <img src={iconoSubirImagen} />
-                                            </div>
-                                        }
-                                        <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(5)} type='button'>
-                                                Subir imagen
-                                            </button>
-                                        </div>
-                                        <textarea 
-                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                            maxLength={60}
-                                            value={servicio5.ServDescrip}
-                                            onChange={(e) => setServicio5({...servicio5, ServDescrip: e.target.value })}
-                                            onBlur={handleBlur}
-                                        >
-                                        </textarea>
-                                        <div className='borrar'>
-                                            <button onClick={()=>BorrarBloque(5)} type='button'>
-                                                Borrar contenido de bloque
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                }
-                            </AnimatePresence>
-                        </div>
-
-                        <div>
-                            <button className='btn-bloque' onClick={()=>setBloque2(!bloque2)} type='button'>
-                                Bloque de servicio No. 2
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                            <AnimatePresence>
-                                { bloque2 &&
-                                    <motion.div 
-                                        className='cuerpo-bloque'
-                                        initial= "closed"
-                                        animate= "open"
-                                        exit= "closed"
-                                        variants={acordeonVariantes}
-                                    >
-                                        <input 
-                                            type="text" 
-                                            placeholder='Escribe su título'
-                                            value={servicio6.ServSubTitulo}
-                                            onChange={(e) => setServicio6({...servicio6, ServSubTitulo: e.target.value })}
-                                            onBlur={handleBlur}
-                                        />
-                                        { servicio6.ServImg ?
-                                            <img 
-                                                src={`https://tarjet.site/imagenes/servicios/${servicio6.ServImg}`} 
-                                                className='imagen-servicio'
-                                            />
-                                        :
-                                            <div className='mostrar-imagen'>
-                                                <img src={iconoSubirImagen} />
-                                            </div>
-                                        }
-                                        <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(6)} type='button'>
-                                                Subir imagen
-                                            </button>
-                                        </div>
-                                        <textarea 
-                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                            maxLength={60}
-                                            value={servicio6.ServDescrip}
-                                            onChange={(e) => setServicio6({...servicio6, ServDescrip: e.target.value })}
-                                            onBlur={handleBlur}
-                                        >
-                                        </textarea>
-                                        <div className='borrar'>
-                                            <button onClick={()=>BorrarBloque(6)} type='button'>
-                                                Borrar contenido de bloque
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                }
-                            </AnimatePresence>
-                        </div>
-
-                        <div>
-                            <button className='btn-bloque' onClick={()=>setBloque3(!bloque3)} type='button'>
-                                Bloque de servicio No. 3
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                            <AnimatePresence>
-                                { bloque3 &&
-                                    <motion.div 
-                                        className='cuerpo-bloque'
-                                        initial= "closed"
-                                        animate= "open"
-                                        exit= "closed"
-                                        variants={acordeonVariantes}
-                                    >
-                                        <input 
-                                            type="text" 
-                                            placeholder='Escribe su título'
-                                            value={servicio7.ServSubTitulo}
-                                            onChange={(e) => setServicio7({...servicio7, ServSubTitulo: e.target.value })}
-                                            onBlur={handleBlur}
-                                        />
-                                        { servicio7.ServImg ?
-                                            <img 
-                                                src={`https://tarjet.site/imagenes/servicios/${servicio7.ServImg}`} 
-                                                className='imagen-servicio'
-                                            />
-                                        :
-                                            <div className='mostrar-imagen'>
-                                                <img src={iconoSubirImagen} />
-                                            </div>
-                                        }
-                                        <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(7)} type='button'>
-                                                Subir imagen
-                                            </button>
-                                        </div>
-                                        <textarea 
-                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                            maxLength={60}
-                                            value={servicio7.ServDescrip}
-                                            onChange={(e) => setServicio7({...servicio7, ServDescrip: e.target.value })}
-                                            onBlur={handleBlur}
-                                        >
-                                        </textarea>
-                                        <div className='borrar'>
-                                            <button onClick={()=>BorrarBloque(7)} type='button'>
-                                                Borrar contenido de bloque
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                }
-                            </AnimatePresence>
-                        </div>
-
-                        <div>
-                            <button className='btn-bloque' onClick={()=>setBloque4(!bloque4)} type='button'>
-                                Bloque de servicio No. 4
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-
-                            <AnimatePresence>
-                                { bloque4 &&
-                                    <motion.div 
-                                        className='cuerpo-bloque'
-                                        initial= "closed"
-                                        animate= "open"
-                                        exit= "closed"
-                                        variants={acordeonVariantes}
-                                    >
-                                        <input 
-                                            type="text" 
-                                            placeholder='Escribe su título'
-                                            value={servicio8.ServSubTitulo}
-                                            onChange={(e) => setServicio8({...servicio8, ServSubTitulo: e.target.value })}
-                                            onBlur={handleBlur}
-                                        />
-                                        { servicio8.ServImg ?
-                                            <img 
-                                                src={`https://tarjet.site/imagenes/servicios/${servicio8.ServImg}`} 
-                                                className='imagen-servicio'
-                                            />
-                                        :
-                                            <div className='mostrar-imagen'>
-                                                <img src={iconoSubirImagen} />
-                                            </div>
-                                        }
-                                        <div className='btn-subir'>
-                                            <button onClick={()=> SubirImagen(8)} type='button'>
-                                                Subir imagen
-                                            </button>
-                                        </div>
-                                        <textarea 
-                                            placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                            maxLength={60}
-                                            value={servicio8.ServDescrip}
-                                            onChange={(e) => setServicio8({...servicio8, ServDescrip: e.target.value })}
-                                            onBlur={handleBlur}
-                                        >
-                                        </textarea>
-                                        <div className='borrar'>
-                                            <button onClick={()=>BorrarBloque(8)} type='button'>
-                                                Borrar contenido de bloque
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                }
-                            </AnimatePresence>
-                        </div>
-
-                        <p>
-                            Al adquirir el plan Premium ******** <br/> puedes agregar hasta 10 productos ó servicios
-                        </p>
-
-                        <a href="" className='btn-premium'>
-                            ¡Adquiérelo aquí!
-                        </a>
-
-                        <div>
-                            <button className='btn-bloque premium' type='button'>
-                                Bloque de servicio No. 5
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                        </div>
-                        <div>
-                            <button className='btn-bloque premium' type='button'>
-                                Bloque de servicio No. 6
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                        </div>
-                        <div>
-                            <button className='btn-bloque premium' type='button'>
-                                Bloque de servicio No. 7
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                        </div>
-                        <div>
-                            <button className='btn-bloque premium' type='button'>
-                                Bloque de servicio No. 8
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                        </div>
-                        <div>
-                            <button className='btn-bloque premium' type='button'>
-                                Bloque de servicio No. 9
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                        </div>
-                        <div>
-                            <button className='btn-bloque premium' type='button'>
-                                Bloque de servicio No. 10
-                                <div>
-                                    <i className="bi bi-plus-lg"></i>
-                                </div>
-                            </button>
-                        </div>
-
-                        {/* <div className='Btnterminos'>
-                            <input type="checkbox" id="termino" />
-                            <label htmlFor='termino'>
-                                Acepto <span onClick={()=>navigate('/aviso-privacidad')}>términos de privacidad</span>
-                            </label>
-                        </div> */}
-
-                        <button className='btn-guardar' type='submit'>
-                            Guardar ó actualizar información
-                        </button>
-
-                        <div className='pasos'>
-                            <button onClick={btnRegresarPaso2} type='button'>
-                                Regresar a paso 2
-                            </button>
-                        </div>
-
-                        <div className='btn-regresarr'>
-                            <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
-                                Regresar a perfil (x)
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            }
+                        </form>
+                    </div>
+                }
+            </div>
         </div>
     );
 }
