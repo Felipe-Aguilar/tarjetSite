@@ -72,7 +72,7 @@ const TarjetSite = () => {
 
             const datosSesion = await JSON.parse(localStorage.getItem('IdDatosSesion'));
 
-            if (datosSesion.Token === atob(pageId)) {
+            if (datosSesion?.Token === atob(pageId)) {
                 setBtnEnable(true);
             }
 
