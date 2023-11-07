@@ -13,10 +13,10 @@ const Footer = () => {
             </div>
 
             <div className='redes'>
-                <a href="" target='_blank'>
+                <a href="https://www.facebook.com/profile.php?id=100095193982785&mibextid=ZbWKwL" target='_blank'>
                     <i className="bi bi-facebook"></i>
                 </a>
-                <a href="" target='_blank'>
+                <a href="https://www.instagram.com/tarjetmx/" target='_blank'>
                     <i className="bi bi-instagram"></i>
                 </a>
             </div>
