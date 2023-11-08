@@ -167,56 +167,54 @@ const DiseñaTarjetSite = () => {
                 ServIcono: respuesta.Serv[7]?.ServIcono,
                 ServSiteId: 2,
             });
-            if (datosGenerales.Premium) {
-                setServicio9({
-                    ServNum: 9,
-                    ServDescrip: respuesta.Serv[8]?.ServDescrip,
-                    ServSubTitulo: respuesta.Serv[8]?.ServSubTitulo,
-                    ServImg: respuesta.Serv[8]?.ServImg,
-                    ServIcono: respuesta.Serv[8]?.ServIcono,
-                    ServSiteId: 2,
-                });
-                setServicio10({
-                    ServNum: 10,
-                    ServDescrip: respuesta.Serv[9]?.ServDescrip,
-                    ServSubTitulo: respuesta.Serv[9]?.ServSubTitulo,
-                    ServImg: respuesta.Serv[9]?.ServImg,
-                    ServIcono: respuesta.Serv[9]?.ServIcono,
-                    ServSiteId: 2,
-                });
-                setServicio11({
-                    ServNum: 11,
-                    ServDescrip: respuesta.Serv[10]?.ServDescrip,
-                    ServSubTitulo: respuesta.Serv[10]?.ServSubTitulo,
-                    ServImg: respuesta.Serv[10]?.ServImg,
-                    ServIcono: respuesta.Serv[10]?.ServIcono,
-                    ServSiteId: 2,
-                });
-                setServicio12({
-                    ServNum: 12,
-                    ServDescrip: respuesta.Serv[11]?.ServDescrip,
-                    ServSubTitulo: respuesta.Serv[11]?.ServSubTitulo,
-                    ServImg: respuesta.Serv[11]?.ServImg,
-                    ServIcono: respuesta.Serv[11]?.ServIcono,
-                    ServSiteId: 2,
-                });
-                setServicio13({
-                    ServNum: 13,
-                    ServDescrip: respuesta.Serv[12]?.ServDescrip,
-                    ServSubTitulo: respuesta.Serv[12]?.ServSubTitulo,
-                    ServImg: respuesta.Serv[12]?.ServImg,
-                    ServIcono: respuesta.Serv[12]?.ServIcono,
-                    ServSiteId: 2,
-                });
-                setServicio14({
-                    ServNum: 14,
-                    ServDescrip: respuesta.Serv[13]?.ServDescrip,
-                    ServSubTitulo: respuesta.Serv[13]?.ServSubTitulo,
-                    ServImg: respuesta.Serv[13]?.ServImg,
-                    ServIcono: respuesta.Serv[13]?.ServIcono,
-                    ServSiteId: 2,
-                });
-            }
+            setServicio9({
+                ServNum: 9,
+                ServDescrip: respuesta.Serv[8]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[8]?.ServSubTitulo,
+                ServImg: respuesta.Serv[8]?.ServImg,
+                ServIcono: respuesta.Serv[8]?.ServIcono,
+                ServSiteId: 2,
+            });
+            setServicio10({
+                ServNum: 10,
+                ServDescrip: respuesta.Serv[9]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[9]?.ServSubTitulo,
+                ServImg: respuesta.Serv[9]?.ServImg,
+                ServIcono: respuesta.Serv[9]?.ServIcono,
+                ServSiteId: 2,
+            });
+            setServicio11({
+                ServNum: 11,
+                ServDescrip: respuesta.Serv[10]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[10]?.ServSubTitulo,
+                ServImg: respuesta.Serv[10]?.ServImg,
+                ServIcono: respuesta.Serv[10]?.ServIcono,
+                ServSiteId: 2,
+            });
+            setServicio12({
+                ServNum: 12,
+                ServDescrip: respuesta.Serv[11]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[11]?.ServSubTitulo,
+                ServImg: respuesta.Serv[11]?.ServImg,
+                ServIcono: respuesta.Serv[11]?.ServIcono,
+                ServSiteId: 2,
+            });
+            setServicio13({
+                ServNum: 13,
+                ServDescrip: respuesta.Serv[12]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[12]?.ServSubTitulo,
+                ServImg: respuesta.Serv[12]?.ServImg,
+                ServIcono: respuesta.Serv[12]?.ServIcono,
+                ServSiteId: 2,
+            });
+            setServicio14({
+                ServNum: 14,
+                ServDescrip: respuesta.Serv[13]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[13]?.ServSubTitulo,
+                ServImg: respuesta.Serv[13]?.ServImg,
+                ServIcono: respuesta.Serv[13]?.ServIcono,
+                ServSiteId: 2,
+            });
         }
 
         const Colecciones = async () => {
