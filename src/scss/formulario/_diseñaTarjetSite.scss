@@ -652,7 +652,9 @@ $btnRegresar: #4f8b92;
                 }
             }
 
-            .premium{
+            .premium-disabled{
+                pointer-events: none;
+
                 div{
                     background: #968e76;
                 }

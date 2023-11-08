@@ -304,6 +304,54 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                         "ServIcono": datosFormulario.Servicio8.ServIcono,
                         "ServSiteId": 2
                     },
+                    {
+                        "ServNum": 9,
+                        "ServDescrip": datosFormulario.Servicio9.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio9.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio9.ServImg,
+                        "ServIcono": datosFormulario.Servicio9.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 10,
+                        "ServDescrip": datosFormulario.Servicio10.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio10.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio10.ServImg,
+                        "ServIcono": datosFormulario.Servicio10.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 11,
+                        "ServDescrip": datosFormulario.Servicio11.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio11.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio11.ServImg,
+                        "ServIcono": datosFormulario.Servicio11.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 12,
+                        "ServDescrip": datosFormulario.Servicio12.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio12.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio12.ServImg,
+                        "ServIcono": datosFormulario.Servicio12.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 13,
+                        "ServDescrip": datosFormulario.Servicio13.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio13.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio13.ServImg,
+                        "ServIcono": datosFormulario.Servicio13.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 14,
+                        "ServDescrip": datosFormulario.Servicio14.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio14.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio14.ServImg,
+                        "ServIcono": datosFormulario.Servicio14.ServIcono,
+                        "ServSiteId": 2
+                    },
                 ]
             }
         })
@@ -447,6 +495,54 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
                         "ServSubTitulo": datosFormulario.Servicio8.ServSubTitulo,
                         "ServImg": datosFormulario.Servicio8.ServImg,
                         "ServIcono": datosFormulario.Servicio8.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 9,
+                        "ServDescrip": datosFormulario.Servicio9.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio9.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio9.ServImg,
+                        "ServIcono": datosFormulario.Servicio9.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 10,
+                        "ServDescrip": datosFormulario.Servicio10.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio10.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio10.ServImg,
+                        "ServIcono": datosFormulario.Servicio10.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 11,
+                        "ServDescrip": datosFormulario.Servicio11.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio11.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio11.ServImg,
+                        "ServIcono": datosFormulario.Servicio11.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 12,
+                        "ServDescrip": datosFormulario.Servicio12.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio12.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio12.ServImg,
+                        "ServIcono": datosFormulario.Servicio12.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 13,
+                        "ServDescrip": datosFormulario.Servicio13.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio13.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio13.ServImg,
+                        "ServIcono": datosFormulario.Servicio13.ServIcono,
+                        "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 14,
+                        "ServDescrip": datosFormulario.Servicio14.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio14.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio14.ServImg,
+                        "ServIcono": datosFormulario.Servicio14.ServIcono,
                         "ServSiteId": 2
                     },
                 ]
