@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, useEffect } from 'react';
+import { useState, useRef, useContext, useEffect, useId } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GoogleOAuthProvider, GoogleLogin, useGoogleLogin } from '@react-oauth/google';
@@ -19,6 +19,9 @@ import iconoOjo from '../../assets/icono-ojo.svg';
 import iconoOjoOculto from '../../assets/icono-ojo-oculto.svg';
 
 import BtnGoogle from './btnGoogle';
+
+import AppleLogin from 'react-apple-login';
+import { AppleLoginProps } from 'react-apple-login';
 
 const Login = () => {
 
@@ -205,6 +208,31 @@ const Login = () => {
         setMensajeCodigo('');
         Registrar();
     }
+    
+    // Apple login success
+    const HandleAppleLogin = async (response) => {
+        console.log('entré');
+        console.log(response);
+
+        // const response2 = await fetch('https://appleid.apple.com/auth/token', {
+        //     method: 'POST',
+        //     mode: 'no-cors',
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded'
+        //     },
+        //     body: JSON.stringify({
+        //         "grant_type": "authorization_code",
+        //         "code": response.authorization.code,
+        //         "client_id": "site.tarjet.registro",
+        //         "client_secret": "3J44BD4KGC",
+        //     })
+        // });
+    
+        // const data = await response2.json();
+        // console.log(data);
+        // // return data;
+    }
+
 
     return ( 
         <div className='backgroun-Green'>
@@ -242,10 +270,24 @@ const Login = () => {
                             <img src={iconoFacebook} />
                             Facebook
                         </button> */}
+
                         <button type='button'>
                             <img src={iconoApple} />
                             Apple
                         </button>
+
+                        <AppleLogin 
+                            clientId="site.tarjet.registro"
+                            redirectURI="https://tarjet.site/"
+                            state='origin:web'
+                            scope = "name email"
+                            responseType={"code"} 
+                            responseMode={"query"}  
+                            callback={HandleAppleLogin}
+                            onError={(error) => console.error(error)}
+                            usePopup={true}
+                        />
+
                     </GoogleOAuthProvider>
                 </div>
 

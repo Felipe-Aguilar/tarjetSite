@@ -24,6 +24,7 @@ import iconoTelegram from '../../assets/icono-t-telegram.svg';
 import iconoTarjet from '../../assets/icono-t-tarjet.svg';
 import iconoSubirImagen from '../../assets/icono-imagen.svg';
 import PopCorrecto from './PopCorrecto';
+import PrevisualizarHeader from './PrevisualizarHeader';
 
 
 const DiseñaTarjetSite = () => {
@@ -32,6 +33,7 @@ const DiseñaTarjetSite = () => {
     const [datosSesion, setDatosSesion] = useState([]);
     const [ datosGenerales, setDatosGenerales ] = useState([]);
     const [error, setError] = useState(false);
+    const [previsualizar, setPrevisualizar] = useState(false);
 
     const objeto = {
         ServNum: "",
@@ -565,6 +567,10 @@ const DiseñaTarjetSite = () => {
         await ActualizarPerfil3(datosGenerales, datosFormulario);
     }
 
+    const CerrarPrevisualizar = () => {
+        setPrevisualizar(false);
+    }
+
     return ( 
         <div className='backgroun-Green'>
             <div className="container-fluid DiseñaTarjetSite background-image">
@@ -692,13 +698,30 @@ const DiseñaTarjetSite = () => {
                                 </div>
 
                                 <div className='buttons-confirm'>
+                                    { datosGenerales.Premium &&
+                                        <button 
+                                            type='button' 
+                                            className='previsualizarBtn' 
+                                            onClick={()=>setPrevisualizar(true)}
+                                        >
+                                            Mi Logo/Foto
+                                        </button>
+                                    }
                                     <button onClick={SubirImagenHeader}>
-                                        Cargar archivo de imagen (premium)
+                                        Subir mi diseño
                                     </button>
                                     <button className='guardar' onClick={GuardarImagenEncabezado}>
                                         Guardar imagen
                                     </button>
                                 </div>
+
+                                { previsualizar &&
+                                    <PrevisualizarHeader 
+                                        onClickButton={CerrarPrevisualizar}
+                                        datosGenerales={datosGenerales}
+                                        currentFondo={currentFondo}
+                                    />
+                                }
 
                                 <div className='btn-continuar'>
                                     <button onClick={btnPaso2}>
@@ -1037,7 +1060,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio5.ServSubTitulo}
                                                 onChange={(e) => setServicio5({...servicio5, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1093,7 +1116,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio6.ServSubTitulo}
                                                 onChange={(e) => setServicio6({...servicio6, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1149,7 +1172,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio7.ServSubTitulo}
                                                 onChange={(e) => setServicio7({...servicio7, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1206,7 +1229,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio8.ServSubTitulo}
                                                 onChange={(e) => setServicio8({...servicio8, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1280,7 +1303,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio9.ServSubTitulo}
                                                 onChange={(e) => setServicio9({...servicio9, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1339,7 +1362,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio10.ServSubTitulo}
                                                 onChange={(e) => setServicio10({...servicio10, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1398,7 +1421,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio11.ServSubTitulo}
                                                 onChange={(e) => setServicio11({...servicio11, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1457,7 +1480,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio12.ServSubTitulo}
                                                 onChange={(e) => setServicio12({...servicio12, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1516,7 +1539,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio13.ServSubTitulo}
                                                 onChange={(e) => setServicio13({...servicio13, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1575,7 +1598,7 @@ const DiseñaTarjetSite = () => {
                                         >
                                             <input 
                                                 type="text" 
-                                                placeholder='Escribe su título'
+                                                placeholder='Título de imagen'
                                                 value={servicio14.ServSubTitulo}
                                                 onChange={(e) => setServicio14({...servicio14, ServSubTitulo: e.target.value })}
                                                 onBlur={handleBlur}

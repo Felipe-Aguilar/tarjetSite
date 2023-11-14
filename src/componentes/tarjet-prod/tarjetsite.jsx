@@ -544,10 +544,10 @@ END:VCARD`;
                         <hr/>
                     </div>
                 </div>
-                
+
                 { 
                     imagenServicios.map((servicio, index)=>(
-                        servicio.SiteServSubTitulo &&
+                        (servicio.SiteServSubTitulo || servicio.SiteServDescrip || servicio.SiteServIMG) &&
                             <>
                                 <div className='row justify-content-center Servicios2' key={servicio.SiteServNum}>
                                     <div className='col-11 col-md-4'>

@@ -34,6 +34,7 @@ const VerificarCodigo = async(codigo, correo, password) => {
 }
 
 const VerificarCodigoGoogle = async(codigo) => {
+
     const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
         method: 'POST',
         headers: {
@@ -52,7 +53,7 @@ const VerificarCodigoGoogle = async(codigo) => {
         })
     });
     const data = await response.json();
-
+    
     return data;
 }
 

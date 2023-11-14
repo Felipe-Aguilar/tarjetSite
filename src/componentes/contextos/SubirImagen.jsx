@@ -1,8 +1,6 @@
 // Segundo servicio
 const SubirImagenSegundo = async (token, tipo, imagen, numeroServicio) => {
 
-    console.log(numeroServicio);
-
     const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIImagen/ServiceUpload', {
         method: 'POST',
         headers: {

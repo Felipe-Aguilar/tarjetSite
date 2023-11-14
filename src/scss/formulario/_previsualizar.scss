@@ -73,6 +73,61 @@
                     }
                 }
             }
+            .backHeader{
+                width: 60%;
+                width: 100%;
+                height: 500px;
+                border-radius: 0 0 60px 60px;
+                
+                @media (width <= 428px) {
+                    min-height: 380px;
+                }
+            }
+            .logotipo-image{
+                width: 90px;
+                position: relative;
+                top: 30px;
+                left: 30px;
+            }
+        }
+
+        .subirImagen{
+            h6{
+                text-align: center;
+                color: #006d2e;
+                font-weight: bold;
+            }
+            .dropzone{
+                width: 100%;
+                height: 100px;
+                color: #a5a5a5;
+                background: #fafafa;
+                background-color: transparent;
+                border-radius: 2px;
+                border-style: dashed;
+                border-width: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                p{
+                    text-align: center;
+                    margin-bottom: 0;
+                }
+
+                @media (width <= 575px) {
+                    padding: 5px;
+                    height: 120px;
+                    font-size: 0.8rem;
+                }
+            }
+            .dropzoneHeader{
+                height: 50px;
+                @media (width <= 428px) {
+                    height: 30px;
+                }
+            }
+            
         }
 
         .guardar-imagen{
