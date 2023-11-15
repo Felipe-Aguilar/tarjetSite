@@ -21,7 +21,6 @@ import iconoOjoOculto from '../../assets/icono-ojo-oculto.svg';
 import BtnGoogle from './btnGoogle';
 
 import AppleLogin from 'react-apple-login';
-import { AppleLoginProps } from 'react-apple-login';
 
 const Login = () => {
 
@@ -232,7 +231,6 @@ const Login = () => {
         // console.log(data);
         // // return data;
     }
-
 
     return ( 
         <div className='backgroun-Green'>
