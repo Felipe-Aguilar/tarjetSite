@@ -21,6 +21,8 @@ import iconoOjoOculto from '../../assets/icono-ojo-oculto.svg';
 import BtnGoogle from './btnGoogle';
 
 import AppleLogin from 'react-apple-login';
+import { jwtDecode } from 'jwt-decode';
+
 
 const Login = () => {
 
@@ -207,29 +209,32 @@ const Login = () => {
         setMensajeCodigo('');
         Registrar();
     }
-    
+
     // Apple login success
     const HandleAppleLogin = async (response) => {
         console.log('entré');
         console.log(response);
 
-        // const response2 = await fetch('https://appleid.apple.com/auth/token', {
-        //     method: 'POST',
-        //     mode: 'no-cors',
-        //     headers: {
-        //         'Content-Type': 'application/x-www-form-urlencoded'
-        //     },
-        //     body: JSON.stringify({
-        //         "grant_type": "authorization_code",
-        //         "code": response.authorization.code,
-        //         "client_id": "site.tarjet.registro",
-        //         "client_secret": "3J44BD4KGC",
-        //     })
-        // });
-    
-        // const data = await response2.json();
-        // console.log(data);
-        // // return data;
+        const idToken = await response.authorization.id_token;
+
+        // Desarrollo
+        // "000919.c7bf9556b6914ff89113a55840ac9b0a.2307"
+        // Contacto
+        // "001501.4e455acad6bc4c55a45b40ebcfb7f8a5.0031"
+        // Felipe
+        // "000772.ba5913cabef34633bdc92f0b78e37e05.2122"
+
+        const decodedToken = jwtDecode(idToken);
+        console.log("Decodificado", decodedToken);
+
+        // Extraer información del usuario
+        const userId = decodedToken.sub;
+        const userName = decodedToken.name;
+        const userEmail = decodedToken.email;
+
+        console.log("ID del Usuario:", userId);
+        console.log("Nombre del Usuario:", userName);
+        console.log("Correo Electrónico del Usuario:", userEmail);
     }
 
     return ( 
@@ -269,14 +274,14 @@ const Login = () => {
                             Facebook
                         </button> */}
 
-                        <button type='button'>
+                        {/* <button type='button'>
                             <img src={iconoApple} />
                             Apple
-                        </button>
+                        </button> */}
 
                         <AppleLogin 
-                            clientId="site.tarjet.registro"
-                            redirectURI="https://tarjet.site/"
+                            clientId="site.tarjet.client"
+                            redirectURI="https://tarjet.site"
                             state='origin:web'
                             scope = "name email"
                             responseType={"code"} 
@@ -284,6 +289,12 @@ const Login = () => {
                             callback={HandleAppleLogin}
                             onError={(error) => console.error(error)}
                             usePopup={true}
+                            render={(props) => (
+                                <button type='button' onClick={props.onClick} disabled={props.disabled}>
+                                    <img src={iconoApple} />
+                                    Apple
+                                </button>
+                            )}
                         />
 
                     </GoogleOAuthProvider>
