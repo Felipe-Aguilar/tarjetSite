@@ -209,14 +209,18 @@ $btnRegresar: #4f8b92;
                 .cuerpo{
                     width: 60%;
                     height: 360px;
+                    height: 215px;
                     background: $btnAzul;
-                    border-radius: 0 0 60px 60px;
+                    border-radius: 0 0 30px 30px;
                     margin: auto;
+                    background-position: top right!important;
+                    background-size: cover!important;
 
                     @media (width <= 575px) {
                         width: 75%;
                         height: 300px;
-                        border-radius: 0 0 30px 30px;
+                        height: 175px;
+                        border-radius: 0 0 20px 20px;
                     }
                 }
             }
@@ -331,6 +335,11 @@ $btnRegresar: #4f8b92;
 
                     @media (width <= 575px) {
                         width: 90%;
+                    }
+
+                    &:disabled{
+                        background: rgb(214, 214, 214);
+                        color: #000;
                     }
                 }
                 .guardar{

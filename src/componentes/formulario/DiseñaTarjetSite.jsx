@@ -669,6 +669,78 @@ const DiseñaTarjetSite = () => {
                                     }
                                 </Slider>
 
+                                <div className='info'>
+                                    <div className='modelos w-100'>
+                                        <p>
+                                            {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
+                                        </p>
+                                    </div>
+                                    {/* <div className='premium-select'>
+                                        <div>
+                                            <p>1</p>
+                                        </div>
+                                        <p>
+                                            Tarjeta premium seleccionada
+                                        </p>
+                                    </div> */}
+                                </div>
+
+                                <div className='buttons-confirm'>
+                                    {/* { datosGenerales.Premium &&
+                                        <button 
+                                            type='button' 
+                                            className='previsualizarBtn' 
+                                            onClick={()=>setPrevisualizar(true)}
+                                        >
+                                            Mi Logo/Foto
+                                        </button>
+                                    } */}
+                                    {/* <button onClick={SubirImagenHeader}>
+                                        Subir mi diseño
+                                    </button> */}
+                                    <button className='guardar' onClick={GuardarImagenEncabezado}>
+                                        Guardar imagen
+                                    </button>
+                                </div>
+
+                                { previsualizar &&
+                                    <PrevisualizarHeader 
+                                        onClickButton={CerrarPrevisualizar}
+                                        datosGenerales={datosGenerales}
+                                        currentFondo={currentFondo}
+                                    />
+                                }
+
+                                <div className='btn-continuar'>
+                                    <button onClick={btnPaso2}>
+                                        Continuar a paso 2
+                                    </button>
+                                </div>
+
+                                <div className='btn-regresarr'>
+                                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                                        Regresar a perfil (x)
+                                    </button>
+                                </div>
+                            </div>
+                        }
+
+                        { opcion === 'Premium' &&
+                            <div className='gratuitas'>
+                                <Slider {...settings}>
+
+                                    {colecciones.map((coleccion)=>(
+                                        <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
+                                            <div 
+                                                className='cuerpo' 
+                                                style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/${coleccion.SiteHeaderImagen})`}}
+                                            >
+                                            </div>
+                                        </div>
+                                    ))
+                                    }
+                                </Slider>
+
                                 {/* <div className='mas-imagenes'>
                                     <div className='view3'>
                                         <img src={tarjetaGenerica} />
@@ -698,19 +770,104 @@ const DiseñaTarjetSite = () => {
                                 </div>
 
                                 <div className='buttons-confirm'>
-                                    { datosGenerales.Premium &&
-                                        <button 
-                                            type='button' 
-                                            className='previsualizarBtn' 
-                                            onClick={()=>setPrevisualizar(true)}
-                                        >
-                                            Mi Logo/Foto
-                                        </button>
+                                    <button 
+                                        type='button' 
+                                        className={`previsualizarBtn`} 
+                                        onClick={()=>setPrevisualizar(true)}
+                                        disabled={datosGenerales.Premium ? false : true}
+                                    >
+                                        Mi Logo/Foto
+                                    </button>
+                                    
+                                    <button 
+                                        className={`guardar`}
+                                        onClick={GuardarImagenEncabezado}
+                                        disabled={datosGenerales.Premium ? false : true}
+                                    >
+                                        Guardar imagen
+                                    </button>
+                                </div>
+
+                                { previsualizar &&
+                                    <PrevisualizarHeader 
+                                        onClickButton={CerrarPrevisualizar}
+                                        datosGenerales={datosGenerales}
+                                        currentFondo={currentFondo}
+                                    />
+                                }
+
+                                <div className='btn-continuar'>
+                                    <button onClick={btnPaso2}>
+                                        Continuar a paso 2
+                                    </button>
+                                </div>
+
+                                <div className='btn-regresarr'>
+                                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                                        Regresar a perfil (x)
+                                    </button>
+                                </div>
+                            </div>
+                        }
+
+                        { opcion === 'Personalizado' &&
+                            <div className='gratuitas'>
+                                <Slider {...settings}>
+
+                                    {colecciones.map((coleccion)=>(
+                                        <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
+                                            <div 
+                                                className='cuerpo' 
+                                                style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/${coleccion.SiteHeaderImagen})`}}
+                                            >
+                                            </div>
+                                        </div>
+                                    ))
                                     }
-                                    <button onClick={SubirImagenHeader}>
+                                </Slider>
+
+                                {/* <div className='mas-imagenes'>
+                                    <div className='view3'>
+                                        <img src={tarjetaGenerica} />
+                                        <img src={tarjetaGenerica} />
+                                        <img src={tarjetaGenerica} />
+                                    </div>
+
+                                    <div className='viewpremium'>
+                                        <img src={tarjetaGenerica} />
+                                    </div>
+                                </div> */}
+
+                                <div className='info'>
+                                    <div className='modelos w-100'>
+                                        <p>
+                                            {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
+                                        </p>
+                                    </div>
+                                    {/* <div className='premium-select'>
+                                        <div>
+                                            <p>1</p>
+                                        </div>
+                                        <p>
+                                            Tarjeta premium seleccionada
+                                        </p>
+                                    </div> */}
+                                </div>
+
+                                <div className='buttons-confirm'>
+
+                                    <button 
+                                        onClick={SubirImagenHeader}
+                                        disabled={datosGenerales.Premium ? false : true}
+                                    >
                                         Subir mi diseño
                                     </button>
-                                    <button className='guardar' onClick={GuardarImagenEncabezado}>
+                                    
+                                    <button 
+                                        className={`guardar`}
+                                        onClick={GuardarImagenEncabezado}
+                                        disabled={datosGenerales.Premium ? false : true}
+                                    >
                                         Guardar imagen
                                     </button>
                                 </div>
