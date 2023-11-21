@@ -171,6 +171,7 @@ const ActualizarHeaderPerfil = async (datosGenerales, datosFormulario) => {
 }
 
 const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
+
     const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',

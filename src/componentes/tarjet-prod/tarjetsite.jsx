@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ComprobarUsuario, DatosUsuario, DatosUsuarioTarjetSite } from '../contextos/ComprobarUsuario';
 import FileSaver from 'file-saver';
 import Compartir from './Compartir';
+import DOMPurify from 'dompurify';
 
 import perfilTemporal from '../../assets/perfiltemporal.jpg';
 import IconServicios from '../../assets/iconos-servicios-site-tarjet.svg';
@@ -563,6 +564,14 @@ END:VCARD`;
                                         }
         
                                         <h6>{servicio.SiteServDescrip}</h6>
+                                        
+                                        { servicio.SiteServDescrip.split('\n').map((linea, index)=>(
+                                            <h6 key={index}>
+                                                {DOMPurify.sanitize(linea, { ALLOWED_TAGS: [] })}
+                                                <br />
+                                            </h6>
+                                        ))
+                                        }
                                     </div>
                                 </div>
         

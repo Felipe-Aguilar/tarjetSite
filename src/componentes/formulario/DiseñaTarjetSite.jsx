@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { DatosEditaPerfil, ActualizarPerfil2, ActualizarPerfil3, ActualizarHeaderPerfil } from '../contextos/EditaPerfil';
 import { ColeccionEncabezados } from '../contextos/Colecciones';
 import CargarImagen from './CargarImagen';
+import DOMPurify from 'dompurify';
 
 import ilustracion from '../../assets/ilustracion-diseña-tarjetsite.png';
 import tarjetaGenerica from '../../assets/tarjetageneric.png';
@@ -1256,7 +1257,8 @@ const DiseñaTarjetSite = () => {
                                         onChange={(e)=>setServicio17({...servicio17, ServDescrip: e.target.value})}
                                         onBlur={handleBlur}
                                     />
-                                    <input 
+                                    <input npm install dompurify
+
                                         type="text" 
                                         placeholder='• Listado de servicio' 
                                         value={servicio18.ServDescrip} 
@@ -1317,7 +1319,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio5.ServDescrip}
-                                                onChange={(e) => setServicio5({...servicio5, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio5({...servicio5, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
