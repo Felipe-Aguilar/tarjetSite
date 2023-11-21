@@ -576,23 +576,6 @@ END:VCARD`;
                     ))
                 }
 
-                {/* <div className='row justify-content-center Servicios2'>
-                    <div className='col-11 col-md-4'>
-                        <div className='icon'>
-                            <img src={IconFolleto} />
-                        </div>
-                        <h5>¡Ven y dale a tu mascota un apapacho de amor!</h5>
-                        <img src={imgServicio} />
-                        <h6>Transformando a tu mascota en una obra de arte.</h6>
-                    </div>
-                </div>
-
-                <div className='row justify-content-center'>
-                    <div className='col-11 col-md-4 p-0'>
-                        <hr/>
-                    </div>
-                </div> */}
-
                 <div className='row justify-content-center redesRediseño' id='redesSocialesSecc'>
                     <div className='col-12 col-md-4'>
                         <h5>Mis redes sociales</h5>

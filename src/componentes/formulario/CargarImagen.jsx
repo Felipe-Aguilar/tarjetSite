@@ -13,6 +13,7 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
 
     const [datosSesion, setDatosSesion] = useState({});
     const [correcto, setCorrecto] = useState(false);
+    const [imageSize, setImageSize] = useState(0);
 
     useEffect(()=>{
 
@@ -61,9 +62,9 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                 src={URL.createObjectURL(file)}
                 className="img-preview"
             /> */}
-
+            
             { tipoImagen === 'PERF' ? 
-                
+                    
                 <Cropper
                     src={URL.createObjectURL(file)}
                     className="img-preview"
@@ -115,6 +116,23 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
         const cropper = await cropperRef.current?.cropper;
         
         const image = await cropper.getCroppedCanvas();
+        console.log(acceptedFiles);
+        console.log(acceptedFiles[0].size);
+        var qualy = 100;
+
+        // if ((acceptedFiles[0].size / 1000) >= 1000 && (acceptedFiles[0].size / 1000) <= 2000) {
+        //     qualy = 100
+        // }
+        // if ((acceptedFiles[0].size / 1000) > 2000 && (acceptedFiles[0].size / 1000) <= 3000) {
+        //     qualy = 98;
+        // }
+
+        if ((acceptedFiles[0].size / 1000) >= 3000 && (acceptedFiles[0].size / 1000) <= 4000) {
+            qualy = 98;
+        }
+        if ((acceptedFiles[0].size / 1000) > 4000 && (acceptedFiles[0].size / 1000) <= 5000) {
+            qualy = 96;
+        }
 
         if (image) {
             image.toBlob((blob)=>{
@@ -124,7 +142,7 @@ const CargarImagen = ({onBotonClick, tipoImagen, numeroServicio}) => {
                     500,
                     500,
                     "WEBP",
-                    50,
+                    qualy,
                     0,
                     (blob2) => {
                         SubirImagenPrimer(blob2 ,datosSesion.Token, tipoImagen, numeroServicio);

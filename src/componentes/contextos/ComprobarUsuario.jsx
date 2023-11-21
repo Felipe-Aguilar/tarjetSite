@@ -1,6 +1,7 @@
 const ComprobarUsuario = async (tokenURL) => {
     const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaUsuXToken', {
         method: 'POST',
+        cache: 'no-store',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },

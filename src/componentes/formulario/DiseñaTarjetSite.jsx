@@ -71,6 +71,11 @@ const DiseñaTarjetSite = () => {
     const [servicio13, setServicio13] = useState(objeto);
     const [servicio14, setServicio14] = useState(objeto);
     
+    const [servicio15, setServicio15] = useState(objeto);
+    const [servicio16, setServicio16] = useState(objeto);
+    const [servicio17, setServicio17] = useState(objeto);
+    const [servicio18, setServicio18] = useState(objeto);
+
     const [titulo, setTitulo] = useState('Lic');
 
     const [colecciones, setColecciones] = useState([]);
@@ -216,6 +221,38 @@ const DiseñaTarjetSite = () => {
                 ServImg: respuesta.Serv[13]?.ServImg,
                 ServIcono: respuesta.Serv[13]?.ServIcono,
                 ServSiteId: 2,
+            });
+            setServicio15({
+                ServNum: 15,
+                ServDescrip: respuesta.Serv[14]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[14]?.ServSubTitulo,
+                ServImg: respuesta.Serv[14]?.ServImg,
+                ServIcono: respuesta.Serv[14]?.ServIcono,
+                ServSiteId: 1,
+            });
+            setServicio16({
+                ServNum: 16,
+                ServDescrip: respuesta.Serv[15]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[15]?.ServSubTitulo,
+                ServImg: respuesta.Serv[15]?.ServImg,
+                ServIcono: respuesta.Serv[15]?.ServIcono,
+                ServSiteId: 1,
+            });
+            setServicio17({
+                ServNum: 17,
+                ServDescrip: respuesta.Serv[16]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[16]?.ServSubTitulo,
+                ServImg: respuesta.Serv[16]?.ServImg,
+                ServIcono: respuesta.Serv[16]?.ServIcono,
+                ServSiteId: 1,
+            });
+            setServicio18({
+                ServNum: 18,
+                ServDescrip: respuesta.Serv[17]?.ServDescrip,
+                ServSubTitulo: respuesta.Serv[17]?.ServSubTitulo,
+                ServImg: respuesta.Serv[17]?.ServImg,
+                ServIcono: respuesta.Serv[17]?.ServIcono,
+                ServSiteId: 1,
             });
         }
 
@@ -369,6 +406,10 @@ const DiseñaTarjetSite = () => {
             "Servicio12": servicio12,
             "Servicio13": servicio13,
             "Servicio14": servicio14,
+            "Servicio15": servicio15,
+            "Servicio16": servicio16,
+            "Servicio17": servicio17,
+            "Servicio18": servicio18,
             "Titulo": titulo,
         }
 
@@ -562,6 +603,10 @@ const DiseñaTarjetSite = () => {
             "Servicio12": servicio12,
             "Servicio13": servicio13,
             "Servicio14": servicio14,
+            "Servicio15": servicio15,
+            "Servicio16": servicio16,
+            "Servicio17": servicio17,
+            "Servicio18": servicio18,
         }
 
         await ActualizarPerfil3(datosGenerales, datosFormulario);
@@ -1152,9 +1197,8 @@ const DiseñaTarjetSite = () => {
                         <p>
                             Sugerimos uses palabras claves que resuman tu actividad. En el cuadro de llenado te damos un ejemplo:
                         </p>
-
                         <form onSubmit={GuardarTarjeta1}>
-                            <input type="text" placeholder='Estética profesional canina.' readOnly value={datosGenerales.Lev3Desc}/>
+                            <input type="text" readOnly value={datosGenerales.Lev3Desc}/>
 
                             <h3>Listado de actividades</h3>
                             <p>
@@ -1189,6 +1233,38 @@ const DiseñaTarjetSite = () => {
                                 onChange={(e)=>setServicio4({...servicio4, ServDescrip: e.target.value})}
                                 onBlur={handleBlur}
                             />
+                            { datosGenerales.Premium &&
+                                <>
+                                    <input 
+                                        type="text" 
+                                        placeholder='• Listado de servicio' 
+                                        value={servicio15.ServDescrip} 
+                                        onChange={(e)=>setServicio15({...servicio15, ServDescrip: e.target.value})}
+                                        onBlur={handleBlur}
+                                    />
+                                    <input 
+                                        type="text" 
+                                        placeholder='• Listado de servicio' 
+                                        value={servicio16.ServDescrip} 
+                                        onChange={(e)=>setServicio16({...servicio16, ServDescrip: e.target.value})}
+                                        onBlur={handleBlur}
+                                    />
+                                    <input 
+                                        type="text" 
+                                        placeholder='• Listado de servicio' 
+                                        value={servicio17.ServDescrip} 
+                                        onChange={(e)=>setServicio17({...servicio17, ServDescrip: e.target.value})}
+                                        onBlur={handleBlur}
+                                    />
+                                    <input 
+                                        type="text" 
+                                        placeholder='• Listado de servicio' 
+                                        value={servicio18.ServDescrip} 
+                                        onChange={(e)=>setServicio18({...servicio18, ServDescrip: e.target.value})}
+                                        onBlur={handleBlur}
+                                    />
+                                </>
+                            }
                             
                             {/* <textarea 
                                 placeholder='Escribe aquí tu listado ó parrafo de servicios / actividades'
@@ -1238,8 +1314,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio5.ServDescrip}
                                                 onChange={(e) => setServicio5({...servicio5, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1294,8 +1370,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio6.ServDescrip}
                                                 onChange={(e) => setServicio6({...servicio6, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1350,8 +1426,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio7.ServDescrip}
                                                 onChange={(e) => setServicio7({...servicio7, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1407,8 +1483,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio8.ServDescrip}
                                                 onChange={(e) => setServicio8({...servicio8, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1481,8 +1557,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio9.ServDescrip}
                                                 onChange={(e) => setServicio9({...servicio9, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1540,8 +1616,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio10.ServDescrip}
                                                 onChange={(e) => setServicio10({...servicio10, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1599,8 +1675,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio11.ServDescrip}
                                                 onChange={(e) => setServicio11({...servicio11, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1658,8 +1734,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio12.ServDescrip}
                                                 onChange={(e) => setServicio12({...servicio12, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1717,8 +1793,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio13.ServDescrip}
                                                 onChange={(e) => setServicio13({...servicio13, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}
@@ -1776,8 +1852,8 @@ const DiseñaTarjetSite = () => {
                                                 </button>
                                             </div>
                                             <textarea 
-                                                placeholder='Descripción de la foto (hasta 60 caracteres)' 
-                                                maxLength={60}
+                                                placeholder='Descripción de la foto (hasta 300 caracteres)' 
+                                                maxLength={300}
                                                 value={servicio14.ServDescrip}
                                                 onChange={(e) => setServicio14({...servicio14, ServDescrip: e.target.value })}
                                                 onBlur={handleBlur}

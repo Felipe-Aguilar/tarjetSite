@@ -352,6 +352,38 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                         "ServIcono": datosFormulario.Servicio14.ServIcono,
                         "ServSiteId": 2
                     },
+                    {
+                        "ServNum": 15,
+                        "ServDescrip": datosFormulario.Servicio15.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio15.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio15.ServImg,
+                        "ServIcono": datosFormulario.Servicio15.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 16,
+                        "ServDescrip": datosFormulario.Servicio16.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio16.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio16.ServImg,
+                        "ServIcono": datosFormulario.Servicio16.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 17,
+                        "ServDescrip": datosFormulario.Servicio17.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio17.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio17.ServImg,
+                        "ServIcono": datosFormulario.Servicio17.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 18,
+                        "ServDescrip": datosFormulario.Servicio18.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio18.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio18.ServImg,
+                        "ServIcono": datosFormulario.Servicio18.ServIcono,
+                        "ServSiteId": 1
+                    },
                 ]
             }
         })
@@ -544,6 +576,38 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
                         "ServImg": datosFormulario.Servicio14.ServImg,
                         "ServIcono": datosFormulario.Servicio14.ServIcono,
                         "ServSiteId": 2
+                    },
+                    {
+                        "ServNum": 15,
+                        "ServDescrip": datosFormulario.Servicio15.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio15.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio15.ServImg,
+                        "ServIcono": datosFormulario.Servicio15.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 16,
+                        "ServDescrip": datosFormulario.Servicio16.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio16.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio16.ServImg,
+                        "ServIcono": datosFormulario.Servicio16.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 17,
+                        "ServDescrip": datosFormulario.Servicio17.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio17.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio17.ServImg,
+                        "ServIcono": datosFormulario.Servicio17.ServIcono,
+                        "ServSiteId": 1
+                    },
+                    {
+                        "ServNum": 18,
+                        "ServDescrip": datosFormulario.Servicio18.ServDescrip,
+                        "ServSubTitulo": datosFormulario.Servicio18.ServSubTitulo,
+                        "ServImg": datosFormulario.Servicio18.ServImg,
+                        "ServIcono": datosFormulario.Servicio18.ServIcono,
+                        "ServSiteId": 1
                     },
                 ]
             }
