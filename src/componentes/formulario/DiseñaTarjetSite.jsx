@@ -1375,7 +1375,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio6.ServDescrip}
-                                                onChange={(e) => setServicio6({...servicio6, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio6({...servicio6, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
@@ -1431,7 +1431,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio7.ServDescrip}
-                                                onChange={(e) => setServicio7({...servicio7, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio7({...servicio7, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
@@ -1488,7 +1488,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio8.ServDescrip}
-                                                onChange={(e) => setServicio8({...servicio8, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio8({...servicio8, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
@@ -1562,7 +1562,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio9.ServDescrip}
-                                                onChange={(e) => setServicio9({...servicio9, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio9({...servicio9, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
@@ -1621,7 +1621,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio10.ServDescrip}
-                                                onChange={(e) => setServicio10({...servicio10, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio10({...servicio10, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
@@ -1680,7 +1680,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio11.ServDescrip}
-                                                onChange={(e) => setServicio11({...servicio11, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio11({...servicio11, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
@@ -1739,7 +1739,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio12.ServDescrip}
-                                                onChange={(e) => setServicio12({...servicio12, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio12({...servicio12, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
@@ -1798,7 +1798,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio13.ServDescrip}
-                                                onChange={(e) => setServicio13({...servicio13, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio13({...servicio13, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>
@@ -1857,7 +1857,7 @@ const DiseñaTarjetSite = () => {
                                                 placeholder='Descripción de la foto (hasta 300 caracteres)' 
                                                 maxLength={300}
                                                 value={servicio14.ServDescrip}
-                                                onChange={(e) => setServicio14({...servicio14, ServDescrip: e.target.value })}
+                                                onChange={(e) => setServicio14({...servicio14, ServDescrip: DOMPurify.sanitize(e.target.value, {ALLOWED_TAGS: []}) })}
                                                 onBlur={handleBlur}
                                             >
                                             </textarea>

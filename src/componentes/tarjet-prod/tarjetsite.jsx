@@ -557,21 +557,26 @@ END:VCARD`;
                                                 <img src={IconFolleto} />
                                             </div>
                                         }
-                                        <h5>{servicio.SiteServSubTitulo}</h5>
+
+                                        { servicio.SiteServSubTitulo &&
+                                            <h5>{servicio.SiteServSubTitulo}</h5>
+                                        }
         
                                         { servicio.SiteServIMG &&
                                             <img src={`https://tarjet.site/imagenes/servicios/${servicio.SiteServIMG}`} />
                                         }
         
-                                        <h6>{servicio.SiteServDescrip}</h6>
-                                        
-                                        { servicio.SiteServDescrip.split('\n').map((linea, index)=>(
-                                            <h6 key={index}>
-                                                {DOMPurify.sanitize(linea, { ALLOWED_TAGS: [] })}
-                                                <br />
-                                            </h6>
-                                        ))
+                                        {/* <h6>{servicio.SiteServDescrip}</h6> */}
+
+                                        { servicio.SiteServDescrip &&
+                                            servicio.SiteServDescrip.split('\n').map((linea, index)=>(
+                                                <h6 key={index}>
+                                                    {DOMPurify.sanitize(linea, { ALLOWED_TAGS: [] })}
+                                                    <br />
+                                                </h6>
+                                            ))
                                         }
+                                        
                                     </div>
                                 </div>
         
