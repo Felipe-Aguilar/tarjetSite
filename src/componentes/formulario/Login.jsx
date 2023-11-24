@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GoogleOAuthProvider, GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 
-import { CodigoCorreo, VerificarCodigo } from '../contextos/ValidarCorreo';
+import { CodigoCorreo, LoginApple, VerificarCodigo, VerificarCodigoApple } from '../contextos/ValidarCorreo';
 import { enviarPostLogin } from '../contextos/EnviarPostLogin';
 import { DatosUsuario, DatosUsuarioTarjetSite } from '../contextos/ComprobarUsuario';
 import { Sesion } from '../contextos/Sesion';
@@ -212,29 +212,54 @@ const Login = () => {
 
     // Apple login success
     const HandleAppleLogin = async (response) => {
-        console.log('entré');
-        console.log(response);
 
         const idToken = await response.authorization.id_token;
 
-        // Desarrollo
-        // "000919.c7bf9556b6914ff89113a55840ac9b0a.2307"
-        // Contacto
-        // "001501.4e455acad6bc4c55a45b40ebcfb7f8a5.0031"
-        // Felipe
-        // "000772.ba5913cabef34633bdc92f0b78e37e05.2122"
-
         const decodedToken = jwtDecode(idToken);
-        console.log("Decodificado", decodedToken);
+        // console.log("Decodificado", decodedToken);
 
-        // Extraer información del usuario
-        const userId = decodedToken.sub;
-        const userName = decodedToken.name;
-        const userEmail = decodedToken.email;
+        const result = await VerificarCodigoApple(response, decodedToken);
 
-        console.log("ID del Usuario:", userId);
-        console.log("Nombre del Usuario:", userName);
-        console.log("Correo Electrónico del Usuario:", userEmail);
+        // console.log('resultado', result);
+
+        if (result.Token) {
+
+            const datosUsuario = await DatosUsuario(result.usuId);
+            const datosSite = await DatosUsuarioTarjetSite(result.usuId);
+
+            setTimeout(()=>{
+                
+                localStorage.setItem('DatosSesion', JSON.stringify(datosUsuario));                
+                localStorage.setItem('DatosTarjetSite', JSON.stringify(datosSite.SDTSite));
+                localStorage.setItem('IdDatosSesion', JSON.stringify(result));
+                localStorage.setItem('UsuarioSesion', true);
+
+                navigate(`/${btoa(result.Token)}`);
+
+            }, 1000);
+
+        }
+
+        if (result.Mensaje.length === 158) {
+            const respuesta = await LoginApple(decodedToken);
+
+            const datosUsuario = await DatosUsuario(respuesta.usuId);
+            const datosSite = await DatosUsuarioTarjetSite(respuesta.usuId);
+
+            setTimeout(()=>{
+                
+                localStorage.setItem('DatosSesion', JSON.stringify(datosUsuario));                
+                localStorage.setItem('DatosTarjetSite', JSON.stringify(datosSite.SDTSite));
+                localStorage.setItem('UsuarioSesion', true);
+                localStorage.setItem('IdDatosSesion', JSON.stringify(respuesta));
+
+                if (respuesta.Token) {
+                    navigate(`/${btoa(respuesta.Token)}`);
+                }
+
+            }, 1000);
+        }
+        
     }
 
     return ( 

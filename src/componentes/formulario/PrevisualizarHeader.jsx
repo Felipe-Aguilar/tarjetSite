@@ -6,7 +6,7 @@ import html2canvas from "html2canvas";
 
 const PrevisualizarHeader = ({onClickButton,datosGenerales, currentFondo}) => {
 
-    const Tarjeta = `https://tarjet.site/imagenes/Headers_Collection/${currentFondo}`;
+    const Tarjeta = `https://tarjet.site/imagenes/Headers_Collection/premium/${currentFondo.SiteHeaderImagen}`;
     
     const [logtipo, setLogotipo] = useState('');
     
@@ -96,7 +96,6 @@ const PrevisualizarHeader = ({onClickButton,datosGenerales, currentFondo}) => {
 
     return ( 
         <div className="previsualizar">
-
             <AnimatePresence>
                 { !guardado && (
                     <motion.div className="cuerpo" {...propsAnimation}>
@@ -110,8 +109,8 @@ const PrevisualizarHeader = ({onClickButton,datosGenerales, currentFondo}) => {
                                 ref={constraintsRef}
                                 style={{background: `URL(${Tarjeta})`}}
                             >
-                                <img src={logtipo} className="logotipo-image"/>
                             </motion.div>
+                            <img src={logtipo} className="logotipo-image"/>
                             
                         </div>
 

@@ -75,4 +75,46 @@ const LoginGoogle = async (password) => {
     return data;
 }
 
-export { CodigoCorreo, VerificarCodigo, VerificarCodigoGoogle, LoginGoogle }
+const VerificarCodigoApple = async (dates, decodedToken) => {
+
+    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify({
+            "RegistroUsu": {
+                "Nombre": dates.user?.name.firstName ? dates.user.name.firstName : '',
+                "ApellidoPat": dates.user?.name.lastName ? dates.user.name.lastName : '',
+                "ApellidoMat": "",
+                "Codigo": decodedToken.sub,
+                "Correo": dates.user?.email ? dates.user.email : '',
+                "Password": decodedToken.sub,
+                "TipoAut": "A"
+            }
+        })
+    });
+    const data = await response.json();
+    
+    return data;
+}
+
+const LoginApple = async (decodedToken) => {
+    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/Login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+
+        body: JSON.stringify({
+            "Cuenta": "",
+            "Password": decodedToken.sub,
+            "tipoLogin": "A"
+        })
+    });
+    const data = await response.json();
+
+    return data;
+}
+
+export { CodigoCorreo, VerificarCodigo, VerificarCodigoGoogle, LoginGoogle, VerificarCodigoApple, LoginApple }

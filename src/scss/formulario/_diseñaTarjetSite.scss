@@ -224,6 +224,18 @@ $btnRegresar: #4f8b92;
                     }
                 }
             }
+            .Premium{
+                .cuerpo{
+                    height: 420px;
+                    background-position: top center!important;
+
+
+                    @media (width <= 575px) {
+                        height: 300px;
+                    }
+                }
+
+            }
 
             .mas-imagenes{
                 display: flex;

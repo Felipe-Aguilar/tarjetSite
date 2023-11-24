@@ -60,7 +60,7 @@ const NuevosUsuarios = () => {
             <div className="tarjetas">
                 <Slider {...settings}>
                     { topUsuarios.map((usuario)=>{
-                        if (usuario.PublicPriva === 0) {
+                        if (usuario.PublicPriva === 0 ) {
                             return(
                                 <div 
                                     key={usuario.IdUsuario}

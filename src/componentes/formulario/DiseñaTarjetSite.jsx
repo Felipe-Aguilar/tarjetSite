@@ -80,6 +80,8 @@ const DiseñaTarjetSite = () => {
     const [titulo, setTitulo] = useState('Lic');
 
     const [colecciones, setColecciones] = useState([]);
+    const [coleccionesGratis, setColeccionesGratis] = useState([]);
+    const [coleccionesPremium, setColeccionesPremium] = useState([]);
 
     useEffect(()=>{
 
@@ -260,6 +262,9 @@ const DiseñaTarjetSite = () => {
         const Colecciones = async () => {
             const response = await ColeccionEncabezados();
             setColecciones(response.ListSiteHeader);
+
+            setColeccionesGratis( response.ListSiteHeader.filter(coleccion => coleccion.SiteHeaderPremium === 0) );
+            setColeccionesPremium( response.ListSiteHeader.filter(coleccion => coleccion.SiteHeaderPremium === 1) );
         }
 
         // Comprobar si es la sesión
@@ -305,7 +310,7 @@ const DiseñaTarjetSite = () => {
     const [opcion, setOpcion] = useState('Gratuitas');
 
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [currentFondo, setCurrentFondo] = useState('SiteHeader1.webp');
+    const [currentFondo, setCurrentFondo] = useState('SiteHeadPr1.webp');
 
     const settings = {
         arrows: true,
@@ -330,6 +335,10 @@ const DiseñaTarjetSite = () => {
 
             const objectImagen = colecciones.find(coleccion => coleccion.SiteHeaderId == current+1);
             setCurrentFondo(objectImagen.SiteHeaderImagen);
+
+            
+            const objectImagen2 = coleccionesPremium.find(coleccion => coleccion.SiteHeaderId == current + 15);
+            setCurrentFondo(objectImagen2);
         },
     }
 
@@ -704,6 +713,7 @@ const DiseñaTarjetSite = () => {
                                 <Slider {...settings}>
 
                                     {colecciones.map((coleccion)=>(
+                                        coleccion.SiteHeaderPremium === 0 &&
                                         <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
                                             <div 
                                                 className='cuerpo' 
@@ -718,7 +728,7 @@ const DiseñaTarjetSite = () => {
                                 <div className='info'>
                                     <div className='modelos w-100'>
                                         <p>
-                                            {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
+                                            {`${currentSlide + 1} de ${coleccionesGratis.length} modelos gratuitos`}
                                         </p>
                                     </div>
                                     {/* <div className='premium-select'>
@@ -776,10 +786,11 @@ const DiseñaTarjetSite = () => {
                                 <Slider {...settings}>
 
                                     {colecciones.map((coleccion)=>(
-                                        <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
+                                        coleccion.SiteHeaderPremium === 1 &&
+                                        <div className='tarjetaGratuita Premium' key={coleccion.SiteHeaderId}>
                                             <div 
                                                 className='cuerpo' 
-                                                style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/${coleccion.SiteHeaderImagen})`}}
+                                                style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/premium/${coleccion.SiteHeaderImagen})`}}
                                             >
                                             </div>
                                         </div>
@@ -787,22 +798,10 @@ const DiseñaTarjetSite = () => {
                                     }
                                 </Slider>
 
-                                {/* <div className='mas-imagenes'>
-                                    <div className='view3'>
-                                        <img src={tarjetaGenerica} />
-                                        <img src={tarjetaGenerica} />
-                                        <img src={tarjetaGenerica} />
-                                    </div>
-
-                                    <div className='viewpremium'>
-                                        <img src={tarjetaGenerica} />
-                                    </div>
-                                </div> */}
-
                                 <div className='info'>
                                     <div className='modelos w-100'>
                                         <p>
-                                            {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
+                                            {`${currentSlide + 1} de ${coleccionesPremium.length} modelos gratuitos`}
                                         </p>
                                     </div>
                                     {/* <div className='premium-select'>
