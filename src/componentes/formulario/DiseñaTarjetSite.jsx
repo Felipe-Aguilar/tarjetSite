@@ -310,7 +310,8 @@ const DiseñaTarjetSite = () => {
     const [opcion, setOpcion] = useState('Gratuitas');
 
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [currentFondo, setCurrentFondo] = useState('SiteHeadPr1.webp');
+    const [currentFondo, setCurrentFondo] = useState('SiteHeader1.webp');
+    const [currentFondo2, setCurrentFondo2] = useState('SiteHeadPr1.webp');
 
     const settings = {
         arrows: true,
@@ -338,7 +339,7 @@ const DiseñaTarjetSite = () => {
 
             
             const objectImagen2 = coleccionesPremium.find(coleccion => coleccion.SiteHeaderId == current + 15);
-            setCurrentFondo(objectImagen2);
+            setCurrentFondo2(objectImagen2);
         },
     }
 
@@ -437,11 +438,19 @@ const DiseñaTarjetSite = () => {
     }
 
     // Guarda el encabezado
-    const GuardarImagenEncabezado = async (e) => {
+    const GuardarImagenEncabezado = async (tipo, e) => {
         e.preventDefault();
+        
+        var fondo;
 
+        if (tipo === 'gratis') {
+            fondo = currentFondo;
+        }else if(tipo === 'premium'){
+            fondo = currentFondo2;
+        }
+        
         const datosFormulario = {
-            "ImgHeader": currentFondo,
+            "ImgHeader": fondo,
         }
 
         await ActualizarHeaderPerfil(datosGenerales, datosFormulario);
@@ -754,7 +763,7 @@ const DiseñaTarjetSite = () => {
                                     {/* <button onClick={SubirImagenHeader}>
                                         Subir mi diseño
                                     </button> */}
-                                    <button className='guardar' onClick={GuardarImagenEncabezado}>
+                                    <button className='guardar' onClick={(e)=>GuardarImagenEncabezado('gratis', e)}>
                                         Guardar imagen
                                     </button>
                                 </div>
@@ -763,7 +772,7 @@ const DiseñaTarjetSite = () => {
                                     <PrevisualizarHeader 
                                         onClickButton={CerrarPrevisualizar}
                                         datosGenerales={datosGenerales}
-                                        currentFondo={currentFondo}
+                                        currentFondo={currentFondo2}
                                     />
                                 }
 
@@ -826,7 +835,7 @@ const DiseñaTarjetSite = () => {
                                     
                                     <button 
                                         className={`guardar`}
-                                        onClick={GuardarImagenEncabezado}
+                                        onClick={(e)=>GuardarImagenEncabezado('premium', e)}
                                         disabled={datosGenerales.Premium ? false : true}
                                     >
                                         Guardar imagen
@@ -837,7 +846,7 @@ const DiseñaTarjetSite = () => {
                                     <PrevisualizarHeader 
                                         onClickButton={CerrarPrevisualizar}
                                         datosGenerales={datosGenerales}
-                                        currentFondo={currentFondo}
+                                        currentFondo={currentFondo2}
                                     />
                                 }
 
@@ -921,7 +930,7 @@ const DiseñaTarjetSite = () => {
                                     <PrevisualizarHeader 
                                         onClickButton={CerrarPrevisualizar}
                                         datosGenerales={datosGenerales}
-                                        currentFondo={currentFondo}
+                                        currentFondo={currentFondo2}
                                     />
                                 }
 
