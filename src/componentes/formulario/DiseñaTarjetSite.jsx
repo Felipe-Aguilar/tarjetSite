@@ -334,12 +334,14 @@ const DiseñaTarjetSite = () => {
             // Se ejecuta después de que cambie la diapositiva
             setCurrentSlide(current);
 
-            const objectImagen = colecciones.find(coleccion => coleccion.SiteHeaderId == current+1);
+            // const objectImagen = colecciones.find(coleccion => coleccion.SiteHeaderId == current+1);
+            const objectImagen = colecciones.find(coleccion => coleccion.SiteHeaderImagen === `SiteHeader${current+1}.webp`);
             setCurrentFondo(objectImagen.SiteHeaderImagen);
-
             
-            const objectImagen2 = coleccionesPremium.find(coleccion => coleccion.SiteHeaderId == current + 15);
-            setCurrentFondo2(objectImagen2);
+            const objectImagen2 = coleccionesPremium.find(coleccion => coleccion.SiteHeaderImagen === `SiteHeadPr${current+1}.webp`);
+            if (objectImagen2) {
+                setCurrentFondo2(objectImagen2.SiteHeaderImagen);
+            }
         },
     }
 
@@ -444,9 +446,13 @@ const DiseñaTarjetSite = () => {
         var fondo;
 
         if (tipo === 'gratis') {
+
             fondo = currentFondo;
+
         }else if(tipo === 'premium'){
+
             fondo = currentFondo2;
+
         }
         
         const datosFormulario = {

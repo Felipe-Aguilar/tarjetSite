@@ -1,13 +1,12 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 import { SubirImagenPrimer } from "../contextos/SubirImagen";
 import html2canvas from "html2canvas";
 
 const PrevisualizarHeader = ({onClickButton,datosGenerales, currentFondo}) => {
-
-    const Tarjeta = `https://tarjet.site/imagenes/Headers_Collection/premium/${currentFondo.SiteHeaderImagen}`;
     
+    const Tarjeta = `https://tarjet.site/imagenes/Headers_Collection/premium/${currentFondo}`;
     const [logtipo, setLogotipo] = useState('');
     
     const propsAnimation = {
@@ -26,11 +25,11 @@ const PrevisualizarHeader = ({onClickButton,datosGenerales, currentFondo}) => {
     
     const GuardarImagen = () => {
         // Captura la representación de la imagen con los textos superpuestos
-        html2canvas(constraintsRef.current).then((canvas) => {
+
+        html2canvas(constraintsRef.current, {scale: 2}).then((canvas) => {
 
             // Convierte el lienzo en una URL de datos
             const imgData = canvas.toDataURL('image/jpg');
-
             canvas.toBlob((blob)=>{
 
                 SubirImagenPrimer(blob, datosGenerales.TokenId, "SITE");
@@ -104,13 +103,21 @@ const PrevisualizarHeader = ({onClickButton,datosGenerales, currentFondo}) => {
                         </div>
 
                         <div className="body">
-                            <motion.div 
+                            <div ref={constraintsRef} >
+                                <motion.div 
+                                    className="back backHeader" 
+                                    style={{background: `URL(${Tarjeta})`}}
+                                >
+                                </motion.div>
+                                <img src={logtipo} className="logotipo-image"/>
+                            </div>
+                            {/* <motion.div 
                                 className="back backHeader" 
                                 ref={constraintsRef}
                                 style={{background: `URL(${Tarjeta})`}}
                             >
-                            </motion.div>
                             <img src={logtipo} className="logotipo-image"/>
+                            </motion.div> */}
                             
                         </div>
 

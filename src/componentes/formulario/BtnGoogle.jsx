@@ -13,7 +13,7 @@ const BtnGoogle = () => {
     const Registro = async (tokenResponse) => {
 
         const response = await VerificarCodigoGoogle(tokenResponse.access_token);
-
+        
         if (response.Token) {
 
             const datosUsuario = await DatosUsuario(response.usuId);

@@ -30,7 +30,7 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompl
 
     const GuardarImagen = () => {
         // Captura la representación de la imagen con los textos superpuestos
-        html2canvas(constraintsRef.current).then((canvas) => {
+        html2canvas(constraintsRef.current,{scale: 2}).then((canvas) => {
 
             // Convierte el lienzo en una URL de datos
             const imgData = canvas.toDataURL('image/jpg');

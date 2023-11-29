@@ -91,9 +91,14 @@
             .logotipo-image{
                 width: 380px;
                 position: relative;
-                margin-top: -500px;
+                position: absolute;
+                // margin-top: -500px;
                 top: 0px;
                 left: 80px;
+
+                top: 150px;
+                left: 830px;
+
                 z-index: 1!important;
 
                 @media (width <=600px) {
