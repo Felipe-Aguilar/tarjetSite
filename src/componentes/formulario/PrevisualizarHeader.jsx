@@ -5,8 +5,8 @@ import { SubirImagenPrimer } from "../contextos/SubirImagen";
 import html2canvas from "html2canvas";
 
 const PrevisualizarHeader = ({onClickButton,datosGenerales, currentFondo}) => {
-    
-    const Tarjeta = `https://tarjet.site/imagenes/Headers_Collection/premium/${currentFondo}`;
+
+    const Tarjeta = `https://tarjet.site/imagenes/Headers_Collection/premium/${currentFondo.SiteHeaderImagen}`;
     const [logtipo, setLogotipo] = useState('');
     
     const propsAnimation = {
@@ -103,13 +103,21 @@ const PrevisualizarHeader = ({onClickButton,datosGenerales, currentFondo}) => {
                         </div>
 
                         <div className="body">
-                            <div ref={constraintsRef} >
+                            <div ref={constraintsRef} style={{height: '500px'}}>
                                 <motion.div 
                                     className="back backHeader" 
                                     style={{background: `URL(${Tarjeta})`}}
                                 >
                                 </motion.div>
-                                <img src={logtipo} className="logotipo-image"/>
+                                <img 
+                                    src={logtipo} 
+                                    className="logotipo-image"
+                                    style={{width: `${currentFondo.SiteHeaderSizeImgW}px`,
+                                        height: `${currentFondo.SiteHeaderSizeImgH}px`,
+                                        top: `-${currentFondo.SiteHeaderImgX}px`,
+                                        left: `${currentFondo.SiteHeaderImgY}px`
+                                    }}
+                                />
                             </div>
                             {/* <motion.div 
                                 className="back backHeader" 

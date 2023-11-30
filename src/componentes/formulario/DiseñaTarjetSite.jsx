@@ -339,8 +339,9 @@ const DiseñaTarjetSite = () => {
             setCurrentFondo(objectImagen.SiteHeaderImagen);
             
             const objectImagen2 = coleccionesPremium.find(coleccion => coleccion.SiteHeaderImagen === `SiteHeadPr${current+1}.webp`);
+            console.log(objectImagen2);
             if (objectImagen2) {
-                setCurrentFondo2(objectImagen2.SiteHeaderImagen);
+                setCurrentFondo2(objectImagen2);
             }
         },
     }
@@ -830,14 +831,14 @@ const DiseñaTarjetSite = () => {
                                 </div>
 
                                 <div className='buttons-confirm'>
-                                    <button 
+                                    {/* <button 
                                         type='button' 
                                         className={`previsualizarBtn`} 
                                         onClick={()=>setPrevisualizar(true)}
                                         disabled={datosGenerales.Premium ? false : true}
                                     >
                                         Mi Logo/Foto
-                                    </button>
+                                    </button> */}
                                     
                                     <button 
                                         className={`guardar`}
