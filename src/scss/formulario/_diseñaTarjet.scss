@@ -1,6 +1,7 @@
 $backgroundColor: #f4ede8;
 $colorVerde: #006d2e;
 $btnAzul: #d2dfe5;
+$btnVerde: #91ba14;
 $btnAmarillo: #fab947;
 
 .diseñaTarjet{
@@ -306,6 +307,37 @@ $btnAmarillo: #fab947;
                         line-height: 15px;
                         color: #004884;
                     }
+                }
+            }
+
+            .buttons-confirm {
+                margin-top: 25px;
+
+                button{
+                    width: 60%;
+                    display: block;
+                    margin: auto;
+                    margin-bottom: 15px;
+                    outline: none!important;
+                    border-radius: 8px;
+                    border: transparent;
+                    background: $btnAzul;
+                    padding: 5px;
+
+                    @media (width <= 575px) {
+                        width: 90%;
+                    }
+
+                    &:disabled{
+                        background: rgb(214, 214, 214);
+                        color: #000;
+                    }
+                }
+                .guardar{
+                    background: $btnVerde;
+                }
+                .previsualizarBtn{
+                    background: #a7a7d4;
                 }
             }
 

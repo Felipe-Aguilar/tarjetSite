@@ -258,14 +258,25 @@ const MiTarjetero = () => {
                                 />
                             </div>
                         </div> */}
+
                     <div className='row justify-content-center tarjeta2'>
                         <div className='col-11 col-lg-4'>
                             { (datos.RegistroTarjet && usuario.UsuFondoF) &&
                                     <>
-                                        <img 
-                                            src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.UsuFondoF}`}
-                                            onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
-                                        />
+                                        { usuario.UsuFondoF?.slice(0,5) === 'TFRE_' &&
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.UsuFondoF}`}
+                                                onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
+                                            />
+                                        }
+
+                                        { usuario.UsuFondoF?.slice(0,5) === 'TFREP' &&
+                                            <img 
+                                                src={`https://tarjet.site/imagenes/tarjetas_frente/premium/${usuario.UsuFondoF}`}
+                                                onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
+                                            />
+                                        }
+
                                         <p>
                                             Da click sobre la imagen para ver tu tarjeta digital
                                         </p>

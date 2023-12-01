@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Await, useNavigate, useParams } from 'react-router-dom';
 import { BusquedaAlias, ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
-import { DatosEditaPerfil, ActualizarPerfil } from '../contextos/EditaPerfil';
+import { DatosEditaPerfil, ActualizarPerfil, ActualizarTarjetaPerfil } from '../contextos/EditaPerfil';
 import { CodigoPostal } from '../contextos/CodigoPostal';
 import { ColeccionTarjeta } from '../contextos/Colecciones';
 import Slider from 'react-slick';
@@ -59,8 +59,11 @@ const DiseñaTarjet = () => {
     
     // Slider y colecciones
     const [colecciones, setColecciones] = useState([]);
+    const [coleccionesGratis, setColeccionesGratis] = useState([]);
+    const [coleccionesPremium, setColeccionesPremium] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [currentFondo, setCurrentFondo] = useState('');
+    const [currentFondo, setCurrentFondo] = useState('TarjetaF_1.webp');
+    const [currentFondo2, setCurrentFondo2] = useState('TFREPR1.webp');
 
     useEffect(()=>{
 
@@ -129,6 +132,9 @@ const DiseñaTarjet = () => {
             const response = await ColeccionTarjeta();
             setColecciones(response.ListTarjetas);
             setCurrentFondo(response.ListTarjetas[0].TarjetaImagen);
+            
+            setColeccionesGratis(response.ListTarjetas.filter(coleccion => coleccion.TarjetaPremium === 0));
+            setColeccionesPremium(response.ListTarjetas.filter(coleccion => coleccion.TarjetaPremium === 1));
         }
 
         // Comprobar si es la sesión
@@ -195,8 +201,13 @@ const DiseñaTarjet = () => {
             // Se ejecuta después de que cambie la diapositiva
             setCurrentSlide(current);
 
-            const objectImagen = colecciones.find(coleccion => coleccion.TarjetaId == current+1);
+            const objectImagen = colecciones.find(coleccion => coleccion.TarjetaImagen === `TarjetaF_${current+1}.webp`);
             setCurrentFondo(objectImagen.TarjetaImagen);
+
+            const objectImagen2 = colecciones.find(coleccion => coleccion.TarjetaImagen === `TFREPR${current+1}.webp`);
+            if (objectImagen2) {
+                setCurrentFondo2(objectImagen2.TarjetaImagen);
+            }
         },
     }
 
@@ -399,6 +410,26 @@ const DiseñaTarjet = () => {
         }
     }
 
+    const GuardarImagenTarjeta = async (tipo, e) => {
+        e.preventDefault();
+
+        const datosFormulario = {
+            "ImgTarFrente": currentFondo2
+        }
+
+        await ActualizarTarjetaPerfil(datosGenerales, datosFormulario);
+        setPopActualiza(true);
+
+        setTimeout(()=>{
+            setPopActualiza(false);
+
+            setTimeout(()=>{
+                window.location.reload();
+            },1000);
+            
+        }, 3500);
+    }
+
     return ( 
         <div className='backgroun-Green'>
             <div className="container-fluid diseñaTarjet background-image">
@@ -486,32 +517,10 @@ const DiseñaTarjet = () => {
 
                         { optionColecciones === 'Gratuitas' &&
                             <div className='gratuitas'>
-                                {/* <Slider {...settings}>
-                                    <div className='tarjetaGratuitas'>
-                                        <img src={tarjetaGenerica}/>
-                                    </div>
-                                    <div className='tarjetaGratuitas'>
-                                        <img src={tarjetaGenerica}/>
-                                    </div>
-                                    <div className='tarjetaGratuitas'>
-                                        <img src={tarjetaGenerica}/>
-                                    </div>
-                                </Slider>
-
-                                <div className='mas-imagenes'>
-                                    <div className='view3'>
-                                        <img src={tarjetaGenerica} />
-                                        <img src={tarjetaGenerica} />
-                                        <img src={tarjetaGenerica} />
-                                    </div>
-
-                                    <div className='viewpremium'>
-                                        <img src={tarjetaGenerica} />
-                                    </div>
-                                </div> */}
 
                                 <Slider {...settingsSlider}>
                                     { colecciones.map((coleccion)=>(
+                                        coleccion.TarjetaPremium === 0 &&
                                         <div className='tarjetaGratuitas' key={coleccion.ColeccionId}>
                                             <img src={`https://tarjet.site/imagenes/tarjetas_frente/${coleccion.TarjetaImagen}`}/>
                                         </div>
@@ -522,7 +531,7 @@ const DiseñaTarjet = () => {
                                 <div className='info'>
                                     <div className='modelos w-100'>
                                         <p>
-                                            {`${currentSlide+1} de ${colecciones.length} modelos gratuitos`}
+                                            {`${currentSlide+1} de ${coleccionesGratis.length} modelos gratuitos`}
                                         </p>
                                     </div>
                                     {/* <div className='premium-select'>
@@ -693,144 +702,183 @@ const DiseñaTarjet = () => {
                         }
 
                         { optionColecciones === 'Premium' &&
-                            <div className='premium'>
-                                <div className='encabezado'>
-                                    <p>
-                                        En el plan Premium ****** <br/>
-                                        puedes elegir cualquier tarjeta
-                                    </p>
-                                    <button>
-                                        ¡Adquiérelo aquí!
-                                    </button>
-                                </div>
+                            // <div className='premium'>
+                            //     <div className='encabezado'>
+                            //         <p>
+                            //             En el plan Premium ****** <br/>
+                            //             puedes elegir cualquier tarjeta
+                            //         </p>
+                            //         <button>
+                            //             ¡Adquiérelo aquí!
+                            //         </button>
+                            //     </div>
 
-                                <div className='tarjetasPremium'>
-                                    <img src={tarjetaGenerica} />
-                                </div>
+                            //     <div className='tarjetasPremium'>
+                            //         <img src={tarjetaGenerica} />
+                            //     </div>
 
-                                <div className='sliderpremium'>
-                                    <Slider {...settings}>
-                                        <div className='paquete'>
-                                            <p>
-                                                Nombremodelotarjet <br/>
-                                                <span>Código TD-091</span>
-                                            </p>
-                                            <hr/>
-                                            <div className='compra'>
-                                                <div className='precio'>
-                                                    <p>$000.00 mxm</p>
-                                                </div>
-                                                <div className='btncompra'>
-                                                    <button>
-                                                        Comprar
-                                                    </button>
-                                                </div>
-                                            </div>
+                            //     <div className='sliderpremium'>
+                            //         <Slider {...settings}>
+                            //             <div className='paquete'>
+                            //                 <p>
+                            //                     Nombremodelotarjet <br/>
+                            //                     <span>Código TD-091</span>
+                            //                 </p>
+                            //                 <hr/>
+                            //                 <div className='compra'>
+                            //                     <div className='precio'>
+                            //                         <p>$000.00 mxm</p>
+                            //                     </div>
+                            //                     <div className='btncompra'>
+                            //                         <button>
+                            //                             Comprar
+                            //                         </button>
+                            //                     </div>
+                            //                 </div>
+                            //             </div>
+                            //             <div className='paquete'>
+                            //                 <p>
+                            //                     Nombremodelotarjet <br/>
+                            //                     <span>Código TD-091</span>
+                            //                 </p>
+                            //                 <hr/>
+                            //                 <div className='compra'>
+                            //                     <div className='precio'>
+                            //                         <p>Premium</p>
+                            //                     </div>
+                            //                     <div className='btncompra'>
+                            //                         <button>
+                            //                             Seleccionar
+                            //                         </button>
+                            //                     </div>
+                            //                 </div>
+                            //             </div>
+                            //         </Slider>
+                            //     </div>
+
+                            //     <div className='desc'>
+                            //         <p>
+                            //             ó puedes comprar individualmente la <br/> tarjeta que te guste, ¡Conócelas!
+                            //         </p>
+                            //     </div>
+
+                            //     <div className='buttons-rows'>
+                            //         <div className='rowbuttons'>
+                            //             <button>
+                            //                 <div>
+                            //                     <p>
+                            //                         1
+                            //                     </p>
+                            //                 </div>
+                            //                 Ejecutivas
+                            //             </button>
+                            //             <button>
+                            //                 <div>
+                            //                     <p>
+                            //                         10
+                            //                     </p>
+                            //                 </div>
+                            //                 Ejecutivas
+                            //             </button>
+                            //         </div>
+                            //         <div className='rowbuttons'>
+                            //             <button>
+                            //                 <div>
+                            //                     <p>
+                            //                         1
+                            //                     </p>
+                            //                 </div>
+                            //                 Ejecutivas
+                            //             </button>
+                            //             <button>
+                            //                 <div>
+                            //                     <p>
+                            //                         10
+                            //                     </p>
+                            //                 </div>
+                            //                 Ejecutivas
+                            //             </button>
+                            //         </div>
+                            //         <div className='rowbuttons'>
+                            //             <button>
+                            //                 <div>
+                            //                     <p>
+                            //                         1
+                            //                     </p>
+                            //                 </div>
+                            //                 Ejecutivas
+                            //             </button>
+                            //             <button>
+                            //                 <div>
+                            //                     <p>
+                            //                         10
+                            //                     </p>
+                            //                 </div>
+                            //                 Ejecutivas
+                            //             </button>
+                            //         </div>
+                            //         <div className='rowbuttons'>
+                            //             <button>
+                            //                 <div>
+                            //                     <p>
+                            //                         1
+                            //                     </p>
+                            //                 </div>
+                            //                 Ejecutivas
+                            //             </button>
+                            //             <button>
+                            //                 <div>
+                            //                     <p>
+                            //                         10
+                            //                     </p>
+                            //                 </div>
+                            //                 Ejecutivas
+                            //             </button>
+                            //         </div>
+                            //     </div>
+
+                            //     <div className='regresar'>
+                            //         <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
+                            //             Regresar a perfil (x)
+                            //         </button>
+                            //     </div>
+                            // </div>
+                            <div className='gratuitas'>
+
+                                <Slider {...settingsSlider}>
+                                    { colecciones.map((coleccion)=>(
+                                        coleccion.TarjetaPremium === 1 &&
+                                        <div className='tarjetaGratuitas' key={coleccion.ColeccionId}>
+                                            <img src={`https://tarjet.site/imagenes/tarjetas_frente/premium/${coleccion.TarjetaImagen}`}/>
                                         </div>
-                                        <div className='paquete'>
-                                            <p>
-                                                Nombremodelotarjet <br/>
-                                                <span>Código TD-091</span>
-                                            </p>
-                                            <hr/>
-                                            <div className='compra'>
-                                                <div className='precio'>
-                                                    <p>Premium</p>
-                                                </div>
-                                                <div className='btncompra'>
-                                                    <button>
-                                                        Seleccionar
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Slider>
-                                </div>
+                                    ))
+                                    }
+                                </Slider>
 
-                                <div className='desc'>
-                                    <p>
-                                        ó puedes comprar individualmente la <br/> tarjeta que te guste, ¡Conócelas!
-                                    </p>
-                                </div>
-
-                                <div className='buttons-rows'>
-                                    <div className='rowbuttons'>
-                                        <button>
-                                            <div>
-                                                <p>
-                                                    1
-                                                </p>
-                                            </div>
-                                            Ejecutivas
-                                        </button>
-                                        <button>
-                                            <div>
-                                                <p>
-                                                    10
-                                                </p>
-                                            </div>
-                                            Ejecutivas
-                                        </button>
-                                    </div>
-                                    <div className='rowbuttons'>
-                                        <button>
-                                            <div>
-                                                <p>
-                                                    1
-                                                </p>
-                                            </div>
-                                            Ejecutivas
-                                        </button>
-                                        <button>
-                                            <div>
-                                                <p>
-                                                    10
-                                                </p>
-                                            </div>
-                                            Ejecutivas
-                                        </button>
-                                    </div>
-                                    <div className='rowbuttons'>
-                                        <button>
-                                            <div>
-                                                <p>
-                                                    1
-                                                </p>
-                                            </div>
-                                            Ejecutivas
-                                        </button>
-                                        <button>
-                                            <div>
-                                                <p>
-                                                    10
-                                                </p>
-                                            </div>
-                                            Ejecutivas
-                                        </button>
-                                    </div>
-                                    <div className='rowbuttons'>
-                                        <button>
-                                            <div>
-                                                <p>
-                                                    1
-                                                </p>
-                                            </div>
-                                            Ejecutivas
-                                        </button>
-                                        <button>
-                                            <div>
-                                                <p>
-                                                    10
-                                                </p>
-                                            </div>
-                                            Ejecutivas
-                                        </button>
+                                <div className='info'>
+                                    <div className='modelos w-100'>
+                                        <p>
+                                            {`${currentSlide+1} de ${coleccionesPremium.length} modelos gratuitos`}
+                                        </p>
                                     </div>
                                 </div>
 
-                                <div className='regresar'>
-                                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
-                                        Regresar a perfil (x)
+                                <div className='buttons-confirm'>
+                                    {/* <button 
+                                        type='button' 
+                                        className={`previsualizarBtn`} 
+                                        onClick={()=>setPrevisualizar(true)}
+                                        disabled={datosGenerales.Premium ? false : true}
+                                    >
+                                        Mi Logo/Foto
+                                    </button> */}
+                                    
+                                    <button 
+                                        className={`guardar`}
+                                        onClick={(e)=>GuardarImagenTarjeta('premium', e)}
+                                        disabled={datosGenerales.Premium ? false : true}
+                                    >
+                                        Guardar imagen
                                     </button>
                                 </div>
                             </div>
