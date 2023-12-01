@@ -872,86 +872,109 @@ const DiseñaTarjetSite = () => {
                         }
 
                         { opcion === 'Personalizado' &&
-                            <div className='gratuitas'>
-                                <Slider {...settings}>
+                            // <div className='gratuitas'>
+                            //     <Slider {...settings}>
 
-                                    {colecciones.map((coleccion)=>(
-                                        <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
-                                            <div 
-                                                className='cuerpo' 
-                                                style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/${coleccion.SiteHeaderImagen})`}}
-                                            >
-                                            </div>
-                                        </div>
-                                    ))
-                                    }
-                                </Slider>
+                            //         {colecciones.map((coleccion)=>(
+                            //             <div className='tarjetaGratuita' key={coleccion.SiteHeaderId}>
+                            //                 <div 
+                            //                     className='cuerpo' 
+                            //                     style={{background: `URL(https://tarjet.site/imagenes/Headers_Collection/${coleccion.SiteHeaderImagen})`}}
+                            //                 >
+                            //                 </div>
+                            //             </div>
+                            //         ))
+                            //         }
+                            //     </Slider>
 
-                                {/* <div className='mas-imagenes'>
-                                    <div className='view3'>
-                                        <img src={tarjetaGenerica} />
-                                        <img src={tarjetaGenerica} />
-                                        <img src={tarjetaGenerica} />
-                                    </div>
+                            //     {/* <div className='mas-imagenes'>
+                            //         <div className='view3'>
+                            //             <img src={tarjetaGenerica} />
+                            //             <img src={tarjetaGenerica} />
+                            //             <img src={tarjetaGenerica} />
+                            //         </div>
 
-                                    <div className='viewpremium'>
-                                        <img src={tarjetaGenerica} />
-                                    </div>
-                                </div> */}
+                            //         <div className='viewpremium'>
+                            //             <img src={tarjetaGenerica} />
+                            //         </div>
+                            //     </div> */}
 
-                                <div className='info'>
-                                    <div className='modelos w-100'>
-                                        <p>
-                                            {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
-                                        </p>
-                                    </div>
-                                    {/* <div className='premium-select'>
-                                        <div>
-                                            <p>1</p>
-                                        </div>
-                                        <p>
-                                            Tarjeta premium seleccionada
-                                        </p>
-                                    </div> */}
-                                </div>
+                            //     <div className='info'>
+                            //         <div className='modelos w-100'>
+                            //             <p>
+                            //                 {`${currentSlide + 1} de ${colecciones.length} modelos gratuitos`}
+                            //             </p>
+                            //         </div>
+                            //         {/* <div className='premium-select'>
+                            //             <div>
+                            //                 <p>1</p>
+                            //             </div>
+                            //             <p>
+                            //                 Tarjeta premium seleccionada
+                            //             </p>
+                            //         </div> */}
+                            //     </div>
 
-                                <div className='buttons-confirm'>
+                            //     <div className='buttons-confirm'>
 
-                                    <button 
-                                        onClick={SubirImagenHeader}
-                                        disabled={datosGenerales.Premium ? false : true}
-                                    >
-                                        Subir mi diseño
-                                    </button>
+                            //         <button 
+                            //             onClick={SubirImagenHeader}
+                            //             disabled={datosGenerales.Premium ? false : true}
+                            //         >
+                            //             Subir mi diseño
+                            //         </button>
                                     
-                                    <button 
-                                        className={`guardar`}
-                                        onClick={GuardarImagenEncabezado}
-                                        disabled={datosGenerales.Premium ? false : true}
-                                    >
-                                        Guardar imagen
-                                    </button>
-                                </div>
+                            //         <button 
+                            //             className={`guardar`}
+                            //             onClick={GuardarImagenEncabezado}
+                            //             disabled={datosGenerales.Premium ? false : true}
+                            //         >
+                            //             Guardar imagen
+                            //         </button>
+                            //     </div>
 
-                                { previsualizar &&
-                                    <PrevisualizarHeader 
-                                        onClickButton={CerrarPrevisualizar}
-                                        datosGenerales={datosGenerales}
-                                        currentFondo={currentFondo2}
-                                    />
+                            //     { previsualizar &&
+                            //         <PrevisualizarHeader 
+                            //             onClickButton={CerrarPrevisualizar}
+                            //             datosGenerales={datosGenerales}
+                            //             currentFondo={currentFondo2}
+                            //         />
+                            //     }
+
+                            //     <div className='btn-continuar'>
+                            //         <button onClick={btnPaso2}>
+                            //             Continuar a paso 2
+                            //         </button>
+                            //     </div>
+
+                            //     <div className='btn-regresarr'>
+                            //         <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                            //             Regresar a perfil (x)
+                            //         </button>
+                            //     </div>
+                            // </div>
+                            <div className='personalizada'>
+
+                                <p>Tu encabezado actual personalizado</p>
+
+                                { (!datosGenerales.ImgHeader || !(datosGenerales.ImgHeader.slice(0,5) === 'SITE_')) &&
+                                    <p>Aún no cuentas con un encabezado personalizado, selecciona uno editando tu tarjet site.</p>
                                 }
 
-                                <div className='btn-continuar'>
-                                    <button onClick={btnPaso2}>
-                                        Continuar a paso 2
-                                    </button>
-                                </div>
+                                {/* { datosGenerales.ImgHeader.slice(0,10) === 'SiteHeader' &&
+                                    <img 
+                                        src={`https://tarjet.site/imagenes/Headers_Collection/${datosGenerales.ImgHeader}`} 
+                                        alt="Tu tarjeta personalizada" 
+                                    />
+                                } */}
 
-                                <div className='btn-regresarr'>
-                                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
-                                        Regresar a perfil (x)
-                                    </button>
-                                </div>
+                                { datosGenerales.ImgHeader.slice(0,5) === 'SITE_' &&
+                                    <img 
+                                        src={`https://tarjet.site/imagenes/encabezados/${datosGenerales.ImgHeader}`} 
+                                        alt="Tu tarjeta personalizada"
+                                        className='encabezadoPremium'
+                                    />
+                                }
                             </div>
                         }
                     </div>

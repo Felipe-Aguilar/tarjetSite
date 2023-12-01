@@ -886,7 +886,28 @@ const DiseñaTarjet = () => {
 
                         { optionColecciones === 'Personalizada' &&
                             <div className='personalizada'>
-                                <img src={ilustracionPersonalizada} />
+
+                                <p>Tu tarjeta personalizada actual</p>
+
+                                { (!datosGenerales.ImgTarFrente || !(datosGenerales.ImgTarFrente.slice(0,5) === 'TFRE_')) &&
+                                    <p>Aún no cuentas con una tarjeta personalizada, selecciona una editando tus datos.</p>
+                                }
+                                
+                                { datosGenerales.ImgTarFrente.slice(0,5) === 'TFRE_' &&
+                                    <img 
+                                        src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${datosGenerales.ImgTarFrente}`} 
+                                        alt="Tu tarjeta personalizada" 
+                                    />
+                                }
+
+                                {/* { datosGenerales.ImgTarFrente.slice(0,5) === 'TFREP' &&
+                                    <img 
+                                        src={`https://tarjet.site/imagenes/tarjetas_frente/premium/${datosGenerales.ImgTarFrente}`} 
+                                        alt="Tu tarjeta personalizada" 
+                                    />
+                                } */}
+
+                                {/* <img src={ilustracionPersonalizada} />
                                 <p>
                                     ¿Tienes una idea o necesitas el diseño de tu tarjeta con un modelo exclusivo? 
                                 </p>
@@ -904,7 +925,7 @@ const DiseñaTarjet = () => {
                                     <button>
                                         Cerrar ventana (x)
                                     </button>
-                                </div>
+                                </div> */}
                             </div>
                         }
                     </div>

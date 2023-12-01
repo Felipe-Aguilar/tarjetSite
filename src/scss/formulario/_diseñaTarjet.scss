@@ -679,13 +679,14 @@ $btnAmarillo: #fab947;
             text-align: center;
 
             img{
-                width: 50%;
+                width: 70%;
                 display: block;
                 margin: auto;
                 margin-bottom: 20px;
+                border-radius: 10px;
 
-                @media (width <= 575px) {
-                    width: 70%;
+                @media (width <= 600px) {
+                    width: 80%;
                 }
             }
 
