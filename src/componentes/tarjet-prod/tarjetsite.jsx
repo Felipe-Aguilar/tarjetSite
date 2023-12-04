@@ -223,7 +223,7 @@ END:VCARD`;
         }
 
     }
-
+{console.log(usuario)}
     return ( 
         <div className='backgroun-Green'>
             <div className='tarjetSite background-image' style={{background: usuario.SiteFondo}}>

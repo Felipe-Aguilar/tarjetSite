@@ -339,7 +339,7 @@ const DiseñaTarjetSite = () => {
             setCurrentFondo(objectImagen.SiteHeaderImagen);
             
             const objectImagen2 = coleccionesPremium.find(coleccion => coleccion.SiteHeaderImagen === `SiteHeadPr${current+1}.webp`);
-            console.log(objectImagen2);
+            
             if (objectImagen2) {
                 setCurrentFondo2(objectImagen2);
             }
@@ -439,11 +439,11 @@ const DiseñaTarjetSite = () => {
             
         }, 3500);
     }
-
+    
     // Guarda el encabezado
     const GuardarImagenEncabezado = async (tipo, e) => {
         e.preventDefault();
-        
+
         var fondo;
 
         if (tipo === 'gratis') {
@@ -452,8 +452,11 @@ const DiseñaTarjetSite = () => {
 
         }else if(tipo === 'premium'){
 
-            fondo = currentFondo2;
-
+            if (currentFondo2.SiteHeaderImagen === undefined) {
+                fondo = currentFondo2;
+            }else{
+                fondo = currentFondo2.SiteHeaderImagen;
+            }
         }
         
         const datosFormulario = {
