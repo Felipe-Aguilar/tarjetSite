@@ -8,7 +8,7 @@ import html2canvas from "html2canvas";
 
 const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompleto, cargo}) => {
     
-    const Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo}`;
+    const Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo.TarjetaImagen}`;
     
 
     const propsAnimation = {
@@ -81,6 +81,7 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompl
                                     dragConstraints={constraintsRef} 
                                     dragElastic={0}
                                     dragMomentum={false}
+                                    style={currentFondo.TarjetaColorFont && {color: `${currentFondo.TarjetaColorFont}`} }
                                 >
                                     {nombreCompleto}
                                 </motion.label>
@@ -91,6 +92,7 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompl
                                     dragConstraints={constraintsRef} 
                                     dragElastic={0}
                                     dragMomentum={false}
+                                    style={currentFondo.TarjetaColorFont && {color: `${currentFondo.TarjetaColorFont}`} }
                                 >
                                     {cargo}
                                 </motion.label>

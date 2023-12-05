@@ -202,11 +202,11 @@ const DiseñaTarjet = () => {
             setCurrentSlide(current);
 
             const objectImagen = colecciones.find(coleccion => coleccion.TarjetaImagen === `TarjetaF_${current+1}.webp`);
-            setCurrentFondo(objectImagen.TarjetaImagen);
+            setCurrentFondo(objectImagen);
 
             const objectImagen2 = colecciones.find(coleccion => coleccion.TarjetaImagen === `TFREPR${current+1}.webp`);
             if (objectImagen2) {
-                setCurrentFondo2(objectImagen2.TarjetaImagen);
+                setCurrentFondo2(objectImagen2);
             }
         },
     }
@@ -414,7 +414,7 @@ const DiseñaTarjet = () => {
         e.preventDefault();
 
         const datosFormulario = {
-            "ImgTarFrente": currentFondo2
+            "ImgTarFrente": currentFondo2.TarjetaImagen
         }
 
         await ActualizarTarjetaPerfil(datosGenerales, datosFormulario);
