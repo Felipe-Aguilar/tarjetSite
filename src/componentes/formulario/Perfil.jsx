@@ -18,6 +18,8 @@ const Perfil = () => {
     const [datosSesion, setDatosSesion] = useState([]);
     const [datosActualizados, setDatosActualizados] = useState([]);
 
+    const timestamp = new Date().getTime();
+
     useEffect(()=>{
         const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
         setDatosUsuario(datosTarjetSite);
@@ -53,7 +55,8 @@ const Perfil = () => {
                     <div className='encabezado-perfil'>
                         <div className='imagen-perfil'>
                             { datosActualizados.ImgFoto ?
-                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosActualizados.ImgFoto}`} />
+                                // <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosActualizados.ImgFoto}`} />
+                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosActualizados.ImgFoto}?timestamp=${timestamp}`} />
                             :
                                 <img src={PerfilTemporal} />
                             }

@@ -65,6 +65,8 @@ const DiseñaTarjet = () => {
     const [currentFondo, setCurrentFondo] = useState('TarjetaF_1.webp');
     const [currentFondo2, setCurrentFondo2] = useState('TFREPR1.webp');
 
+    const timestamp = new Date().getTime();
+
     useEffect(()=>{
 
         const datosSesion = JSON.parse(localStorage.getItem('DatosSesion'));
@@ -548,7 +550,8 @@ const DiseñaTarjet = () => {
                                     <div className='logotipo'>
                                         <div className='img-perfil'>
                                             { datosGenerales.ImgFoto ?
-                                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
+                                                // <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
+                                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}?timestamp=${timestamp}`} />
                                             :
                                                 <img src={perfilTemporal} />
                                             }

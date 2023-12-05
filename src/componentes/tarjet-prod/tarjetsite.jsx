@@ -63,6 +63,8 @@ const TarjetSite = () => {
 
     const [popGuardarTarjetero, setPopGuardarTarjetero] = useState(false);
     const [btnEnable, setBtnEnable] = useState(false);
+
+    const timestamp = new Date().getTime();
     
     useEffect(()=>{
 
@@ -248,7 +250,8 @@ END:VCARD`;
                 <div className='row justify-content-center perfil'>
                     <div className='col-12 col-md-4 contenedor'>
                         { usuario.ImgFoto ?
-                            <img src={`https://tarjet.site/imagenes/perfil-imagenes/${usuario.ImgFoto}`}/>
+                            // <img src={`https://tarjet.site/imagenes/perfil-imagenes/${usuario.ImgFoto}`}/>
+                            <img src={`https://tarjet.site/imagenes/perfil-imagenes/${usuario.ImgFoto}?timestamp=${timestamp}`}/>
                         :
                             <img src={perfilTemporal} />
                         }
