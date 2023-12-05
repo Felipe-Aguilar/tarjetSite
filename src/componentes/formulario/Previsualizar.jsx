@@ -7,8 +7,15 @@ import html2canvas from "html2canvas";
 
 
 const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompleto, cargo}) => {
-    
-    const Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo.TarjetaImagen}`;
+
+    var Tarjeta;
+
+    if (currentFondo.TarjetaImagen === undefined) {
+        Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo}`;
+    } else {
+        Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo.TarjetaImagen}`;
+    }
+
     
 
     const propsAnimation = {
