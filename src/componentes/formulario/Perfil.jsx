@@ -50,7 +50,7 @@ const Perfil = () => {
 
     return ( 
         <div className='backgroun-Green'>
-            <div className="container-fluid Perfil background-image">
+            <div className="container-fluid Perfil background-image" style={{height: '100vh'}}>
                 <div className='EncabezadoPerfil'>
                     <div className='encabezado-perfil'>
                         <div className='imagen-perfil'>
@@ -95,7 +95,7 @@ const Perfil = () => {
                     <hr/>
                 </div>
 
-                <div className='detallesCuenta'>
+                {/* <div className='detallesCuenta'>
                     <h6>Detalles de tu cuenta</h6>
 
                     <div className='apartados'>
@@ -151,7 +151,7 @@ const Perfil = () => {
 
                 <div className='separador'>
                     <hr/>
-                </div>
+                </div> */}
 
                 <div className='buttonsPerfil'>
                     <div className='cuerpo'>
@@ -164,12 +164,12 @@ const Perfil = () => {
                         {/* <button className='btn-fisica'>
                             Tu tarjeta física
                         </button> */}
-                        <div>
+                        {/* <div>
                             <button className='btn-premium'>
                                 Tienes <span>1</span> producto premium <span className='span-detalles'>(ver detalles)</span>
                             </button>
                             <p>(plan válido hasta 17/12/2024)</p>
-                        </div>
+                        </div> */}
                         <button className='btn-visitar' onClick={()=>navigate(`/${btoa(datosSesion.UsuToken)}`)}>
                             Visitar tarjetero
                         </button>
