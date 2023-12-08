@@ -610,10 +610,10 @@ const DiseñaTarjet = () => {
                                             <input 
                                                 type="text" 
                                                 placeholder='Nombre de usuario' 
-                                                maxLength={8}
+                                                maxLength={15}
                                                 value={nombreUsuario}
                                                 onChange={onChangeNombreUsuario}
-                                                className={errorAlias ? 'input-error' : ''}
+                                                className={`input-username ${errorAlias ? 'input-error' : ''}`}
                                             />
                                             <p className='text-usuario'>
                                                 (con este usuario te podrán encontrar más fácil en el directorio)

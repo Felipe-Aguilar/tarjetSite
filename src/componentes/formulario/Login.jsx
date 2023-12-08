@@ -271,12 +271,12 @@ const Login = () => {
                 </div>
 
                 <div className='texto'>
-                    <h1>Listo para conectar de forma innovadora con personas y negocios</h1>
+                    <h1>Listo para conectar con personas y negocios. </h1>
 
                     <h2>CREA TU CUENTA TARJET ó <br /> INICIA SESIÓN</h2>
 
                     <p>
-                        Elige la opción que más te agrade, <br/>
+                        Elige la opción de tu agrado <br/>
                         <span>continuar con...</span>
                     </p>
                 </div>

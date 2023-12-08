@@ -445,6 +445,13 @@ $btnAmarillo: #fab947;
                                 width: 50%;
                             }
                         }
+                        .input-username{
+                            width: calc(50% - 5px);
+                            
+                            @media (width <= 600px){
+                                width: calc(50% - 10px);
+                            }
+                        }
                         a{
                             font-size: 0.8rem;
                             text-decoration: underline;

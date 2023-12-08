@@ -45,6 +45,8 @@ const MiTarjetero = () => {
     const [datosMiTarjetero, setDatosMiTarjetero ] = useState([]);
     const [datosSegmentos, setDatosSegmentos ] = useState([]);
 
+    const timestamp = new Date().getTime();
+
     useEffect(()=>{
 
         window.scrollTo({
@@ -219,7 +221,7 @@ const MiTarjetero = () => {
 
     // Comprobando si existe o no
     if(comprobarUsuario.usuId === 0) return null;
-
+    
     return (
 
         <div className='container-fluid p-0 backgroun-Green'>
@@ -265,14 +267,14 @@ const MiTarjetero = () => {
                                     <>
                                         { usuario.UsuFondoF?.slice(0,5) === 'TFRE_' &&
                                             <img 
-                                                src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.UsuFondoF}`}
+                                                src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.UsuFondoF}?timestamp=${timestamp}`}
                                                 onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
                                             />
                                         }
 
                                         { usuario.UsuFondoF?.slice(0,5) === 'TFREP' &&
                                             <img 
-                                                src={`https://tarjet.site/imagenes/tarjetas_frente/premium/${usuario.UsuFondoF}`}
+                                                src={`https://tarjet.site/imagenes/tarjetas_frente/premium/${usuario.UsuFondoF}?timestamp=${timestamp}`}
                                                 onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
                                             />
                                         }
@@ -314,32 +316,40 @@ const MiTarjetero = () => {
 
                 {/* Controles rediseño */}
                 <div className='row justify-content-center controles'>
-                    <div className='col-11 col-lg-4 contenedor'>
-                        <button onClick={()=>setQr(true)}>
-                            <img src={BtnQr}/>
-                            Tu Qr
-                        </button>
-                        { qr &&
-                            <Qr cerrarQr={setQrEstado} usuario={usuario}/>
+                    <div 
+                        className={`col-11 col-lg-4 contenedor ${usuario.RegistroTarjet && 'justify-content-center'}`}
+                        
+                    >
+                        { datos.RegistroTarjet && 
+                            <>
+                            <button onClick={()=>setQr(true)}>
+                                <img src={BtnQr}/>
+                                Tu Qr
+                            </button>
+                            { qr &&
+                                <Qr cerrarQr={setQrEstado} usuario={usuario}/>
+                            }
+
+                            <button>
+                                <img src={BtnCompartir} onClick={()=>setCompartir(true)}/>
+                                Compartir
+                            </button>
+
+                            { compartir &&
+                                <Compartir cerrarCompartir={setCompartirEstado} usuario={usuario} resuCompartir={resuCompartir}/>
+                            }
+
+                            <button onClick={copiarPortapapeles}>
+                                <img src={BtnCopiar}/>
+                                Copiar
+                            </button>
+                            
+                            </>
                         }
-
-                        <button>
-                            <img src={BtnCompartir} onClick={()=>setCompartir(true)}/>
-                            Compartir tu tarjeta
-                        </button>
-
-                        { compartir &&
-                            <Compartir cerrarCompartir={setCompartirEstado} usuario={usuario} resuCompartir={resuCompartir}/>
-                        }
-
-                        <button onClick={copiarPortapapeles}>
-                            <img src={BtnCopiar}/>
-                            Copiar enlace
-                        </button>
 
                         <button onClick={()=>navigate('/directorio-tarjet')}>
                             <img src={BtnDirectorio}/>
-                            Visitar directorio
+                            Directorio
                         </button>
                     </div>
                 </div>

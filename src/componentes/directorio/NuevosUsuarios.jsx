@@ -11,6 +11,8 @@ const NuevosUsuarios = () => {
 
     const navigate = useNavigate();
 
+    const timestamp = new Date().getTime();
+
     useEffect(()=>{
 
         const consultarUltimosUsuarios = async() => {
@@ -61,19 +63,21 @@ const NuevosUsuarios = () => {
                 <Slider {...settings}>
                     { topUsuarios.map((usuario)=>{
                         if (usuario.PublicPriva === 0 ) {
-                            return(
-                                <div 
-                                    key={usuario.IdUsuario}
-                                    className="slide-tarjeta"
-                                    onClick={()=>navigate(`/st/${btoa(usuario.Token)}`)}
-                                >
-                                    { usuario.FondoF ?
-                                        <img src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.FondoF}`} />
-                                    :
-                                        <img src={tarjetaGenerica} />
-                                    }
-                                </div>
-                            );
+                            if (usuario.RegistroTarjet) {
+                                return(
+                                    <div 
+                                        key={usuario.IdUsuario}
+                                        className="slide-tarjeta"
+                                        onClick={()=>navigate(`/st/${btoa(usuario.Token)}`)}
+                                    >
+                                        { usuario.FondoF ?
+                                            <img src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.FondoF}?timestamp=${timestamp}`} />
+                                        :
+                                            <img src={tarjetaGenerica} />
+                                        }
+                                    </div>
+                                );
+                            }
                         }                        
                     })
                     }
