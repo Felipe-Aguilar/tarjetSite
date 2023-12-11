@@ -11,7 +11,17 @@ $textoGris: #484846;
         padding: 40px 2%;
     }
 
+    // NUEVO
+    @media (width <= 600px) {
+        padding: 40px 0 0 0;
+    }
+
     .EncabezadoPerfil{
+
+        // NUEVO
+        @media (width <= 600px) {
+            padding: 0px 2%;
+        }
 
         .encabezado-perfil{
             width: 33.3%;
@@ -214,6 +224,11 @@ $textoGris: #484846;
 
         @media (width <= 575px) {
             width: 90%;
+
+            // Nuevo
+            width: 100%;
+            background: #fff;
+            padding: 20px 2%;
         }
 
         .cuerpo{
@@ -225,7 +240,7 @@ $textoGris: #484846;
                 margin-top: 15px;
             }
 
-            @media (width <= 575px) {
+            @media (width <= 600px) {
                 width: 100%;
             }
 
@@ -265,6 +280,15 @@ $textoGris: #484846;
             }
             .btn-visitar{
                 background: #d9d1ea;
+            }
+        }
+
+        .cuerpo-div{
+            h6{
+                font-weight: bold;
+            }
+            img, p{
+                margin-bottom: 10px;
             }
         }
     }

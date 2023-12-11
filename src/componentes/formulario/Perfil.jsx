@@ -3,7 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
-import { ListadoPrefijos } from '../contextos/PrefijosListado';
+import ilustracion1 from '../../assets/ilustracion-perfil-1.webp';
+import ilustracion2 from '../../assets/ilustracion-perfil-2.webp';
+import ilustracion3 from '../../assets/ilustracion-perfil-3.webp';
 
 const Perfil = () => {
 
@@ -45,7 +47,7 @@ const Perfil = () => {
 
     return ( 
         <div className='backgroun-Green'>
-            <div className="container-fluid Perfil background-image" style={{height: '100vh'}}>
+            <div className="container-fluid Perfil background-image" >
                 <div className='EncabezadoPerfil'>
                     <div className='encabezado-perfil'>
                         <div className='imagen-perfil'>
@@ -149,12 +151,31 @@ const Perfil = () => {
 
                 <div className='buttonsPerfil'>
                     <div className='cuerpo'>
-                        <button className='btn-editar' onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
-                            Edita tu tarjet
-                        </button>
-                        <button className='btn-site' onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}>
-                            Editar tu tarjet site (tarjeta digital)
-                        </button>
+
+                        <div className='cuerpo-div'>
+                            <h6>Directorio Tarjet</h6>
+                            <img src={ilustracion1} alt="Ilustración tarjet" className='img-fluid'/>
+                            <p>
+                                Tu información que se mostrará en el directorio empresarial
+                            </p>
+                            <button className='btn-editar' onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
+                                Edita tu tarjet
+                            </button>
+                            <hr />
+                        </div>
+
+                        <div className="cuerpo-div">
+                            <h6>Tarjeta digital Tarjet (micrositio web)</h6>
+                            <img src={ilustracion2} alt="Ilustración tarjet" className='img-fluid'/>
+                            <p>
+                                Tu tarjeta digital que compartes a la gente
+                            </p>
+                            <button className='btn-site' onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}>
+                                Editar tu tarjet site (tarjeta digital)
+                            </button>
+                            <hr />
+                        </div>
+
                         {/* <button className='btn-fisica'>
                             Tu tarjeta física
                         </button> */}
@@ -164,9 +185,18 @@ const Perfil = () => {
                             </button>
                             <p>(plan válido hasta 17/12/2024)</p>
                         </div> */}
-                        <button className='btn-visitar' onClick={()=>navigate(`/${btoa(datosSesion.UsuToken)}`)}>
-                            Visitar tarjetero
-                        </button>
+
+                        <div className="cuerpo-div">
+                            <h6>Tarjetero personal</h6>
+                            <img src={ilustracion3} alt="Ilustración tarjet" className='img-fluid'/>
+                            <p>
+                                Revisa tus contactos tarjet guardados
+                            </p>
+                            <button className='btn-visitar' onClick={()=>navigate(`/${btoa(datosSesion.UsuToken)}`)}>
+                                Visitar tarjetero
+                            </button>
+                        </div>
+
                     </div>
                 </div>
 
