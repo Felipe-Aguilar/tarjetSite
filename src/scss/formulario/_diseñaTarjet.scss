@@ -452,6 +452,17 @@ $btnAmarillo: #fab947;
                                 width: calc(50% - 10px);
                             }
                         }
+                        .dataList{
+                            @media (width <= 600px) {
+                                display: none;
+                            }
+                        }
+                        .select-datalist{
+                            width: 100%;
+                            @media (width > 600px) {
+                                display: none;
+                            }
+                        }
                         a{
                             font-size: 0.8rem;
                             text-decoration: underline;

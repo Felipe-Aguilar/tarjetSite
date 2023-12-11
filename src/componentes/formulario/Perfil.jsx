@@ -3,12 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
-import iconoOjo from '../../assets/icono-ojo.svg';
-import iconoCompartir from '../../assets/icono-compartir.svg';
-import iconoTarjeteros from '../../assets/icono-tarjeteros.svg';
-import iconoCalificacion from '../../assets/icono-estrella.svg';
-import iconoComentario from '../../assets/icono-mensaje.svg';
-import iconoComentarioOculto from '../../assets/icono-mensaje-oculto.svg';
+import { ListadoPrefijos } from '../contextos/PrefijosListado';
 
 const Perfil = () => {
 
@@ -85,7 +80,7 @@ const Perfil = () => {
 
                     <div className='miembro'>
                         <p>
-                            Miembro desde: <span>00 / 00 / 0000</span>
+                            Miembro desde: <span>{datosActualizados.RegistroFecha}</span>
                         </p>
                     </div>
                 </div>

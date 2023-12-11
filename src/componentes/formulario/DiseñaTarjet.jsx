@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Await, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BusquedaAlias, ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
 import { DatosEditaPerfil, ActualizarPerfil, ActualizarTarjetaPerfil } from '../contextos/EditaPerfil';
 import { CodigoPostal } from '../contextos/CodigoPostal';
@@ -9,10 +9,10 @@ import CargarImagen from './CargarImagen';
 import PopCorrecto from './PopCorrecto';
 
 import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
-import tarjetaGenerica from '../../assets/tarjetageneric.png';
 import perfilTemporal from '../../assets/perfiltemporal.jpg';
 import ilustracionPersonalizada from '../../assets/ilustracion-personalizada.png';
 import Previsualizar from './Previsualizar';
+import { ListadoPrefijos } from '../contextos/PrefijosListado';
 
 
 const DiseñaTarjet = () => {
@@ -64,6 +64,9 @@ const DiseñaTarjet = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [currentFondo, setCurrentFondo] = useState('TarjetaF_1.webp');
     const [currentFondo2, setCurrentFondo2] = useState('TFREPR1.webp');
+
+    // Listado de prefijos
+    const [listadoPrefijos, setListadoPrefijos] = useState([]);
 
     const timestamp = new Date().getTime();
 
@@ -127,6 +130,9 @@ const DiseñaTarjet = () => {
             if (respuesta.PermitirComments === 0) {
                 setComentarios(true);
             }
+
+            const response2 = await ListadoPrefijos();
+            setListadoPrefijos(response2.sdtTitulos);
         }
 
         // Comprobar Colecciones de tarjetas
@@ -573,12 +579,18 @@ const DiseñaTarjet = () => {
                                         <form onSubmit={GuardarTarjeta1}>
                                             <div className='select'>
                                                 <div>
-                                                    <select value={titulo} onChange={(e)=>setTitulo(e.target.value)}>
+                                                    {/* <select value={titulo} onChange={(e)=>setTitulo(e.target.value)}>
                                                         <option value="Lic" key="1">Lic</option>
                                                         <option value="Ing" key="2">Ing</option>
                                                         <option value="Arq" key="3">Arq</option>
                                                         <option value="Doc" key="4">Doc</option>
                                                         <option value="Técni" key="5">Técni</option>
+                                                    </select> */}
+                                                    <select value={titulo} onChange={(e)=>setTitulo(e.target.value)}>
+                                                        { listadoPrefijos.map((prefijo)=>(
+                                                            <option value={prefijo.TituloPersonaDesc} key={prefijo.TituloPersonaId}>{prefijo.TituloPersonaDesc}</option>
+                                                        ))
+                                                        }
                                                     </select>
                                                 </div>
                                                 <input 
@@ -622,7 +634,7 @@ const DiseñaTarjet = () => {
                                             <input 
                                                 type="text" 
                                                 placeholder='Buscar actividad' 
-                                                className={errorActividad ? 'input-error' : ''}
+                                                className={`dataList ${errorActividad ? 'input-error' : ''}`}
                                                 maxLength={80}
                                                 value={buscaActividad}
                                                 style={{textTransform: 'uppercase'}}
@@ -630,12 +642,21 @@ const DiseñaTarjet = () => {
                                                 list='actividad-resultados'
                                             />
 
-                                            <datalist id='actividad-resultados'>
+                                            <datalist id='actividad-resultados' className='dataList'>
                                                 { segmentos.map((segmento)=>(
                                                     <option value={segmento.Descripcion} key={segmento.Nivel3Id}></option>
                                                 ))
                                                 }
                                             </datalist>
+
+                                            <select value={buscaActividad} onChange={actividadOnChange} className='select-datalist'>
+                                                { segmentos.map((segmento)=>(
+                                                    <option value={segmento.Descripcion} key={segmento.Nivel3Id}>
+                                                        {segmento.Descripcion}
+                                                    </option>
+                                                ))
+                                                }
+                                            </select>
 
                                             <a href='' target='_blank' style={{marginBottom: '15px'}}>
                                                 Si no aparece tu área, solicítala aquí, con tu apoyo nos ayudas a aprender.
