@@ -290,6 +290,13 @@ $textoGris: #484846;
             img, p{
                 margin-bottom: 10px;
             }
+            img{
+                border-radius: 10px;
+
+                @media (width <= 600px) {
+                    border-radius: 0;
+                }
+            }
         }
     }
 }
