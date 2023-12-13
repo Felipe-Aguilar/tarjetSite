@@ -1,5 +1,5 @@
 const CodigoPostal = async (codigo) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/ApiCatalogos/ListaColonias?CPID=${codigo}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/ApiCatalogos/ListaColonias?CPID=${codigo}`, {
         method: 'GET',
         mode: 'cors',
         headers: {

@@ -1,5 +1,5 @@
 const CodigoCorreo = async(email) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/EnviarCodigoOTP?Nombre=&Email=${email}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/EnviarCodigoOTP?Nombre=&Email=${email}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -13,7 +13,7 @@ const CodigoCorreo = async(email) => {
 }
 
 const VerificarCodigo = async(codigo, correo, password) => {
-    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
+    const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -35,7 +35,7 @@ const VerificarCodigo = async(codigo, correo, password) => {
 
 const VerificarCodigoGoogle = async(codigo) => {
     console.log(codigo);
-    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
+    const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -58,7 +58,7 @@ const VerificarCodigoGoogle = async(codigo) => {
 }
 
 const LoginGoogle = async (password) => {
-    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/Login', {
+    const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/Login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -77,7 +77,7 @@ const LoginGoogle = async (password) => {
 
 const VerificarCodigoApple = async (dates, decodedToken) => {
 
-    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
+    const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/ValidarCodigoOTP', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -100,7 +100,7 @@ const VerificarCodigoApple = async (dates, decodedToken) => {
 }
 
 const LoginApple = async (decodedToken) => {
-    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/Login', {
+    const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/Login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

@@ -1,5 +1,5 @@
 const ConsultaClicUsuario = async (IdTarjet) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaMiTarjet/?Usutarjetid=${IdTarjet}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaMiTarjet/?Usutarjetid=${IdTarjet}`, {
         method: 'GET',
         mode: 'cors',
         headers: {

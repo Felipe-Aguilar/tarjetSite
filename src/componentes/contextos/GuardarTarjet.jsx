@@ -1,5 +1,5 @@
 const GuardarTarjet = async (IdSesion, IdTarjet) => {
-    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/GuardaTarjet', {
+    const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/GuardaTarjet', {
         method: 'POST',
         mode: 'cors',
         headers: {

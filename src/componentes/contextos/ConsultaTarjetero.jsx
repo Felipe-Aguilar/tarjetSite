@@ -1,6 +1,6 @@
 
 const ConsultaTarjetero = async( datosUsuarioId ) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaTarjetero/?Usutarjetid=${datosUsuarioId}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaTarjetero/?Usutarjetid=${datosUsuarioId}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -15,7 +15,7 @@ const ConsultaTarjetero = async( datosUsuarioId ) => {
 }
 
 const ConsultaTarjeteroFiltro = async(datosUsuarioId, segmentoId) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaTarjetero/?Usutarjetid=${datosUsuarioId}&Segmentoid=${segmentoId}&nivel=2`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaTarjetero/?Usutarjetid=${datosUsuarioId}&Segmentoid=${segmentoId}&nivel=2`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -30,7 +30,7 @@ const ConsultaTarjeteroFiltro = async(datosUsuarioId, segmentoId) => {
 }
 
 const ConsultaTarjeteroNombre = async (datosUsuarioId, nombre) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaTarjetero/?Usutarjetid=${datosUsuarioId}&Nombre=${nombre}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaTarjetero/?Usutarjetid=${datosUsuarioId}&Nombre=${nombre}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',

@@ -1,5 +1,5 @@
 const ComprobarUsuario = async (tokenURL) => {
-    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaUsuXToken', {
+    const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaUsuXToken', {
         method: 'POST',
         cache: 'no-store',
         headers: {
@@ -16,7 +16,7 @@ const ComprobarUsuario = async (tokenURL) => {
 }
 
 const DatosUsuario = async (idUsuario) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaMiTarjet?Usutarjetid=${idUsuario}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaMiTarjet?Usutarjetid=${idUsuario}`, {
         method: 'GET',
         cache: 'no-store',
         headers: {
@@ -30,7 +30,7 @@ const DatosUsuario = async (idUsuario) => {
 }
 
 const DatosUsuarioTarjetSite = async (idUsuario) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaMiSite?Siteusuid=${idUsuario}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaMiSite?Siteusuid=${idUsuario}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',

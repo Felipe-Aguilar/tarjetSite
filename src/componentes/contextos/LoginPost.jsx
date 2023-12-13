@@ -9,7 +9,7 @@ const ProveedorLogin = ( { children } ) => {
 
     const enviarPostLogin = async(usuarioForm, passwordForm) => {
 
-        const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/Login', {
+        const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/Login', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -20,13 +20,7 @@ const ProveedorLogin = ( { children } ) => {
                     "Password": passwordForm,
                 })
             });
-            // .then(response => response.json())
-            // .then(data => {
-            //     console.log(data);
-            //     setLoginPost({data});
-            //     console.log(loginPost);
-            // })
-            // .catch(error => console.error(error));
+        
             const data = await response.json();
 
             return data;

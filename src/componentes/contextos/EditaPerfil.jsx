@@ -1,5 +1,5 @@
 const DatosEditaPerfil = async (idUsuario) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/Usuario/${idUsuario}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/Usuario/${idUsuario}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -15,7 +15,7 @@ const DatosEditaPerfil = async (idUsuario) => {
 
 const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
 
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -93,7 +93,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
 }
 
 const ActualizarHeaderPerfil = async (datosGenerales, datosFormulario) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -171,7 +171,7 @@ const ActualizarHeaderPerfil = async (datosGenerales, datosFormulario) => {
 }
 
 const ActualizarTarjetaPerfil = async (datosGenerales, datosFormulario) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -250,7 +250,7 @@ const ActualizarTarjetaPerfil = async (datosGenerales, datosFormulario) => {
 
 const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
 
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -475,7 +475,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
 
 const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
     
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ActualizaUsu`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
         headers: {

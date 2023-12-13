@@ -1,5 +1,5 @@
 const BusquedaCategoria = async () => {
-    const response = await fetch('https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaCategorias?Nivel1=&Nivel2=', {
+    const response = await fetch('https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaCategorias?Nivel1=&Nivel2=', {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -13,7 +13,7 @@ const BusquedaCategoria = async () => {
 }
 
 const ConsultaActividad = async (idCategoriaSeleccionada) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaCategorias?Nivel1=${idCategoriaSeleccionada}&Nivel2=`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaCategorias?Nivel1=${idCategoriaSeleccionada}&Nivel2=`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -27,7 +27,7 @@ const ConsultaActividad = async (idCategoriaSeleccionada) => {
 }
 
 const ConsultaNivel3 = async (idCategoriaSeleccionada, idActividad) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ConsultaCategorias?Nivel1=${idCategoriaSeleccionada}&Nivel2=${idActividad}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ConsultaCategorias?Nivel1=${idCategoriaSeleccionada}&Nivel2=${idActividad}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -42,7 +42,7 @@ const ConsultaNivel3 = async (idCategoriaSeleccionada, idActividad) => {
 }
 
 const BusquedaNombre = async (nombre) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=${nombre}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=${nombre}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -54,7 +54,7 @@ const BusquedaNombre = async (nombre) => {
     const dataUsuario = await response.json();
 
     if (dataUsuario.ListTarjets.length === 0) {
-        const response2 = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=${nombre}&Nombre=`, {
+        const response2 = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=${nombre}&Nombre=`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-store',
@@ -66,7 +66,7 @@ const BusquedaNombre = async (nombre) => {
         const dataUsuario2 = await response2.json();
 
         if (dataUsuario2.ListTarjets.length === 0) {
-            const response3 = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=&Alias=${nombre}`, {
+            const response3 = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=&Alias=${nombre}`, {
                 method: 'GET',
                 mode: 'cors',
                 cache: 'no-store',
@@ -86,7 +86,7 @@ const BusquedaNombre = async (nombre) => {
 }
 
 const BusquedaAlias = async (alias) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=&Alias=${alias}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=&Alias=${alias}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -101,7 +101,7 @@ const BusquedaAlias = async (alias) => {
 }
 
 const BusquedaNivel3 = async (nivel) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIDirectorio/BuscaXCategoria?Categoriaid=${nivel}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXCategoria?Categoriaid=${nivel}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -116,7 +116,7 @@ const BusquedaNivel3 = async (nivel) => {
 }
 
 const ObtenerSegmentos = async (descripcion) => {
-    const response = await fetch(`https://systemweb.ddns.net/WebTarjet/APIUsuDtos/ObtenerSegmentos?Descripcion=${descripcion}`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ObtenerSegmentos?Descripcion=${descripcion}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
