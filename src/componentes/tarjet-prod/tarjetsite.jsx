@@ -656,7 +656,10 @@ END:VCARD`;
                             
                             <a 
                                 className={!sesion && 'desactivado'}
-                                onClick={()=> navigate("/"+btoa(token))}
+                                onClick={()=> window.scrollTo({
+                                    top: 0,
+                                    behavior: "smooth"
+                                })}
                             >
                                 <img src={sesion ? socialTarjet : socialTarjetOff}/>
                             </a>

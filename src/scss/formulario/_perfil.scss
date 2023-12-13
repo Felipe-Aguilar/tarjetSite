@@ -12,16 +12,16 @@ $textoGris: #484846;
     }
 
     // NUEVO
-    @media (width <= 600px) {
-        padding: 40px 0 0 0;
-    }
+    // @media (width <= 600px) {
+    //     padding: 40px 0 0 0;
+    // }
 
     .EncabezadoPerfil{
 
         // NUEVO
-        @media (width <= 600px) {
-            padding: 0px 2%;
-        }
+        // @media (width <= 600px) {
+        //     padding: 0px 2%;
+        // }
 
         .encabezado-perfil{
             width: 33.3%;
@@ -226,9 +226,9 @@ $textoGris: #484846;
             width: 90%;
 
             // Nuevo
-            width: 100%;
-            background: #fff;
-            padding: 20px 2%;
+            // width: 100%;
+            // background: #fff;
+            // padding: 20px 2%;
         }
 
         .cuerpo{
@@ -251,6 +251,12 @@ $textoGris: #484846;
                 padding: 3px;
                 outline: none!important;
                 font-weight: bold;
+
+                // Nuevo 2
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 3px 10px;
             }
             p{
                 text-align: center;
@@ -295,6 +301,58 @@ $textoGris: #484846;
 
                 @media (width <= 600px) {
                     border-radius: 0;
+                }
+            }
+
+            // Nuevo2
+            .buttons-new{
+                display: flex;
+
+                .btn-1{
+                    border-radius: 8px 0 0 8px;
+
+                    @media (width <= 600px) {
+                        text-align: left;
+                        font-size: 0.9rem;
+                    }
+                }
+                .btn-2{
+                    width: 20%;
+                    border-radius: 0 8px 8px 0;
+                    outline: none!important;
+                    flex-direction: column;
+                    i{
+                        color: #3f0f9e;
+                        font-size: 1.5rem;
+                    }
+                    span{
+                        font-size: 0.7rem;
+                        font-weight: 400;
+                    }
+
+                    @media (width <= 600px) {
+                        width: 25%;
+
+                        span{
+                            font-size: 0.6rem;
+                        }
+                    }
+                }
+            }
+            .para{
+                cursor: pointer;
+                font-size: 0.7rem;
+                text-align: right;
+                @media (width <= 600px) {
+                    font-size: 0.6rem;
+                    
+                }
+            }
+            // Nuevo2
+            .image-tool{
+                padding-top: 15px;
+                img{
+                    width: 100%;
                 }
             }
         }

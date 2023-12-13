@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DatosEditaPerfil } from '../contextos/EditaPerfil';
+import { AnimatePresence ,motion } from 'framer-motion';
 
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
 import ilustracion1 from '../../assets/ilustracion-perfil-1.webp';
 import ilustracion2 from '../../assets/ilustracion-perfil-2.webp';
 import ilustracion3 from '../../assets/ilustracion-perfil-3.webp';
+
 
 const Perfil = () => {
 
@@ -16,6 +18,10 @@ const Perfil = () => {
     const [datosActualizados, setDatosActualizados] = useState([]);
 
     const timestamp = new Date().getTime();
+
+    const [viewToolTip1, setViewToolTip1] = useState(false);
+    const [viewToolTip2, setViewToolTip2] = useState(false);
+    const [viewToolTip3, setViewToolTip3] = useState(false);
 
     useEffect(()=>{
         const datosTarjetSite = JSON.parse(localStorage.getItem('DatosTarjetSite'));
@@ -45,9 +51,14 @@ const Perfil = () => {
         }        
     },[]);
 
+    const AnimateProps = {
+        open: {height: 'auto'},
+        closed: {height: 0}
+    }
+
     return ( 
         <div className='backgroun-Green'>
-            <div className="container-fluid Perfil background-image" >
+            <div className="container-fluid Perfil background-image" style={{minHeight: '100vh'}}>
                 <div className='EncabezadoPerfil'>
                     <div className='encabezado-perfil'>
                         <div className='imagen-perfil'>
@@ -153,27 +164,72 @@ const Perfil = () => {
                     <div className='cuerpo'>
 
                         <div className='cuerpo-div'>
-                            <h6>Directorio Tarjet</h6>
-                            <img src={ilustracion1} alt="Ilustración tarjet" className='img-fluid'/>
-                            <p>
-                                Tu información que se mostrará en el directorio empresarial
-                            </p>
-                            <button className='btn-editar' onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
+
+                            {/* <button className='btn-editar' onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
                                 Edita tu tarjet
-                            </button>
-                            <hr />
+                            </button> */}
+
+                            <div className='buttons-new'>
+                                <button className='btn-editar btn-1' onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
+                                    Edita tu tarjet
+                                </button>
+
+                                <button className='btn-editar btn-2' onClick={()=>setViewToolTip1(!viewToolTip1)}>
+                                    <i className="bi bi-question-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div className='para'>
+                                <span onClick={()=>setViewToolTip3(!viewToolTip3)}>¿Para que sirve?</span>
+                            </div>
+                            <AnimatePresence>
+                                { viewToolTip1 && (
+                                    <motion.div 
+                                        className='image-tool'
+                                        initial = "closed" 
+                                        animate = "open"
+                                        exit= "closed"
+                                        variants={AnimateProps}
+                                    >
+                                        <h6>Directorio Tarjet</h6>
+                                        <img src={ilustracion1} alt="Edita tu información que se mostrará en el directorio empresarial" />
+                                        <p>Tu información que se mostrará en el directorio empresarial</p>
+                                    </motion.div>
+                                )
+                                }
+                            </AnimatePresence>
+                            
                         </div>
 
                         <div className="cuerpo-div">
-                            <h6>Tarjeta digital Tarjet (micrositio web)</h6>
-                            <img src={ilustracion2} alt="Ilustración tarjet" className='img-fluid'/>
-                            <p>
-                                Tu tarjeta digital que compartes a la gente
-                            </p>
-                            <button className='btn-site' onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}>
-                                Editar tu tarjet site (tarjeta digital)
-                            </button>
-                            <hr />
+                            
+                            <div className="buttons-new">
+                                <button className='btn-site btn-1' onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}>
+                                    Editar tu tarjet site (tarjeta digital)
+                                </button>
+
+                                <button className='btn-site btn-2' onClick={()=>setViewToolTip2(!viewToolTip2)}>
+                                    <i className="bi bi-question-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div className='para'>
+                                <span onClick={()=>setViewToolTip3(!viewToolTip3)}>¿Para que sirve?</span>
+                            </div>
+                            <AnimatePresence>
+                                { viewToolTip2 && (
+                                    <motion.div 
+                                        className='image-tool'
+                                        initial = "closed" 
+                                        animate = "open"
+                                        exit= "closed"
+                                        variants={AnimateProps}
+                                    >
+                                        <h6>Tarjeta digital Tarjet (micrositio web)</h6>
+                                        <img src={ilustracion2} alt="Edita tu información que se mostrará en el directorio empresarial" />
+                                        <p>Tu tarjeta digital que compartes a la gente</p>
+                                    </motion.div>
+                                )
+                                }
+                            </AnimatePresence>
                         </div>
 
                         {/* <button className='btn-fisica'>
@@ -187,14 +243,35 @@ const Perfil = () => {
                         </div> */}
 
                         <div className="cuerpo-div">
-                            <h6>Tarjetero personal</h6>
-                            <img src={ilustracion3} alt="Ilustración tarjet" className='img-fluid'/>
-                            <p>
-                                Revisa tus contactos tarjet guardados
-                            </p>
-                            <button className='btn-visitar' onClick={()=>navigate(`/${btoa(datosSesion.UsuToken)}`)}>
-                                Visitar tarjetero
-                            </button>
+
+                            <div className="buttons-new">
+                                <button className='btn-visitar btn-1' onClick={()=>navigate(`/${btoa(datosSesion.UsuToken)}`)}>
+                                    Visitar tarjetero
+                                </button>
+
+                                <button className='btn-visitar btn-2' onClick={()=>setViewToolTip3(!viewToolTip3)}>
+                                    <i className="bi bi-question-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div className='para'>
+                                <span onClick={()=>setViewToolTip3(!viewToolTip3)}>¿Para que sirve?</span>
+                            </div>
+                            <AnimatePresence>
+                                { viewToolTip3 && (
+                                    <motion.div 
+                                        className='image-tool'
+                                        initial = "closed" 
+                                        animate = "open"
+                                        exit= "closed"
+                                        variants={AnimateProps}
+                                    >
+                                        <h6>Tarjetero personal</h6>
+                                        <img src={ilustracion1} alt="Edita tu información que se mostrará en el directorio empresarial" />
+                                        <p>Revisa tus contactos tarjet guardados</p>
+                                    </motion.div>
+                                )
+                                }
+                            </AnimatePresence>
                         </div>
 
                     </div>
