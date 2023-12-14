@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import { DatosUsuarioSesion } from '../contextos/DatosUsuarioSesion';
 import { ConsultaTarjetero, ConsultaTarjeteroFiltro, ConsultaTarjeteroNombre } from '../contextos/ConsultaTarjetero';
@@ -26,8 +27,8 @@ import BtnQr from '../../assets/boton-tuqr-tarjetero.svg';
 import BtnCompartir from '../../assets/boton-compartir-tarjetero.svg';
 import BtnCopiar from '../../assets/boton-enlace-tarjetero.svg';
 import BtnDirectorio from '../../assets/boton-directorio-tarjetero.svg';
-import rostro from '../../assets/rostro-04.jpg';
 import perfilGenerico from '../../assets/perfiltemporal.jpg';
+import btnCreaTuTarjet from '../../assets/boton-creatutarjeta.svg';
 
 import { QRCodeSVG } from 'qrcode.react';
 import { DatosEditaPerfil } from '../contextos/EditaPerfil';
@@ -223,8 +224,17 @@ const MiTarjetero = () => {
     if(comprobarUsuario.usuId === 0) return null;
     
     return (
-
         <div className='container-fluid p-0 backgroun-Green'>
+
+            <Helmet>
+                <title>Tarjet - personalizado title</title>
+                <meta name="description" content="Tarjet - personalizado description" />
+                <meta property="og:title" content="Tarjet - personalizado og title" />
+                <meta property="og:description" content="Tarjet - personalizado og description" />
+                <meta property="og:image" content="Tarjet - personalizado og image" />
+                <meta property="og:url" content={`https://tarjet.site#${window.location.hash}`} />
+                <meta property="og:type" content="website" />
+            </Helmet>
 
             <Toaster />
             <div className='miTarjetero background-image' >
@@ -317,8 +327,7 @@ const MiTarjetero = () => {
                 {/* Controles rediseño */}
                 <div className='row justify-content-center controles'>
                     <div 
-                        className={`col-11 col-lg-4 contenedor ${usuario.RegistroTarjet && 'justify-content-center'}`}
-                        
+                        className={`col-11 col-lg-4 contenedor ${usuario.RegistroTarjet && 'justify-content-around'}`}
                     >
                         { datos.RegistroTarjet && 
                             <>
@@ -351,8 +360,23 @@ const MiTarjetero = () => {
                             <img src={BtnDirectorio}/>
                             Directorio
                         </button>
+
+                        { !datos.RegistroTarjet &&
+                            <div className='btn-crea'>
+                                <img src={btnCreaTuTarjet} alt="Botón de crea tu tarjet" onClick={()=>navigate('/login')}/>
+                            </div>
+                        }
                     </div>
+                    
                 </div>
+
+                {/* { datos.RegistroTarjet &&
+                    <div className='row justify-content-center '>
+                        <div className='col-11 col-lg-4 btn-crea'>
+                            <img src={btnCreaTuTarjet} alt="Botón de crea tu tarjet" onClick={()=>navigate('/login')}/>
+                        </div>
+                    </div>
+                } */}
 
                 {/* Controles antiguos */}
                 {/* <div className='row mt-4 justify-content-center opciones2'>
@@ -420,7 +444,7 @@ const MiTarjetero = () => {
                 </div> */}
 
                 {/* Tu tarjetero */}
-                <div className='row justify-content-center TuTarjetero'>
+                <div className='row justify-content-center TuTarjetero mt-4'>
                     <div className='col-11 col-lg-4'>
                         <h5>Tu tarjetero</h5>
                         <p>Actualmente tienes <span>{datosMiTarjetero.length}</span> Tarjets</p>

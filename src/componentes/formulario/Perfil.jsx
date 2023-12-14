@@ -266,7 +266,7 @@ const Perfil = () => {
                                         variants={AnimateProps}
                                     >
                                         <h6>Tarjetero personal</h6>
-                                        <img src={ilustracion1} alt="Edita tu información que se mostrará en el directorio empresarial" />
+                                        <img src={ilustracion3} alt="Edita tu información que se mostrará en el directorio empresarial" />
                                         <p>Revisa tus contactos tarjet guardados</p>
                                     </motion.div>
                                 )

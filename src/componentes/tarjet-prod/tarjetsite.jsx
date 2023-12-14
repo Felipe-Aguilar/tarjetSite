@@ -5,6 +5,7 @@ import { ComprobarUsuario, DatosUsuario, DatosUsuarioTarjetSite } from '../conte
 import FileSaver from 'file-saver';
 import Compartir from './Compartir';
 import DOMPurify from 'dompurify';
+import { Helmet } from 'react-helmet';
 
 import perfilTemporal from '../../assets/perfiltemporal.jpg';
 import IconServicios from '../../assets/iconos-servicios-site-tarjet.svg';
@@ -225,9 +226,20 @@ END:VCARD`;
         }
 
     }
-{console.log(usuario)}
+
     return ( 
         <div className='backgroun-Green'>
+
+            <Helmet>
+                <title>Tarjet - personalizado title</title>
+                <meta name="description" content="Tarjet - personalizado description" />
+                <meta property="og:title" content="Tarjet - personalizado og title" />
+                <meta property="og:description" content="Tarjet - personalizado og description" />
+                <meta property="og:image" content="https://tarjet.site/assets/logo-tarjet-700f7980.svg" />
+                <meta property="og:url" content={`https://tarjet.site#${window.location.hash}`} />
+                <meta property="og:type" content="website" />
+            </Helmet>
+
             <div className='tarjetSite background-image' style={{background: usuario.SiteFondo}}>
                 <div className='row justify-content-center encabezado'>
                     <div className='col-12 col-md-4 p-0'>
@@ -689,7 +701,7 @@ END:VCARD`;
                                 Te agradó esta tarjeta digital <br/>
                                 <span>Tú también puedes tener la tuya</span>
                             </h5>
-                            <a href="https://wa.me/5586763895" target='_blank' className='btn-verde'>
+                            <a href="https://tarjet.site/#/login" className='btn-verde'>
                                 Solicita gratuitamente <br/> tu tarjeta digital Tarjet
                             </a>
                             <h5>
