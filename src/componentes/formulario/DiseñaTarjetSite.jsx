@@ -659,11 +659,14 @@ const DiseñaTarjetSite = () => {
 
                 <div className='text'>
                     <h1>Tarjet site</h1>
-                    <p>
+                    <p className='orange'>
                         El micro sitio que te ayudará a que la gente te contacte y conozca tus servicios y productos.
                     </p>
                     <p>
-                        Este site es tu presentación, se mostrará al momento de compartir tu tarjeta, ya sea en url, tarjeta nfc ó QR.
+                        Este site es tu presentación, con ella, podrás brindar una excelente primera impresión a tus prospectos y clientes.
+                    </p>
+                    <p>
+                        Se mostrará al momento de compartir tu tarjeta, ya sea en url, tarjeta nfc ó QR.
                     </p>
                 </div>
 

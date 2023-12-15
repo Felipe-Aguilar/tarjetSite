@@ -247,37 +247,37 @@ const DiseñaTarjet = () => {
         
         e.preventDefault();
 
-        if (sameAlias) {
-            setError(true);
+        // if (sameAlias) {
+        //     setError(true);
             
-            if (sameAlias.Token !== atob(usuId)) {
-                setErrorAlias(true);
-                return;
+        //     if (sameAlias.Token !== atob(usuId)) {
+        //         setErrorAlias(true);
+        //         return;
 
-            } else{
-                setErrorAlias(false);
-            }
-        }
+        //     } else{
+        //         setErrorAlias(false);
+        //     }
+        // }
 
-        if (buscaActividad === '' || nombreUsuario === '') {
-            setError(true);
+        // if (buscaActividad === '' || nombreUsuario === '') {
+        //     setError(true);
 
-            if (buscaActividad === '') {
-                setErrorActividad(true);
-            }else{
-                setErrorActividad(false);
-            }
+        //     if (buscaActividad === '') {
+        //         setErrorActividad(true);
+        //     }else{
+        //         setErrorActividad(false);
+        //     }
 
-            if (nombreUsuario === '') {
-                setErrorNombre(true);
-            }else{
-                setErrorNombre(false);
-            }
+        //     if (nombreUsuario === '') {
+        //         setErrorNombre(true);
+        //     }else{
+        //         setErrorNombre(false);
+        //     }
 
-            return;
-        }else{
-            setError(false);
-        }
+        //     return;
+        // }else{
+        //     setError(false);
+        // }
 
         const datosFormulario = {
             "Nom": nombre,
@@ -328,6 +328,38 @@ const DiseñaTarjet = () => {
             return;
         }else{
             setError2(false);
+        }
+
+        if (sameAlias) {
+            setError(true);
+            
+            if (sameAlias.Token !== atob(usuId)) {
+                setErrorAlias(true);
+                return;
+
+            } else{
+                setErrorAlias(false);
+            }
+        }
+
+        if (buscaActividad === '' || nombreUsuario === '') {
+            setError(true);
+
+            if (buscaActividad === '') {
+                setErrorActividad(true);
+            }else{
+                setErrorActividad(false);
+            }
+
+            if (nombreUsuario === '') {
+                setErrorNombre(true);
+            }else{
+                setErrorNombre(false);
+            }
+
+            return;
+        }else{
+            setError(false);
         }
 
         const datosFormulario = {
@@ -396,7 +428,6 @@ const DiseñaTarjet = () => {
     }
 
     // Comprobar NOMBRE DE USUARIO
-
     const [sameAlias, setSameAlias] = useState('');
 
     const onChangeNombreUsuario = async (e) => {
@@ -615,9 +646,7 @@ const DiseñaTarjet = () => {
                                                 onChange={(e)=>setCargo(e.target.value)}
                                             />
 
-                                            {/* <input type="text" placeholder='Encabezado ó servicio principal (opcional)' maxLength={30}/> */}
-
-                                            { error && 
+                                            {/* { error && 
                                                 <div className='error-message'>
                                                     { buscaActividad === '' &&
                                                         <p>
@@ -635,7 +664,7 @@ const DiseñaTarjet = () => {
                                                         </p>
                                                     }
                                                 </div>
-                                            }
+                                            } */}
 
                                             { previsualizar &&
                                                 <Previsualizar 
@@ -1159,12 +1188,25 @@ const DiseñaTarjet = () => {
                                     </div>
                                 </div>
 
-                                {/* <div className='terminos'>
-                                    <input type="checkbox" id='terminos'/>
-                                    <label htmlFor='terminos'>
-                                        Acepto <span onClick={()=>navigate('/aviso-privacidad')}>términos de privacidad</span>
-                                    </label>
-                                </div> */}
+                                { error && 
+                                    <div className='error-message'>
+                                        { buscaActividad === '' &&
+                                            <p>
+                                                Por favor ingrese una actividad
+                                            </p>
+                                        }
+                                        { nombreUsuario === '' &&
+                                            <p>
+                                                Por favor ingrese nombre de usuario
+                                            </p>
+                                        }
+                                        {  errorAlias &&
+                                            <p>
+                                                Nombre de usuario ya está en uso, por favor intente con otro.
+                                            </p>
+                                        }
+                                    </div>
+                                }
 
                                 { error2 &&
                                     <div className='error-message'>
