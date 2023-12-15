@@ -7,6 +7,7 @@ import { ColeccionTarjeta } from '../contextos/Colecciones';
 import Slider from 'react-slick';
 import CargarImagen from './CargarImagen';
 import PopCorrecto from './PopCorrecto';
+import _ from 'lodash';
 
 import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
 import perfilTemporal from '../../assets/perfiltemporal.jpg';
@@ -25,6 +26,7 @@ const DiseñaTarjet = () => {
 
     const [cargarImagen, setCargarImagen] = useState(false);
     const [previsualizar, setPrevisualizar] = useState(false);
+    const [tipoPrevisualizar, setTipoPrevisualizar] = useState('');
 
     // Datos Formulario
     const [nombre, setNombre] = useState('');
@@ -63,7 +65,7 @@ const DiseñaTarjet = () => {
     const [coleccionesPremium, setColeccionesPremium] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [currentFondo, setCurrentFondo] = useState('TarjetaF_1.webp');
-    const [currentFondo2, setCurrentFondo2] = useState('TFREPR1.webp');
+    const [currentFondo2, setCurrentFondo2] = useState('TFPrem1.webp');
 
     // Listado de prefijos
     const [listadoPrefijos, setListadoPrefijos] = useState([]);
@@ -80,7 +82,9 @@ const DiseñaTarjet = () => {
         // Obtiene segmento para TUS DATOS
         const selecActividad = async () => {
             const respuesta = await ObtenerSegmentos('');
-            setSegmentos(respuesta.ListSegmentos);
+            
+            // setSegmentos(respuesta.ListSegmentos);
+            setSegmentos(_.sortBy(respuesta.ListSegmentos, 'Descripcion'));
         }
 
         // Obtiene datos generales
@@ -212,7 +216,7 @@ const DiseñaTarjet = () => {
             const objectImagen = colecciones.find(coleccion => coleccion.TarjetaImagen === `TarjetaF_${current+1}.webp`);
             setCurrentFondo(objectImagen);
 
-            const objectImagen2 = colecciones.find(coleccion => coleccion.TarjetaImagen === `TFREPR${current+1}.webp`);
+            const objectImagen2 = colecciones.find(coleccion => coleccion.TarjetaImagen === `TFPrem${current+1}.webp`);
             if (objectImagen2) {
                 setCurrentFondo2(objectImagen2);
             }
@@ -302,16 +306,17 @@ const DiseñaTarjet = () => {
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
-        setPopActualiza(true);
+        // ESTO SE COMENTÓ POR EL onBlur
+        // setPopActualiza(true);
 
-        setTimeout(()=>{
-            setPopActualiza(false);
+        // setTimeout(()=>{
+        //     setPopActualiza(false);
             
-            setTimeout(()=>{
-                window.location.reload();
-            }, 500);
+        //     setTimeout(()=>{
+        //         window.location.reload();
+        //     }, 500);
 
-        }, 3500);
+        // }, 3500);
     }
 
     // Guardar TUS DATOS
@@ -319,16 +324,16 @@ const DiseñaTarjet = () => {
 
         e.preventDefault();
 
-        if (!colonia) {
-            setError2(true);
-            return;
-        }
-        if (codigoPostal < 5) {
-            setError2(true);
-            return;
-        }else{
-            setError2(false);
-        }
+        // if (!colonia) {
+        //     setError2(true);
+        //     return;
+        // }
+        // if (codigoPostal < 5) {
+        //     setError2(true);
+        //     return;
+        // }else{
+        //     setError2(false);
+        // }
 
         if (sameAlias) {
             setError(true);
@@ -469,6 +474,13 @@ const DiseñaTarjet = () => {
         }, 3500);
     }
 
+    // Previsualizar, gratis o premium
+
+    const onClickPrevisualizar = (tipo) => {
+        setTipoPrevisualizar(tipo);
+        setPrevisualizar(true);
+    }
+
     return ( 
         <div className='backgroun-Green'>
             <div className="container-fluid diseñaTarjet background-image">
@@ -483,9 +495,9 @@ const DiseñaTarjet = () => {
 
                 <div className='texto'>
                     <h1>Gracias por pertenecer a esta gran comunidad</h1>
-                    <h5>
+                    {/* <h5>
                         Nos alegra mucho que estés a punto de <b>crear tu Tarjet.</b>
-                    </h5>
+                    </h5> */}
                     <h5 className='orange'>
                         <b>La información de esta sección te ayudará a establecer relaciones comerciales con otros usuarios tarjet en nuestro directorio empresarial</b>
                     </h5>
@@ -580,11 +592,11 @@ const DiseñaTarjet = () => {
                                 Premium
                             </button>
                             <button
-                                className={optionColecciones === 'Personalizada' ? 'activeOption' : ''}
+                                className={optionColecciones === 'Ver actual' ? 'activeOption' : ''}
                                 onClick={(e)=>setOptionColecciones(e.target.innerText)}
                             >
                                 <i className="bi bi-caret-down-fill"></i>
-                                Personalizada
+                                Ver actual
                             </button>
                         </div>
 
@@ -644,6 +656,7 @@ const DiseñaTarjet = () => {
                                                 placeholder='Texto debajo de tu nombre (30 caracteres)' maxLength={30}
                                                 value={cargo}
                                                 onChange={(e)=>setCargo(e.target.value)}
+                                                onBlur={GuardarTarjeta1}
                                             />
 
                                             {/* { error && 
@@ -666,27 +679,19 @@ const DiseñaTarjet = () => {
                                                 </div>
                                             } */}
 
-                                            { previsualizar &&
-                                                <Previsualizar 
-                                                    onClickButton={CerrarPrevisualizar} 
-                                                    datosGenerales={datosGenerales}
-                                                    currentFondo={currentFondo}
-                                                    nombreCompleto = {`${nombre} ${appPat} ${appMat}`}
-                                                    cargo = { cargo }
-                                                />
-                                            }
+                                            
 
                                             <div className='buttons'>
                                                 <div className='primer'>
-                                                    <button onClick={()=>setPrevisualizar(true)} type='button'>
+                                                    <button onClick={()=>onClickPrevisualizar('gratis')} type='button'>
                                                         Previsualizar
                                                     </button>
                                                 </div>
-                                                <div className='segundo'>
+                                                {/* <div className='segundo'>
                                                     <button type='submit'>
                                                         Guardar Tarjeta
                                                     </button>
-                                                </div>
+                                                </div> */}
                                             </div>
 
                                             <div className='regresar'>
@@ -698,6 +703,18 @@ const DiseñaTarjet = () => {
                                     </div>
                                 </div>
                             </div>
+                        }
+
+                        { previsualizar &&
+                            <Previsualizar 
+                                onClickButton={CerrarPrevisualizar} 
+                                datosGenerales={datosGenerales}
+                                tipoPrevisualizar={tipoPrevisualizar}
+                                currentFondo={currentFondo}
+                                currentFondo2={currentFondo2}
+                                nombreCompleto = {`${nombre} ${appPat} ${appMat}`}
+                                cargo = { cargo }
+                            />
                         }
 
                         { optionColecciones === 'Premium' &&
@@ -863,14 +880,14 @@ const DiseñaTarjet = () => {
                                 </div>
 
                                 <div className='buttons-confirm'>
-                                    {/* <button 
+                                    <button 
                                         type='button' 
                                         className={`previsualizarBtn`} 
-                                        onClick={()=>setPrevisualizar(true)}
+                                        onClick={()=>onClickPrevisualizar('premium')}
                                         disabled={datosGenerales.Premium ? false : true}
                                     >
-                                        Mi Logo/Foto
-                                    </button> */}
+                                        Previsualizar
+                                    </button>
                                     
                                     <button 
                                         className={`guardar`}
@@ -883,7 +900,7 @@ const DiseñaTarjet = () => {
                             </div>
                         }
 
-                        { optionColecciones === 'Personalizada' &&
+                        { optionColecciones === 'Ver actual' &&
                             <div className='personalizada'>
 
                                 <p>Tu tarjeta personalizada actual</p>
@@ -1208,13 +1225,13 @@ const DiseñaTarjet = () => {
                                     </div>
                                 }
 
-                                { error2 &&
+                                {/* { error2 &&
                                     <div className='error-message'>
                                         <p>
                                             Por favor introduzca un código postal válido y seleccione una colonia
                                         </p>
                                     </div>
-                                }
+                                } */}
 
                                 <div className='btn-guardar'>
                                     <button type='submit'>

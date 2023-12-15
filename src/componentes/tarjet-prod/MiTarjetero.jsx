@@ -254,22 +254,6 @@ const MiTarjetero = () => {
                         </div>
                     </div>
 
-                    {/* Tarjeta */}
-                        {/* <div 
-                            className='row justify-content-center tarjeta' 
-                            style={{backgroundImage: `url(${'https://tarjet.site/imagenes/'+ usuario.UsuFondoF})`}}
-                            onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
-                        >
-                            <div className='col-11 col-md-4 p-0'>
-                                <img src={CirculoLink} className="circulo"/>
-                                <motion.img 
-                                    src={Mano3D} 
-                                    className="mano"
-                                    animate={{rotate: [0,20,0]}}
-                                    transition={{repeat: Infinity, repeatDelay:2}}
-                                />
-                            </div>
-                        </div> */}
 
                     <div className='row justify-content-center tarjeta2'>
                         <div className='col-11 col-lg-4'>
@@ -282,7 +266,7 @@ const MiTarjetero = () => {
                                             />
                                         }
 
-                                        { usuario.UsuFondoF?.slice(0,5) === 'TFREP' &&
+                                        { usuario.UsuFondoF?.slice(0,5) === 'TFPre' &&
                                             <img 
                                                 src={`https://tarjet.site/imagenes/tarjetas_frente/premium/${usuario.UsuFondoF}?timestamp=${timestamp}`}
                                                 onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
@@ -362,9 +346,10 @@ const MiTarjetero = () => {
                         </button>
 
                         { !datos.RegistroTarjet &&
-                            <div className='btn-crea'>
-                                <img src={btnCreaTuTarjet} alt="Botón de crea tu tarjet" onClick={()=>navigate('/login')}/>
-                            </div>
+                            <button onClick={()=>navigate(`/mi-perfil/${btoa(usuario.UsuToken)}`)}>
+                                <img src={btnCreaTuTarjet} />
+                                Crea tarjet
+                            </button>
                         }
                     </div>
                     

@@ -80,21 +80,6 @@ $BordeColor: #c0c0c0aa;
         }
     }
 
-    .btn-crea{
-        margin-top: 20px;
-
-        img{
-            width: 95%;
-            display: block;
-            margin: auto;
-            cursor: pointer;
-
-            @media (width <= 600px) {
-                width: 80%;
-            }
-        }
-    }
-
     .consultas{
         padding: 20px 0;
 

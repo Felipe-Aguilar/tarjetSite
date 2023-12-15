@@ -777,7 +777,7 @@ const DiseñaTarjetSite = () => {
                                         Subir mi diseño
                                     </button> */}
                                     <button className='guardar' onClick={(e)=>GuardarImagenEncabezado('gratis', e)}>
-                                        Guardar imagen
+                                        Definir encabezado
                                     </button>
                                 </div>
 
@@ -851,7 +851,7 @@ const DiseñaTarjetSite = () => {
                                         onClick={(e)=>GuardarImagenEncabezado('premium', e)}
                                         disabled={datosGenerales.Premium ? false : true}
                                     >
-                                        Guardar imagen
+                                        Definir encabezado
                                     </button>
                                 </div>
 

@@ -5,7 +5,9 @@ import { ComprobarUsuario, DatosUsuario, DatosUsuarioTarjetSite } from '../conte
 import FileSaver from 'file-saver';
 import Compartir from './Compartir';
 import DOMPurify from 'dompurify';
-import { Helmet } from 'react-helmet';
+import { GuardarTarjet } from '../contextos/GuardarTarjet';
+import { DatosEditaPerfil } from '../contextos/EditaPerfil';
+import PopGuardarTarjet from './PopGuardarTarjet';
 
 import perfilTemporal from '../../assets/perfiltemporal.jpg';
 import IconServicios from '../../assets/iconos-servicios-site-tarjet.svg';
@@ -37,9 +39,7 @@ import IconBtnWeb from '../../assets/boton-web-site.svg';
 import IconBtnRedes from '../../assets/boton-redes-site.svg';
 import IconBtnCatalogo from '../../assets/mxm/boton-catalogo-site.svg';
 import IconBtnTarjetero from '../../assets/boton-tarjetero-site.svg';
-import { GuardarTarjet } from '../contextos/GuardarTarjet';
-import { DatosEditaPerfil } from '../contextos/EditaPerfil';
-import PopGuardarTarjet from './PopGuardarTarjet';
+import EncabezadoPredefinido from '../../assets/EncabezadoPredefinido.webp';
 
 
 const TarjetSite = () => {
@@ -230,21 +230,31 @@ END:VCARD`;
     return ( 
         <div className='backgroun-Green'>
 
-            <Helmet>
-                <title>Tarjet - personalizado title</title>
-                <meta name="description" content="Tarjet - personalizado description" />
-                <meta property="og:title" content="Tarjet - personalizado og title" />
-                <meta property="og:description" content="Tarjet - personalizado og description" />
-                <meta property="og:image" content="https://tarjet.site/assets/logo-tarjet-700f7980.svg" />
-                <meta property="og:url" content={`https://tarjet.site#${window.location.hash}`} />
-                <meta property="og:type" content="website" />
-            </Helmet>
-
             <div className='tarjetSite background-image' style={{background: usuario.SiteFondo}}>
                 <div className='row justify-content-center encabezado'>
                     <div className='col-12 col-md-4 p-0'>
 
-                        { usuario.SiteImgEncabezado?.slice(0,10) === 'SiteHeader' ? (
+                        { usuario.SiteImgEncabezado ? (
+                            usuario.SiteImgEncabezado?.slice(0,10) === 'SiteHeader' ? (
+                                <img src={`https://tarjet.site/imagenes/Headers_Collection/${usuario.SiteImgEncabezado}`} className='img-fluid'/>
+                            )
+                            : (
+                                usuario.SiteImgEncabezado?.slice(0,10) === 'SiteHeadPr' ? (
+                                    <img src={`https://tarjet.site/imagenes/Headers_Collection/premium/${usuario.SiteImgEncabezado}`} className='img-fluid'/>
+                                ) : (
+                                    <img src={imagenSRC+usuario.SiteImgEncabezado} className='img-fluid'/>
+                                )
+                            )
+                            
+                        )
+                            :
+                            (
+                                <img src={EncabezadoPredefinido} className='img-fluid'/>
+                            )
+                        }
+                        
+
+                        {/* { usuario.SiteImgEncabezado?.slice(0,10) === 'SiteHeader' ? (
                             <img src={`https://tarjet.site/imagenes/Headers_Collection/${usuario.SiteImgEncabezado}`} className='img-fluid'/>
                         )
                         : (
@@ -255,7 +265,8 @@ END:VCARD`;
 
                             )
                         )
-                        }
+                        } */}
+
                     </div>
                 </div>
 

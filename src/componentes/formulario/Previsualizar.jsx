@@ -6,16 +6,31 @@ import { SubirImagenPrimer } from "../contextos/SubirImagen";
 import html2canvas from "html2canvas";
 
 
-const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompleto, cargo}) => {
-
+const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, currentFondo, currentFondo2, nombreCompleto, cargo}) => {
+    
+    
     var Tarjeta;
+    var propiedades = [];
 
-    if (currentFondo.TarjetaImagen === undefined) {
-        Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo}`;
-    } else {
-        Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo.TarjetaImagen}`;
+    if (tipoPrevisualizar === 'gratis') {
+
+        propiedades = currentFondo;
+
+        if (currentFondo.TarjetaImagen === undefined) {
+            Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo}`;
+        } else {
+            Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo.TarjetaImagen}`;
+        }
+    }else{
+
+        propiedades = currentFondo2;
+
+        if (currentFondo2.TarjetaImagen === undefined) {
+            Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/premium/${currentFondo2}`;
+        } else {
+            Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/premium/${currentFondo2.TarjetaImagen}`;
+        }
     }
-
     
 
     const propsAnimation = {
@@ -37,7 +52,7 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompl
 
     const GuardarImagen = () => {
         // Captura la representación de la imagen con los textos superpuestos
-        html2canvas(constraintsRef.current,{scale: 2}).then((canvas) => {
+        html2canvas(constraintsRef.current,{scale: 5}).then((canvas) => {
 
             // Convierte el lienzo en una URL de datos
             const imgData = canvas.toDataURL('image/jpg');
@@ -88,7 +103,7 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompl
                                     dragConstraints={constraintsRef} 
                                     dragElastic={0}
                                     dragMomentum={false}
-                                    style={currentFondo.TarjetaColorFont && {color: `${currentFondo.TarjetaColorFont}`} }
+                                    style={propiedades.TarjetaColorFont && {color: `${propiedades.TarjetaColorFont}`} }
                                 >
                                     {nombreCompleto}
                                 </motion.label>
@@ -99,7 +114,7 @@ const Previsualizar = ({onClickButton, datosGenerales, currentFondo, nombreCompl
                                     dragConstraints={constraintsRef} 
                                     dragElastic={0}
                                     dragMomentum={false}
-                                    style={currentFondo.TarjetaColorFont && {color: `${currentFondo.TarjetaColorFont}`} }
+                                    style={propiedades.TarjetaColorFont && {color: `${propiedades.TarjetaColorFont}`} }
                                 >
                                     {cargo}
                                 </motion.label>
