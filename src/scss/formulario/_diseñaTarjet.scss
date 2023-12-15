@@ -43,6 +43,11 @@ $btnAmarillo: #fab947;
                 width: 95%;
             }
         }
+        .orange{
+            margin-top: 10px;
+            font-weight: 900;
+            color: #E93700;
+        }
     }
 
     .DiseñaTuTarjet{
@@ -136,6 +141,48 @@ $btnAmarillo: #fab947;
 
         @media (width <= 575px) {
             width: 100%;
+        }
+
+        .instrucciones{
+            h6{
+                text-align: center;
+                font-weight: 900;
+            }
+            span{
+                text-transform: uppercase;
+                color: #E93700;
+                font-weight: 900;
+                margin-left: 20px;
+            }
+
+            .pasos{
+                margin-top: 10px;
+                > * + * {
+                    margin-top: 15px;
+                }
+
+                .paso{
+                    display: flex;
+                    gap: 20px;
+
+                    i{
+                        color: #5558af;;
+                        font-size: 1.7rem;
+                    }
+                    p{
+                        margin-bottom: 0;
+                        span{
+                            margin: 0;
+                            text-transform: none;
+                            color: #000;
+                        }
+                    }
+                }
+            }
+            .h6-ready{
+                font-weight: 400;
+                margin-bottom: 20px;
+            }
         }
 
         h2{
@@ -345,53 +392,53 @@ $btnAmarillo: #fab947;
                 width: 100%;
                 margin-top: 20px;
 
-                .logotipo{
-                    display: flex;
-                    align-items: center;
+                // .logotipo{
+                //     display: flex;
+                //     align-items: center;
 
-                    .img-perfil{
-                        width: 20%;
+                //     .img-perfil{
+                //         width: 20%;
 
-                        img{
-                            width: 70px;
-                            display: block;
-                            margin: auto;
-                            border-radius: 100%;
-                            border: 1px solid #000;
+                //         img{
+                //             width: 70px;
+                //             display: block;
+                //             margin: auto;
+                //             border-radius: 100%;
+                //             border: 1px solid #000;
 
-                            @media (width <= 575px) {
-                                width: 60px;
-                            }
-                        }
-                    }
-                    .cargar-imagen{
-                        width: 80%;
-                        height: 35px;
-                        border-radius: 8px;
-                        background: $btnAzul;
-                        font-weight: bold;
-                        border: transparent;
-                        outline: none!important;
+                //             @media (width <= 575px) {
+                //                 width: 60px;
+                //             }
+                //         }
+                //     }
+                //     .cargar-imagen{
+                //         width: 80%;
+                //         height: 35px;
+                //         border-radius: 8px;
+                //         background: $btnAzul;
+                //         font-weight: bold;
+                //         border: transparent;
+                //         outline: none!important;
 
-                        span{
-                            font-size: 0.78rem;
-                            font-weight: 400;
-                            text-transform: uppercase;
-                        }
-                    }
-                }
+                //         span{
+                //             font-size: 0.78rem;
+                //             font-weight: 400;
+                //             text-transform: uppercase;
+                //         }
+                //     }
+                // }
 
-                .prefijo{
-                    width: 20%;
-                    text-align: center;
-                    color: #555554;
-                    margin-top: 10px;
+                // .prefijo{
+                //     width: 20%;
+                //     text-align: center;
+                //     color: #555554;
+                //     margin-top: 10px;
 
-                    p{
-                        font-size: 0.8rem;
-                        margin-bottom: 0;
-                    }
-                }
+                //     p{
+                //         font-size: 0.8rem;
+                //         margin-bottom: 0;
+                //     }
+                // }
 
                 .form{
                     form{
@@ -419,50 +466,50 @@ $btnAmarillo: #fab947;
                         .input-error{
                             border: 2px solid red;
                         }
-                        .select{
-                            display: flex;
-                            gap: 10px;
+                        // .select{
+                        //     display: flex;
+                        //     gap: 10px;
                             
-                            div{
-                                width: 20%;
+                        //     div{
+                        //         width: 20%;
 
-                                select{
-                                    width: 100%;
-                                    display: block;
-                                    margin: auto;
-                                }
-                            }
-                            input{
-                                width: 80%;
-                                margin-left: 0;
-                            }
-                        }
-                        .apellidos{
-                            display: flex;
-                            gap: 10px;
+                        //         select{
+                        //             width: 100%;
+                        //             display: block;
+                        //             margin: auto;
+                        //         }
+                        //     }
+                        //     input{
+                        //         width: 80%;
+                        //         margin-left: 0;
+                        //     }
+                        // }
+                        // .apellidos{
+                        //     display: flex;
+                        //     gap: 10px;
                             
-                            input{
-                                width: 50%;
-                            }
-                        }
-                        .input-username{
-                            width: calc(50% - 5px);
+                        //     input{
+                        //         width: 50%;
+                        //     }
+                        // }
+                        // .input-username{
+                        //     width: calc(50% - 5px);
                             
-                            @media (width <= 600px){
-                                width: calc(50% - 10px);
-                            }
-                        }
-                        .dataList{
-                            @media (width <= 600px) {
-                                display: none;
-                            }
-                        }
-                        .select-datalist{
-                            width: 100%;
-                            @media (width > 600px) {
-                                display: none;
-                            }
-                        }
+                        //     @media (width <= 600px){
+                        //         width: calc(50% - 10px);
+                        //     }
+                        // }
+                        // .dataList{
+                        //     @media (width <= 600px) {
+                        //         display: none;
+                        //     }
+                        // }
+                        // .select-datalist{
+                        //     width: 100%;
+                        //     @media (width > 600px) {
+                        //         display: none;
+                        //     }
+                        // }
                         a{
                             font-size: 0.8rem;
                             text-decoration: underline;
@@ -784,7 +831,56 @@ $btnAmarillo: #fab947;
         }
 
         .formulario{
-            margin-top: 20px;
+            margin-top: 20px;            
+
+            .logotipo{
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+
+                .img-perfil{
+                    width: 20%;
+
+                    img{
+                        width: 70px;
+                        display: block;
+                        margin: auto;
+                        border-radius: 100%;
+                        border: 1px solid #000;
+
+                        @media (width <= 575px) {
+                            width: 60px;
+                        }
+                    }
+                }
+                .cargar-imagen{
+                    width: 80%;
+                    // height: 35px;
+                    border-radius: 8px;
+                    background: $btnAzul;
+                    font-weight: bold;
+                    border: transparent;
+                    outline: none!important;
+
+                    span{
+                        font-size: 0.78rem;
+                        font-weight: 400;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            .prefijo{
+                width: 20%;
+                text-align: center;
+                color: #555554;
+                margin-top: 10px;
+
+                p{
+                    font-size: 0.8rem;
+                    margin-bottom: 0;
+                }
+            }
 
             form{
                 flex-direction: column;
@@ -809,6 +905,56 @@ $btnAmarillo: #fab947;
                     color: #000;
                     display: flex;
                     justify-content: center;
+                }
+
+                .select{
+                    display: flex;
+                    gap: 10px;
+                    
+                    div{
+                        width: 20%;
+
+                        select{
+                            width: 100%;
+                            display: block;
+                            margin: auto;
+                        }
+                    }
+                    input{
+                        width: 80%;
+                        margin-left: 0;
+                    }
+                }
+                .apellidos{
+                    display: flex;
+                    gap: 10px;
+                    
+                    input{
+                        width: 50%;
+                    }
+                }
+                .input-username{
+                    width: calc(50% - 5px);
+                    
+                    @media (width <= 600px){
+                        width: calc(50% - 10px);
+                    }
+                }
+                .text-usuario{
+                    text-align: center;
+                    font-size: 0.8rem;
+                    text-transform: lowercase;
+                }
+                .dataList{
+                    @media (width <= 600px) {
+                        display: none;
+                    }
+                }
+                .select-datalist{
+                    width: 100%;
+                    @media (width > 600px) {
+                        display: none;
+                    }
                 }
 
                 .twoInput{

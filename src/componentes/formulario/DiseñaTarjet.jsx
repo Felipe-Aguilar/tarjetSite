@@ -165,8 +165,8 @@ const DiseñaTarjet = () => {
 
     const navigate = useNavigate();
 
-    const [diseño, setDiseño] = useState(true);
-    const [datos, setDatos] = useState(false);
+    const [diseño, setDiseño] = useState(false);
+    const [datos, setDatos] = useState(true);
 
     const [optionColecciones, setOptionColecciones] = useState('Gratuitas');
 
@@ -453,41 +453,43 @@ const DiseñaTarjet = () => {
                 <div className='texto'>
                     <h1>Gracias por pertenecer a esta gran comunidad</h1>
                     <h5>
-                        Nos alegra mucho que estés a punto de crear tu Tarjet. Con ella, podrás brindar una excelente primera impresión a tus prospectos y clientes
+                        Nos alegra mucho que estés a punto de <b>crear tu Tarjet.</b>
+                    </h5>
+                    <h5 className='orange'>
+                        <b>La información de esta sección te ayudará a establecer relaciones comerciales con otros usuarios tarjet en nuestro directorio empresarial</b>
                     </h5>
                 </div>
 
                 <div className='DiseñaTuTarjet'>
                     <div className='texto'>
                         <h2>Diseña tu tarjet</h2>
-                        <h3>Dale estilo a tu tarjeta de presentación digital</h3>
-                        <p>
-                            Esta tarjeta se mostrará en el directorio
-                        </p>
                     </div>
                 </div>
 
                 <div className='barra'>
                     <div className='cuerpo'>
+                        
                         <button 
-                            className={`btn-1 ${diseño ? 'active' : ''}`} 
-                            onClick={btnDiseño}
+                            className={`btn-1 ${datos ? 'active' : ''}`} 
+                            onClick={btnDatos}
                         >
                             <div>
                                 <span>1</span>
                             </div>
-                            Tu diseño
+                            Tus datos
                         </button>
 
+
                         <button 
-                            className={`${datos ? 'active' : ''}`}
-                            onClick={btnDatos}
+                            className={`${diseño ? 'active' : ''}`}
+                            onClick={btnDiseño}
                         >
                             <div>
                                 <span>2</span>
                             </div>
-                            Tus datos
+                            Diseña tu tarjeta
                         </button>
+
                     </div>
                 </div>
 
@@ -497,6 +499,38 @@ const DiseñaTarjet = () => {
 
                 { diseño &&
                     <div className='colecciones'>
+
+                        <div className='instrucciones'>
+                            <h6>Esta imagen se mostrará en el directorio</h6>
+
+                            <span>Instrucciones</span>
+
+                            <div className='pasos'>
+                                <div className='paso'>
+                                    <i className="bi bi-1-circle-fill"></i>
+                                    <p><span>Escoge tu estilo de tarjeta,</span> puedes elegir una gratuita, adquirir premium ó solicitar un diseño personal.</p>
+                                </div>
+
+                                <div className='paso'>
+                                    <i className="bi bi-2-circle-fill"></i>
+                                    <p><span>Escribe el nombre y servicio con el que te presentarás.</span></p>
+                                </div>
+
+                                <div className='paso'>
+                                    <i className="bi bi-3-circle-fill"></i>
+                                    <p><span>Previsualiza tu tarjeta.</span> <br />
+                                        Aquí puedes acomodar tu nombre y servicio en la zona que desees de la tarjeta.
+                                    </p>
+                                </div>
+
+                                <div className='paso'>
+                                    <i className="bi bi-4-circle-fill"></i>
+                                    <p><span>Guarda la tarjeta.</span></p>
+                                </div>
+                            </div>
+                            <h6 className='h6-ready'>Listo, ya puedes darle estilo a tu portada</h6>
+                        </div>
+
                         <h2>Colecciones</h2>
                         
                         <div className='opciones'>
@@ -553,7 +587,7 @@ const DiseñaTarjet = () => {
                                 </div>
 
                                 <div className='formulario'>
-                                    <div className='logotipo'>
+                                    {/* <div className='logotipo'>
                                         <div className='img-perfil'>
                                             { datosGenerales.ImgFoto ?
                                                 // <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
@@ -569,98 +603,10 @@ const DiseñaTarjet = () => {
 
                                     { cargarImagen &&
                                         <CargarImagen onBotonClick={CerrarCarga} tipoImagen={"PERF"}/>
-                                    }
-
-                                    <div className='prefijo'>
-                                        <p>Prefijo</p>
-                                    </div>
+                                    } */}
 
                                     <div className='form'>
                                         <form onSubmit={GuardarTarjeta1}>
-                                            <div className='select'>
-                                                <div>
-                                                    {/* <select value={titulo} onChange={(e)=>setTitulo(e.target.value)}>
-                                                        <option value="Lic" key="1">Lic</option>
-                                                        <option value="Ing" key="2">Ing</option>
-                                                        <option value="Arq" key="3">Arq</option>
-                                                        <option value="Doc" key="4">Doc</option>
-                                                        <option value="Técni" key="5">Técni</option>
-                                                    </select> */}
-                                                    <select value={titulo} onChange={(e)=>setTitulo(e.target.value)}>
-                                                        { listadoPrefijos.map((prefijo)=>(
-                                                            <option value={prefijo.TituloPersonaDesc} key={prefijo.TituloPersonaId}>{prefijo.TituloPersonaDesc}</option>
-                                                        ))
-                                                        }
-                                                    </select>
-                                                </div>
-                                                <input 
-                                                    type="text" 
-                                                    placeholder='Empresa ó tu Nombre (40 caracteres)' 
-                                                    maxLength={40}
-                                                    value={nombre}
-                                                    onChange={(e)=>setNombre(e.target.value)}
-                                                />
-                                            </div>
-
-                                            <div className='apellidos'>
-                                                <input 
-                                                    type="text" 
-                                                    maxLength={40} 
-                                                    placeholder='Apellido Paterno'
-                                                    value={appPat}
-                                                    onChange={(e)=>setAppPat(e.target.value)}
-                                                />
-                                                <input 
-                                                    type="text" 
-                                                    maxLength={40} 
-                                                    placeholder='Apellido Materno'
-                                                    value={appMat}
-                                                    onChange={(e)=>setAppMat(e.target.value)}
-                                                />
-                                            </div>
-
-                                            <input 
-                                                type="text" 
-                                                placeholder='Nombre de usuario' 
-                                                maxLength={15}
-                                                value={nombreUsuario}
-                                                onChange={onChangeNombreUsuario}
-                                                className={`input-username ${errorAlias ? 'input-error' : ''}`}
-                                            />
-                                            <p className='text-usuario'>
-                                                (con este usuario te podrán encontrar más fácil en el directorio)
-                                            </p>
-
-                                            <input 
-                                                type="text" 
-                                                placeholder='Buscar actividad' 
-                                                className={`dataList ${errorActividad ? 'input-error' : ''}`}
-                                                maxLength={80}
-                                                value={buscaActividad}
-                                                style={{textTransform: 'uppercase'}}
-                                                onChange={actividadOnChange}
-                                                list='actividad-resultados'
-                                            />
-
-                                            <datalist id='actividad-resultados' className='dataList'>
-                                                { segmentos.map((segmento)=>(
-                                                    <option value={segmento.Descripcion} key={segmento.Nivel3Id}></option>
-                                                ))
-                                                }
-                                            </datalist>
-
-                                            <select value={buscaActividad} onChange={actividadOnChange} className='select-datalist'>
-                                                { segmentos.map((segmento)=>(
-                                                    <option value={segmento.Descripcion} key={segmento.Nivel3Id}>
-                                                        {segmento.Descripcion}
-                                                    </option>
-                                                ))
-                                                }
-                                            </select>
-
-                                            <a href='' target='_blank' style={{marginBottom: '15px'}}>
-                                                Si no aparece tu área, solicítala aquí, con tu apoyo nos ayudas a aprender.
-                                            </a>
                                             
                                             <input 
                                                 type="text" 
@@ -959,40 +905,111 @@ const DiseñaTarjet = () => {
                     <div className='tusDatos'>
                         <h6>Esta información se mostrará en el directorio</h6>
 
-                        {/* <div className='imagen-perfil'>
-                            { datosGenerales.ImgFoto ?
-                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}`} />
-                            :
-                                <img src={perfilTemporal} />
+                        <div className='formulario'>
+
+                            <div className='logotipo'>
+                                <div className='img-perfil'>
+                                    { datosGenerales.ImgFoto ?
+                                        <img src={`https://tarjet.site/imagenes/perfil-imagenes/${datosGenerales.ImgFoto}?timestamp=${timestamp}`} />
+                                    :
+                                        <img src={perfilTemporal} />
+                                    }
+                                </div>
+                                <button className='cargar-imagen' onClick={()=>setCargarImagen(true)}>
+                                    Imagen ó Logotipo <br/> <span>cargar ó cambiar imagen</span>
+                                </button>
+                            </div>
+
+                            { cargarImagen &&
+                                <CargarImagen onBotonClick={CerrarCarga} tipoImagen={"PERF"}/>
                             }
 
-                            <button>
-                                Imagen ó Logotipo <span>(editar)</span>
-                            </button>
-                        </div> */}
+                            <div className='prefijo'>
+                                <p>Prefijo</p>
+                            </div>
 
-                        <div className='formulario'>
                             <form onSubmit={GuardarTarjeta2}>
+
+                                <div className='select'>
+                                    <div>
+                                        <select value={titulo} onChange={(e)=>setTitulo(e.target.value)}>
+                                            { listadoPrefijos.map((prefijo)=>(
+                                                <option value={prefijo.TituloPersonaDesc} key={prefijo.TituloPersonaId}>{prefijo.TituloPersonaDesc}</option>
+                                            ))
+                                            }
+                                        </select>
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Empresa ó tu Nombre (40 caracteres)' 
+                                        maxLength={40}
+                                        value={nombre}
+                                        onChange={(e)=>setNombre(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className='apellidos'>
+                                    <input 
+                                        type="text" 
+                                        maxLength={40} 
+                                        placeholder='Apellido Paterno'
+                                        value={appPat}
+                                        onChange={(e)=>setAppPat(e.target.value)}
+                                    />
+                                    <input 
+                                        type="text" 
+                                        maxLength={40} 
+                                        placeholder='Apellido Materno'
+                                        value={appMat}
+                                        onChange={(e)=>setAppMat(e.target.value)}
+                                    />
+                                </div>
+
                                 <input 
                                     type="text" 
-                                    placeholder='Empresa o nombre y apellidos (40 caracteres)' 
-                                    maxLength={40}
-                                    readOnly
-                                    value={nombre + " " + appPat + " " + appMat}
+                                    placeholder='Nombre de usuario' 
+                                    maxLength={15}
+                                    value={nombreUsuario}
+                                    onChange={onChangeNombreUsuario}
+                                    className={`input-username ${errorAlias ? 'input-error' : ''}`}
                                 />
-                                {/* <select disabled>
-                                    
-                                    { buscaActividad === filtroSegmento?.Descripcion &&
-                                        <option 
-                                            value={filtroSegmento.Nivel1Desc}
-                                            key={filtroSegmento.Nivel1Id}
-                                            selected
-                                        >
-                                            {filtroSegmento.Nivel1Desc}
-                                        </option>
+                                
+                                <p className='text-usuario'>
+                                    (con este usuario te podrán encontrar más fácil en el directorio)
+                                </p>
+
+                                <input 
+                                    type="text" 
+                                    placeholder='Buscar actividad' 
+                                    className={`dataList ${errorActividad ? 'input-error' : ''}`}
+                                    maxLength={80}
+                                    value={buscaActividad}
+                                    style={{textTransform: 'uppercase'}}
+                                    onChange={actividadOnChange}
+                                    list='actividad-resultados'
+                                />
+
+                                <datalist id='actividad-resultados' className='dataList'>
+                                    { segmentos.map((segmento)=>(
+                                        <option value={segmento.Descripcion} key={segmento.Nivel3Id}></option>
+                                    ))
                                     }
-                                    <option value="categoría" key="1" selected>Categoría *</option>
-                                </select> */}
+                                </datalist>
+
+                                <select value={buscaActividad} onChange={actividadOnChange} className='select-datalist'>
+                                    { segmentos.map((segmento)=>(
+                                        <option value={segmento.Descripcion} key={segmento.Nivel3Id}>
+                                            {segmento.Descripcion}
+                                        </option>
+                                    ))
+                                    }
+                                </select>
+
+                                <a href='' target='_blank' style={{marginBottom: '15px'}}>
+                                    Si no aparece tu área, solicítala aquí, con tu apoyo nos ayudas a aprender.
+                                </a>
+
+                                
 
                                 <input 
                                     type="text" 
@@ -1009,34 +1026,6 @@ const DiseñaTarjet = () => {
                                     value={buscaActividad === filtroSegmento?.Descripcion ? filtroSegmento.Nivel2Desc : ''}
                                     style={{color: '#8e8e8e'}}
                                 />
-
-                                {/* <input 
-                                    type="text" 
-                                    placeholder='Buscar actividad' 
-                                    maxLength={80}
-                                    value={buscaActividad}
-                                    style={{textTransform: 'uppercase'}}
-                                    onChange={actividadOnChange}
-                                    list='actividad-resultados'
-                                />
-
-                                <datalist id='actividad-resultados'>
-                                    { segmentos.map((segmento)=>(
-                                        <option value={segmento.Descripcion} key={segmento.Nivel3Id}></option>
-                                    ))
-                                    }
-                                </datalist> */}
-
-                                <input 
-                                    type="text" 
-                                    placeholder='Ingresa tu cargo'
-                                    value={cargo}
-                                    readOnly
-                                />
-
-                                <a href='' target='_blank'>
-                                    Aparecerá debajo de tu nombre en tu tarjeta
-                                </a>
 
                                 <h6>Ubicación</h6>
 
