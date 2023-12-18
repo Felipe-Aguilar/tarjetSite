@@ -82,7 +82,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": true
+                // "RegistroTarjet": true
             }
         })
     });
@@ -160,7 +160,7 @@ const ActualizarHeaderPerfil = async (datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": true
+                // "RegistroTarjet": true
             }
         })
     });
@@ -317,7 +317,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": true,
+                // "RegistroTarjet": true,
                 "Serv": [
                     {
                         "ServNum": 1,
@@ -542,7 +542,7 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": true,
+                // "RegistroTarjet": true,
                 "Serv": [
                     {
                         "ServNum": 1,
@@ -698,4 +698,82 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
     return dataUsuario;
 }
 
-export { DatosEditaPerfil, ActualizarPerfil, ActualizarPerfil2, ActualizarPerfil3, ActualizarHeaderPerfil, ActualizarTarjetaPerfil }
+const ActualizaRegistroTarjet= async (datosGenerales) => {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify({
+            "usuId": datosGenerales.UUID,
+            "ListUsuario": {
+                "UUID": datosGenerales.UUID,
+                "TokenId": datosGenerales.TokenId,
+                "EmpleadoId": datosGenerales.EmpleadoId,
+                "Alias": datosGenerales.Alias,
+                "Nom": datosGenerales.Nom,
+                "AppP": datosGenerales.AppP,
+                "AppM": datosGenerales.AppM,
+                "Cargo": datosGenerales.Cargo,
+                "Tipo": datosGenerales.Tipo,
+                "Titulo": datosGenerales.Titulo,
+                "Lev1Id": datosGenerales.Lev1Id,
+                "Lev1Desc": datosGenerales.Lev1Desc,
+                "Lev2Id": datosGenerales.Lev2Id,
+                "Lev2Desc": datosGenerales.Lev2Desc,
+                "Lev3Id": datosGenerales.Lev3Id,
+                "Lev3Desc": datosGenerales.Lev3Id,
+                "Activid": datosGenerales.Activid,
+                "ImgTarFrente": datosGenerales.ImgTarFrente,
+                "ImgTarReverso": datosGenerales.ImgTarReverso,
+                "PublicPriva": datosGenerales.PublicPriva,
+                "Telefono1": datosGenerales.Telefono1,
+                "Tel1WP": datosGenerales.Tel1WP,
+                "Telefono2": datosGenerales.Telefono2,
+                "Tel2WP": datosGenerales.Tel2WP,
+                "Telefono3": datosGenerales.Telefono3,
+                "Tel3WP": datosGenerales.Tel3WP,
+                "Telefono4": datosGenerales.Telefono4,
+                "Tel4WP": datosGenerales.Tel4WP,
+                "VerUbicacion": datosGenerales.VerUbicacion,
+                "PermitirCalif": datosGenerales.PermitirCalif,
+                "PermitirComments": datosGenerales.PermitirComments,
+                "TexoUbica": "Visitanos en:",
+                "Calle": datosGenerales.Calle,
+                "NumExt": datosGenerales.NumExt,
+                "CodP": datosGenerales.CodP,
+                "Colonia": datosGenerales.Colonia,
+                "Estado": datosGenerales.Estado,
+                "Municip": datosGenerales.Municip,
+                "MapsGeoloc": datosGenerales.MapsGeoloc,
+                "Activo": datosGenerales.Activo,
+                "RangoLocal": datosGenerales.RangoLocal,
+                "ImgHeader": datosGenerales.ImgHeader,
+                "Mail": datosGenerales.Mail,
+                "Web": datosGenerales.Web,
+                "IconoComents": datosGenerales.IconoComents,
+                "Facebook": datosGenerales.Facebook,
+                "Instagram": datosGenerales.Instagram,
+                "Youtube": datosGenerales.Youtube,
+                "Tiktok": datosGenerales.Tiktok,
+                "Pinterest": datosGenerales.Pinterest,
+                "Twitter": datosGenerales.Twitter,
+                "Telegram": datosGenerales.Telegram,
+                "TituloServ": datosGenerales.TituloServ,
+                "SubTituloServ": datosGenerales.SubTituloServ,
+                "ColorBton1": datosGenerales.ColorBton1,
+                "ColorBton2": datosGenerales.ColorBton2,
+                "ImgFoto": datosGenerales.ImgFoto,
+                "ImgLogo": datosGenerales.ImgLogo,
+                "RegistroTarjet": true
+            }
+        })
+    });
+    
+    const dataUsuario = await response.json();
+
+    return dataUsuario;
+}
+
+export { DatosEditaPerfil, ActualizarPerfil, ActualizarPerfil2, ActualizarPerfil3, ActualizarHeaderPerfil, ActualizarTarjetaPerfil, ActualizaRegistroTarjet }

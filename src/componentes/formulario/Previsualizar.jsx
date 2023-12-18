@@ -1,37 +1,50 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 // import Tarjeta from '../../assets/tarjetageneric.png';
 
 import { SubirImagenPrimer } from "../contextos/SubirImagen";
 import html2canvas from "html2canvas";
+import { ActualizaRegistroTarjet } from "../contextos/EditaPerfil";
+import { ColeccionTarjeta } from "../contextos/Colecciones";
 
 
 const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, currentFondo, currentFondo2, nombreCompleto, cargo}) => {
     
-    
     var Tarjeta;
     var propiedades = [];
+    const [props, setProps] = useState([]);
 
+    useEffect(()=>{
+        const PropiedadesTarjetaUno = async () => {
+            const response = await ColeccionTarjeta();
+
+            setProps(response.ListTarjetas);
+        }
+
+        PropiedadesTarjetaUno();
+    },[]);
+    
     if (tipoPrevisualizar === 'gratis') {
 
         propiedades = currentFondo;
 
         if (currentFondo.TarjetaImagen === undefined) {
             Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo}`;
+            propiedades = props.find(coleccion => coleccion.TarjetaImagen == currentFondo);
         } else {
             Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/${currentFondo.TarjetaImagen}`;
         }
     }else{
-
+        
         propiedades = currentFondo2;
-
+        
         if (currentFondo2.TarjetaImagen === undefined) {
             Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/premium/${currentFondo2}`;
+            propiedades = props.find(coleccion => coleccion.TarjetaImagen == currentFondo2);
         } else {
             Tarjeta = `https://tarjet.site/imagenes/tarjetas_frente/premium/${currentFondo2.TarjetaImagen}`;
         }
     }
-    
 
     const propsAnimation = {
         initial: {y:20, opacity: 0},
@@ -66,6 +79,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
             canvas.toBlob((blob)=>{
 
                 SubirImagenPrimer(blob, datosGenerales.TokenId, "TFRE");
+                ActualizaRegistroTarjet(datosGenerales);
 
             })
         });
@@ -103,7 +117,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
                                     dragConstraints={constraintsRef} 
                                     dragElastic={0}
                                     dragMomentum={false}
-                                    style={propiedades.TarjetaColorFont && {color: `${propiedades.TarjetaColorFont}`} }
+                                    style={propiedades?.TarjetaColorFont && {color: `${propiedades.TarjetaColorFont}`} }
                                 >
                                     {nombreCompleto}
                                 </motion.label>
@@ -114,7 +128,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
                                     dragConstraints={constraintsRef} 
                                     dragElastic={0}
                                     dragMomentum={false}
-                                    style={propiedades.TarjetaColorFont && {color: `${propiedades.TarjetaColorFont}`} }
+                                    style={propiedades?.TarjetaColorFont && {color: `${propiedades.TarjetaColorFont}`} }
                                 >
                                     {cargo}
                                 </motion.label>
