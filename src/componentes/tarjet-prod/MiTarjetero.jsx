@@ -311,7 +311,7 @@ const MiTarjetero = () => {
                 {/* Controles rediseño */}
                 <div className='row justify-content-center controles'>
                     <div 
-                        className={`col-11 col-lg-4 contenedor ${usuario.RegistroTarjet && 'justify-content-around'}`}
+                        className={`col-11 col-lg-4 contenedor ${!datos.RegistroTarjet ? 'justify-content-start' : 'justify-content-around'} `}
                     >
                         { datos.RegistroTarjet && 
                             <>

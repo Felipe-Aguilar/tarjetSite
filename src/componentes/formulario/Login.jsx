@@ -313,7 +313,7 @@ const Login = () => {
                             responseMode={"query"}  
                             callback={HandleAppleLogin}
                             onError={(error) => console.error(error)}
-                            usePopup={true}
+                            // usePopup={true}
                             render={(props) => (
                                 <button type='button' onClick={props.onClick} disabled={props.disabled}>
                                     <img src={iconoApple} />

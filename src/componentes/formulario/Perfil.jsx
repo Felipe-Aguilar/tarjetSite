@@ -171,7 +171,7 @@ const Perfil = () => {
 
                             <div className='buttons-new'>
                                 <button className='btn-editar btn-1' onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>
-                                    Edita tu tarjet
+                                    Edita / Crea tu Tarjeta
                                 </button>
 
                                 <button className='btn-editar btn-2' onClick={()=>setViewToolTip1(!viewToolTip1)}>
@@ -191,8 +191,11 @@ const Perfil = () => {
                                         variants={AnimateProps}
                                     >
                                         <h6>Directorio Tarjet</h6>
+                                        <p>
+                                            Es la primera tarjeta que verán las personas cuando busquen una actividad que se relacione contigo en el directorio Tarjet.
+                                        </p>
                                         <img src={ilustracion1} alt="Edita tu información que se mostrará en el directorio empresarial" />
-                                        <p>Tu información que se mostrará en el directorio empresarial</p>
+                                        <p>Asegúrate que se vea Super padre para que llame la atención de quien te solicite...</p>
                                     </motion.div>
                                 )
                                 }
@@ -204,7 +207,7 @@ const Perfil = () => {
                             
                             <div className="buttons-new">
                                 <button className='btn-site btn-1' onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}>
-                                    Editar tu tarjet site (tarjeta digital)
+                                    Edita / Crea tu TarjetSite
                                 </button>
 
                                 <button className='btn-site btn-2' onClick={()=>setViewToolTip2(!viewToolTip2)}>
@@ -224,8 +227,11 @@ const Perfil = () => {
                                         variants={AnimateProps}
                                     >
                                         <h6>Tarjeta digital Tarjet (micrositio web)</h6>
+                                        <p>
+                                            Es tu propio espacio en donde configuras todas las formas de contactarte, acceso a tu whatsapp, redes sociales, correo, ubicación, servicios que ofreces, etc.
+                                        </p>
                                         <img src={ilustracion2} alt="Edita tu información que se mostrará en el directorio empresarial" />
-                                        <p>Tu tarjeta digital que compartes a la gente</p>
+                                        <p>Es la Tarjeta Virtual que compartirás a las personas, ponle tu propio estilo y crea un buen impacto cuando visiten tu perfil.</p>
                                     </motion.div>
                                 )
                                 }
@@ -246,7 +252,7 @@ const Perfil = () => {
 
                             <div className="buttons-new">
                                 <button className='btn-visitar btn-1' onClick={()=>navigate(`/${btoa(datosSesion.UsuToken)}`)}>
-                                    Visitar tarjetero
+                                    Tarjetero Virtual
                                 </button>
 
                                 <button className='btn-visitar btn-2' onClick={()=>setViewToolTip3(!viewToolTip3)}>
@@ -266,8 +272,11 @@ const Perfil = () => {
                                         variants={AnimateProps}
                                     >
                                         <h6>Tarjetero personal</h6>
+                                        <p>
+                                            Aquí puedes guardar y administrar todos los usuarios Tarjet de tu interés, para poder disponer de su información más fácil.
+                                        </p>
                                         <img src={ilustracion3} alt="Edita tu información que se mostrará en el directorio empresarial" />
-                                        <p>Revisa tus contactos tarjet guardados</p>
+                                        <p>Revisa y comparte a quien tu quieras, cualquier usuario Tarjet</p>
                                     </motion.div>
                                 )
                                 }

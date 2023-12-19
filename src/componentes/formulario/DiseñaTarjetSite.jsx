@@ -660,18 +660,18 @@ const DiseñaTarjetSite = () => {
                 <div className='text'>
                     <h1>Tarjet site</h1>
                     <p className='orange'>
-                        El micro sitio que te ayudará a que la gente te contacte y conozca tus servicios y productos.
+                        Tu propio sitio Web para que te contacten y conozcan tus servicios o productos.
                     </p>
                     <p>
-                        Este site es tu presentación, con ella, podrás brindar una excelente primera impresión a tus prospectos y clientes.
+                        No olvides poner tu número de WhatsApp para que sea más sencillo que te contacten, así como tus redes sociales y los servicios que ofreces con las imágenes que tu prefieras.
                     </p>
                     <p>
-                        Se mostrará al momento de compartir tu tarjeta, ya sea en url, tarjeta nfc ó QR.
+                        Elige el encabezado que más te agrade y dale un estilo único a tu Tarjet Site, tu tarjeta de presentación virtual.
                     </p>
                 </div>
 
                 <div className='controls'>
-                    <h2>Personaliza tu Tarjet site</h2>
+                    <h2>Personaliza ahora tu Tarjet site</h2>
 
                     <div className='cuerpo'>
                         <button 
