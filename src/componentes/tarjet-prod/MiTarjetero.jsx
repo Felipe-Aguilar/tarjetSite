@@ -165,6 +165,11 @@ const MiTarjetero = () => {
         el.select();
         document.execCommand('copy');
         document.body.removeChild(el);
+
+        toast.success('Copiado en el portapapeles',{
+            duration: 4500,
+            position: 'bottom-center',
+        });
     }
 
     // Busqueda nombre
@@ -328,16 +333,16 @@ const MiTarjetero = () => {
                                 Compartir
                             </button>
 
-                            { compartir &&
-                                <Compartir cerrarCompartir={setCompartirEstado} usuario={usuario} resuCompartir={resuCompartir}/>
-                            }
-
                             <button onClick={copiarPortapapeles}>
                                 <img src={BtnCopiar}/>
                                 Copiar
                             </button>
                             
                             </>
+                        }
+
+                        { compartir &&
+                            <Compartir cerrarCompartir={setCompartirEstado} usuario={usuario} resuCompartir={resuCompartir}/>
                         }
 
                         <button onClick={()=>navigate('/directorio-tarjet')}>
