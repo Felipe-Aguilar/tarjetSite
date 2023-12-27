@@ -27,6 +27,7 @@ const MenuDesktop = () => {
                 <NavLink to={`/${btoa(usuario.UsuToken)}`}>Mi Tarjetero</NavLink>
             }
 
+            <a href="https://tarjet.mx/#/acerca-tarjet">Acerca de Tarjet</a>
             <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet</a>
 
             { !sesionLocal ? 

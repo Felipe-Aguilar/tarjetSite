@@ -45,6 +45,7 @@ const Menu = ({cambioMenu}) => {
                         <NavLink to={`/${btoa(usuario.UsuToken)}`} onClick={()=>cambioMenu(true)}>Mi tarjetero</NavLink>
                     }
 
+                    <a href="https://tarjet.mx/#/acerca-tarjet">Acerca de Tarjet</a>
                     <NavLink to={'directorio-tarjet'} onClick={()=>cambioMenu(true)}>Directorio Tarjet </NavLink>
                     
                     <a href="https://wa.me/5586763895" target='_blank'>Contacto</a>
