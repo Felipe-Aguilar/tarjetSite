@@ -89,7 +89,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
             setGuardado(true);
             
             setTimeout(()=>{
-                onClickButton();
+                onClickButton(true);
                 // window.location.reload(true);
             }, 4000)
         },1000);
@@ -144,7 +144,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
                         </div>
 
                         <div className="footer">
-                            <button onClick={onClickButton} type="button">
+                            <button onClick={()=>onClickButton(false)} type="button">
                                 Cerrar ventana (x)
                             </button>
                         </div>

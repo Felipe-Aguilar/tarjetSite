@@ -408,8 +408,12 @@ const DiseñaTarjet = () => {
         setCargarImagen(false);
     }
 
-    const CerrarPrevisualizar = () => {
+    const CerrarPrevisualizar = (type) => {
         setPrevisualizar(false);
+        
+        if (type) {
+            setOptionColecciones('Ver actual');
+        }
     }
 
     // Asignar Estado, ciudad, delegación, etc.
