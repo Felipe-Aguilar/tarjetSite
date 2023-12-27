@@ -1013,6 +1013,11 @@ const DiseñaTarjetSite = () => {
                                         readOnly
                                     />
                                 </div>
+
+                            </div>
+
+                            <div className='btn-editar'>
+                                <button onClick={()=>navigate(`/disena-tu-tarjet/${btoa(datosSesion.UsuToken)}`)}>Editar estos datos</button>
                             </div>
 
                             {/* <div className='subirimagen'>

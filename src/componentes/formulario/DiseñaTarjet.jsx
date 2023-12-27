@@ -683,7 +683,11 @@ const DiseñaTarjet = () => {
 
                                             <div className='buttons'>
                                                 <div className='primer'>
-                                                    <button onClick={()=>onClickPrevisualizar('gratis')} type='button'>
+                                                    <button 
+                                                        onClick={()=>onClickPrevisualizar('gratis')} 
+                                                        type='button'
+                                                        disabled={cargo ? false : true}
+                                                    >
                                                         Previsualizar
                                                     </button>
                                                 </div>

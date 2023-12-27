@@ -105,7 +105,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
                         </div>
 
                         <div className="body">
-                            <p>Sobre tu tarjeta seleccionada, desliza tu nombre</p>
+                            <p>Desliza tu nombre y cargo en la posición que prefieras <i className="bi bi-arrows-move"></i></p>
                             
                             <motion.div 
                                 className="back" 

@@ -705,46 +705,50 @@ END:VCARD`;
                             <span>{datosActualizados.Alias}</span>
                         </p>
 
-                        <div className='cuerpo'>
-                            <img src={logoTarjet} className='logoTarjet' />
-                            <h5 className='contact'>Contectamos a personas con tu negocio</h5>
-                            <h5>
-                                Te agradó esta tarjeta digital <br/>
-                                <span>Tú también puedes tener la tuya</span>
-                            </h5>
-                            <a href="https://tarjet.site/#/login" className='btn-verde'>
-                                Solicita gratuitamente <br/> tu tarjeta digital Tarjet
-                            </a>
-                            <h5>
-                                Actualízate <br/>
-                                <span>Genera un impacto positivo con tu tarjeta Física Tarjet</span>
-                            </h5>
-                            <img src={promoImg} className='img-promo'/>
-                            <a href="https://shop.tarjet.mx/" target='_blank'  className='btn-naranja'>
-                                Compra tu <br/>
-                                tarjeta física Tarjet con NFC <br className='d-block'/>
-                                <span>Es personalizada</span>
-                            </a>
-                            <h5>
-                                <span>Hagamos Networking</span> <br/>
-                                En nuestro directorio puedes ser encontrado fácilmente por personas que buscan lo que haces
-                            </h5>
-                            <a href="https://tarjet.site/#/login" target='_blank'  className='btn-morado'>
-                                Regístrate gratuitamente <br/>
-                                <span>y accede a tu tarjetero digital tarjet</span>
-                            </a>
-                        </div>
+                        { !sesion &&
+                            <div className='cuerpo'>
+                                <img src={logoTarjet} className='logoTarjet' />
+                                <h5 className='contact'>Contectamos a personas con tu negocio</h5>
+                                <h5>
+                                    Te agradó esta tarjeta digital <br/>
+                                    <span>Tú también puedes tener la tuya</span>
+                                </h5>
+                                <a href="https://tarjet.site/#/login" className='btn-verde'>
+                                    Solicita gratuitamente <br/> tu tarjeta digital Tarjet
+                                </a>
+                                <h5>
+                                    Actualízate <br/>
+                                    <span>Genera un impacto positivo con tu tarjeta Física Tarjet</span>
+                                </h5>
+                                <img src={promoImg} className='img-promo'/>
+                                <a href="https://shop.tarjet.mx/" target='_blank'  className='btn-naranja'>
+                                    Compra tu <br/>
+                                    tarjeta física Tarjet con NFC <br className='d-block'/>
+                                    <span>Es personalizada</span>
+                                </a>
+                                <h5>
+                                    <span>Hagamos Networking</span> <br/>
+                                    En nuestro directorio puedes ser encontrado fácilmente por personas que buscan lo que haces
+                                </h5>
+                                <a href="https://tarjet.site/#/login" target='_blank'  className='btn-morado'>
+                                    Regístrate gratuitamente <br/>
+                                    <span>y accede a tu tarjetero digital tarjet</span>
+                                </a>
+                            </div>
+                        }
                     </div>
                 </div>
 
-                <div className='row justify-content-center teInvitamos'>
-                    <div className='col-11 col-md-4'>
-                        <a href="https://tarjet.mx/">
-                            Te invitamos a conocernos, <br/>
-                            visita nuestro sitio oficial
-                        </a>
+                { !sesion &&
+                    <div className='row justify-content-center teInvitamos'>
+                        <div className='col-11 col-md-4'>
+                            <a href="https://tarjet.mx/">
+                                Te invitamos a conocernos, <br/>
+                                visita nuestro sitio oficial
+                            </a>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     );

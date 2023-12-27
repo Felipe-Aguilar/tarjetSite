@@ -482,9 +482,26 @@ $btnRegresar: #4f8b92;
                 display: flex;
                 flex-direction: column;
 
+                input{
+                    background: transparent;
+                    font-weight: bold;
+                }
+
                 > * + * {
                     margin-top: 10px;
                 }
+            }
+        }
+
+        .btn-editar{
+            display: flex;
+            justify-content: end;
+
+            button{
+                background: transparent;
+                border: none;
+                color: #0052BE;
+                font-weight: bold;
             }
         }
 

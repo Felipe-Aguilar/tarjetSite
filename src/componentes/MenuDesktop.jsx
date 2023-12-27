@@ -22,17 +22,18 @@ const MenuDesktop = () => {
             <a href="https://tarjet.mx/#/hazte-premium">Premium</a>
             {/* <a href='https://wa.me/5586763895' target='_blank'>Contacto</a> */}
 
+            { sesionLocal && 
+                // <NavLink to={`/mi-perfil/${btoa(usuario.UsuToken)}`}>Mi perfil</NavLink>
+                <NavLink to={`/${btoa(usuario.UsuToken)}`}>Mi Tarjetero</NavLink>
+            }
+
+            <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet</a>
+
             { !sesionLocal ? 
                 <NavLink to="/login">Iniciar Sesion</NavLink>
             :
                 <button onClick={sesionFalse}>Cerrar Sesion</button>
             }
-
-            { sesionLocal && 
-                <NavLink to={`/mi-perfil/${btoa(usuario.UsuToken)}`}>Mi perfil</NavLink>
-            }
-
-            <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet</a>
 
             <div className='social'>
                 <a href="https://www.facebook.com/profile.php?id=100095193982785&mibextid=ZbWKwL" target='_blank'>

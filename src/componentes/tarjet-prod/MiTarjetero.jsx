@@ -230,17 +230,6 @@ const MiTarjetero = () => {
     
     return (
         <div className='container-fluid p-0 backgroun-Green'>
-
-            <Helmet>
-                <title>Tarjet - personalizado title</title>
-                <meta name="description" content="Tarjet - personalizado description" />
-                <meta property="og:title" content="Tarjet - personalizado og title" />
-                <meta property="og:description" content="Tarjet - personalizado og description" />
-                <meta property="og:image" content="Tarjet - personalizado og image" />
-                <meta property="og:url" content={`https://tarjet.site#${window.location.hash}`} />
-                <meta property="og:type" content="website" />
-            </Helmet>
-
             <Toaster />
             <div className='miTarjetero background-image' >
                 { !busquedaUsuario ?
@@ -249,6 +238,14 @@ const MiTarjetero = () => {
                     <div className='row justify-content-center encabezadoFoto'>
                         <div className='col-12 col-lg-4 '>
                             <img src={PortadaTarjet}/>
+
+                            <div className='button-perfil'>
+                                <button onClick={()=>navigate(`/mi-perfil/${btoa(usuario.UsuToken)}`)}>
+                                    <i className="bi bi-person-circle"></i>
+                                    Mi perfil
+                                </button>
+                            </div>
+
                             <h5 className='mt-2'>
                                 Hola {datos.Nom}<br/>
                                 <span>Bienvenido a tu</span>

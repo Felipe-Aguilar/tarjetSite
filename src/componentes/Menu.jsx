@@ -24,14 +24,25 @@ const Menu = ({cambioMenu}) => {
                     <a href="https://shop.tarjet.mx/" target='_blank'>Tienda</a>
                     <a href="https://tarjet.mx/#/empresas" >Empresas</a>
                     <a href="https://tarjet.mx/#/hazte-premium">Premium </a>
+                    {/* { !sesionLocal ?
+                        <NavLink to="/login" onClick={()=>cambioMenu(true)}>Iniciar Sesion</NavLink>
+                    :
+                        <button onClick={()=>{sesionFalse(); cambioMenu(true);}} style={{marginBottom: '20px'}}>
+                            Cerrar sesión <i className="bi bi-box-arrow-in-left"></i>
+                        </button>
+                    } */}
+
                     { !sesionLocal ?
                         <NavLink to="/login" onClick={()=>cambioMenu(true)}>Iniciar Sesion</NavLink>
                     :
-                        <button onClick={()=>{sesionFalse(); cambioMenu(true);}} style={{marginBottom: '20px'}}>Cerrar sesión</button>
+                        <button onClick={()=>{sesionFalse(); cambioMenu(true);}} style={{marginBottom: '20px'}} className='log-out'>
+                            Cerrar sesión <i className="bi bi-box-arrow-in-left"></i>
+                        </button>
                     }
 
                     { sesionLocal &&
-                        <NavLink to={`/mi-perfil/${btoa(usuario.UsuToken)}`} onClick={()=>cambioMenu(true)}>Mi perfil</NavLink>
+                        // <NavLink to={`/mi-perfil/${btoa(usuario.UsuToken)}`} onClick={()=>cambioMenu(true)}>Mi perfil</NavLink>
+                        <NavLink to={`/${btoa(usuario.UsuToken)}`} onClick={()=>cambioMenu(true)}>Mi tarjetero</NavLink>
                     }
 
                     <NavLink to={'directorio-tarjet'} onClick={()=>cambioMenu(true)}>Directorio Tarjet </NavLink>
@@ -107,6 +118,16 @@ const MenuContenedor = styled.div`
             i{
                 font-size: 2rem;
             }
+        }
+
+        .log-out{
+            display: flex;
+            width: calc(100% - 40px);
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            bottom: 0;
         }
     }
 
