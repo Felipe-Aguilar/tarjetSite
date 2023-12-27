@@ -15,6 +15,8 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 import { toast, Toaster } from 'react-hot-toast';
+import { QRCodeSVG } from 'qrcode.react';
+import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 
 import Qr from './Qr';
 import Compartir from './Compartir';
@@ -29,9 +31,8 @@ import BtnCopiar from '../../assets/boton-enlace-tarjetero.svg';
 import BtnDirectorio from '../../assets/boton-directorio-tarjetero.svg';
 import perfilGenerico from '../../assets/perfiltemporal.jpg';
 import btnCreaTuTarjet from '../../assets/boton-creatutarjeta.svg';
+import iconoMiPerfil from '../../assets/icono-perfil-02.svg';
 
-import { QRCodeSVG } from 'qrcode.react';
-import { DatosEditaPerfil } from '../contextos/EditaPerfil';
 
 const MiTarjetero = () => {
 
@@ -241,7 +242,7 @@ const MiTarjetero = () => {
 
                             <div className='button-perfil'>
                                 <button onClick={()=>navigate(`/mi-perfil/${btoa(usuario.UsuToken)}`)}>
-                                    <i className="bi bi-person-circle"></i>
+                                    <img src={iconoMiPerfil} alt="icono para ir a mi perfil" />
                                     Mi perfil
                                 </button>
                             </div>

@@ -7,6 +7,7 @@ import html2canvas from "html2canvas";
 import { ActualizaRegistroTarjet } from "../contextos/EditaPerfil";
 import { ColeccionTarjeta } from "../contextos/Colecciones";
 
+import iconoMovimiento from '../../assets/icono-movimiento2.svg';
 
 const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, currentFondo, currentFondo2, nombreCompleto, cargo}) => {
     
@@ -105,7 +106,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
                         </div>
 
                         <div className="body">
-                            <p>Desliza tu nombre y cargo en la posición que prefieras <i className="bi bi-arrows-move"></i></p>
+                            <p>Desliza tu nombre y cargo en la posición que prefieras <img src={iconoMovimiento} alt="icono movimiento" /></p>
                             
                             <motion.div 
                                 className="back" 
