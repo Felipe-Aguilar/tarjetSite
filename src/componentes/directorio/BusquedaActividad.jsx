@@ -178,6 +178,9 @@ const BusquedaActividad = () => {
                     ¿Conoces el nombre o parte del nombre del Usuario Tarjet? <br/>
                     ¡Aquí puedes buscarlo fácilmente!
                 </p>
+                <p className='textBusqueda'>
+                    Búsqueda
+                </p>
                 <div className='buscar-contenedor'>
                     <div className='img-form'>
                         {/* <img src={iconoNombre} /> */}
@@ -186,7 +189,7 @@ const BusquedaActividad = () => {
 
                     <input 
                         type="text" 
-                        placeholder='Escribe su nombre aquí'
+                        placeholder='Nombre, actividad ó Usuario Tarjet'
                         value={capturaNombre}
                         onChange={busquedaNombre}
                     />
@@ -239,6 +242,11 @@ const BusquedaActividad = () => {
                     </div>
                 </div>
             </div>
+
+            { !busqueda &&
+                <div className='heightScroll'>
+                </div>
+            }
 
             { !busqueda &&
                 <div className='resultados'>

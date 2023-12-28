@@ -179,7 +179,7 @@ const Perfil = () => {
                                 </button>
                             </div>
                             <div className='para'>
-                                <span onClick={()=>setViewToolTip3(!viewToolTip3)}>¿Para que sirve?</span>
+                                <span onClick={()=>setViewToolTip1(!viewToolTip1)}>¿Para que sirve?</span>
                             </div>
                             <AnimatePresence>
                                 { viewToolTip1 && (
@@ -190,7 +190,7 @@ const Perfil = () => {
                                         exit= "closed"
                                         variants={AnimateProps}
                                     >
-                                        <h6>Directorio Tarjet</h6>
+                                        <h6>Tu tarjeta de presentación</h6>
                                         <p>
                                             Es la primera tarjeta que verán las personas cuando busquen una actividad que se relacione contigo en el directorio Tarjet.
                                         </p>
@@ -215,7 +215,7 @@ const Perfil = () => {
                                 </button>
                             </div>
                             <div className='para'>
-                                <span onClick={()=>setViewToolTip3(!viewToolTip3)}>¿Para que sirve?</span>
+                                <span onClick={()=>setViewToolTip2(!viewToolTip2)}>¿Para que sirve?</span>
                             </div>
                             <AnimatePresence>
                                 { viewToolTip2 && (
