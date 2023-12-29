@@ -46,7 +46,8 @@ $btnResultado: #e1eff2;
             color: #8AA956;
             font-size: 1rem;
             font-weight: bold;
-            padding: 20px 0;
+            padding: 5px 0 0 0;
+            margin-bottom: 7px;
         }
 
         p{
@@ -262,7 +263,7 @@ $btnResultado: #e1eff2;
         @media (width <= 600px) {
             display: block;
             width: 100%;
-            height: 105px;
+            height: 130px;
         }
     }
 

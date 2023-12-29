@@ -8,6 +8,8 @@ import MenuDesktop from './MenuDesktop';
 
 import TarjetNegro from '../assets/TarjetNegro.png';
 import LogoTarjet from '../assets/logo-tarjet.svg';
+import LogoBuscador from '../assets/entrada-buscador-persona.svg';
+import LogoBolsa from '../assets/icono-bolsa-ventas-tarjet.svg';
 
 const Header = () => {
 
@@ -21,6 +23,16 @@ const Header = () => {
                         <img src={LogoTarjet} alt="Tarjet | Tu tarjeta de presentación Online" onClick={()=> cambioMenu(true)}/>
                     </a>
                 </div>
+
+                <div className='iconosMenuMobile'>
+                    <a href="https://tarjet.site/#/directorio-tarjet">
+                        <img src={LogoBuscador} alt="Lupa para búsqueda en directorio tarjet" />
+                    </a>
+                    <a href="https://shop.tarjet.mx/">
+                        <img src={LogoBolsa} alt="Lupa para búsqueda en directorio tarjet" />
+                    </a>
+                </div>
+
                 <div className='w-auto d-block d-lg-none'>
                     { menu ?
                         <motion.div 
@@ -50,7 +62,15 @@ const Header = () => {
                         </motion.div>
                     }
                 </div>
-                <div className='w-auto d-none d-lg-block'>
+                <div className='w-auto d-none d-lg-flex'>
+                    <div className='iconosMenuDesktop'>
+                        <a href="https://tarjet.site/#/directorio-tarjet">
+                            <img src={LogoBuscador} alt="Lupa para búsqueda en directorio tarjet" />
+                        </a>
+                        <a href="https://shop.tarjet.mx/">
+                            <img src={LogoBolsa} alt="Lupa para búsqueda en directorio tarjet" />
+                        </a>
+                    </div>
                     <MenuDesktop />
                 </div>
             </Encabezado>
@@ -86,8 +106,34 @@ const Encabezado = styled.div`
         padding: 13px 15px;
     }
 
+    .iconosMenuMobile{
+        display: flex;
+        gap: 15px;
+        
+        
+        @media (width > 600px) {
+            display: none;
+        }
+        img{
+            width: 40px;
+        }
+    }
+    .iconosMenuDesktop{
+        display: flex;
+        gap: 25px;
+        margin-right: 25px;
+        
+        img{
+            width: 35px;
+        }
+    }
+
     img{
-        width: 120px;
+        width: 110px;
+        
+        @media (width <= 600px) {
+            width: 105px;
+        }
     }
 
     .Icon{
