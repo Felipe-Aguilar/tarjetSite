@@ -39,6 +39,12 @@
         }
     }
 
+    ul.slick-dots{
+        @media (width <= 360px) {
+            display: flex!important;
+            justify-content: center;
+        }
+    }
 }
 .slick-next:before {
     display: none;

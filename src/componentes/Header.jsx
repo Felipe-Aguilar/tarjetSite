@@ -115,16 +115,17 @@ const Encabezado = styled.div`
             display: none;
         }
         img{
-            width: 40px;
+            width: 30px;
         }
     }
     .iconosMenuDesktop{
         display: flex;
         gap: 25px;
         margin-right: 25px;
+        align-items: center;
         
         img{
-            width: 35px;
+            width: 28px;
         }
     }
 
