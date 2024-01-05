@@ -40,7 +40,7 @@
     }
 
     ul.slick-dots{
-        @media (width <= 360px) {
+        @media (width <= 377px) {
             display: flex!important;
             justify-content: center;
         }

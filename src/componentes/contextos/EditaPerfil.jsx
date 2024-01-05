@@ -39,8 +39,8 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "Lev2Id": datosFormulario.Lev2Id,
                 "Lev2Desc": datosFormulario.Lev2Desc,
                 "Lev3Id": datosFormulario.Lev3Id,
-                "Lev3Desc": datosFormulario.Lev3Id,
-                "Activid": datosGenerales.Activid,
+                "Lev3Desc": datosFormulario.Lev3Desc,
+                "Activid": datosFormulario.Lev3Desc,
                 "ImgTarFrente": datosGenerales.ImgTarFrente,
                 "ImgTarReverso": datosGenerales.ImgTarReverso,
                 "PublicPriva": datosFormulario.PublicPriva,
@@ -82,7 +82,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                // "RegistroTarjet": true
+                "RegistroTarjet": datosGenerales.RegistroTarjet
             }
         })
     });
@@ -160,7 +160,7 @@ const ActualizarHeaderPerfil = async (datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                // "RegistroTarjet": true
+                "RegistroTarjet": datosGenerales.RegistroTarjet
             }
         })
     });
@@ -317,7 +317,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                // "RegistroTarjet": true,
+                "RegistroTarjet": datosGenerales.RegistroTarjet,
                 "Serv": [
                     {
                         "ServNum": 1,
@@ -542,7 +542,7 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                // "RegistroTarjet": true,
+                "RegistroTarjet": datosGenerales.RegistroTarjet,
                 "Serv": [
                     {
                         "ServNum": 1,
@@ -698,7 +698,7 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
     return dataUsuario;
 }
 
-const ActualizaRegistroTarjet= async (datosGenerales) => {
+const ActualizaRegistroTarjet= async (datosGenerales, cargo) => {
     const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
@@ -715,7 +715,7 @@ const ActualizaRegistroTarjet= async (datosGenerales) => {
                 "Nom": datosGenerales.Nom,
                 "AppP": datosGenerales.AppP,
                 "AppM": datosGenerales.AppM,
-                "Cargo": datosGenerales.Cargo,
+                "Cargo": cargo,
                 "Tipo": datosGenerales.Tipo,
                 "Titulo": datosGenerales.Titulo,
                 "Lev1Id": datosGenerales.Lev1Id,

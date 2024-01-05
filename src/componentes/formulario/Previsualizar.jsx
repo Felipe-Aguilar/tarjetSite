@@ -80,7 +80,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
             canvas.toBlob((blob)=>{
 
                 SubirImagenPrimer(blob, datosGenerales.TokenId, "TFRE");
-                ActualizaRegistroTarjet(datosGenerales);
+                ActualizaRegistroTarjet(datosGenerales, cargo);
 
             })
         });
