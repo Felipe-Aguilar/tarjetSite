@@ -623,6 +623,12 @@ const MiTarjetero = () => {
                                                                             Copiar enlace
                                                                         </button>
                                                                     </div>
+                                                                    <div className='buttons buttonTrash'>
+                                                                        <button>
+                                                                            <i className="bi bi-trash"></i>
+                                                                            Eliminar
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </motion.div>
                                                         }
@@ -692,6 +698,12 @@ const MiTarjetero = () => {
                                                         >
                                                             <img src={BtnCopiar}/>
                                                             Copiar enlace
+                                                        </button>
+                                                    </div>
+                                                    <div className='buttons buttonTrash'>
+                                                        <button>
+                                                            <i className="bi bi-trash"></i>
+                                                            Eliminar
                                                         </button>
                                                     </div>
                                                 </div>
