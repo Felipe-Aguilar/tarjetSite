@@ -22,11 +22,22 @@ import BtnGoogle from './btnGoogle';
 
 import AppleLogin from 'react-apple-login';
 import { jwtDecode } from 'jwt-decode';
+import { Helmet } from 'react-helmet';
+import ReactGA from 'react-ga';
 
 
 const Login = () => {
 
+    ReactGA.initialize('G-MMCF7P3JG8');
+
     useEffect(()=>{
+
+        // Google analytics
+            // Establece el título de la página
+        ReactGA.set({ page: window.location.pathname });
+            // Envia una página vista al cargar el componente
+        ReactGA.pageview(window.location.pathname);
+
         const localUsuarioSesion = localStorage.getItem('UsuarioSesion');
         const localUsuarioToken = JSON.parse(localStorage.getItem('DatosSesion'));
     
@@ -264,6 +275,9 @@ const Login = () => {
 
     return ( 
         <div className='backgroun-Green'>
+
+            
+
             <div className="container-fluid loginFormulario background-image">
 
                 <div className='ilustracion-banner'>

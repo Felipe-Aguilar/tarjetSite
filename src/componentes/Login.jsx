@@ -90,6 +90,7 @@ const Login = () => {
 
     return ( 
         <div className='container-fluid vh-100 login'>
+
             <div className='row justify-content-center align-items-center h-100'>
                 
                     <div className='col-12 col-md-4'>
