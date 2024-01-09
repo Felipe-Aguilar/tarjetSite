@@ -118,7 +118,7 @@ const ActualizarHeaderPerfil = async (datosGenerales, datosFormulario) => {
                 "Lev2Desc": datosGenerales.Lev2Desc,
                 "Lev3Id": datosGenerales.Lev3Id,
                 "Lev3Desc": datosGenerales.Lev3Id,
-                "Activid": datosGenerales.Activid,
+                "Activid": datosGenerales.Lev3Desc,
                 "ImgTarFrente": datosGenerales.ImgTarFrente,
                 "ImgTarReverso": datosGenerales.ImgTarReverso,
                 "PublicPriva": datosGenerales.PublicPriva,
@@ -196,7 +196,7 @@ const ActualizarTarjetaPerfil = async (datosGenerales, datosFormulario) => {
                 "Lev2Desc": datosGenerales.Lev2Desc,
                 "Lev3Id": datosGenerales.Lev3Id,
                 "Lev3Desc": datosGenerales.Lev3Id,
-                "Activid": datosGenerales.Activid,
+                "Activid": datosGenerales.Lev3Desc,
                 "ImgTarFrente": datosFormulario.ImgTarFrente,
                 "ImgTarReverso": datosGenerales.ImgTarReverso,
                 "PublicPriva": datosGenerales.PublicPriva,
@@ -249,6 +249,7 @@ const ActualizarTarjetaPerfil = async (datosGenerales, datosFormulario) => {
 }
 
 const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
+    console.log(datosGenerales);
 
     const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
@@ -275,7 +276,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "Lev2Desc": datosGenerales.Lev2Desc,
                 "Lev3Id": datosGenerales.Lev3Id,
                 "Lev3Desc": datosGenerales.Lev3Id,
-                "Activid": datosGenerales.Activid,
+                "Activid": datosGenerales.Lev3Desc,
                 "ImgTarFrente": datosGenerales.ImgTarFrente,
                 "ImgTarReverso": datosGenerales.ImgTarReverso,
                 "PublicPriva": datosGenerales.PublicPriva,
@@ -474,7 +475,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
 }
 
 const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
-    
+
     const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
         method: 'POST',
         mode: 'cors',
@@ -500,7 +501,7 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
                 "Lev2Desc": datosGenerales.Lev2Desc,
                 "Lev3Id": datosGenerales.Lev3Id,
                 "Lev3Desc": datosGenerales.Lev3Id,
-                "Activid": datosGenerales.Activid,
+                "Activid": datosGenerales.Lev3Desc,
                 "ImgTarFrente": datosGenerales.ImgTarFrente,
                 "ImgTarReverso": datosGenerales.ImgTarReverso,
                 "PublicPriva": datosGenerales.PublicPriva,
@@ -724,7 +725,7 @@ const ActualizaRegistroTarjet= async (datosGenerales, cargo) => {
                 "Lev2Desc": datosGenerales.Lev2Desc,
                 "Lev3Id": datosGenerales.Lev3Id,
                 "Lev3Desc": datosGenerales.Lev3Id,
-                "Activid": datosGenerales.Activid,
+                "Activid": datosGenerales.Lev3Desc,
                 "ImgTarFrente": datosGenerales.ImgTarFrente,
                 "ImgTarReverso": datosGenerales.ImgTarReverso,
                 "PublicPriva": datosGenerales.PublicPriva,
@@ -776,4 +777,83 @@ const ActualizaRegistroTarjet= async (datosGenerales, cargo) => {
     return dataUsuario;
 }
 
-export { DatosEditaPerfil, ActualizarPerfil, ActualizarPerfil2, ActualizarPerfil3, ActualizarHeaderPerfil, ActualizarTarjetaPerfil, ActualizaRegistroTarjet }
+const ActualizarPerfil4 = async(datosGenerales, datosFormulario) => {
+
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIUsuDtos/ActualizaUsu`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify({
+            "usuId": datosGenerales.UUID,
+            "ListUsuario": {
+                "UUID": datosGenerales.UUID,
+                "TokenId": datosGenerales.TokenId,
+                "EmpleadoId": datosGenerales.EmpleadoId,
+                "Alias": datosGenerales.Alias,
+                "Nom": datosFormulario.Nom,
+                "AppP": datosFormulario.AppP,
+                "AppM": datosFormulario.AppM,
+                "Cargo": datosGenerales.Cargo,
+                "Tipo": datosGenerales.Tipo,
+                "Titulo": datosFormulario.Titulo,
+                "Lev1Id": datosGenerales.Lev1Id,
+                "Lev1Desc": datosGenerales.Lev1Desc,
+                "Lev2Id": datosGenerales.Lev2Id,
+                "Lev2Desc": datosGenerales.Lev2Desc,
+                "Lev3Id": datosGenerales.Lev3Id,
+                "Lev3Desc": datosGenerales.Lev3Desc,
+                "Activid": datosGenerales.Lev3Desc,
+                "ImgTarFrente": datosGenerales.ImgTarFrente,
+                "ImgTarReverso": datosGenerales.ImgTarReverso,
+                "PublicPriva": datosFormulario.PublicPriva,
+                "Telefono1": datosGenerales.Telefono1,
+                "Tel1WP": datosGenerales.Tel1WP,
+                "Telefono2": datosGenerales.Telefono2,
+                "Tel2WP": datosGenerales.Tel2WP,
+                "Telefono3": datosGenerales.Telefono3,
+                "Tel3WP": datosGenerales.Tel3WP,
+                "Telefono4": datosGenerales.Telefono4,
+                "Tel4WP": datosGenerales.Tel4WP,
+                "VerUbicacion": datosGenerales.VerUbicacion,
+                "PermitirCalif": datosFormulario.PermitirCalif,
+                "PermitirComments": datosFormulario.PermitirComments,
+                "TexoUbica": "Visitanos en:",
+                "Calle": datosFormulario.Calle,
+                "NumExt": datosFormulario.NumExt,
+                "CodP": datosFormulario.CodP,
+                "Colonia": datosFormulario.Colonia,
+                "Estado": datosFormulario.Estado,
+                "Municip": datosFormulario.Municip,
+                "MapsGeoloc": datosGenerales.MapsGeoloc,
+                "Activo": datosGenerales.Activo,
+                "RangoLocal": datosGenerales.RangoLocal,
+                "ImgHeader": datosGenerales.ImgHeader,
+                "Mail": datosGenerales.Mail,
+                "Web": datosGenerales.Web,
+                "IconoComents": datosGenerales.IconoComents,
+                "Facebook": datosGenerales.Facebook,
+                "Instagram": datosGenerales.Instagram,
+                "Youtube": datosGenerales.Youtube,
+                "Tiktok": datosGenerales.Tiktok,
+                "Pinterest": datosGenerales.Pinterest,
+                "Twitter": datosGenerales.Twitter,
+                "Telegram": datosGenerales.Telegram,
+                "TituloServ": datosGenerales.TituloServ,
+                "SubTituloServ": datosGenerales.SubTituloServ,
+                "ColorBton1": datosGenerales.ColorBton1,
+                "ColorBton2": datosGenerales.ColorBton2,
+                "ImgFoto": datosGenerales.ImgFoto,
+                "ImgLogo": datosGenerales.ImgLogo,
+                "RegistroTarjet": datosGenerales.RegistroTarjet
+            }
+        })
+    });
+    
+    const dataUsuario = await response.json();
+
+    return dataUsuario;
+}
+
+export { DatosEditaPerfil, ActualizarPerfil, ActualizarPerfil2, ActualizarPerfil3, ActualizarHeaderPerfil, ActualizarTarjetaPerfil, ActualizaRegistroTarjet, ActualizarPerfil4 }

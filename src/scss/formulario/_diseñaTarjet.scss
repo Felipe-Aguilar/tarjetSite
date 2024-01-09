@@ -931,6 +931,10 @@ $btnAmarillo: #fab947;
                     
                     input{
                         width: 50%;
+
+                        &:disabled{
+                            background: #e4e4e4;
+                        }
                     }
                 }
                 .input-username{

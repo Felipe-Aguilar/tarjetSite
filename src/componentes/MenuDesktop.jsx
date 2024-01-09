@@ -31,7 +31,8 @@ const MenuDesktop = () => {
             <a onClick={()=>navigate('directorio-tarjet')}>Directorio Tarjet</a>
 
             { !sesionLocal ? 
-                <NavLink to="/login">Iniciar Sesion</NavLink>
+                // <NavLink to="/login">Iniciar Sesion</NavLink>
+                <NavLink to="/login">Mi tarjetero</NavLink>
             :
                 <button onClick={sesionFalse}>Cerrar Sesion</button>
             }

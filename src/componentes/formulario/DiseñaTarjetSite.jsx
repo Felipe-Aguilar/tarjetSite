@@ -487,14 +487,14 @@ const DiseñaTarjetSite = () => {
     }
 
     const OnlyEmail = (e) => {
-        setCorreo(e.target.value);
+        setCorreo(e.target.value.trim());
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (!emailRegex.test(e.target.value)) {
+        if (!emailRegex.test(e.target.value.trim())) {
             setError(true);
 
-            if (e.target.value === '') {
+            if (e.target.value.trim() === '') {
                 setError(false);
             }
         }else{

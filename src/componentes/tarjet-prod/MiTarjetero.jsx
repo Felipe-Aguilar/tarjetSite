@@ -32,6 +32,7 @@ import BtnDirectorio from '../../assets/boton-directorio-tarjetero.svg';
 import perfilGenerico from '../../assets/perfiltemporal.jpg';
 import btnCreaTuTarjet from '../../assets/boton-creatutarjeta.svg';
 import iconoMiPerfil from '../../assets/icono-perfil-02.svg';
+import PopEliminar from './PopEliminar';
 
 
 const MiTarjetero = () => {
@@ -224,7 +225,17 @@ const MiTarjetero = () => {
         setResultadoOpen(index === resultadoOpen ? null : index);
     }
 
-    // console.log(datosMiTarjetero);
+    const [eliminar, setEliminar] = useState(false);
+    const [idEliminar, setIdEliminar] = useState('');
+
+    const ClickEliminar = (id) => {
+        setEliminar(true);
+        setIdEliminar(id);
+    }
+
+    const CerrarEliminar = () => {
+        setEliminar(false);
+    }
 
     // Comprobando si existe o no
     if(comprobarUsuario.usuId === 0) return null;
@@ -232,6 +243,14 @@ const MiTarjetero = () => {
     return (
         <div className='container-fluid p-0 backgroun-Green'>
             <Toaster />
+            
+            { eliminar &&
+                ( <PopEliminar 
+                    CerrarEliminar={CerrarEliminar}
+                    idEliminar={idEliminar}
+                /> )
+            }
+
             <div className='miTarjetero background-image' >
                 { !busquedaUsuario ?
                 <>
@@ -539,7 +558,7 @@ const MiTarjetero = () => {
 
                                                     </div>
                                                     <div className='buttons buttonTrash'>
-                                                        <button>
+                                                        <button onClick={()=>ClickEliminar(resultado.IdUsuario)}>
                                                             <i className="bi bi-trash"></i>
                                                             Eliminar
                                                         </button>
@@ -624,7 +643,7 @@ const MiTarjetero = () => {
                                                                         </button>
                                                                     </div>
                                                                     <div className='buttons buttonTrash'>
-                                                                        <button>
+                                                                        <button onClick={()=>ClickEliminar(resultado.IdUsuario)}>
                                                                             <i className="bi bi-trash"></i>
                                                                             Eliminar
                                                                         </button>
@@ -701,7 +720,7 @@ const MiTarjetero = () => {
                                                         </button>
                                                     </div>
                                                     <div className='buttons buttonTrash'>
-                                                        <button>
+                                                        <button onClick={()=>ClickEliminar(resultado.IdUsuario)}>
                                                             <i className="bi bi-trash"></i>
                                                             Eliminar
                                                         </button>

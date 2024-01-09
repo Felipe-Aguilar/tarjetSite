@@ -33,7 +33,8 @@ const Menu = ({cambioMenu}) => {
                     } */}
 
                     { !sesionLocal ?
-                        <NavLink to="/login" onClick={()=>cambioMenu(true)}>Iniciar Sesion</NavLink>
+                        // <NavLink to="/login" onClick={()=>cambioMenu(true)}>Iniciar Sesion</NavLink>
+                        <NavLink to="/login" onClick={()=>cambioMenu(true)}>Mi tarjetero</NavLink>
                     :
                         <button onClick={()=>{sesionFalse(); cambioMenu(true);}} style={{marginBottom: '20px'}} className='log-out'>
                             Cerrar sesión <i className="bi bi-box-arrow-in-left"></i>

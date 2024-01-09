@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BusquedaAlias, ObtenerSegmentos } from '../contextos/BusquedaDirectorio';
-import { DatosEditaPerfil, ActualizarPerfil, ActualizarTarjetaPerfil } from '../contextos/EditaPerfil';
+import { DatosEditaPerfil, ActualizarPerfil, ActualizarTarjetaPerfil, ActualizarPerfil4 } from '../contextos/EditaPerfil';
 import { CodigoPostal } from '../contextos/CodigoPostal';
 import { ColeccionTarjeta } from '../contextos/Colecciones';
 import Slider from 'react-slick';
@@ -324,17 +324,6 @@ const DiseñaTarjet = () => {
 
         e.preventDefault();
 
-        // if (!colonia) {
-        //     setError2(true);
-        //     return;
-        // }
-        // if (codigoPostal < 5) {
-        //     setError2(true);
-        //     return;
-        // }else{
-        //     setError2(false);
-        // }
-
         if (sameAlias) {
             setError(true);
             
@@ -479,10 +468,38 @@ const DiseñaTarjet = () => {
     }
 
     // Previsualizar, gratis o premium
-
     const onClickPrevisualizar = (tipo) => {
         setTipoPrevisualizar(tipo);
         setPrevisualizar(true);
+    }
+
+    // OnHandleSubmit
+    const onHandleSubmit = async () => {
+        const datosFormulario = {
+            "Nom": nombre,
+            "AppP": appPat,
+            "AppM": appMat,
+            // "Cargo": cargo,
+            // "Lev1Id": buscaActividad ? filtroSegmento.Nivel1Id : '',
+            // "Lev1Desc": buscaActividad ? filtroSegmento.Nivel1Desc : '',
+            // "Lev2Id": buscaActividad ? filtroSegmento.Nivel2Id : '',
+            // "Lev2Desc": buscaActividad ? filtroSegmento.Nivel2Desc : '',
+            // "Lev3Id": buscaActividad ? filtroSegmento.Nivel3Id : '',
+            // "Lev3Desc": buscaActividad,
+            "PublicPriva": directorio ? 0 : 1,
+            "PermitirCalif": calificacion ? 0 : 1,
+            "PermitirComments": comentarios ? 0 : 1,
+            "Calle": calle,
+            "NumExt": numeroExterior,
+            "Estado": estado,
+            "CodP": codigoPostal,
+            "Municip": municipio,
+            "Colonia": colonia,
+            "Titulo": titulo,
+            // "Alias": nombreUsuario
+        }
+
+        await ActualizarPerfil4(datosGenerales, datosFormulario);
     }
 
     return ( 
@@ -986,7 +1003,7 @@ const DiseñaTarjet = () => {
 
                                 <div className='select'>
                                     <div>
-                                        <select value={titulo} onChange={(e)=>setTitulo(e.target.value)}>
+                                        <select value={titulo} onChange={(e)=>setTitulo(e.target.value)} onBlur={onHandleSubmit}>
                                             { listadoPrefijos.map((prefijo)=>(
                                                 <option value={prefijo.TituloPersonaDesc} key={prefijo.TituloPersonaId}>{prefijo.TituloPersonaDesc}</option>
                                             ))
@@ -995,27 +1012,32 @@ const DiseñaTarjet = () => {
                                     </div>
                                     <input 
                                         type="text" 
-                                        placeholder='Empresa ó tu Nombre (40 caracteres)' 
-                                        maxLength={40}
+                                        placeholder={`Empresa ó tu Nombre (${titulo === 'Empresa' ? '30' : '10'} caracteres)`}
+                                        maxLength={ titulo === 'Empresa' ? 30 : 10}
                                         value={nombre}
                                         onChange={(e)=>setNombre(e.target.value)}
+                                        onBlur={onHandleSubmit}
                                     />
                                 </div>
 
                                 <div className='apellidos'>
                                     <input 
                                         type="text" 
-                                        maxLength={40} 
-                                        placeholder='Apellido Paterno'
-                                        value={appPat}
+                                        maxLength={10} 
+                                        placeholder='Apellido Paterno (10 caracteres)'
+                                        value={ titulo === 'Empresa' ? '' : appPat}
                                         onChange={(e)=>setAppPat(e.target.value)}
+                                        disabled={titulo === 'Empresa' ? true : false}
+                                        onBlur={onHandleSubmit}
                                     />
                                     <input 
                                         type="text" 
                                         maxLength={40} 
-                                        placeholder='Apellido Materno'
-                                        value={appMat}
+                                        placeholder='Apellido Materno (10 caracteres)'
+                                        value={ titulo === 'Empresa' ? '' : appMat}
                                         onChange={(e)=>setAppMat(e.target.value)}
+                                        disabled={titulo === 'Empresa' ? true : false}
+                                        onBlur={onHandleSubmit}
                                     />
                                 </div>
 
@@ -1088,6 +1110,7 @@ const DiseñaTarjet = () => {
                                     placeholder='Calle, privada, avenida'
                                     value={calle}
                                     onChange={(e)=>setCalle(e.target.value)}
+                                    onBlur={onHandleSubmit}
                                 />
 
                                 <div className='twoInput'>
@@ -1097,6 +1120,7 @@ const DiseñaTarjet = () => {
                                             placeholder='Número'
                                             value={numeroExterior}
                                             onChange={(e)=>setNumeroExterior(e.target.value)}
+                                            onBlur={onHandleSubmit}
                                         />
                                     </div>
                                     <div className='w-50'>
@@ -1106,6 +1130,7 @@ const DiseñaTarjet = () => {
                                             placeholder='C.P'
                                             value={codigoPostal}
                                             onChange={onChangeCodigoPostal}
+                                            onBlur={onHandleSubmit}
                                         />
                                     </div>
                                 </div>
@@ -1132,6 +1157,7 @@ const DiseñaTarjet = () => {
                                     value={colonia} 
                                     onChange={(e)=>setColonia(e.target.value)}
                                     className={error2 ? 'input-error' : ''}
+                                    onBlur={onHandleSubmit}
                                 >
                                     <option value="categoria" key="1">Colonia *</option>
 
@@ -1180,7 +1206,7 @@ const DiseñaTarjet = () => {
                                 <div className='accept'>
                                     <div className='switches'>
                                         <label className="switch mb-0">
-                                            <input type="checkbox" checked={directorio} onChange={()=>setDirectorio(!directorio)}/>
+                                            <input type="checkbox" checked={directorio} onChange={()=>setDirectorio(!directorio)} onBlur={onHandleSubmit}/>
                                             <span className="slider"></span>
                                         </label>
                                     </div>
@@ -1192,7 +1218,7 @@ const DiseñaTarjet = () => {
                                 <div className='accept'>
                                     <div className='switches'>
                                         <label className="switch mb-0">
-                                            <input type="checkbox" checked={calificacion} onChange={()=>setCalificacion(!calificacion)}/>
+                                            <input type="checkbox" checked={calificacion} onChange={()=>setCalificacion(!calificacion)} onBlur={onHandleSubmit}/>
                                             <span className="slider"></span>
                                         </label>
                                     </div>
@@ -1204,7 +1230,7 @@ const DiseñaTarjet = () => {
                                 <div className='accept'>
                                     <div className='switches'>
                                         <label className="switch mb-0">
-                                            <input type="checkbox" checked={comentarios} onChange={()=>setComentarios(!comentarios)}/>
+                                            <input type="checkbox" checked={comentarios} onChange={()=>setComentarios(!comentarios)} onBlur={onHandleSubmit}/>
                                             <span className="slider"></span>
                                         </label>
                                     </div>
