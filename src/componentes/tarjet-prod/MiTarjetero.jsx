@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 
 import { DatosUsuarioSesion } from '../contextos/DatosUsuarioSesion';
 import { ConsultaTarjetero, ConsultaTarjeteroFiltro, ConsultaTarjeteroNombre } from '../contextos/ConsultaTarjetero';
@@ -225,6 +224,7 @@ const MiTarjetero = () => {
         setResultadoOpen(index === resultadoOpen ? null : index);
     }
 
+    // Eliminar de tarjetero
     const [eliminar, setEliminar] = useState(false);
     const [idEliminar, setIdEliminar] = useState('');
 
@@ -282,20 +282,24 @@ const MiTarjetero = () => {
                             { (datos.RegistroTarjet && usuario.UsuFondoF) &&
                                     <>
                                         { usuario.UsuFondoF?.slice(0,5) === 'TFRE_' &&
-                                            <img 
+                                            <motion.img 
                                                 src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${usuario.UsuFondoF}?timestamp=${timestamp}`}
                                                 onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
+                                                animate={{rotate: [0, -1.5, 1.5, 0]}}
+                                                transition={{ease: "linear", delay: 2, duration: 0.3,repeat: Infinity, repeatDelay: 2}}
                                             />
                                         }
 
                                         { usuario.UsuFondoF?.slice(0,5) === 'TFPre' &&
-                                            <img 
+                                            <motion.img 
                                                 src={`https://tarjet.site/imagenes/tarjetas_frente/premium/${usuario.UsuFondoF}?timestamp=${timestamp}`}
                                                 onClick={()=>navigate('/st/'+btoa(usuario.UsuToken))}
+                                                animate={{rotate: [0, -1.5, 1.5, 0]}}
+                                                transition={{ease: "linear", delay: 2, duration: 0.3,repeat: Infinity, repeatDelay: 2}}
                                             />
                                         }
 
-                                        <p>
+                                        <p className='font-weight-bold'>
                                             Da click sobre la imagen para ver tu tarjeta digital
                                         </p>
                                     </>

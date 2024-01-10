@@ -26,6 +26,7 @@ import iconoTarjet from '../../assets/icono-t-tarjet.svg';
 import iconoSubirImagen from '../../assets/icono-imagen.svg';
 import PopCorrecto from './PopCorrecto';
 import PrevisualizarHeader from './PrevisualizarHeader';
+import iconoMiPerfil from '../../assets/icono-perfil-02.svg';
 
 
 const DiseñaTarjetSite = () => {
@@ -662,6 +663,14 @@ const DiseñaTarjetSite = () => {
                     <p className='orange'>
                         Tu propio sitio Web para que te contacten y conozcan tus servicios o productos.
                     </p>
+
+                    <div className='buttonMiperfil'>
+                        <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                            <img src={iconoMiPerfil} alt="Icono ir a mi perfil" />
+                            Mi perfil
+                        </button>
+                    </div>
+
                     <p>
                         No olvides poner tu número de WhatsApp para que sea más sencillo que te contacten, así como tus redes sociales y los servicios que ofreces con las imágenes que tu prefieras.
                     </p>
@@ -722,11 +731,11 @@ const DiseñaTarjetSite = () => {
                                 Premium
                             </button>
                             <button
-                                className={opcion === 'Personalizado' ? 'activeOption' : ''}
+                                className={opcion === 'Ver actual' ? 'activeOption' : ''}
                                 onClick={(e)=>setOpcion(e.target.innerText)}
                             >
                                 <i className="bi bi-caret-down-fill"></i>
-                                Personalizado
+                                Ver actual
                             </button>
                         </div>
 
@@ -877,7 +886,7 @@ const DiseñaTarjetSite = () => {
                             </div>
                         }
 
-                        { opcion === 'Personalizado' &&
+                        { opcion === 'Ver actual' &&
                             // <div className='gratuitas'>
                             //     <Slider {...settings}>
 
@@ -1243,13 +1252,8 @@ const DiseñaTarjetSite = () => {
                             En tu Tarjet Site, se mostrarán los campos con la información que llenes, mientras que los campos vacíos permanecerán ocultos.
                         </p>
                         
-                        <h3>Actividad principal</h3>
-                        <p>
-                            Sugerimos uses palabras claves que resuman tu actividad. En el cuadro de llenado te damos un ejemplo:
-                        </p>
                         <form onSubmit={GuardarTarjeta1}>
-                            <input type="text" readOnly value={datosGenerales.Lev3Desc}/>
-
+                            
                             <h3>Listado de actividades</h3>
                             <p>
                                 Sugerimos uses enunciados en forma de lista que describan tus actividades ó principales servicios.

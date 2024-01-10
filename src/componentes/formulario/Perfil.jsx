@@ -206,7 +206,11 @@ const Perfil = () => {
                         <div className="cuerpo-div">
                             
                             <div className="buttons-new">
-                                <button className='btn-site btn-1' onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}>
+                                <button 
+                                    className='btn-site btn-1' 
+                                    onClick={()=>navigate(`/disena-tu-tarjetsite/${btoa(datosSesion.UsuToken)}`)}
+                                    disabled={datosActualizados.RegistroTarjet ? false : true}
+                                >
                                     Edita / Crea tu TarjetSite
                                 </button>
 
@@ -226,6 +230,11 @@ const Perfil = () => {
                                         exit= "closed"
                                         variants={AnimateProps}
                                     >
+                                        { !datosActualizados.RegistroTarjet &&
+                                            (
+                                                <h6 className='text-center mb-4' style={{textDecoration: 'underline'}}>Botón deshabilitado, “Primero tienes que crear tu Tarjeta”</h6>
+                                            )
+                                        }
                                         <h6>Tarjeta digital Tarjet (micrositio web)</h6>
                                         <p>
                                             Es tu propio espacio en donde configuras todas las formas de contactarte, acceso a tu whatsapp, redes sociales, correo, ubicación, servicios que ofreces, etc.

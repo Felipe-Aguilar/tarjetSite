@@ -628,28 +628,28 @@ END:VCARD`;
                         <h5>Mis redes sociales</h5>
                         <div className='iconos'>
                             <a 
-                                href = {`https://www.facebook.com/${usuario.SiteFacebook}`}
+                                href = {`${usuario.SiteFacebook}`}
                                 className={!usuario.SiteFacebook && 'desactivado'}
                             >
                                 <img src={usuario.SiteFacebook ? socialFacebook : socialFacebookOff} />
                             </a>
 
                             <a 
-                                href = {`https://www.instagram.com/${usuario.SiteInstagram}`}
+                                href = {`${usuario.SiteInstagram}`}
                                 className={!usuario.SiteInstagram && 'desactivado'}
                             >
                                 <img src={usuario.SiteInstagram ? socialInstagram : socialInstagramOff} />
                             </a>
 
                             <a 
-                                href = {`https://www.tiktok.com/@${usuario.SiteTiktok}`}
+                                href = {`${usuario.SiteTiktok}`}
                                 className={!usuario.SiteTiktok && 'desactivado'}
                             >
                                 <img src={usuario.SiteTiktok ? socialTikTok : socialTikTokOff} />
                             </a>
 
                             <a 
-                                href = {`https://www.twitter.com/${usuario.SiteTwitter}`}
+                                href = {`${usuario.SiteTwitter}`}
                                 className={!usuario.SiteTwitter && 'desactivado'}
                             >
                                 <img src={usuario.SiteTwitter ? socialTwitter : socialTwitterOff} />
@@ -657,21 +657,21 @@ END:VCARD`;
                         </div>
                         <div className='iconos'>
                             <a 
-                                href = {`https://www.youtube.com/${usuario.SiteYoutube}`}
+                                href = {`${usuario.SiteYoutube}`}
                                 className={!usuario.SiteYoutube && 'desactivado'}
                             >
                                 <img src={usuario.SiteYoutube ? socialYoutube : socialYoutubeOff} />
                             </a>
 
                             <a 
-                                href = {`https://www.linkedin.com/${usuario.SiteLinkedin}`}
+                                href = {`${usuario.SiteLinkedin}`}
                                 className={!usuario.SiteLinkedin && 'desactivado'}
                             >
                                 <img src={usuario.SiteLinkedin ? socialLinkedIn : socialLinkedInOff} />
                             </a>
 
                             <a 
-                                href = {`https://msng.link/o?${usuario.SiteTelegram}=tg`}
+                                href = {`${usuario.SiteTelegram}`}
                                 className={!usuario.SiteTelegram && 'desactivado'}
                             >
                                 <img src={usuario.SiteTelegram ? socialTelegram : socialTelegramOff} />

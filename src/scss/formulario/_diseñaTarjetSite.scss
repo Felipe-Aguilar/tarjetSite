@@ -61,6 +61,26 @@ $btnRegresar: #4f8b92;
             color: #E93700;
             font-weight: 900;
         }
+
+        .buttonMiperfil{
+            margin-bottom: 15px;
+    
+            button{
+                background: transparent;
+                outline: none!important;
+                border: transparent;
+                font-size: 0.8rem;
+    
+                img{
+                    width: 4rem;
+                    display: block;
+                }
+            }
+    
+            @media (width <= 700px) {   
+                width: 90%;
+            }
+        }
     }
 
     .controls{

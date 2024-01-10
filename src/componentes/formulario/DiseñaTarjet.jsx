@@ -13,6 +13,7 @@ import ilustracion from '../../assets/ilustracion-formulario-tarjet-03.png';
 import perfilTemporal from '../../assets/perfiltemporal.jpg';
 import ilustracionPersonalizada from '../../assets/ilustracion-personalizada.png';
 import Previsualizar from './Previsualizar';
+import iconoMiPerfil from '../../assets/icono-perfil-02.svg';
 import { ListadoPrefijos } from '../contextos/PrefijosListado';
 
 
@@ -66,6 +67,8 @@ const DiseñaTarjet = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [currentFondo, setCurrentFondo] = useState('TarjetaF_1.webp');
     const [currentFondo2, setCurrentFondo2] = useState('TFPrem1.webp');
+
+    const [optionColecciones, setOptionColecciones] = useState('Gratuitas');
 
     // Listado de prefijos
     const [listadoPrefijos, setListadoPrefijos] = useState([]);
@@ -137,6 +140,11 @@ const DiseñaTarjet = () => {
 
             const response2 = await ListadoPrefijos();
             setListadoPrefijos(response2.sdtTitulos);
+
+            // Ver actual si ya tiene
+            if (respuesta.RegistroTarjet) {
+                setOptionColecciones('Ver actual');
+            }
         }
 
         // Comprobar Colecciones de tarjetas
@@ -171,8 +179,6 @@ const DiseñaTarjet = () => {
 
     const [diseño, setDiseño] = useState(false);
     const [datos, setDatos] = useState(true);
-
-    const [optionColecciones, setOptionColecciones] = useState('Gratuitas');
 
     const settings = {
         arrows: true,
@@ -387,7 +393,11 @@ const DiseñaTarjet = () => {
             setPopActualiza(false);
 
             setTimeout(()=>{
-                window.location.reload();
+
+                setDatos(false);
+                setDiseño(true);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
             }, 500);
 
         }, 3500);
@@ -432,12 +442,12 @@ const DiseñaTarjet = () => {
         
         const pattern = /^[a-zA-Z0-9\s]*$/;
         
-        if (pattern.test(e.target.value)) {
-            setNombreUsuario(e.target.value);     
+        if (pattern.test(e.target.value.trim())) {
+            setNombreUsuario(e.target.value.trim());     
             
-            const response = await BusquedaAlias(e.target.value);
+            const response = await BusquedaAlias(e.target.value.trim());
 
-            const mismoAlias = response.ListTarjets.find(respuesta => respuesta.Alias === e.target.value);
+            const mismoAlias = response.ListTarjets.find(respuesta => respuesta.Alias === e.target.value.trim());
 
             if ( mismoAlias !== undefined ) {
                 setSameAlias(mismoAlias);
@@ -522,6 +532,13 @@ const DiseñaTarjet = () => {
                     <h5 className='orange'>
                         <b>La información de esta sección te ayudará a establecer relaciones comerciales con otros usuarios tarjet en nuestro directorio empresarial</b>
                     </h5>
+                </div>
+
+                <div className='buttonMiperfil'>
+                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)}>
+                        <img src={iconoMiPerfil} alt="Icono ir a mi perfil" />
+                        Mi perfil
+                    </button>
                 </div>
 
                 <div className='DiseñaTuTarjet'>
@@ -914,12 +931,18 @@ const DiseñaTarjet = () => {
                                         Previsualizar
                                     </button>
                                     
-                                    <button 
+                                    {/* <button 
                                         className={`guardar`}
                                         onClick={(e)=>GuardarImagenTarjeta('premium', e)}
                                         disabled={datosGenerales.Premium ? false : true}
                                     >
                                         Guardar imagen
+                                    </button> */}
+                                </div>
+
+                                <div className='regresar'>
+                                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
+                                        Regresar a perfil (x)
                                     </button>
                                 </div>
                             </div>
@@ -941,32 +964,11 @@ const DiseñaTarjet = () => {
                                     />
                                 }
 
-                                {/* { datosGenerales.ImgTarFrente.slice(0,5) === 'TFREP' &&
-                                    <img 
-                                        src={`https://tarjet.site/imagenes/tarjetas_frente/premium/${datosGenerales.ImgTarFrente}`} 
-                                        alt="Tu tarjeta personalizada" 
-                                    />
-                                } */}
-
-                                {/* <img src={ilustracionPersonalizada} />
-                                <p>
-                                    ¿Tienes una idea o necesitas el diseño de tu tarjeta con un modelo exclusivo? 
-                                </p>
-
-                                <p>
-                                    <span>Ponte en contacto con nosotros,</span> <br/>
-                                    ¡nos encantaría escucharte y ayudarte!
-                                </p>
-
-                                <a href='' target='_blank'>
-                                    ¡Solicíta su costo aquí!
-                                </a>
-
                                 <div className='regresar'>
-                                    <button>
-                                        Cerrar ventana (x)
+                                    <button onClick={()=>navigate(`/mi-perfil/${btoa(datosSesion.UsuToken)}`)} type='button'>
+                                        Regresar a perfil (x)
                                     </button>
-                                </div> */}
+                                </div>
                             </div>
                         }
                     </div>
@@ -1089,18 +1091,20 @@ const DiseñaTarjet = () => {
 
                                 <input 
                                     type="text" 
-                                    readOnly
+                                    // readOnly
+                                    disabled
                                     placeholder='Categoría*'
                                     value={buscaActividad === filtroSegmento?.Descripcion ? filtroSegmento.Nivel1Desc : ''}
-                                    style={{color: '#8e8e8e'}}
+                                    // style={{color: '#8e8e8e'}}
                                 />
 
                                 <input 
                                     type="text" 
-                                    readOnly
+                                    // readOnly
+                                    disabled
                                     placeholder='Categoría*'
                                     value={buscaActividad === filtroSegmento?.Descripcion ? filtroSegmento.Nivel2Desc : ''}
-                                    style={{color: '#8e8e8e'}}
+                                    // style={{color: '#8e8e8e'}}
                                 />
 
                                 <h6>Ubicación</h6>
