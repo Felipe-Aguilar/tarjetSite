@@ -15,6 +15,12 @@ const HomeDirectorio = () => {
             top: 0,
             behavior: "smooth"
         });
+
+        if (navigator.geolocation) { //check if geolocation is available
+            navigator.geolocation.getCurrentPosition(function(position){
+                console.log(position);
+            });   
+        }
     },[]);
 
     return ( 
