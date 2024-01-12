@@ -383,19 +383,17 @@ $btnAmarillo: #fab947;
                 margin-top: 25px;
 
                 button{
-                    width: 60%;
                     display: block;
                     margin: auto;
                     margin-bottom: 15px;
                     outline: none!important;
                     border-radius: 8px;
                     border: transparent;
-                    background: $btnAzul;
-                    padding: 5px;
+                    padding: 5px 20px;
 
-                    @media (width <= 575px) {
-                        width: 90%;
-                    }
+                    // @media (width <= 575px) {
+                    //     width: 90%;
+                    // }
 
                     &:disabled{
                         background: #d6d6d6;
@@ -407,6 +405,17 @@ $btnAmarillo: #fab947;
                 }
                 .previsualizarBtn{
                     background: #a7a7d4;
+                }
+
+                input{
+                    width: 100%;
+                    margin-bottom: 15px;
+                    padding: 5px 7px;
+                    background: #fff;
+                    border: transparent;
+                    color: #555554;
+                    border-radius: 8px;
+                    outline: none!important;
                 }
 
             }

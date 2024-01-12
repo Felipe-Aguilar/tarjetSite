@@ -45,7 +45,8 @@ const DiseñaTarjet = () => {
     const [comentarios, setComentarios] = useState(false);
     const [actividad, setActividad] = useState('');
     const [consultaCP, setConsultaCP] = useState([]);
-    const [titulo, setTitulo] = useState('Lic');
+    const [tituloDes, setTituloDes] = useState('Lic');
+    const [titulo, setTitulo] = useState('');
     const [nombreUsuario, setNombreUsuario] = useState('');
 
     const [error, setError] = useState(false);
@@ -109,9 +110,9 @@ const DiseñaTarjet = () => {
             setActividad(respuesta.Lev3Desc);
             setNombreUsuario(respuesta.Alias);
             if (respuesta.Titulo === '') {
-                setTitulo('Lic');
+                setTituloDes('Lic');
             } else{
-                setTitulo(respuesta.Titulo);
+                setTituloDes(respuesta.Titulo);
             }
 
             if (respuesta.CodP) {
@@ -307,7 +308,7 @@ const DiseñaTarjet = () => {
             "CodP": codigoPostal,
             "Municip": municipio,
             "Colonia": colonia,
-            "Titulo": titulo,
+            "Titulo": tituloDes,
             "Alias": nombreUsuario
         }
 
@@ -382,7 +383,7 @@ const DiseñaTarjet = () => {
             "CodP": codigoPostal,
             "Municip": municipio,
             "Colonia": colonia,
-            "Titulo": titulo,
+            "Titulo": tituloDes,
             "Alias": nombreUsuario
         }
 
@@ -505,12 +506,19 @@ const DiseñaTarjet = () => {
             "CodP": codigoPostal,
             "Municip": municipio,
             "Colonia": colonia,
-            "Titulo": titulo,
+            "Titulo": tituloDes,
             // "Alias": nombreUsuario
         }
 
         await ActualizarPerfil4(datosGenerales, datosFormulario);
     }
+
+    useEffect(()=>{
+        if (tituloDes === 'Empr') {
+            setAppPat('');
+            setAppMat('');
+        }
+    },[tituloDes]);
 
     return ( 
         <div className='backgroun-Green'>
@@ -922,6 +930,15 @@ const DiseñaTarjet = () => {
                                 </div>
 
                                 <div className='buttons-confirm'>
+
+                                    <input 
+                                        type="text" 
+                                        placeholder='Texto debajo de tu nombre (30 caracteres)' maxLength={30}
+                                        value={cargo}
+                                        onChange={(e)=>setCargo(e.target.value)}
+                                        onBlur={GuardarTarjeta1}
+                                    />
+
                                     <button 
                                         type='button' 
                                         className={`previsualizarBtn`} 
@@ -1005,17 +1022,17 @@ const DiseñaTarjet = () => {
 
                                 <div className='select'>
                                     <div>
-                                        <select value={titulo} onChange={(e)=>setTitulo(e.target.value)} onBlur={onHandleSubmit}>
+                                        <select value={tituloDes} onChange={(e)=>setTituloDes(e.target.value)} onBlur={onHandleSubmit}>
                                             { listadoPrefijos.map((prefijo)=>(
-                                                <option value={prefijo.TituloPersonaDesc} key={prefijo.TituloPersonaId}>{prefijo.TituloPersonaDesc}</option>
+                                                <option value={prefijo.TituloPersonaId} key={prefijo.TituloPersonaId}>{prefijo.TituloPersonaDesc}</option>
                                             ))
                                             }
                                         </select>
                                     </div>
                                     <input 
                                         type="text" 
-                                        placeholder={`Empresa ó tu Nombre (${titulo === 'Empresa' ? '30' : '10'} caracteres)`}
-                                        maxLength={ titulo === 'Empresa' ? 30 : 10}
+                                        placeholder={`Empresa ó tu Nombre (${tituloDes === 'Empr' ? '30' : '10'} caracteres)`}
+                                        maxLength={ tituloDes === 'Empr' ? 30 : 10}
                                         value={nombre}
                                         onChange={(e)=>setNombre(e.target.value)}
                                         onBlur={onHandleSubmit}
@@ -1027,18 +1044,18 @@ const DiseñaTarjet = () => {
                                         type="text" 
                                         maxLength={10} 
                                         placeholder='Apellido Paterno (10 caracteres)'
-                                        value={ titulo === 'Empresa' ? '' : appPat}
+                                        value={ tituloDes === 'Empr' ? '' : appPat}
                                         onChange={(e)=>setAppPat(e.target.value)}
-                                        disabled={titulo === 'Empresa' ? true : false}
+                                        disabled={tituloDes === 'Empr' ? true : false}
                                         onBlur={onHandleSubmit}
                                     />
                                     <input 
                                         type="text" 
                                         maxLength={40} 
                                         placeholder='Apellido Materno (10 caracteres)'
-                                        value={ titulo === 'Empresa' ? '' : appMat}
+                                        value={ tituloDes === 'Empr' ? '' : appMat}
                                         onChange={(e)=>setAppMat(e.target.value)}
-                                        disabled={titulo === 'Empresa' ? true : false}
+                                        disabled={tituloDes === 'Empr' ? true : false}
                                         onBlur={onHandleSubmit}
                                     />
                                 </div>
