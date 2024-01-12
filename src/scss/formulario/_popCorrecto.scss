@@ -37,5 +37,31 @@
                 margin: 0;
             }
         }
+        .img-share{
+            width: 50%;
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+            @media (width <= 700px) {
+                width: 70%;
+            }
+        }
+        .infoText{
+            font-size: 0.9rem;
+        }
+        .closeButton{
+            border: 0px;
+            background: transparent;
+            text-transform: uppercase;
+            color: #5b8f94;
+            font-size: 0.7rem;
+            outline: none !important;
+
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+        }
     }
 }

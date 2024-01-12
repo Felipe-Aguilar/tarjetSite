@@ -27,6 +27,8 @@ import iconoSubirImagen from '../../assets/icono-imagen.svg';
 import PopCorrecto from './PopCorrecto';
 import PrevisualizarHeader from './PrevisualizarHeader';
 import iconoMiPerfil from '../../assets/icono-perfil-02.svg';
+import InfoFacebook from './InfoFacebook';
+import { BsTwitterX } from "react-icons/bs";
 
 
 const DiseñaTarjetSite = () => {
@@ -642,8 +644,14 @@ const DiseñaTarjetSite = () => {
         await ActualizarPerfil3(datosGenerales, datosFormulario);
     }
 
+    const [infoFacebook, setInfoFacebook] = useState(false);
+
     const CerrarPrevisualizar = () => {
         setPrevisualizar(false);
+    }
+
+    const CerrarInfoFacebook = () => {
+        setInfoFacebook(false);
     }
 
     return ( 
@@ -652,6 +660,10 @@ const DiseñaTarjetSite = () => {
 
                 { popActualiza &&
                     <PopCorrecto />
+                }
+
+                { infoFacebook &&
+                    <InfoFacebook CerrarInfoFacebook={CerrarInfoFacebook}/>
                 }
 
                 <div className='img-banner'>
@@ -1119,7 +1131,11 @@ const DiseñaTarjetSite = () => {
                                         placeholder='Url Facebook'
                                         value={facebook}
                                         onChange={(e)=>setFacebook(e.target.value)}
+                                        className='facebook'
                                     />
+                                    <button onClick={()=>setInfoFacebook(true)} type='button'>
+                                        <i className="bi bi-question-circle"></i>
+                                    </button>
                                 </div>
 
                                 <div className='input-datos'>
@@ -1147,8 +1163,9 @@ const DiseñaTarjetSite = () => {
                                 </div>
 
                                 <div className='input-datos'>
-                                    <div className='cont ubi'>
-                                        <img src={iconoTwitter}/>
+                                    <div className='cont ubi twitter'>
+                                        {/* <img src={iconoTwitter}/> */}
+                                        <BsTwitterX />
                                     </div>
                                     <input 
                                         type="text" 

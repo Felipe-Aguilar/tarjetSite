@@ -605,6 +605,27 @@ $btnRegresar: #4f8b92;
                 .input-error{
                     border: 2px solid red;
                 }
+
+                .facebook{
+                    border-radius: 0;
+                }
+
+                button{
+                    background: #fff;
+                    padding: 0 10px;
+                    border: transparent;
+                    border-radius: 0 8px 8px 0;
+                    outline: none!important;
+                }
+
+                .twitter{
+                    svg{
+                        height: 80%;
+                        color: #fff;
+                        display: block;
+                        margin: auto;
+                    }
+                }
             }
 
             .checkbox{
