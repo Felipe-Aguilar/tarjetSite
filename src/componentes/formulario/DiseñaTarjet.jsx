@@ -48,6 +48,7 @@ const DiseñaTarjet = () => {
     const [tituloDes, setTituloDes] = useState('Lic');
     const [titulo, setTitulo] = useState('');
     const [nombreUsuario, setNombreUsuario] = useState('');
+    const [nombreNegocio, setNombreNegocio] = useState('');
 
     const [error, setError] = useState(false);
     const [errorActividad, setErrorActividad] = useState(false);
@@ -109,6 +110,7 @@ const DiseñaTarjet = () => {
             setColonia(respuesta.Colonia);
             setActividad(respuesta.Lev3Desc);
             setNombreUsuario(respuesta.Alias);
+            setNombreNegocio(respuesta.NomNegocio);
             if (respuesta.Titulo === '') {
                 setTituloDes('Lic');
             } else{
@@ -309,7 +311,8 @@ const DiseñaTarjet = () => {
             "Municip": municipio,
             "Colonia": colonia,
             "Titulo": tituloDes,
-            "Alias": nombreUsuario
+            "Alias": nombreUsuario,
+            "NomNegocio": nombreNegocio
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -384,7 +387,8 @@ const DiseñaTarjet = () => {
             "Municip": municipio,
             "Colonia": colonia,
             "Titulo": tituloDes,
-            "Alias": nombreUsuario
+            "Alias": nombreUsuario,
+            "NomNegocio": nombreNegocio
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -507,7 +511,8 @@ const DiseñaTarjet = () => {
             "Municip": municipio,
             "Colonia": colonia,
             "Titulo": tituloDes,
-            // "Alias": nombreUsuario
+            // "Alias": nombreUsuario,
+            "NomNegocio": nombreNegocio
         }
 
         await ActualizarPerfil4(datosGenerales, datosFormulario);
@@ -1059,19 +1064,30 @@ const DiseñaTarjet = () => {
                                         onBlur={onHandleSubmit}
                                     />
                                 </div>
+                                
+                                <div className='d-flex align-items-center' style={{gap: '10px'}}>
+                                    <input 
+                                        type="text" 
+                                        placeholder='Nombre de usuario' 
+                                        maxLength={15}
+                                        value={nombreUsuario}
+                                        onChange={onChangeNombreUsuario}
+                                        className={`input-username ${errorAlias ? 'input-error' : ''}`}
+                                    />
+                                    
+                                    <p className='text-usuario'>
+                                        (con este usuario te podrán encontrar más fácil en el directorio)
+                                    </p>
+                                </div>
 
                                 <input 
                                     type="text" 
-                                    placeholder='Nombre de usuario' 
-                                    maxLength={15}
-                                    value={nombreUsuario}
-                                    onChange={onChangeNombreUsuario}
-                                    className={`input-username ${errorAlias ? 'input-error' : ''}`}
+                                    placeholder='Nombre del negocio (30 caracteres)'
+                                    maxLength={30}
+                                    value={nombreNegocio}
+                                    onChange={(e)=>setNombreNegocio(e.target.value)}
+                                    onBlur={onHandleSubmit}
                                 />
-                                
-                                <p className='text-usuario'>
-                                    (con este usuario te podrán encontrar más fácil en el directorio)
-                                </p>
 
                                 <input 
                                     type="text" 

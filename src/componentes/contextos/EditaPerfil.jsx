@@ -82,7 +82,8 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": datosGenerales.RegistroTarjet
+                "RegistroTarjet": datosGenerales.RegistroTarjet,
+                "NomNegocio": datosFormulario.NomNegocio
             }
         })
     });
@@ -160,7 +161,8 @@ const ActualizarHeaderPerfil = async (datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": datosGenerales.RegistroTarjet
+                "RegistroTarjet": datosGenerales.RegistroTarjet,
+                "NomNegocio": datosGenerales.NomNegocio
             }
         })
     });
@@ -238,7 +240,8 @@ const ActualizarTarjetaPerfil = async (datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": true
+                "RegistroTarjet": true,
+                "NomNegocio": datosGenerales.NomNegocio
             }
         })
     });
@@ -319,6 +322,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
                 "RegistroTarjet": datosGenerales.RegistroTarjet,
+                "NomNegocio": datosGenerales.NomNegocio,
                 "Serv": [
                     {
                         "ServNum": 1,
@@ -544,6 +548,7 @@ const ActualizarPerfil3 = async(datosGenerales, datosFormulario) => {
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
                 "RegistroTarjet": datosGenerales.RegistroTarjet,
+                "NomNegocio": datosGenerales.NomNegocio,
                 "Serv": [
                     {
                         "ServNum": 1,
@@ -767,7 +772,8 @@ const ActualizaRegistroTarjet= async (datosGenerales, cargo) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": true
+                "RegistroTarjet": true,
+                "NomNegocio": datosGenerales.NomNegocio
             }
         })
     });
@@ -846,7 +852,8 @@ const ActualizarPerfil4 = async(datosGenerales, datosFormulario) => {
                 "ColorBton2": datosGenerales.ColorBton2,
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
-                "RegistroTarjet": datosGenerales.RegistroTarjet
+                "RegistroTarjet": datosGenerales.RegistroTarjet,
+                "NomNegocio": datosFormulario.NomNegocio,
             }
         })
     });
