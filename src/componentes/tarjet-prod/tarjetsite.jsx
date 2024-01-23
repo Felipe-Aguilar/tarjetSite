@@ -317,13 +317,13 @@ END:VCARD`;
                                 transition={{delay: 0.4}}
                             >
                                 <a
-                                    href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`} 
+                                    href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20👋🏻%20te%20contacto%20desde%20tu%20Tarjet.`} 
                                     target={"_blank"}
                                 >
                                     Envíame un WhatsApp
                                 </a>
                                 <a 
-                                    href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20te%20contacto%20desde%20tu%20tarjeta%20tarjet.`}
+                                    href={`https://api.whatsapp.com/send?phone=+52${usuario.SiteTelefono1}&text=¡Hola!%20👋🏻%20te%20contacto%20desde%20tu%20Tarjet.`}
                                     target={"_blank"} 
                                     className='icon' 
                                     style={{background: '#00943e'}}
@@ -492,11 +492,11 @@ END:VCARD`;
                                 transition={{delay: 1.8}}
                                 style={{background: '#cdd1de'}}
                             >
-                                <a className='save' href='https://tarjet.site/mxm/NEWDROPSMXMCOLLECTION.pdf' target='_blank'>
+                                <a className='save' href='https://tarjet.site/mxm/CATALOGO-SPRING-SUMMER-2024.pdf' target='_blank'>
                                     Descargar catálogo
                                 </a>
                                 <a 
-                                    href='https://tarjet.site/mxm/NEWDROPSMXMCOLLECTION.pdf'
+                                    href='https://tarjet.site/mxm/CATALOGO-SPRING-SUMMER-2024.pdf'
                                     target='_blank'
                                     className='icon save'
                                     style={{background: '#2a3e68'}}

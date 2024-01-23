@@ -34,10 +34,10 @@ import IconBtnWeb from '../../assets/boton-web-site.svg';
 import IconBtnRedes from '../../assets/boton-redes-site.svg';
 import IconBtnCatalogo from '../../assets/mxm/boton-catalogo-site.svg';
 
-import PortadaMxm from '../../assets/mxm/portada-mxm.jpg';
+import PortadaMxm from '../../assets/mxm/portada-mxm.webp';
 import PerfilLogo from '../../assets/mxm/logotipo-perfil.webp';
 import logoPequeño from '../../assets/mxm/mxm-collection.svg';
-import ImagenSite from '../../assets/mxm/imagen-site-mxm.jpg';
+import ImagenSite from '../../assets/mxm/imagen-site-mxm.webp';
 
 import CinthiaVideo from '../../assets/mxm/mxmcinthia.gif';
 import CitlalliVideo from '../../assets/mxm/mxmcitlalli.gif';
@@ -170,10 +170,10 @@ END:VCARD`;
     // Vendedores
     const personal = [
         { id:1, nombre: 'cinthia', video: CinthiaVideo, frase:'Competitiva y eficaz', link: 'N2ZhZmQwZTFl'},
-        { id:2, nombre: 'citlalli', video: CitlalliVideo, frase:'Inteligente y optimista', link: 'ZGQxYmYzNGZi'},
+        { id:2, nombre: 'monse', video: CitlalliVideo, frase:'Inteligente y optimista', link: 'MWY3Y2UwOTNl'},
         { id:3, nombre: 'ely', video: ElyVideo, frase:'Comprometida y perseverante', link: 'YjkzYWM0YTQ1'},
         { id:4, nombre: 'karla', video: KarlaVideo, frase:'Propositiva y trabajadora', link: 'YjIxMzg0MDE3'},
-        { id:5, nombre: 'monse', video: MonseVideo, frase:'Creativa y entusiasta', link: 'MWY3Y2UwOTNl'},
+        { id:5, nombre: 'citlalli', video: MonseVideo, frase:'Creativa y entusiasta', link: 'ZGQxYmYzNGZi'},
         { id:6, nombre: 'paula', video: PaulaVideo, frase:'Apasionada y persistente', link: 'NjZkM2ViZWYw'},
         { id:7, nombre: 'roberto', video: RobertoVideo, frase:'Empático y diligente', link: 'YjI5ZDFmNjY1'},
     ]
@@ -457,33 +457,35 @@ END:VCARD`;
                         </div>
                         
                         <div className='card-mxm'>
-                            <h5 className='mxm-title-h5'>
-                                ¡Elige a tu <br/>
-                                <span>Agente MXM</span> <br/>
-                                ideal para tí! 
-                            </h5>
+
+                            <div className='title'>
+                                <h5 className='mxm-title-h5'>
+                                    ¡Elige a tu <br/>
+                                    <span>Asesora MXM</span> <br/>
+                                    ideal para tí! 
+                                </h5>
+                            </div>
 
                             {personalAleatorio().map((vendedor)=>(
-                                <div key={vendedor.id}>
-                                    <img src={vendedor.video} className='img-fluid' />
+                                <div key={vendedor.id} className='contenedor'>
+                                    <img src={vendedor.video} className='img-fluids' />
                                     <img src={logoPequeño} className='logo-pequeño'/>
-                                    <p className='frase'>
-                                        {vendedor.frase}
-                                    </p>
-                                    <h5 className='nombre-title'>
-                                        {vendedor.nombre}
-                                    </h5>
-                                    <button 
-                                        className='btn-mxm'
-                                        onClick={()=>navigate(`/st/${vendedor.link}`)}
-                                    >
-                                        { vendedor.id != 7 ?
-                                            'Contactarla'
-                                        :
-                                            'Contactarlo'
-                                        }
-                                    </button>
-                                    <hr className='hr-mxm'/>
+                                    
+                                    <div className='text'>
+                                        <h5 className='nombre-title'>
+                                            {vendedor.nombre}
+                                        </h5>
+                                        <button 
+                                            className='btn-mxm'
+                                            onClick={()=>navigate(`/st/${vendedor.link}`)}
+                                        >
+                                            { vendedor.id != 7 ?
+                                                'Contactarla'
+                                            :
+                                                'Contactarlo'
+                                            }
+                                        </button>
+                                    </div>
                                 </div>
                             ))
                             }
