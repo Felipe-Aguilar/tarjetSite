@@ -10,9 +10,11 @@ const PopMessage = ({telefono, pageId, onClick }) => {
         transition: {delay: 1}
     }
 
-    useEffect(()=>{
-        document.body.style.overflow = 'hidden';
-    },[]);
+    // document.body.style.overflow = 'hidden';
+
+    // useEffect(()=>{
+    //     document.body.style.overflow = 'overflow';
+    // },[]);
 
     return ( 
 
