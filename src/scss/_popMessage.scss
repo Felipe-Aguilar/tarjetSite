@@ -1,0 +1,101 @@
+.PopMessage{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .cuerpo{
+        position: relative;
+        padding: 20px;
+        width: 30%;
+        background: #d8e3ec;
+        border-radius: 20px;
+
+        @media (width <= 575px) {
+            width: 90%;
+        }
+
+        h2{
+            color: #067232;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        i{
+            font-size: 1.7rem;
+            color: #067232;
+            display: block;
+            margin: auto;
+            text-align: center;
+
+            @media (width <= 700px) {
+                font-size: 1.9rem;
+            }
+        }
+
+        img{
+            width: 70%;
+            display: block;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: auto;
+            margin-top: 20px;
+            background: #91ba14;
+            width: fit-content;
+            padding: 5px 20px;
+            border-radius: 8px;
+            color: #000;
+
+            &:hover{
+                text-decoration: none;
+            }
+            
+            i{
+                font-size: inherit;
+                margin: 0;
+            }
+        }
+
+        .buttons{
+            margin-top: 20px;
+
+            button{
+                display: block;
+                margin: auto;
+                margin-bottom: 20px;
+            }
+
+            .borrar{
+                outline: none!important;
+                padding: 5px 20px;
+                background: #91ba14;
+                border-radius: 8px;
+                border: transparent;
+            }
+
+            .cerrar{
+                background: transparent;
+                border: transparent;
+                outline: none!important;
+                text-transform: uppercase;
+                font-size: .7rem;
+                color: #5b8f94;
+            }
+            
+        }
+
+    }
+}
