@@ -15,9 +15,10 @@ import HomeFormulario from './componentes/formulario/HomeFormulario';
 import Perfil from './componentes/formulario/Perfil';
 import DiseñaTarjet from './componentes/formulario/DiseñaTarjet';
 import DiseñaTarjetSite from './componentes/formulario/DiseñaTarjetSite';
-import LoginPartners from './componentes/formulario/Partners/LoginPartners';
+import LoginPartners from './componentes/formulario/partners/LoginPartners';
 import PerfilPartners from './componentes/formulario/partners/PerfilPartners';
 import RegistroPartner from './componentes/formulario/partners/RegistroPartner';
+import LoginEmpresas from './componentes/formulario/empresas/LoginEmpresas';
 
 
 const App = () => {
@@ -48,6 +49,8 @@ const App = () => {
           <Route path='/login-partners' element={<LoginPartners />} />
           <Route path='/perfil-partners' element={<PerfilPartners />} />
           <Route path='/alta-usuarios' element={<RegistroPartner />} />
+
+          <Route path='/empresas' element={<LoginEmpresas />} />
         </Routes>
 
         <Footer />

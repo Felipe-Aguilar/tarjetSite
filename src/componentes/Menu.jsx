@@ -22,8 +22,8 @@ const Menu = ({cambioMenu}) => {
                 <div className='links'>
                     
                     <a href="https://shop.tarjet.mx/" target='_blank'>Tienda</a>
-                    <a href="https://tarjet.mx/#/empresas" >Empresas</a>
-                    <a href="https://tarjet.mx/#/hazte-premium">Premium </a>
+                    <a onClick={()=>navigate('/empresas')} >Empresas</a>
+                    <a href="https://tarjet.mx/#/hazte-premium">Planes </a>
                     {/* { !sesionLocal ?
                         <NavLink to="/login" onClick={()=>cambioMenu(true)}>Iniciar Sesion</NavLink>
                     :

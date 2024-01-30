@@ -449,3 +449,38 @@ $colorBtnVerde: #91ba14;
         }
     }
 }
+
+.login-empresas{
+    .ilustracion-banner{
+        img{
+            width: 30%;
+
+            @media (width <= 575px) {
+                width: 85%;
+            }
+        }
+    }
+
+    .texto{
+        margin-top: -50px;
+
+        h1{
+            font-size: 1.5;
+            font-weight: bold;
+
+            @media (width <= 700px) {
+                font-size: 1.5rem;
+            }
+        }
+
+        h2{
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .separador{
+        margin-top: 0;
+    }
+}

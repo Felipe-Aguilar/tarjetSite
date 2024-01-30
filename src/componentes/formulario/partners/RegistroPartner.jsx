@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { ListadoPrefijos } from "../../contextos/PrefijosListado";
+import { useNavigate } from "react-router-dom";
+
+import PopRegistro from './PopRegistro';
 
 const RegistroPartner = () => {
+
+    const navigate = useNavigate();
+    const [pop, setPop] = useState(false);
 
     const [listaPrefijos, setListaPrefijos] = useState([]);
 
@@ -22,6 +28,11 @@ const RegistroPartner = () => {
 
     const Registrar = (e) => {
         e.preventDefault();
+
+        setPop(true);
+        setTimeout(()=>{
+            navigate('/perfil-partners');
+        }, 5000);
     }
 
     return ( 
@@ -77,6 +88,10 @@ const RegistroPartner = () => {
                     </form>
                 </div>
             </div>
+
+            { pop &&
+                <PopRegistro />
+            }
         </div>
     );
 }

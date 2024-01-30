@@ -260,6 +260,10 @@ const DiseñaTarjetSite = () => {
                 ServIcono: respuesta.Serv[17]?.ServIcono,
                 ServSiteId: 1,
             });
+
+            if (respuesta.ImgHeader) {
+                setOpcion('Ver actual');
+            }
         }
 
         const Colecciones = async () => {
@@ -984,16 +988,12 @@ const DiseñaTarjetSite = () => {
 
                                 <p>Tu encabezado actual personalizado</p>
 
-                                { (!datosGenerales.ImgHeader || !(datosGenerales.ImgHeader.slice(0,5) === 'SITE_')) &&
-                                    <p>Aún no cuentas con un encabezado personalizado, selecciona uno editando tu tarjet site.</p>
-                                }
-
-                                {/* { datosGenerales.ImgHeader.slice(0,10) === 'SiteHeader' &&
+                                { datosGenerales.ImgHeader.slice(0,10) === 'SiteHeader' &&
                                     <img 
                                         src={`https://tarjet.site/imagenes/Headers_Collection/${datosGenerales.ImgHeader}`} 
                                         alt="Tu tarjeta personalizada" 
                                     />
-                                } */}
+                                }
 
                                 { datosGenerales.ImgHeader.slice(0,5) === 'SITE_' &&
                                     <img 
@@ -1119,6 +1119,55 @@ const DiseñaTarjetSite = () => {
                                         onChange={(e)=>setSitioWeb(e.target.value)}
                                     />
                                 </div>
+
+
+                                { datosGenerales.Tipo === 'EMPR' &&
+                                    <div className='colaboradores'>
+                                        <h3 className='mt-5'>Colaboradores</h3>
+
+                                        <button className='btn-bloque' type='button'>
+                                            Agregar colaboradores (5)
+
+                                            <div>
+                                                <i className="bi bi-plus-lg"></i>
+                                            </div>
+                                        </button>
+
+                                        <div className='colaborador'>
+                                            <span>Colaborador 1</span>
+                                            <input type="text" placeholder='Token'/>
+                                            <input type="text" placeholder='Cargo'/>
+
+                                            <button type='button'>
+                                                Agregar colaborador
+                                            </button>
+                                        </div>
+
+                                        <div className='colaboradores-activos'>
+                                            <div className='title-1'>
+                                                <span>Al apretar el botón cambias el status o eliminas</span>
+                                            </div>
+
+                                            <div className="title-2">
+                                                <div className="one">
+                                                    <span>Lista de colaboradores</span>
+                                                </div>
+                                                <div className="two">
+                                                    <span>Inactivo</span>
+                                                </div>
+                                                <div className="two">
+                                                    <span>Eliminar</span>
+                                                </div>
+                                            </div>
+
+                                            <div className='users'>
+                                                <div className='one'>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
 
                                 <h3 className='mt-5 mb-0'>Redes sociales</h3>
 

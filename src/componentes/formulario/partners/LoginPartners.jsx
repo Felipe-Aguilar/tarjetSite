@@ -1,10 +1,14 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import ilustracion from '../../../assets/loginIlustracion.png';
 import iconoOjo from '../../../assets/icono-ojo.svg';
 import iconoOjoOculto from '../../../assets/icono-ojo-oculto.svg';
-import { useState } from 'react';
 
 
 const LoginPartners = () => {
+
+    const navigate = useNavigate();
 
     const [viewPassword, setViewPassword] = useState(false);
     const [error, setError] = useState(false);
@@ -26,8 +30,8 @@ const LoginPartners = () => {
         }
     }
 
-    const IniciarSesion = async () => {
-        
+    const IniciarSesion = async (e) => {
+        e.preventDefault();
     }
 
     return ( 
