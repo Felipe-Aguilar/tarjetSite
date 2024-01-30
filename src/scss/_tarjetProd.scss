@@ -165,6 +165,11 @@ $colorRadar: #cfaa06;
     @media screen and (max-width: 575px){
         padding: 0 20px;
     }
+
+    @media (width <= 400px) {
+        padding: 5px;
+    }
+
     .contenedor{
         display: flex;
         align-items: center;
@@ -188,6 +193,10 @@ $colorRadar: #cfaa06;
             @media screen and (max-width: 575px){
                 font-size: 1.1rem;
             }
+
+            @media (width <= 400px) {
+                font-size: 1rem;
+            }
         }
         p{
             font-weight: 400;
@@ -197,6 +206,10 @@ $colorRadar: #cfaa06;
 
             @media screen and (max-width: 575px){
                 font-size: 1rem;
+            }
+
+            @media (width <= 400px) {
+                font-size: 0.9rem;
             }
         }
     }

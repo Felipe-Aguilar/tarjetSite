@@ -15,6 +15,9 @@ import HomeFormulario from './componentes/formulario/HomeFormulario';
 import Perfil from './componentes/formulario/Perfil';
 import DiseñaTarjet from './componentes/formulario/DiseñaTarjet';
 import DiseñaTarjetSite from './componentes/formulario/DiseñaTarjetSite';
+import LoginPartners from './componentes/formulario/Partners/LoginPartners';
+import PerfilPartners from './componentes/formulario/partners/PerfilPartners';
+import RegistroPartner from './componentes/formulario/partners/RegistroPartner';
 
 
 const App = () => {
@@ -41,6 +44,10 @@ const App = () => {
           <Route path='/mi-perfil/:usuId' element={<Perfil />} />
           <Route path='/disena-tu-tarjet/:usuId' element={<DiseñaTarjet/>} />
           <Route path='/disena-tu-tarjetsite/:usuId' element={<DiseñaTarjetSite />} />
+
+          <Route path='/login-partners' element={<LoginPartners />} />
+          <Route path='/perfil-partners' element={<PerfilPartners />} />
+          <Route path='/alta-usuarios' element={<RegistroPartner />} />
         </Routes>
 
         <Footer />

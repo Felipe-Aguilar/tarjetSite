@@ -1,0 +1,42 @@
+.perfilPartners{
+    min-height: 100vh;
+
+    margin-top: 4.2rem;
+    padding: 20px 10%;
+    
+    @media (width <= 700px) {
+        padding: 20px 2%;
+        background: #f4ede8;
+        margin-top: 3.7rem;
+    }
+
+    .buttons{
+        margin: auto;
+        width: 32%;
+
+        > * + * {
+            margin-top: 20px;
+        }
+
+        @media (width <= 700px) {
+            width: 100%;
+        }
+
+        button{
+            display: block;
+            border-radius: 8px;
+            width: 100%;
+            border: transparent;
+            font-weight: 700;
+            padding: 3px 10px;
+            cursor: pointer;
+            background: #d2dfe5;
+        }
+        .second{
+            background: #c1e0c9;
+        }
+        .tird{
+            background: #d9d1ea;
+        }
+    }
+}

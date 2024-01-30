@@ -7,6 +7,7 @@ import VideoBanner from "./VideoBanner";
 
 import BusquedaGeneral from "./BusquedaGeneral";
 import BusquedaMapa from "./BusquedaMapa";
+import BusquedaDirectorio from "./BusquedaDirectorio";
 
 const HomeDirectorio = () => {
 
@@ -25,9 +26,10 @@ const HomeDirectorio = () => {
 
     return ( 
         <>
-            <VideoBanner />
+            <BusquedaDirectorio />
+            {/* <VideoBanner />
             <NuevosUsuarios />
-            <BusquedaActividad />
+            <BusquedaActividad /> */}
                 {/* <BusquedaGeneral />
                 <BusquedaMapa /> */}
             {/* <Interesar /> */}

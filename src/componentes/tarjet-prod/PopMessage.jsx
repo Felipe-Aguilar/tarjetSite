@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import Ilustracion  from '../../assets/ilustracion-diseña-tarjetsite.png';
+import Ilustracion  from '../../assets/ilustracion-whats.webp';
 import { useEffect } from 'react';
 
 const PopMessage = ({telefono, pageId, onClick }) => {

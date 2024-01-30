@@ -183,7 +183,6 @@ const BusquedaActividad = () => {
                 </p>
                 <div className='buscar-contenedor'>
                     <div className='img-form'>
-                        {/* <img src={iconoNombre} /> */}
                         <i className="bi bi-search"></i>
                     </div>
 
