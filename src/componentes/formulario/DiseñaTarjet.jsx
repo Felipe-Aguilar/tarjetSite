@@ -15,6 +15,7 @@ import ilustracionPersonalizada from '../../assets/ilustracion-personalizada.png
 import Previsualizar from './Previsualizar';
 import iconoMiPerfil from '../../assets/icono-perfil-02.svg';
 import { ListadoPrefijos } from '../contextos/PrefijosListado';
+import Mapa from './Mapa';
 
 
 const DiseñaTarjet = () => {
@@ -524,6 +525,18 @@ const DiseñaTarjet = () => {
             setAppMat('');
         }
     },[tituloDes]);
+
+// Mostrar ubicacion en el mapa
+    const[mostar, setMostrar] = useState(false);
+
+    const onChangeUbicacion = () => {
+
+        if (calle && numeroExterior && codigoPostal) {
+            setMostrar(!mostar);
+        }else{
+            setMostrar(false);
+        }
+    }
 
     return ( 
         <div className='backgroun-Green'>
@@ -1226,9 +1239,17 @@ const DiseñaTarjet = () => {
                                 /> */}
 
                                 <div className='check'>
-                                    <input type="checkbox" id='mostrarEmpresa'/>
+                                    <input 
+                                        type="checkbox" 
+                                        id='mostrarEmpresa' 
+                                        onChange={onChangeUbicacion} 
+                                    />
                                     <label htmlFor="mostrarEmpresa">Mostrar mi empresa en el mapa</label>
                                 </div>
+
+                                { mostar &&
+                                    <Mapa address={`${calle} ${numeroExterior}, ${codigoPostal}, ${municipio}`}/> 
+                                }
 
                                 <div className='rango'>
                                     <select name="" id="">

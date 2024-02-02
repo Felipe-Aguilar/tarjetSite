@@ -151,7 +151,7 @@ const MiTarjetero = () => {
         });
 
         const el = document.createElement('textarea');
-        el.value = window.location.href;
+        el.value = `https://tarjet.site/#/st/${btoa(datos.TokenId)}`;
         document.body.appendChild(el);
         el.select();
         document.execCommand('copy');
