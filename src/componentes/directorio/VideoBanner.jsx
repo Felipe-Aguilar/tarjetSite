@@ -12,14 +12,10 @@ const VideoBanner = () => {
                         <source src={videoBannerDesk}/>
                     </video>
                 </div>
-                <div>
-                    <h1>Directorio</h1>
-                    <img src={logoTarjet} />
-                </div>
             </div>
 
             <div className='bannerMobile d-block d-lg-none'>
-                <video autoPlay muted loop>
+                <video autoPlay muted>
                     <source src={videoBannerMobile}/>
                 </video>
             </div>

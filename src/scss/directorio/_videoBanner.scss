@@ -4,10 +4,11 @@
     align-items: center;
     
     div{
-        width: 50%;
 
         video{
-            width: 100%;
+            width: 78%;
+            display: block;
+            margin: auto;
         }
 
         h1{
@@ -31,7 +32,7 @@
 }
 
 .bannerMobile{
-    margin-top: 4.2rem;
+    // margin-top: 4.2rem;
     width: 100%;
 
     video{
