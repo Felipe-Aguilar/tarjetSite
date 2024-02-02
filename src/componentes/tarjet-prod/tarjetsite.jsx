@@ -40,6 +40,7 @@ import IconBtnRedes from '../../assets/boton-redes-site.svg';
 import IconBtnCatalogo from '../../assets/mxm/boton-catalogo-site.svg';
 import IconBtnTarjetero from '../../assets/boton-tarjetero-site.svg';
 import EncabezadoPredefinido from '../../assets/EncabezadoPredefinido.webp';
+import IconoAsesor from '../../assets/boton-asesor.svg';
 import Loader from '../loader/Loader';
 import PopMessage from './PopMessage';
 
@@ -492,6 +493,27 @@ END:VCARD`;
                                         <img src={IconBtnRedes}/>
                                     </a>
                                 </motion.div>
+
+                                { datosActualizados.Tipo === 'EMPR' &&
+                                    <motion.div 
+                                        className='contacto-div mt-3'
+                                        // onClick={redesSociales}
+                                        {...animacionBtn}
+                                        transition={{delay: 1.6}}
+                                        style={{background: '#f9cfc4'}}
+                                    >
+                                        <a className='save'>
+                                            Colaboradores
+                                        </a>
+                                        <a 
+                                            onClick={redesSociales} 
+                                            className='icon save'
+                                            style={{background: '#c92d1b'}}
+                                        >
+                                            <img src={IconoAsesor}/>
+                                        </a>
+                                    </motion.div>
+                                }
 
                                 { btoa(datos.UsuToken) === 'YjI5ZDFmNjY1' || 
                                     btoa(datos.UsuToken) === 'MWY3Y2UwOTNl' ||

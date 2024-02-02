@@ -631,6 +631,7 @@ const DiseñaTarjet = () => {
                             <button 
                                 className={`primer ${optionColecciones === 'Gratuitas' ? 'activeOption' : ''}`}
                                 onClick={(e)=>setOptionColecciones(e.target.innerText)}
+                                disabled={datosGenerales.Tipo === 'EMPR' ? true : false}
                             >
                                 <i className="bi bi-caret-down-fill"></i>
                                 Gratuitas
@@ -638,6 +639,7 @@ const DiseñaTarjet = () => {
                             <button
                                 className={optionColecciones === 'Premium' ? 'activeOption' : ''}
                                 onClick={(e)=>setOptionColecciones(e.target.innerText)}
+                                disabled={datosGenerales.Tipo === 'EMPR' ? true : false}
                             >
                                 <i className="bi bi-caret-down-fill"></i>
                                 Premium
@@ -1027,7 +1029,12 @@ const DiseñaTarjet = () => {
 
                                 <div className='select'>
                                     <div>
-                                        <select value={tituloDes} onChange={(e)=>setTituloDes(e.target.value)} onBlur={onHandleSubmit}>
+                                        <select 
+                                            value={tituloDes} 
+                                            onChange={(e)=>setTituloDes(e.target.value)} 
+                                            onBlur={onHandleSubmit}
+                                            disabled={datosGenerales.Tipo === 'EMPR' ? true : false}
+                                        >
                                             { listadoPrefijos.map((prefijo)=>(
                                                 <option value={prefijo.TituloPersonaId} key={prefijo.TituloPersonaId}>{prefijo.TituloPersonaDesc}</option>
                                             ))

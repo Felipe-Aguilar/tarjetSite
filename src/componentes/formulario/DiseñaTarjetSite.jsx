@@ -8,7 +8,6 @@ import CargarImagen from './CargarImagen';
 import DOMPurify from 'dompurify';
 
 import ilustracion from '../../assets/ilustracion-diseña-tarjetsite.png';
-import tarjetaGenerica from '../../assets/tarjetageneric.png';
 import perfilTemporal from '../../assets/perfiltemporal.jpg';
 import iconoWhats from '../../assets/icono-t-whatsapp.svg';
 import iconoTelefono from '../../assets/icono-t-telefono.svg';
@@ -29,6 +28,9 @@ import PrevisualizarHeader from './PrevisualizarHeader';
 import iconoMiPerfil from '../../assets/icono-perfil-02.svg';
 import InfoFacebook from './InfoFacebook';
 import { BsTwitterX } from "react-icons/bs";
+import iconoActivo from '../../assets/boton-activo.svg';
+import iconoInactivo from '../../assets/boton-inactivo.svg';
+import iconoEliminar from '../../assets/boton-eliminar.svg';
 
 
 const DiseñaTarjetSite = () => {
@@ -988,6 +990,10 @@ const DiseñaTarjetSite = () => {
 
                                 <p>Tu encabezado actual personalizado</p>
 
+                                {!datosGenerales.ImgHeader &&
+                                    <p>Aún no cuentas con un encabezado personalizado</p>
+                                }
+
                                 { datosGenerales.ImgHeader.slice(0,10) === 'SiteHeader' &&
                                     <img 
                                         src={`https://tarjet.site/imagenes/Headers_Collection/${datosGenerales.ImgHeader}`} 
@@ -1161,8 +1167,47 @@ const DiseñaTarjetSite = () => {
                                             </div>
 
                                             <div className='users'>
-                                                <div className='one'>
-
+                                                <div className='user'>
+                                                    <div className='one'>
+                                                        <span>1. Nombre Apellido Apellido</span>
+                                                    </div>
+                                                    <div className='two'>
+                                                        <button type='button'>
+                                                            <img 
+                                                                src={iconoActivo} 
+                                                            />
+                                                            Activo
+                                                        </button>
+                                                    </div>
+                                                    <div className='two'>
+                                                        <button type='button'>
+                                                            <img 
+                                                                src={iconoEliminar} 
+                                                            />
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div className='user'>
+                                                    <div className='one'>
+                                                        <span>1. Nombre Apellido Apellido</span>
+                                                    </div>
+                                                    <div className='two'>
+                                                        <button type='button'>
+                                                            <img 
+                                                                src={iconoInactivo} 
+                                                            />
+                                                            Inactivo
+                                                        </button>
+                                                    </div>
+                                                    <div className='two'>
+                                                        <button type='button'>
+                                                            <img 
+                                                                src={iconoEliminar} 
+                                                            />
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
