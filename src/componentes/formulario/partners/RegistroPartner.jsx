@@ -7,6 +7,7 @@ import PopRegistro from './PopRegistro';
 const RegistroPartner = () => {
 
     const navigate = useNavigate();
+    const [data, setData] = useState();
     const [pop, setPop] = useState(false);
 
     const [listaPrefijos, setListaPrefijos] = useState([]);
@@ -16,6 +17,14 @@ const RegistroPartner = () => {
     const [apellidoM, setApellidoM] = useState('');
 
     useEffect(()=>{
+
+        const data = JSON.parse(localStorage.getItem('Partner'));
+
+        if (!data) {
+            navigate('/login-partners');
+        }else{
+            setData(data);
+        }
 
         const CargaDatos = async () =>{
             const prefijos = await ListadoPrefijos();
@@ -86,6 +95,10 @@ const RegistroPartner = () => {
                             Registrar
                         </button>
                     </form>
+
+                    <button className="regresar" onClick={()=>navigate(`/perfil-partner/${data.PartnerUUID}`)}>
+                        Regresar
+                    </button>
                 </div>
             </div>
 

@@ -1,8 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PerfilPartners = () => {
 
     const navigate = useNavigate();
+    const { partnerId } = useParams();
+
+    useEffect(()=>{
+
+        const dataStorage = JSON.parse(localStorage.getItem('Partner'));
+        
+        if (dataStorage === null) {
+            navigate('/login-partners');
+        }
+        if (partnerId !== dataStorage.PartnerUUID) {
+            navigate('/login-partners');
+        }
+
+    },[]);
+
+    const CerrarSesion = () => {
+        localStorage.removeItem('Partner');
+        navigate('/login-partners');
+    }
+
 
     return ( 
         <div className="backgroun-Green">
@@ -20,7 +41,7 @@ const PerfilPartners = () => {
                     >
                         Ver mis Registros
                     </button>
-                    <button className="tird">
+                    <button className="tird" onClick={CerrarSesion}>
                         Cerrar sesión
                     </button>
                 </div>

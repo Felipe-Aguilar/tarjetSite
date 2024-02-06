@@ -52,7 +52,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "Tel3WP": datosGenerales.Tel3WP,
                 "Telefono4": datosGenerales.Telefono4,
                 "Tel4WP": datosGenerales.Tel4WP,
-                "VerUbicacion": datosGenerales.VerUbicacion,
+                "VerUbicacion": datosFormulario.VerUbicacion,
                 "PermitirCalif": datosFormulario.PermitirCalif,
                 "PermitirComments": datosFormulario.PermitirComments,
                 "TexoUbica": "Visitanos en:",

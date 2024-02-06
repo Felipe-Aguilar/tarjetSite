@@ -47,7 +47,7 @@ const App = () => {
           <Route path='/disena-tu-tarjetsite/:usuId' element={<DiseñaTarjetSite />} />
 
           <Route path='/login-partners' element={<LoginPartners />} />
-          <Route path='/perfil-partners' element={<PerfilPartners />} />
+          <Route path='/perfil-partner/:partnerId' element={<PerfilPartners />} />
           <Route path='/alta-usuarios' element={<RegistroPartner />} />
 
           <Route path='/empresas' element={<LoginEmpresas />} />

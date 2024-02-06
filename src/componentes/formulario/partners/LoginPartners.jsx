@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ilustracion from '../../../assets/loginIlustracion.png';
@@ -9,6 +9,15 @@ import iconoOjoOculto from '../../../assets/icono-ojo-oculto.svg';
 const LoginPartners = () => {
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const data = JSON.parse(localStorage.getItem('Partner'));
+
+        if (data) {
+            navigate(`/perfil-partner/${data.PartnerUUID}`);
+        }
+        
+    },[]);
 
     const [viewPassword, setViewPassword] = useState(false);
     const [error, setError] = useState(false);
@@ -32,6 +41,29 @@ const LoginPartners = () => {
 
     const IniciarSesion = async (e) => {
         e.preventDefault();
+
+        const response = await fetch('https://souvenir-site.com/WebTarjet/APIPartner/LoginPartner',{
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: JSON.stringify({
+                "Cuenta" : user,
+                "Password" : password
+            })
+        });
+
+        const data = await response.json();
+
+        if (!data.Acceso) {
+            setIncorrect(true);
+        }else{
+            setIncorrect(false);
+
+            localStorage.setItem("Partner", JSON.stringify(data));
+            navigate(`/perfil-partner/${data.PartnerUUID}`);
+        }
     }
 
     return ( 

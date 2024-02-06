@@ -141,6 +141,9 @@ const DiseñaTarjet = () => {
             if (respuesta.PermitirComments === 0) {
                 setComentarios(true);
             }
+            if (respuesta.VerUbicacion === 1) {
+                setMostrar(true);
+            }
 
             const response2 = await ListadoPrefijos();
             setListadoPrefijos(response2.sdtTitulos);
@@ -389,7 +392,8 @@ const DiseñaTarjet = () => {
             "Colonia": colonia,
             "Titulo": tituloDes,
             "Alias": nombreUsuario,
-            "NomNegocio": nombreNegocio
+            "NomNegocio": nombreNegocio,
+            "VerUbicacion": mostar ? 1 : 0,
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -1243,6 +1247,7 @@ const DiseñaTarjet = () => {
                                         type="checkbox" 
                                         id='mostrarEmpresa' 
                                         onChange={onChangeUbicacion} 
+                                        checked={mostar}
                                     />
                                     <label htmlFor="mostrarEmpresa">Mostrar mi empresa en el mapa</label>
                                 </div>
