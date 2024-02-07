@@ -19,6 +19,7 @@ import LoginPartners from './componentes/formulario/partners/LoginPartners';
 import PerfilPartners from './componentes/formulario/partners/PerfilPartners';
 import RegistroPartner from './componentes/formulario/partners/RegistroPartner';
 import LoginEmpresas from './componentes/formulario/empresas/LoginEmpresas';
+import TablaRegistros from './componentes/formulario/partners/TablaRegistros';
 
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
           <Route path='/login-partners' element={<LoginPartners />} />
           <Route path='/perfil-partner/:partnerId' element={<PerfilPartners />} />
           <Route path='/alta-usuarios' element={<RegistroPartner />} />
+          <Route path='/mis-registros/:partnerId' element={<TablaRegistros />} />
 
           <Route path='/empresas' element={<LoginEmpresas />} />
         </Routes>

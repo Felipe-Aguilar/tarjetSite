@@ -36,7 +36,7 @@ const PerfilPartners = () => {
                         Alta Usuarios
                     </button>
                     <button 
-                        onClick={()=>navigate('/mis-registros')}
+                        onClick={()=>navigate(`/mis-registros/${partnerId}`)}
                         className="second"
                     >
                         Ver mis Registros
