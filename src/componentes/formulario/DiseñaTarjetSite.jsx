@@ -1129,7 +1129,7 @@ const DiseñaTarjetSite = () => {
 
                                 { datosGenerales.Tipo === 'EMPR' &&
                                     <div className='colaboradores'>
-                                        <h3 className='mt-5'>Colaboradores</h3>
+                                        {/* <h3 className='mt-5'>Colaboradores</h3>
 
                                         <button className='btn-bloque' type='button'>
                                             Agregar colaboradores (5)
@@ -1147,7 +1147,7 @@ const DiseñaTarjetSite = () => {
                                             <button type='button'>
                                                 Agregar colaborador
                                             </button>
-                                        </div>
+                                        </div> */}
 
                                         <div className='colaboradores-activos'>
                                             <div className='title-1'>

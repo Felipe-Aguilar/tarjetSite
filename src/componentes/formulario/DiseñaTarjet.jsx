@@ -16,6 +16,7 @@ import Previsualizar from './Previsualizar';
 import iconoMiPerfil from '../../assets/icono-perfil-02.svg';
 import { ListadoPrefijos } from '../contextos/PrefijosListado';
 import Mapa from './Mapa';
+import AgregarEmpleado from './empresas/AgregarEmpleado';
 
 
 const DiseñaTarjet = () => {
@@ -541,6 +542,8 @@ const DiseñaTarjet = () => {
             setMostrar(false);
         }
     }
+
+    const [colaborador, setColaborador] = useState(false);
 
     return ( 
         <div className='backgroun-Green'>
@@ -1308,6 +1311,22 @@ const DiseñaTarjet = () => {
                                         <p>Permitir comentarios en directorio</p>
                                     </div>
                                 </div>
+
+                                <div className='accept'>
+                                    <div className='switches'>
+                                        <label className="switch mb-0">
+                                            <input type="checkbox" checked={colaborador} onChange={()=>setColaborador(!colaborador)}/>
+                                            <span className="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <p>Colaborador</p>
+                                    </div>
+                                </div>
+
+                                { colaborador &&
+                                    <AgregarEmpleado colaborador={colaborador}/>
+                                }
 
                                 { error && 
                                     <div className='error-message'>
