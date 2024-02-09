@@ -7,7 +7,7 @@ import PopRegistro from './PopRegistro';
 const RegistroPartner = () => {
 
     const navigate = useNavigate();
-    const [data, setData] = useState();
+    const [dataPartner, setDataPartner] = useState();
     const [pop, setPop] = useState(false);
 
     const [listaPrefijos, setListaPrefijos] = useState([]);
@@ -26,7 +26,7 @@ const RegistroPartner = () => {
         if (!data) {
             navigate('/login-partners');
         }else{
-            setData(data);
+            setDataPartner(data);
         }
 
         const CargaDatos = async () =>{
@@ -45,13 +45,12 @@ const RegistroPartner = () => {
 
         if ((nombre && apellidoP && correo && password)) {
             setError(false);
-            setPop(true);
-
+            
             const response = await fetch('https://souvenir-site.com/WebTarjet/APIPartner/CrearCuenta', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: JSON.stringify({
                     "RegistroUsu": {
@@ -61,17 +60,22 @@ const RegistroPartner = () => {
                         "Codigo": "",
                         "Correo": correo,
                         "Password": password,
-                        "PartnerUUID": data.PartnerUUID,
+                        "PartnerUUID": dataPartner.PartnerUUID,
                         "TipoAut": ""
                     }
                 })
             });
-
-            console.log(response);
+            
+            const data = await response.json();
+            
+            if (data.usuId) {
+                setPop(true);
+                
+                setTimeout(()=>{
+                    navigate(`/perfil-partner/${dataPartner.PartnerUUID}`);
+                }, 5000);
+            }
     
-            setTimeout(()=>{
-                navigate('/perfil-partners');
-            }, 5000);
         }
         else{
             setError(true);
@@ -157,7 +161,7 @@ const RegistroPartner = () => {
                         </button>
                     </form>
 
-                    <button className="regresar" onClick={()=>navigate(`/perfil-partner/${data.PartnerUUID}`)}>
+                    <button className="regresar" onClick={()=>navigate(`/perfil-partner/${dataPartner.PartnerUUID}`)}>
                         Regresar
                     </button>
                 </div>
