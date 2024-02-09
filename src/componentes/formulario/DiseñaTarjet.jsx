@@ -1320,7 +1320,7 @@ const DiseñaTarjet = () => {
                                         </label>
                                     </div>
                                     <div>
-                                        <p>Colaborador</p>
+                                        <p>Pertenece a Empresa</p>
                                     </div>
                                 </div>
 

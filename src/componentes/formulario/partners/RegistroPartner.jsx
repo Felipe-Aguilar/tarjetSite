@@ -13,8 +13,11 @@ const RegistroPartner = () => {
     const [listaPrefijos, setListaPrefijos] = useState([]);
 
     const [prefijo, setPrefijo] = useState('');
+    const [nombre, setNombre] = useState('');
     const [apellidoP, setApellidoP] = useState('');
     const [apellidoM, setApellidoM] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(()=>{
 
@@ -35,13 +38,45 @@ const RegistroPartner = () => {
 
     },[]);
 
-    const Registrar = (e) => {
+    const [error, setError] = useState(false);
+
+    const Registrar = async (e) => {
         e.preventDefault();
 
-        setPop(true);
-        setTimeout(()=>{
-            navigate('/perfil-partners');
-        }, 5000);
+        if ((nombre && apellidoP && correo && password)) {
+            setError(false);
+            setPop(true);
+
+            const response = await fetch('https://souvenir-site.com/WebTarjet/APIPartner/CrearCuenta', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "RegistroUsu": {
+                        "Nombre": nombre,
+                        "ApellidoPat": apellidoP,
+                        "ApellidoMat": apellidoM,
+                        "Codigo": "",
+                        "Correo": correo,
+                        "Password": password,
+                        "PartnerUUID": data.PartnerUUID,
+                        "TipoAut": ""
+                    }
+                })
+            });
+
+            console.log(response);
+    
+            setTimeout(()=>{
+                navigate('/perfil-partners');
+            }, 5000);
+        }
+        else{
+            setError(true);
+        }
+        
     }
 
     return ( 
@@ -68,7 +103,13 @@ const RegistroPartner = () => {
                                 ))
                                 }
                             </select>
-                            <input type="text" placeholder="Nombre (10 caracteres)" maxLength={10}/>
+                            <input 
+                                type="text" 
+                                placeholder="Nombre (10 caracteres)" 
+                                maxLength={10}
+                                value={nombre}
+                                onChange={(e)=>setNombre(e.target.value)}
+                            />
                         </div>
 
                         <div className="apellidos">
@@ -88,10 +129,30 @@ const RegistroPartner = () => {
                             />
                         </div>
 
-                        <input type="text" placeholder="Correo"/>
-                        <input type="text" placeholder="Contraseña"/>
+                        <input 
+                            type="text" 
+                            placeholder="Correo"
+                            value={correo}
+                            onChange={(e)=>setCorreo(e.target.value)}
+                            maxLength={15}
+                        />
+                        <input 
+                            type="text" 
+                            placeholder="Contraseña"
+                            value={password}
+                            onChange={(e)=>setPassword(e.target.value)}
+                            maxLength={15}
+                        />
 
-                        <button type="submit">
+                        { error &&
+                            <div className="error">
+                                <p>
+                                    Uno de los campos se encuentra vacío, por favor intente nuevamente
+                                </p>
+                            </div>
+                        }
+
+                        <button type="submit" >
                             Registrar
                         </button>
                     </form>
