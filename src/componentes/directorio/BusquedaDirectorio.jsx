@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 
-import { BusquedaNombre, BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNivel3 } from "../contextos/BusquedaDirectorio";
+import { BusquedaNombre, BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNivel3, BusquedaNombreRango, BusquedaNivel3Rango } from "../contextos/BusquedaDirectorio";
 
 import NuevosUsuarios from './NuevosUsuarios';
 import VideoBanner from './VideoBanner';
@@ -18,12 +18,14 @@ import iconoTransporte from '../../assets/icono-transporte.svg';
 import iconoTurismo from '../../assets/icono-turismo.svg';
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
 
-const BusquedaDirectorio = () => {
-
+const BusquedaDirectorio = ({ ubication }) => {
+    
     const navigate = useNavigate();
+
     const [busqueda, setBusqueda] = useState(false);
     const [nombreBusqueda, setNombreBusqueda] = useState(false);
     const [categoriaBusqueda, setCategoriaBusqueda] = useState(false);
+    const [rango, setRango] = useState(false);
 
     const [categorias, setCategorias] = useState([]);
 
@@ -50,6 +52,21 @@ const BusquedaDirectorio = () => {
 
     },[]);
 
+// Posición de rango 5km
+    const [position, setPosition] = useState(ubication);
+    
+    useEffect(()=>{
+        
+        if (!position) {
+            if (navigator.geolocation) { //check if geolocation is available
+                navigator.geolocation.getCurrentPosition(function(position){
+                    setPosition(position);
+                });   
+            }
+        }
+
+    },[rango]);
+
 
 // Busqueda por Nombre
     const [capturaNombre, setCapturaNombre] = useState('');
@@ -65,14 +82,24 @@ const BusquedaDirectorio = () => {
         setBusqueda(true);
         setNombreBusqueda(true);
 
-        if (e.target.value.length >= 3) {
-            const respuesta = await BusquedaNombre(e.target.value);
-            setResultadosNombre(respuesta.ListTarjets);
+        // Busqueda por Rango de 5km
+        if (rango) {
+            if (e.target.value.length >= 3) {
+                const respuesta = await BusquedaNombreRango(e.target.value, position.coords.latitude, position.coords.longitude);
+                setResultadosNombre(respuesta.ListTarjets);
+            }
+        }else{
+            // Busqueda normal sin rango
+            if (e.target.value.length >= 3) {
+                const respuesta = await BusquedaNombre(e.target.value);
+                setResultadosNombre(respuesta.ListTarjets);
+            }
         }
 
         if (e.target.value.length === 0) {
             setBusqueda(false);
         }
+
     }
 
     const borrarNombre = () => {
@@ -120,7 +147,7 @@ const BusquedaDirectorio = () => {
         setReplegar(idCategoria === replegar ? null : idCategoria);
     }
 
-    // Busqueda de usuarios categoría N3
+// Busqueda de usuarios categoría N3
     const [usuariosCategoria, setUsuariosCategoria] = useState([]);
     const [reCategoria, setReCategoria] = useState(false);
 
@@ -128,8 +155,15 @@ const BusquedaDirectorio = () => {
         setCategoriaBusqueda(false);
         setReCategoria(true);
 
-        const response = await BusquedaNivel3(idCategoria);
-        setUsuariosCategoria(response.ListTarjets);
+        // Busqueda por rango 5km categoría
+        if (rango) {
+            const response = await BusquedaNivel3Rango(idCategoria,position.coords.latitude, position.coords.longitude);
+            setUsuariosCategoria(response.ListTarjets);
+        }else{
+            // Busqueda Normal sin rango
+            const response = await BusquedaNivel3(idCategoria);
+            setUsuariosCategoria(response.ListTarjets);
+        }
 
         window.scrollTo({
             top: 0,
@@ -212,7 +246,7 @@ const BusquedaDirectorio = () => {
                         <span>5km</span>
 
                         <label className="switch mb-0">
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={rango} onChange={()=>setRango(!rango)}/>
                             <span className="slider"></span>
                         </label>
                     </div>

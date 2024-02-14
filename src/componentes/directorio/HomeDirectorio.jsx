@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import BusquedaActividad from "./BusquedaActividad";
 import Interesar from "./Interesar";
@@ -11,6 +11,8 @@ import BusquedaDirectorio from "./BusquedaDirectorio";
 
 const HomeDirectorio = () => {
 
+    const [position, setPosition] = useState();
+
     useEffect(()=>{
         window.scrollTo({
             top: 0,
@@ -19,14 +21,14 @@ const HomeDirectorio = () => {
 
         if (navigator.geolocation) { //check if geolocation is available
             navigator.geolocation.getCurrentPosition(function(position){
-                console.log(position);
+                setPosition(position);
             });   
         }
     },[]);
 
     return ( 
         <>
-            <BusquedaDirectorio />
+            <BusquedaDirectorio ubication={position ? position : null}/>
             {/* <VideoBanner />
             <NuevosUsuarios />
             <BusquedaActividad /> */}

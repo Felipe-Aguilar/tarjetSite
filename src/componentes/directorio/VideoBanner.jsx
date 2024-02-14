@@ -6,7 +6,7 @@ const VideoBanner = () => {
     return ( 
         <div className="container-fluid p-0">
 
-            <div className="bannerDesk d-none d-lg-flex">
+            <div className="bannerDesk d-none d-lg-flex justify-content-center">
                 <div>
                     <video autoPlay muted>
                         <source src={videoBannerDesk}/>
