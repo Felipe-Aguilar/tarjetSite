@@ -39,6 +39,7 @@ const BusquedaDirectorio = ({ ubication }) => {
         {id:7, imagen: iconoComida},
         {id:8, imagen: iconoModa},
         {id:9, imagen: iconoTiendas},
+        {id:10, imagen: iconoTurismo},
     ]
 
     useEffect(()=>{
@@ -57,7 +58,8 @@ const BusquedaDirectorio = ({ ubication }) => {
     
     useEffect(()=>{
         
-        if (!position) {
+        if (position == null) {
+            console.log('entré', position);
             if (navigator.geolocation) { //check if geolocation is available
                 navigator.geolocation.getCurrentPosition(function(position){
                     setPosition(position);

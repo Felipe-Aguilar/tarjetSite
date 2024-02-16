@@ -83,7 +83,8 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
                 "RegistroTarjet": datosGenerales.RegistroTarjet,
-                "NomNegocio": datosFormulario.NomNegocio
+                "NomNegocio": datosFormulario.NomNegocio,
+                "MapsGeoloc": datosFormulario.MapsGeoloc
             }
         })
     });

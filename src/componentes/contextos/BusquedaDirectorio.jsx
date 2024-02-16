@@ -131,7 +131,7 @@ const ObtenerSegmentos = async (descripcion) => {
 
 const BusquedaNombreRango = async (nombre, latitud, longitud ) => {
 
-    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=${nombre}&Latitud=${latitud}&Longitud=${longitud}&Radio=5000`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=${nombre}&Latitud=${latitud}&Longitud=${longitud}&Radio=200`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',

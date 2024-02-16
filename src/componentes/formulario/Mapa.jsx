@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { APIProvider, AdvancedMarker, Map } from '@vis.gl/react-google-maps';
 
-const Mapa = ({ address }) => {
+const Mapa = ({ address, onCoordenadas }) => {
     
     const [lat, setLat] = useState(0);
     const [long, setLong] = useState(0);
@@ -15,6 +15,8 @@ const Mapa = ({ address }) => {
     
             setLat(data.results[0].geometry.location.lat);
             setLong(data.results[0].geometry.location.lng);
+
+            onCoordenadas(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng);
         }
 
         getAddress();

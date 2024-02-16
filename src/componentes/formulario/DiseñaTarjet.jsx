@@ -395,6 +395,7 @@ const DiseñaTarjet = () => {
             "Alias": nombreUsuario,
             "NomNegocio": nombreNegocio,
             "VerUbicacion": mostar ? 1 : 0,
+            "MapsGeoloc": `${latitud}, ${longitud}`,
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -544,6 +545,16 @@ const DiseñaTarjet = () => {
     }
 
     const [colaborador, setColaborador] = useState(false);
+
+    
+// Cachar coordenadas
+    const [latitud, setLatitud] = useState(0);
+    const [longitud, setLongitud] = useState(0);
+
+    const onCoordenadas = (latitud, longitud) => {
+        setLatitud(latitud);
+        setLongitud(longitud);
+    }
 
     return ( 
         <div className='backgroun-Green'>
@@ -1256,7 +1267,10 @@ const DiseñaTarjet = () => {
                                 </div>
 
                                 { mostar &&
-                                    <Mapa address={`${calle} ${numeroExterior}, ${codigoPostal}, ${municipio}`}/> 
+                                    <Mapa 
+                                        address={`${calle} ${numeroExterior}, ${codigoPostal}, ${municipio}`}
+                                        onCoordenadas={onCoordenadas}
+                                    /> 
                                 }
 
                                 <div className='rango'>
