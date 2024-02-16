@@ -52,7 +52,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "Tel3WP": datosGenerales.Tel3WP,
                 "Telefono4": datosGenerales.Telefono4,
                 "Tel4WP": datosGenerales.Tel4WP,
-                "VerUbicacion": datosFormulario.VerUbicacion,
+                "VerUbicacion": datosGenerales.VerUbicacion,
                 "PermitirCalif": datosFormulario.PermitirCalif,
                 "PermitirComments": datosFormulario.PermitirComments,
                 "TexoUbica": "Visitanos en:",
@@ -64,7 +64,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "Municip": datosFormulario.Municip,
                 "MapsGeoloc": datosGenerales.MapsGeoloc,
                 "Activo": datosGenerales.Activo,
-                "RangoLocal": datosGenerales.RangoLocal,
+                "RangoLocal": datosFormulario.RangoLocal,
                 "ImgHeader": datosGenerales.ImgHeader,
                 "Mail": datosGenerales.Mail,
                 "Web": datosGenerales.Web,
@@ -83,7 +83,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
                 "ImgFoto": datosGenerales.ImgFoto,
                 "ImgLogo": datosGenerales.ImgLogo,
                 "RegistroTarjet": datosGenerales.RegistroTarjet,
-                "NomNegocio": datosFormulario.NomNegocio
+                "NomNegocio": datosFormulario.NomNegocio,
             }
         })
     });
@@ -291,7 +291,7 @@ const ActualizarPerfil2 = async(datosGenerales, datosFormulario) => {
                 "Tel3WP": datosGenerales.Tel3WP,
                 "Telefono4": datosGenerales.Telefono4,
                 "Tel4WP": datosGenerales.Tel4WP,
-                "VerUbicacion": datosGenerales.VerUbicacion,
+                "VerUbicacion": datosFormulario.VerUbicacion,
                 "PermitirCalif": datosGenerales.PermitirCalif,
                 "PermitirComments": datosGenerales.PermitirComments,
                 "TexoUbica": "Visitanos en:",
@@ -834,7 +834,7 @@ const ActualizarPerfil4 = async(datosGenerales, datosFormulario) => {
                 "Municip": datosFormulario.Municip,
                 "MapsGeoloc": datosGenerales.MapsGeoloc,
                 "Activo": datosGenerales.Activo,
-                "RangoLocal": datosGenerales.RangoLocal,
+                "RangoLocal": datosFormulario.RangoLocal,
                 "ImgHeader": datosGenerales.ImgHeader,
                 "Mail": datosGenerales.Mail,
                 "Web": datosGenerales.Web,

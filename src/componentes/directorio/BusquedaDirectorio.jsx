@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 
-import { BusquedaNombre, BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNivel3 } from "../contextos/BusquedaDirectorio";
+import { BusquedaNombre, BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNivel3, BusquedaNombreRango, BusquedaNivel3Rango } from "../contextos/BusquedaDirectorio";
 
 import NuevosUsuarios from './NuevosUsuarios';
 import VideoBanner from './VideoBanner';
@@ -18,12 +18,14 @@ import iconoTransporte from '../../assets/icono-transporte.svg';
 import iconoTurismo from '../../assets/icono-turismo.svg';
 import PerfilTemporal from '../../assets/perfiltemporal.jpg';
 
-const BusquedaDirectorio = () => {
-
+const BusquedaDirectorio = ({ ubication }) => {
+    
     const navigate = useNavigate();
+
     const [busqueda, setBusqueda] = useState(false);
     const [nombreBusqueda, setNombreBusqueda] = useState(false);
     const [categoriaBusqueda, setCategoriaBusqueda] = useState(false);
+    const [rango, setRango] = useState(false);
 
     const [categorias, setCategorias] = useState([]);
 
@@ -37,6 +39,7 @@ const BusquedaDirectorio = () => {
         {id:7, imagen: iconoComida},
         {id:8, imagen: iconoModa},
         {id:9, imagen: iconoTiendas},
+        {id:10, imagen: iconoTurismo},
     ]
 
     useEffect(()=>{
@@ -49,6 +52,22 @@ const BusquedaDirectorio = () => {
         Categorias();
 
     },[]);
+
+// Posición de rango 5km
+    const [position, setPosition] = useState(ubication);
+    
+    useEffect(()=>{
+        
+        if (position == null) {
+            console.log('entré', position);
+            if (navigator.geolocation) { //check if geolocation is available
+                navigator.geolocation.getCurrentPosition(function(position){
+                    setPosition(position);
+                });   
+            }
+        }
+
+    },[rango]);
 
 
 // Busqueda por Nombre
@@ -65,14 +84,25 @@ const BusquedaDirectorio = () => {
         setBusqueda(true);
         setNombreBusqueda(true);
 
-        if (e.target.value.length >= 3) {
-            const respuesta = await BusquedaNombre(e.target.value);
-            setResultadosNombre(respuesta.ListTarjets);
+        // Busqueda por Rango de 5km
+        if (rango) {
+            if (e.target.value.length >= 3) {
+                const respuesta = await BusquedaNombreRango(e.target.value, position.coords.latitude, position.coords.longitude);
+                setResultadosNombre(respuesta.ListTarjets);
+            }
+        }else{
+            // Busqueda normal sin rango
+            if (e.target.value.length >= 3) {
+                // const respuesta = await BusquedaNombre(e.target.value);
+                const respuesta = await BusquedaNombreRango(e.target.value, position.coords.latitude, position.coords.longitude);
+                setResultadosNombre(respuesta.ListTarjets);
+            }
         }
 
         if (e.target.value.length === 0) {
             setBusqueda(false);
         }
+
     }
 
     const borrarNombre = () => {
@@ -120,7 +150,7 @@ const BusquedaDirectorio = () => {
         setReplegar(idCategoria === replegar ? null : idCategoria);
     }
 
-    // Busqueda de usuarios categoría N3
+// Busqueda de usuarios categoría N3
     const [usuariosCategoria, setUsuariosCategoria] = useState([]);
     const [reCategoria, setReCategoria] = useState(false);
 
@@ -128,8 +158,16 @@ const BusquedaDirectorio = () => {
         setCategoriaBusqueda(false);
         setReCategoria(true);
 
-        const response = await BusquedaNivel3(idCategoria);
-        setUsuariosCategoria(response.ListTarjets);
+        // Busqueda por rango 5km categoría
+        if (rango) {
+            console.log(rango);
+            const response = await BusquedaNivel3Rango(idCategoria,position.coords.latitude, position.coords.longitude);
+            setUsuariosCategoria(response.ListTarjets);
+        }else{
+            // Busqueda Normal sin rango
+            const response = await BusquedaNivel3(idCategoria);
+            setUsuariosCategoria(response.ListTarjets);
+        }
 
         window.scrollTo({
             top: 0,
@@ -209,10 +247,10 @@ const BusquedaDirectorio = () => {
                     <h1>Busca en el Directorio Tarjet</h1>
 
                     <div className="switch-toggle">
-                        <span>5km</span>
+                        <span>Mostrar usuarios a menos de 3km</span>
 
                         <label className="switch mb-0">
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={rango} onChange={()=>setRango(!rango)}/>
                             <span className="slider"></span>
                         </label>
                     </div>
@@ -267,42 +305,77 @@ const BusquedaDirectorio = () => {
                                         Cerrar ventana de resultados
                                     </button>
                                 </div>
-                                
+
                                 { resultadosNombre.length > 0 ? 
                                     (
                                         <div className='cards'>
                                             { resultadosNombre.map((resultado)=>(
                                                 resultado.PublicPriva === 0 ? (
                                                     resultado.RegistroTarjet &&
-                                                        <div className='contenedor' key={resultado.IdUsuario}>
-                                                            <div className='title'>
-                                                                <div className='img'>
-                                                                    { resultado.ImgFoto !== '' ?
-                                                                        <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
-                                                                    : 
-                                                                        <img src={PerfilTemporal}/>
-                                                                    }
+                                                        rango ? (
+                                                            parseFloat(resultado.Distancia) <= 3 &&
+                                                                <div className='contenedor' key={resultado.IdUsuario}>
+                                                                    <div className='title'>
+                                                                        <div className='img'>
+                                                                            { resultado.ImgFoto !== '' ?
+                                                                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
+                                                                            : 
+                                                                                <img src={PerfilTemporal}/>
+                                                                            }
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5>
+                                                                                {resultado.NombreCompleto}
+                                                                                <br/>
+                                                                                <span>{resultado.Actividad}</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className='tarjetaImg'>
+                                                                        <img 
+                                                                            src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.FondoF}`} className='img-fluid'
+                                                                            onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
+                                                                        />
+                                                                    </div>
+                                                                    <div className='footer'>
+                                                                        <p>
+                                                                            Da click sobre la imagen para ver tarjeta digital
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
-                                                                <div>
-                                                                    <h5>
-                                                                        {resultado.NombreCompleto}
-                                                                        <br/>
-                                                                        <span>{resultado.Actividad}</span>
-                                                                    </h5>
+                                                        )
+                                                        : (
+                                                            parseFloat(resultado.Distancia) <= parseFloat(resultado.RangoLocal) &&
+                                                                <div className='contenedor' key={resultado.IdUsuario}>
+                                                                    <div className='title'>
+                                                                        <div className='img'>
+                                                                            { resultado.ImgFoto !== '' ?
+                                                                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
+                                                                            : 
+                                                                                <img src={PerfilTemporal}/>
+                                                                            }
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5>
+                                                                                {resultado.NombreCompleto}
+                                                                                <br/>
+                                                                                <span>{resultado.Actividad}</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className='tarjetaImg'>
+                                                                        <img 
+                                                                            src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.FondoF}`} className='img-fluid'
+                                                                            onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
+                                                                        />
+                                                                    </div>
+                                                                    <div className='footer'>
+                                                                        <p>
+                                                                            Da click sobre la imagen para ver tarjeta digital
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className='tarjetaImg'>
-                                                                <img 
-                                                                    src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.FondoF}`} className='img-fluid'
-                                                                    onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
-                                                                />
-                                                            </div>
-                                                            <div className='footer'>
-                                                                <p>
-                                                                    Da click sobre la imagen para ver tarjeta digital
-                                                                </p>
-                                                            </div>
-                                                        </div>
+                                                        )
                                                 ) : null
                                             ))
                                             }

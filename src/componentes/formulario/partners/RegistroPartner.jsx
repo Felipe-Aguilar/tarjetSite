@@ -138,7 +138,7 @@ const RegistroPartner = () => {
                             placeholder="Correo"
                             value={correo}
                             onChange={(e)=>setCorreo(e.target.value)}
-                            maxLength={15}
+                            maxLength={40}
                         />
                         <input 
                             type="text" 
