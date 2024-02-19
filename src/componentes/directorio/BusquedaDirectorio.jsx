@@ -93,7 +93,8 @@ const BusquedaDirectorio = ({ ubication }) => {
         }else{
             // Busqueda normal sin rango
             if (e.target.value.length >= 3) {
-                const respuesta = await BusquedaNombre(e.target.value);
+                // const respuesta = await BusquedaNombre(e.target.value);
+                const respuesta = await BusquedaNombreRango(e.target.value, position.coords.latitude, position.coords.longitude);
                 setResultadosNombre(respuesta.ListTarjets);
             }
         }
@@ -159,6 +160,7 @@ const BusquedaDirectorio = ({ ubication }) => {
 
         // Busqueda por rango 5km categoría
         if (rango) {
+            console.log(rango);
             const response = await BusquedaNivel3Rango(idCategoria,position.coords.latitude, position.coords.longitude);
             setUsuariosCategoria(response.ListTarjets);
         }else{
@@ -245,7 +247,7 @@ const BusquedaDirectorio = ({ ubication }) => {
                     <h1>Busca en el Directorio Tarjet</h1>
 
                     <div className="switch-toggle">
-                        <span>5km</span>
+                        <span>Mostrar usuarios a menos de 3km</span>
 
                         <label className="switch mb-0">
                             <input type="checkbox" checked={rango} onChange={()=>setRango(!rango)}/>
@@ -303,42 +305,77 @@ const BusquedaDirectorio = ({ ubication }) => {
                                         Cerrar ventana de resultados
                                     </button>
                                 </div>
-                                
+
                                 { resultadosNombre.length > 0 ? 
                                     (
                                         <div className='cards'>
                                             { resultadosNombre.map((resultado)=>(
                                                 resultado.PublicPriva === 0 ? (
                                                     resultado.RegistroTarjet &&
-                                                        <div className='contenedor' key={resultado.IdUsuario}>
-                                                            <div className='title'>
-                                                                <div className='img'>
-                                                                    { resultado.ImgFoto !== '' ?
-                                                                        <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
-                                                                    : 
-                                                                        <img src={PerfilTemporal}/>
-                                                                    }
+                                                        rango ? (
+                                                            parseFloat(resultado.Distancia) <= 3 &&
+                                                                <div className='contenedor' key={resultado.IdUsuario}>
+                                                                    <div className='title'>
+                                                                        <div className='img'>
+                                                                            { resultado.ImgFoto !== '' ?
+                                                                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
+                                                                            : 
+                                                                                <img src={PerfilTemporal}/>
+                                                                            }
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5>
+                                                                                {resultado.NombreCompleto}
+                                                                                <br/>
+                                                                                <span>{resultado.Actividad}</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className='tarjetaImg'>
+                                                                        <img 
+                                                                            src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.FondoF}`} className='img-fluid'
+                                                                            onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
+                                                                        />
+                                                                    </div>
+                                                                    <div className='footer'>
+                                                                        <p>
+                                                                            Da click sobre la imagen para ver tarjeta digital
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
-                                                                <div>
-                                                                    <h5>
-                                                                        {resultado.NombreCompleto}
-                                                                        <br/>
-                                                                        <span>{resultado.Actividad}</span>
-                                                                    </h5>
+                                                        )
+                                                        : (
+                                                            parseFloat(resultado.Distancia) <= parseFloat(resultado.RangoLocal) &&
+                                                                <div className='contenedor' key={resultado.IdUsuario}>
+                                                                    <div className='title'>
+                                                                        <div className='img'>
+                                                                            { resultado.ImgFoto !== '' ?
+                                                                                <img src={`https://tarjet.site/imagenes/perfil-imagenes/${resultado.ImgFoto}`}/>
+                                                                            : 
+                                                                                <img src={PerfilTemporal}/>
+                                                                            }
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5>
+                                                                                {resultado.NombreCompleto}
+                                                                                <br/>
+                                                                                <span>{resultado.Actividad}</span>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className='tarjetaImg'>
+                                                                        <img 
+                                                                            src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.FondoF}`} className='img-fluid'
+                                                                            onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
+                                                                        />
+                                                                    </div>
+                                                                    <div className='footer'>
+                                                                        <p>
+                                                                            Da click sobre la imagen para ver tarjeta digital
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className='tarjetaImg'>
-                                                                <img 
-                                                                    src={`https://tarjet.site/imagenes/tarjetas_frente_usuarios/${resultado.FondoF}`} className='img-fluid'
-                                                                    onClick={()=>navigate(`/st/${btoa(resultado.Token)}`)}
-                                                                />
-                                                            </div>
-                                                            <div className='footer'>
-                                                                <p>
-                                                                    Da click sobre la imagen para ver tarjeta digital
-                                                                </p>
-                                                            </div>
-                                                        </div>
+                                                        )
                                                 ) : null
                                             ))
                                             }

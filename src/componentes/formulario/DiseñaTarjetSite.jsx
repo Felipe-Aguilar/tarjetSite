@@ -111,6 +111,8 @@ const DiseñaTarjetSite = () => {
             setYoutube(respuesta.Youtube);
             setLinkedin(respuesta.Linkedin);
             setTelegram(respuesta.Telegram);
+            setMostrar(respuesta.VerUbicacion === 1 ? true : false);
+
             if (respuesta.Titulo === '') {
                 setTitulo('Lic');
             }else{
@@ -434,6 +436,7 @@ const DiseñaTarjetSite = () => {
             "Servicio17": servicio17,
             "Servicio18": servicio18,
             "Titulo": titulo,
+            "VerUbicacion": mostrar ? 1 : 0,
         }
 
         await ActualizarPerfil2(datosGenerales, datosFormulario);
@@ -659,6 +662,8 @@ const DiseñaTarjetSite = () => {
     const CerrarInfoFacebook = () => {
         setInfoFacebook(false);
     }
+
+    const [mostrar, setMostrar] = useState(false);
 
     return ( 
         <div className='backgroun-Green'>
@@ -1088,7 +1093,11 @@ const DiseñaTarjetSite = () => {
                                 </div>
 
                                 <div className='checkbox'>
-                                    <input type="checkbox"/>
+                                    <input 
+                                        type="checkbox"
+                                        checked={mostrar}
+                                        onChange={()=>setMostrar(!mostrar)}
+                                    />
                                     <label>Mostrar mi ubicación registrada en mi perfil</label>
                                 </div>
 

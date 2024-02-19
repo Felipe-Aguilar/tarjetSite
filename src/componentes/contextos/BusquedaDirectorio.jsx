@@ -131,7 +131,7 @@ const ObtenerSegmentos = async (descripcion) => {
 
 const BusquedaNombreRango = async (nombre, latitud, longitud ) => {
 
-    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=${nombre}&Latitud=${latitud}&Longitud=${longitud}&Radio=200`, {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=${nombre}&Latitud=${latitud}&Longitud=${longitud}&Radio=3`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -143,7 +143,7 @@ const BusquedaNombreRango = async (nombre, latitud, longitud ) => {
     const dataUsuario = await response.json();
 
     if (dataUsuario.ListTarjets.length === 0) {
-        const response2 = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=${nombre}&Nombre=&Latitud=${latitud}&Longitud=${longitud}&Radio=5000`, {
+        const response2 = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=${nombre}&Nombre=&Latitud=${latitud}&Longitud=${longitud}&Radio=3`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-store',
@@ -155,7 +155,7 @@ const BusquedaNombreRango = async (nombre, latitud, longitud ) => {
         const dataUsuario2 = await response2.json();
 
         if (dataUsuario2.ListTarjets.length === 0) {
-            const response3 = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=&Alias=${nombre}&Latitud=${latitud}&Longitud=${longitud}&Radio=5000`, {
+            const response3 = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=&Alias=${nombre}&Latitud=${latitud}&Longitud=${longitud}&Radio=3`, {
                 method: 'GET',
                 mode: 'cors',
                 cache: 'no-store',
@@ -175,7 +175,8 @@ const BusquedaNombreRango = async (nombre, latitud, longitud ) => {
 }
 
 const BusquedaNivel3Rango = async (nivel, latitud, longitud) => {
-    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXCategoria?Categoriaid=${nivel}&Latitud=${latitud}&Longitud=${longitud}&Radio=5000`, {
+
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXCategoria?Categoriaid=${nivel}&Latitud=${latitud}&Longitud=${longitud}&Radio=3`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -185,7 +186,7 @@ const BusquedaNivel3Rango = async (nivel, latitud, longitud) => {
     });
 
     const dataUsuario = await response.json();
-
+    
     return dataUsuario;
 }
 

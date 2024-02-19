@@ -51,6 +51,7 @@ const DiseñaTarjet = () => {
     const [titulo, setTitulo] = useState('');
     const [nombreUsuario, setNombreUsuario] = useState('');
     const [nombreNegocio, setNombreNegocio] = useState('');
+    const [rangoLocal, setRangoLocal] = useState('');
 
     const [error, setError] = useState(false);
     const [errorActividad, setErrorActividad] = useState(false);
@@ -113,6 +114,14 @@ const DiseñaTarjet = () => {
             setActividad(respuesta.Lev3Desc);
             setNombreUsuario(respuesta.Alias);
             setNombreNegocio(respuesta.NomNegocio);
+
+            if (respuesta.Premium) {
+                setRangoLocal(respuesta.RangoLocal);
+            }else{
+                setRangoLocal("3");
+            }
+
+
             if (respuesta.Titulo === '') {
                 setTituloDes('Lic');
             } else{
@@ -317,7 +326,8 @@ const DiseñaTarjet = () => {
             "Colonia": colonia,
             "Titulo": tituloDes,
             "Alias": nombreUsuario,
-            "NomNegocio": nombreNegocio
+            "NomNegocio": nombreNegocio,
+            "RangoLocal": rangoLocal
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -394,8 +404,8 @@ const DiseñaTarjet = () => {
             "Titulo": tituloDes,
             "Alias": nombreUsuario,
             "NomNegocio": nombreNegocio,
-            "VerUbicacion": mostar ? 1 : 0,
             "MapsGeoloc": `${latitud}, ${longitud}`,
+            "RangoLocal": rangoLocal,
         }
 
         await ActualizarPerfil(datosGenerales, datosFormulario);
@@ -519,7 +529,8 @@ const DiseñaTarjet = () => {
             "Colonia": colonia,
             "Titulo": tituloDes,
             // "Alias": nombreUsuario,
-            "NomNegocio": nombreNegocio
+            "NomNegocio": nombreNegocio,
+            "RangoLocal": rangoLocal
         }
 
         await ActualizarPerfil4(datosGenerales, datosFormulario);
@@ -546,14 +557,10 @@ const DiseñaTarjet = () => {
 
     const [colaborador, setColaborador] = useState(false);
 
-    
-// Cachar coordenadas
-    const [latitud, setLatitud] = useState(0);
-    const [longitud, setLongitud] = useState(0);
-
-    const onCoordenadas = (latitud, longitud) => {
-        setLatitud(latitud);
-        setLongitud(longitud);
+// OnChange codigo postal
+    const onChangeCP = () => {
+        setMostrar(true);
+        onHandleSubmit;
     }
 
     return ( 
@@ -1205,7 +1212,7 @@ const DiseñaTarjet = () => {
                                             placeholder='C.P'
                                             value={codigoPostal}
                                             onChange={onChangeCodigoPostal}
-                                            onBlur={onHandleSubmit}
+                                            onBlur={onChangeCP}
                                         />
                                     </div>
                                 </div>
@@ -1223,10 +1230,6 @@ const DiseñaTarjet = () => {
                                     placeholder='Municipio'
                                     value={municipio}
                                 />
-
-                                {/* <select name="" id="">
-                                    <option value="categiria" key="1">Delegación *</option>
-                                </select> */}
 
                                 <select 
                                     value={colonia} 
@@ -1263,7 +1266,7 @@ const DiseñaTarjet = () => {
                                         onChange={onChangeUbicacion} 
                                         checked={mostar}
                                     />
-                                    <label htmlFor="mostrarEmpresa">Mostrar mi empresa en el mapa</label>
+                                    <label htmlFor="mostrarEmpresa">Ver en el mapa</label>
                                 </div>
 
                                 { mostar &&
@@ -1274,9 +1277,22 @@ const DiseñaTarjet = () => {
                                 }
 
                                 <div className='rango'>
-                                    <select name="" id="">
-                                        <option value="" key="3">
-                                            5 km.
+                                    <select 
+                                        value={rangoLocal} 
+                                        onChange={(e)=>setRangoLocal(e.target.value)} onBlur={onHandleSubmit}
+                                        disabled={datosGenerales.Premium  ? false : true}
+                                    >
+                                        <option value="3" key="1">
+                                            3 km.
+                                        </option>
+                                        <option value="10" key="2">
+                                            10 km.
+                                        </option>
+                                        <option value="20" key="3">
+                                            20 km.
+                                        </option>
+                                        <option value="10000" key="4">
+                                            Sin límite
                                         </option>
                                     </select>
                                     <label htmlFor="">Rango de visualización en el mapa</label>
