@@ -59,7 +59,6 @@ const BusquedaDirectorio = ({ ubication }) => {
     useEffect(()=>{
         
         if (position == null) {
-            console.log('entré', position);
             if (navigator.geolocation) { //check if geolocation is available
                 navigator.geolocation.getCurrentPosition(function(position){
                     setPosition(position);
@@ -197,6 +196,7 @@ const BusquedaDirectorio = ({ ubication }) => {
         speed: 500,
         slidesToShow: 8,
         slidesToScroll: 8,
+        initialSlide: 0,
         prevArrow: (
             <div className='custom-arrow custom-prev-arrow'>
                 <i className="bi bi-chevron-left" ></i>
@@ -211,39 +211,41 @@ const BusquedaDirectorio = ({ ubication }) => {
             {
                 breakpoint: 1700,
                 settings: {
-                slidesToShow: 6,
-                slidesToScroll: 6,
-                infinite: true,
-                arrows:true
+                    slidesToShow: 6,
+                    slidesToScroll: 6,
+                    initialSlide: 0,
+                    infinite: true,
+                    arrows:true
                 }
             },
             {
                 breakpoint: 1250,
                 settings: {
-                initialSlide: 1,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                infinite: true,
-                arrows:true
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    initialSlide: 0,
+                    infinite: true,
+                    arrows:true
                 }
             },
             {
                 breakpoint: 1000,
                 settings: {
-                initialSlide: 1,
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                infinite: true,
-                arrows:true,
+                    initialSlide: 0,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    infinite: true,
+                    arrows:true,
                 }
             },
             {
                 breakpoint: 400,
                 settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                arrows:true
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    initialSlide: 0,
+                    infinite: true,
+                    arrows:true
                 }
             }
         ]
@@ -259,11 +261,11 @@ const BusquedaDirectorio = ({ ubication }) => {
         <div className="container-fluid BusquedaDirectorio">
 
             <div className="Barra">
-                <div className="Title">
-                    <h1>Busca en el Directorio Tarjet</h1>
+                <div className="Title justify-content-end">
+                    {/* <h1>Busca en el Directorio Tarjet</h1> */}
 
                     <div className="switch-toggle">
-                        <span className="text">Mostrar usuarios a menos de 3km</span>
+                        <span className="text">Mostrar únicamente usuarios cercanos 3km</span>
 
                         <label className="switch mb-0">
                             <input type="checkbox" checked={rango} onChange={()=>setRango(!rango)}/>
