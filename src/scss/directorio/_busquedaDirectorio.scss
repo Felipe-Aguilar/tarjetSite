@@ -49,6 +49,12 @@
             gap: 10px;
             margin-bottom: 8px;
 
+            .text{
+                @media (width <= 700px) {
+                    font-size: 0.7rem;
+                }
+            }
+
             .switch {
                 font-size: 0.5rem;
                 position: relative;

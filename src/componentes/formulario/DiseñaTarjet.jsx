@@ -560,8 +560,27 @@ const DiseñaTarjet = () => {
 // OnChange codigo postal
     const onChangeCP = () => {
         setMostrar(true);
-        onHandleSubmit;
+        onHandleSubmit();
     }
+
+// Cachar coordenadas
+    const [latitud, setLatitud] = useState(0);
+    const [longitud, setLongitud] = useState(0);
+
+    const onCoordenadas = (latitud, longitud) => {
+        setLatitud(latitud);
+        setLongitud(longitud);
+    }
+
+// Cambio de código postal y mostrar en el Mapa
+    useEffect(()=>{
+        setMostrar(false);
+
+        if (codigoPostal.length == 5) {
+            setMostrar(true);
+        }
+    },[codigoPostal]);
+
 
     return ( 
         <div className='backgroun-Green'>
