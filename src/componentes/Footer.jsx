@@ -27,7 +27,8 @@ const Footer = () => {
                 <a href="">Política de Devoluciones</a> */}
                 <a onClick={()=>navigate('/aviso-privacidad')}>Aviso de Privacidad</a>
                 {/* <a href="">Facturación</a> */}
-                <a href="">Contacto</a>
+                <a href="https://wa.me/5586763895">Contacto</a>
+                <a href="#">Tarjet para Partners</a>
             </div>
         </footer>
     );
