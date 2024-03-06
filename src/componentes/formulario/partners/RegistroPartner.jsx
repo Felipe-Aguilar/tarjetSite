@@ -61,7 +61,8 @@ const RegistroPartner = () => {
                         "Correo": correo,
                         "Password": password,
                         "PartnerUUID": dataPartner.PartnerUUID,
-                        "TipoAut": ""
+                        "TipoAut": "",
+                        "Titulo": prefijo,
                     }
                 })
             });
