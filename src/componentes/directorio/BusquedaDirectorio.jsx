@@ -57,7 +57,7 @@ const BusquedaDirectorio = ({ ubication }) => {
     const [position, setPosition] = useState(ubication);
     
     useEffect(()=>{
-        
+
         if (position == null) {
             if (navigator.geolocation) { //check if geolocation is available
                 navigator.geolocation.getCurrentPosition(function(position){
@@ -86,14 +86,21 @@ const BusquedaDirectorio = ({ ubication }) => {
         // Busqueda por Rango de 5km
         if (rango) {
             if (e.target.value.length >= 3) {
-                const respuesta = await BusquedaNombreRango(e.target.value, position.coords.latitude, position.coords.longitude);
-                setResultadosNombre(respuesta.ListTarjets);
+                if (ubication) {
+                    const respuesta = await BusquedaNombreRango(e.target.value, position.coords.latitude, position.coords.longitude);
+                    setResultadosNombre(respuesta.ListTarjets);
+                }else{
+                    // Aunque tenga el rango pero no ubicación hace la búsqueda pero general
+                    const respuesta = await BusquedaNombre(e.target.value);
+                    setResultadosNombre(respuesta.ListTarjets);
+                }
             }
         }else{
             // Busqueda normal sin rango
             if (e.target.value.length >= 3) {
 
-                if (position.coords.latitude && position.coords.longitude) {
+                // if (position.coords.latitude && position.coords.longitude) {
+                if (ubication) {
                     const respuesta = await BusquedaNombreRango(e.target.value, position.coords.latitude, position.coords.longitude);
                     setResultadosNombre(respuesta.ListTarjets);
                 }else{
@@ -549,7 +556,7 @@ const BusquedaDirectorio = ({ ubication }) => {
                 </>
                 : (
                     <div>
-                        <VideoBanner />
+                        {/* <VideoBanner /> */}
                         <NuevosUsuarios />
                     </div>
                 )
