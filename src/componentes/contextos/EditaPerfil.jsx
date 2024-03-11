@@ -88,7 +88,7 @@ const ActualizarPerfil = async(datosGenerales, datosFormulario) => {
             }
         })
     });
-    
+
     const dataUsuario = await response.json();
 
     return dataUsuario;

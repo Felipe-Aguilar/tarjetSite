@@ -66,7 +66,7 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
 
     const GuardarImagen = () => {
         // Captura la representación de la imagen con los textos superpuestos
-        html2canvas(constraintsRef.current,{scale: 5}).then((canvas) => {
+        html2canvas(constraintsRef.current,{scale: 1}).then((canvas) => {
 
             // Convierte el lienzo en una URL de datos
             const imgData = canvas.toDataURL('image/jpg');
@@ -93,6 +93,10 @@ const Previsualizar = ({onClickButton, datosGenerales, tipoPrevisualizar, curren
                 // window.location.reload(true);
             }, 4000)
         },1000);
+    }
+
+    const GuardarImagen2 = async () => {
+        
     }
 
     return ( 

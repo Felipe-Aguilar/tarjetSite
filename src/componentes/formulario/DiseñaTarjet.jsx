@@ -404,7 +404,7 @@ const DiseñaTarjet = () => {
             "Titulo": tituloDes,
             "Alias": nombreUsuario,
             "NomNegocio": nombreNegocio,
-            "MapsGeoloc": `${latitud}, ${longitud}`,
+            "MapsGeoloc": `${(latitud && longitud) !== 0 ? `${latitud}, ${longitud}` : ''}`,
             "RangoLocal": rangoLocal,
         }
 
