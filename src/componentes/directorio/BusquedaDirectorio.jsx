@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 
-import { BusquedaNombre, BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNivel3, BusquedaNombreRango, BusquedaNivel3Rango } from "../contextos/BusquedaDirectorio";
+import { BusquedaNombre, BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNivel3, BusquedaNombreRango, BusquedaNivel3Rango, TarjetsNivel2 } from "../contextos/BusquedaDirectorio";
 
 import NuevosUsuarios from './NuevosUsuarios';
 import VideoBanner from './VideoBanner';
@@ -161,6 +161,17 @@ const BusquedaDirectorio = ({ ubication }) => {
         setCategoriasN3(response.SDTCategorias[0].Level2[0].Level3);
         
         setReplegar(idCategoria === replegar ? null : idCategoria);
+    }
+    
+    //Método 2 (nuevo) no borrar el de arriba
+    const BusquedaCategoriaN2 = async (description, idCategoria) => {
+        
+        const response = await TarjetsNivel2(idCategoria);
+        setUsuariosCategoria(response.ListTarjets);
+
+        setCategoriaBusqueda(false);
+        setReCategoria(true);
+
     }
 
 // Busqueda de usuarios categoría N3
@@ -428,7 +439,7 @@ const BusquedaDirectorio = ({ ubication }) => {
                                         <div key={categoria.Id}>
                                             <button
                                                 className={replegar === categoria.Id ? '' : 'no-check'}
-                                                onClick={()=>SelectCategoriaN2(categoria.Desc, categoria.Id)}
+                                                onClick={()=>BusquedaCategoriaN2(categoria.Desc, categoria.Id)}
                                             >
                                                 <div>
                                                     <i className="bi bi-check2"></i>

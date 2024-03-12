@@ -41,6 +41,21 @@ const ConsultaNivel3 = async (idCategoriaSeleccionada, idActividad) => {
     return dataUsuario;
 }
 
+const TarjetsNivel2 = async (idCategoria) => {
+    const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/ConsultaTarjetCategorias?Nivel1=&Nivel2=${idCategoria}`, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-store',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+
+    const dataUsuario = await response.json();
+    
+    return dataUsuario;
+}
+
 const BusquedaNombre = async (nombre) => {
     const response = await fetch(`https://souvenir-site.com/WebTarjet/APIDirectorio/BuscaXDesc?Actividad=&Nombre=${nombre}`, {
         method: 'GET',
@@ -190,4 +205,4 @@ const BusquedaNivel3Rango = async (nivel, latitud, longitud) => {
     return dataUsuario;
 }
 
-export { BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNombre, BusquedaAlias, BusquedaNivel3, ObtenerSegmentos, BusquedaNombreRango, BusquedaNivel3Rango};
+export { BusquedaCategoria, ConsultaActividad, ConsultaNivel3, BusquedaNombre, BusquedaAlias, BusquedaNivel3, ObtenerSegmentos, BusquedaNombreRango, BusquedaNivel3Rango, TarjetsNivel2};

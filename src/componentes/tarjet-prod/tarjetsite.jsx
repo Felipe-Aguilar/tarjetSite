@@ -98,23 +98,23 @@ const TarjetSite = () => {
             setToken(datoToken.UsuToken);
 
             // Servicios
-            const datosServicios = datosUsuarios.SDTSite.Serv.filter(servicio => servicio.TipoServSiteId === 1).map(servicio => servicio);
+            const datosServicios = datosUsuarios.SDTSite.Serv?.filter(servicio => servicio.TipoServSiteId === 1).map(servicio => servicio);
             setServicios(datosServicios);
 
             // Servicios Descripción Imagen
-            const datosServiciosImagen = datosUsuarios.SDTSite.Serv.filter(servicio => servicio.TipoServSiteId === 2).map(servicio => servicio.SiteServDescrip);
+            const datosServiciosImagen = datosUsuarios.SDTSite.Serv?.filter(servicio => servicio.TipoServSiteId === 2).map(servicio => servicio.SiteServDescrip);
             setDescServicios(datosServiciosImagen);
 
             // Servicios Imagen
-            const imagenServiciosImagen = datosUsuarios.SDTSite.Serv.filter(servicio => servicio.TipoServSiteId === 2).map(servicio => servicio);
+            const imagenServiciosImagen = datosUsuarios.SDTSite.Serv?.filter(servicio => servicio.TipoServSiteId === 2).map(servicio => servicio);
             setImagenServicios(imagenServiciosImagen);
 
             // Servicios Imagen subtítulo
-            const datosServiciosImagenSubtitulo = datosUsuarios.SDTSite.Serv.filter(servicio => servicio.TipoServSiteId === 2).map(servicio => servicio.SiteServSubTitulo);
+            const datosServiciosImagenSubtitulo = datosUsuarios.SDTSite.Serv?.filter(servicio => servicio.TipoServSiteId === 2).map(servicio => servicio.SiteServSubTitulo);
             setImagenSubtitulo(datosServiciosImagenSubtitulo);
 
             // Servicios Video
-            const datosServiciosVideo = datosUsuarios.SDTSite.Serv.filter(servicio => servicio.TipoServSiteId === 3).map(servicio => servicio);
+            const datosServiciosVideo = datosUsuarios.SDTSite.Serv?.filter(servicio => servicio.TipoServSiteId === 3).map(servicio => servicio);
             setServiciosVideo(datosServiciosVideo);
 
             if (datosActualizados && datosUsuarios) {
@@ -601,17 +601,19 @@ END:VCARD`;
                                 <img src={IconServicios} />
                                 <h6>{usuario.SiteTituloServ2}</h6>
                                 
-                                <ul>
-                                    {
-                                        servicios.map((servicio, index)=>(
-                                            <>
-                                                {servicio.SiteServDescrip &&
-                                                    <li key={index}>{servicio.SiteServDescrip}</li>
-                                                }
-                                            </>
-                                        ))
-                                    }
-                                </ul>
+                                { servicios &&
+                                    <ul>
+                                        {
+                                            servicios.map((servicio, index)=>(
+                                                <>
+                                                    {servicio.SiteServDescrip &&
+                                                        <li key={index}>{servicio.SiteServDescrip}</li>
+                                                    }
+                                                </>
+                                            ))
+                                        }
+                                    </ul>
+                                }
                             </div>
                         </div>
 
@@ -621,7 +623,7 @@ END:VCARD`;
                             </div>
                         </div>
 
-                        { 
+                        { imagenServicios &&
                             imagenServicios.map((servicio, index)=>(
                                 (servicio.SiteServSubTitulo || servicio.SiteServDescrip || servicio.SiteServIMG) &&
                                     <>
@@ -636,11 +638,11 @@ END:VCARD`;
                                                 { servicio.SiteServSubTitulo &&
                                                     <h5>{servicio.SiteServSubTitulo}</h5>
                                                 }
-                
+
                                                 { servicio.SiteServIMG &&
                                                     <img src={`https://tarjet.site/imagenes/servicios/${servicio.SiteServIMG}`} />
                                                 }
-                
+
                                                 {/* <h6>{servicio.SiteServDescrip}</h6> */}
 
                                                 { servicio.SiteServDescrip &&
@@ -654,7 +656,7 @@ END:VCARD`;
                                                 
                                             </div>
                                         </div>
-                
+
                                         <div className='row justify-content-center' key={index}>
                                             <div className='col-11 col-md-4 p-0'>
                                                 <hr/>
