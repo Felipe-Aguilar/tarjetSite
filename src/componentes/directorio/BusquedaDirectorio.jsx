@@ -567,8 +567,8 @@ const BusquedaDirectorio = ({ ubication }) => {
                 </>
                 : (
                     <div>
-                        {/* <VideoBanner /> */}
-                        <NuevosUsuarios />
+                        <VideoBanner />
+                        {/* <NuevosUsuarios /> */}
                     </div>
                 )
             }
